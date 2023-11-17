@@ -5,7 +5,7 @@
 
 /* Your custom styles go here */
 @layer base {
-    .body {
-        @apply bg-black;
+    html {
+        @apply bg-black text-white;
     }
 }
