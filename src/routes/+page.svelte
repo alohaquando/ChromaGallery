@@ -6,6 +6,7 @@
 <p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
 
 <Button text={"Button"}></Button>
-<Button state={State.Disabled} style={Style.Outlined} text={"Button"}></Button>
+<Button state={"ENABLED"} style={"DEFAULT"} text={"Button"}></Button>
+<Button state={"DISABLED"} style={"OUTLINED"} text={"Button"}></Button>
 
 <p>Hello</p>
