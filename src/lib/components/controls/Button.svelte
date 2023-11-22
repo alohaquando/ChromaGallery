@@ -3,6 +3,10 @@
     import Fa from "svelte-fa";
     import {faCog} from "@fortawesome/pro-regular-svg-icons";
     export let text = "Text";
+    const FullWidth = {
+        True: "TRUE",
+        False: "FALSE"
+    }
     const State = {
         Enabled: "ENABLED",
         Disabled: "DISABLED"
@@ -11,11 +15,13 @@
         Outlined: "OUTLINED",
         Default: "DEFAULT"
     }
+    export let fullWidth = FullWidth.False;
     export let state = State.Enabled;
     export let style = Style.Outlined;
 </script>
 
 <button class="px-5 py-3 rounded-full backdrop-blur-sm justify-center items-center gap-2 inline-flex line-clamp-1 overflow-visible ease-out duration-300
+        {fullWidth === FullWidth.True ? 'w-full' : ''}
         {state === State.Enabled ? 'hover:bg-white/60 hover:text-gray-900 hover:before:opacity-70 hover:after:opacity-70' : 'text-white/50'}
         {style === Style.Default ? 'bg-white text-gray-900 active:bg-white/80' : 'border border-white border-opacity-30'}
         after:content-[''] after:h-full after:w-full after:rounded-full after:absolute after:top-auto after:bg-gradient-to-b from-white/0 to-white after:blur-lg after:opacity-0 after:duration-1000 after:ease-out after:-z-10
