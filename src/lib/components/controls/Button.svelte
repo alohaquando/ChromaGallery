@@ -1,8 +1,10 @@
 <script>
     import Body from "$lib/components/typography/Body.svelte";
     import Fa from "svelte-fa";
-    import {faCog} from "@fortawesome/pro-regular-svg-icons";
+    import Icon from "$lib/components/Icon.svelte";
+
     export let text = "Text";
+    export let icon;
     const FullWidth = {
         True: "TRUE",
         False: "FALSE"
@@ -27,8 +29,6 @@
         after:content-[''] after:h-full after:w-full after:rounded-full after:absolute after:top-auto after:bg-gradient-to-b from-white/0 to-white after:blur-lg after:opacity-0 after:duration-1000 after:ease-out after:-z-10
         before:content-[''] before:h-full before:w-full before:bg-gradient-to-b from-white/20 via-white/40 to-white/80 before:rounded-full before:blur-lg before:absolute before:opacity-0 before:duration-1000 before:ease-out before:-z-10
 ">
-<Fa icon={faCog} class=""
-    size="${16}x"
-/>
+<Icon icon={icon}></Icon>
     <Body {text}></Body>
 </button>

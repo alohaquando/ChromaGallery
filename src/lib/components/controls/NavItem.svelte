@@ -1,9 +1,9 @@
 <script>
   import Body from "$lib/components/typography/Body.svelte";
   import Fa from "svelte-fa";
-  import {faSearch} from "@fortawesome/pro-regular-svg-icons";
-  export let color = "white";
+  import Icon from "$lib/components/Icon.svelte";
   export let text = "Text";
+  export let icon;
   const Active = {
     True: "TRUE",
     False: "FALSE"
@@ -16,6 +16,6 @@
         {active === Active.True ? '' : 'after:hidden'}
         after:content-[''] after:h-16 after:w-16 after:rounded-full after:absolute after:bg-gradient-to-b from-white/20 to-white after:duration-1000 after:ease-out after:-z-10 after:blur-lg
 ">
-  <Fa icon={faSearch} class="text-xl"/>
+  <Icon icon={icon} size="xl"></Icon>
   <Body {text}></Body>
 </button>

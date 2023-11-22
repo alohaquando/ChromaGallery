@@ -1,10 +1,10 @@
 <script>
   import Body from "$lib/components/typography/Body.svelte";
+  import Icon from "$lib/components/Icon.svelte";
   import Fa from "svelte-fa";
-  import {faCircleInfo} from "@fortawesome/pro-regular-svg-icons";
-  import {faCircleInfo as solidCircleInfo} from "@fortawesome/pro-solid-svg-icons"
   import { elasticIn } from "svelte/easing";
   export let text = "Text";
+  export let icon;
   const Type = {
     Actionable: "ACTIONABLE",
     ViewOnly: "VIEW-ONLY"
@@ -25,9 +25,9 @@
         before:content-[''] before:h-full before:w-full before:bg-gradient-to-b from-white/20 via-white/40 to-white/80 before:rounded-full before:blur-lg before:absolute before:opacity-0 before:duration-1000 before:ease-out before:-z-10
 ">
   {#if state === State.Active}
-    <Fa icon={solidCircleInfo} size="${16}x"/>
+    <Icon icon={icon} iconType="solid" size="sm"></Icon>
     {:else}
-  <Fa icon={faCircleInfo} size="${16}x"/>
+    <Icon icon={icon} size="sm"></Icon>
     {/if}
   <Body {text}></Body>
 </button>
