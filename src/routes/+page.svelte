@@ -3,6 +3,8 @@
     import Chip from "$lib/components/controls/Chip.svelte";
     import { Fa } from "svelte-fa";
     import NavItem from "$lib/components/controls/NavItem.svelte";
+    import Links from "$lib/components/links/Links.svelte";
+    import Icon from "$lib/components/Icon.svelte";
 </script>
 
 <h1 class="text-3xl font-bold underline text-red-500">Welcome to SvelteKit</h1>
@@ -10,19 +12,25 @@
 
 <div>Buttons</div>
 
-<Button state={"DISABLED"} text={"Button"}></Button>
-<Button style={"DEFAULT"} text={"Button"}></Button>
-<Button text={"Button"}></Button>
+<Button icon="faCog" state={"DISABLED"} text={"Button"}></Button>
+<Button icon="faCog" style={"DEFAULT"} text={"Button"}></Button>
+<Button icon="faCog" text={"Button"}></Button>
 
 <div><span class="line-through">Fish&</span>Chips</div>
 
-<Chip type={"VIEW-ONLY"} text={"Chip"}></Chip>
-<Chip state={"ACTIVE"} text={"Chip"}></Chip>
-<Chip text={"Chip"}></Chip>
+<Chip icon="faCircleInfo" type={"VIEW-ONLY"} text={"Chip"}></Chip>
+<Chip icon="faCircleInfo" state={"ACTIVE"} text={"Chip"}></Chip>
+<Chip icon="faCircleInfo" text={"Chip"}></Chip>
 
 <div>Nav item</div>
 
-<NavItem text="Search"></NavItem>
-<NavItem active="TRUE" text="Search"></NavItem>
+<NavItem icon="faSearch" text="Search"></NavItem>
+<NavItem icon="faSearch" active="TRUE" text="Search"></NavItem>
 
-<p>Hello</p>
+<div>Links</div>
+
+<Links link="/" text="This is a link"></Links>
+<div class="text-2xl"><Links link="/" size="MEDIUM" text="This is a bigger link"></Links></div>
+<div class="text-4xl"><Links link="/" size="LARGE" text="This is an even bigger link"></Links></div>
+
+<Icon></Icon>
