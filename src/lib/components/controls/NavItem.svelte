@@ -1,7 +1,6 @@
 <script>
   import Body from "$lib/components/typography/Body.svelte";
   import Fa from "svelte-fa";
-  import {faSearch} from "@fortawesome/pro-regular-svg-icons";
   import Icon from "$lib/components/Icon.svelte";
   export let text = "Text";
   export let icon;

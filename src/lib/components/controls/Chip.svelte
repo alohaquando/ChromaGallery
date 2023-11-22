@@ -2,8 +2,6 @@
   import Body from "$lib/components/typography/Body.svelte";
   import Icon from "$lib/components/Icon.svelte";
   import Fa from "svelte-fa";
-  import {faCircleInfo} from "@fortawesome/pro-regular-svg-icons";
-  import {faCircleInfo as solidCircleInfo} from "@fortawesome/pro-solid-svg-icons"
   import { elasticIn } from "svelte/easing";
   export let text = "Text";
   export let icon;
