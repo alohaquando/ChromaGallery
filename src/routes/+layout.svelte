@@ -6,4 +6,8 @@
 	<a href="/" >home</a>
 	<a href="/about">about</a>
 </nav>
+
+
+<header></header>
 <slot />
+<footer></footer>
