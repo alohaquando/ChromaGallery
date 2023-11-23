@@ -30,5 +30,5 @@
         before:content-[''] before:h-full before:w-full before:bg-gradient-to-b from-white/20 via-white/40 to-white/80 before:rounded-full before:blur-lg before:absolute before:opacity-0 before:duration-1000 before:ease-out before:-z-10
 ">
 <Icon icon={icon}></Icon>
-    <Body {text}></Body>
+    <Body>{text}</Body>
 </button>

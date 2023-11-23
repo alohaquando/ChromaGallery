@@ -3,6 +3,6 @@
 	export { customClass as class };
 </script>
 
-<p class="font-sans trim-both text-base {customClass}">
+<h3 class="font-sans trim-both text-xl {customClass}">
 	<slot />
-</p>
+</h3>
