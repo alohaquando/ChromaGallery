@@ -69,4 +69,8 @@
 	<h1>{userName}</h1>
 	<h1>{userEmail}</h1>
 </nav>
+
+
+<header></header>
 <slot />
+<footer></footer>
