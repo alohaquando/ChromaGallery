@@ -1,16 +1,10 @@
 <script>
-    import Button from "$lib/components/controls/Button.svelte";
-    import Chip from "$lib/components/controls/Chip.svelte";
-    import { Fa } from "svelte-fa";
-    import NavItem from "$lib/components/controls/NavItem.svelte";
-    import Link from "$lib/components/links/Link.svelte";
-    import Icon from "$lib/components/Icon.svelte";
+import Chip from "$lib/components/controls/Chip.svelte";
+import Link from "$lib/components/links/Link.svelte";
+import Icon from "$lib/components/Icon.svelte";
+import NavItem from "$lib/components/controls/NavItem.svelte";
+import Button from "$lib/components/controls/Button.svelte";
 </script>
-
-<h1 class="text-3xl font-bold underline text-red-500">Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
-
-<Link link="/test" text="Test page here."></Link>
 
 <div>Buttons</div>
 
