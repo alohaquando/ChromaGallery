@@ -5,7 +5,11 @@
 
 /* Your custom styles go here */
 @layer base {
-    html {
-        @apply bg-black text-white;
-    }
+	html {
+		@apply bg-black text-white;
+	}
+}
+
+.h-xl {
+	height: 125%;
 }
