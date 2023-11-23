@@ -6,7 +6,7 @@ import {
 	signInWithPopup,
 	signOut
 } from 'firebase/auth';
-import { auth } from '../services/firebase/firebase';
+import { auth } from '$lib/services/firebase/firebase.js';
 
 export const authStore = writable({
 	user: null,
