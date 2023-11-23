@@ -1,5 +1,5 @@
 <script>
-	import { authHandlers } from '../stores/store';
+	import { authHandlers } from '$lib/stores/store.js';
 	let email = '';
 	let password = '';
 	let confirmPassword = '';
@@ -89,7 +89,9 @@
 	</form>
 	<div class="flex flex-col">
 		<p>Or</p>
-		<button on:click={handleAuthenticateGoogle} class="bg-green-500 rounded p-1 hover:text-white">Login with Google</button>
+		<button on:click={handleAuthenticateGoogle} class="bg-green-500 rounded p-1 hover:text-white"
+			>Login with Google</button
+		>
 		{#if register}
 			<div>
 				<p>Already have an account ?</p>
