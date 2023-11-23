@@ -4,6 +4,7 @@ import Link from "$lib/components/links/Link.svelte";
 import Icon from "$lib/components/Icon.svelte";
 import NavItem from "$lib/components/controls/NavItem.svelte";
 import Button from "$lib/components/controls/Button.svelte";
+import Logo from "$lib/components/logo/Logo.svelte";
 </script>
 
 <div>Buttons</div>
@@ -28,3 +29,5 @@ import Button from "$lib/components/controls/Button.svelte";
 <Link link="/" text="This is a link"></Link>
 <div class="text-2xl"><Link link="/" size="MEDIUM" text="This is a bigger link"></Link></div>
 <div class="text-4xl"><Link link="/" size="LARGE" text="This is an even bigger link"></Link></div>
+
+<Logo></Logo>
