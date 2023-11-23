@@ -1,5 +1,5 @@
 <script>
-	import { authHandlers } from '$lib/stores/store';
+	import { authHandlers } from '$lib/stores/store.js';
 	let email = '';
 	let password = '';
 	let confirmPassword = '';

@@ -2,7 +2,7 @@
 	import { getDoc, doc, setDoc } from 'firebase/firestore';
 	import { authHandlers, authStore } from '$lib/stores/store';
 	import { db } from '$lib/services/firebase/firebase';
-	import Item from '../../component/Item.svelte';
+	import Item from '$lib/wip/backend/Item.svelte';
 
 	let itemList = [];
 	let currItem = '';
