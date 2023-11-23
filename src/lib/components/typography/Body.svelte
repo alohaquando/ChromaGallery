@@ -1,5 +1,8 @@
-<script lang="ts">
-   export let text: String;
+<script>
+	let customClass = '';
+	export { customClass as class };
 </script>
 
-<span class="leading-normal">{text}</span>
+<p class="font-sans trim-both leading-normal text-base {customClass}">
+	<slot />
+</p>
