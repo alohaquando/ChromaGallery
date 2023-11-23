@@ -1,5 +1,5 @@
 <script>
-	import '../styles/index.css';
+	import '../app.postcss';
 	import { onMount } from 'svelte';
 	import { auth, db } from '../services/firebase/firebase';
 	import { getDoc, doc, setDoc } from 'firebase/firestore';
