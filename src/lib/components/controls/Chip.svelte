@@ -29,5 +29,5 @@
     {:else}
     <Icon icon={icon} size="sm"></Icon>
     {/if}
-  <Body {text}></Body>
+  <Body>{text}</Body>
 </button>
