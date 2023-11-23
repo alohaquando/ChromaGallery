@@ -3,14 +3,12 @@
     import Chip from "$lib/components/controls/Chip.svelte";
     import { Fa } from "svelte-fa";
     import NavItem from "$lib/components/controls/NavItem.svelte";
-    import Link from "$lib/components/links/Link.svelte";
+    import Links from "$lib/components/links/Links.svelte";
     import Icon from "$lib/components/Icon.svelte";
 </script>
 
 <h1 class="text-3xl font-bold underline text-red-500">Welcome to SvelteKit</h1>
 <p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
-
-<Link link="/test" text="Test page here."></Link>
 
 <div>Buttons</div>
 
@@ -31,6 +29,8 @@
 
 <div>Links</div>
 
-<Link link="/" text="This is a link"></Link>
-<div class="text-2xl"><Link link="/" size="MEDIUM" text="This is a bigger link"></Link></div>
-<div class="text-4xl"><Link link="/" size="LARGE" text="This is an even bigger link"></Link></div>
+<Links link="/" text="This is a link"></Links>
+<div class="text-2xl"><Links link="/" size="MEDIUM" text="This is a bigger link"></Links></div>
+<div class="text-4xl"><Links link="/" size="LARGE" text="This is an even bigger link"></Links></div>
+
+<Icon></Icon>
