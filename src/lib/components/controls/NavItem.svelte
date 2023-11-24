@@ -1,8 +1,8 @@
 <script>
 	import Body from '$lib/components/typography/Body.svelte';
 	import Icon from '$lib/components/iconography/Icon.svelte';
-
-	export let text = 'Text';
+	let customClass = '';
+	export { customClass as class };
 	export let icon;
 	const Active = {
 		True: 'TRUE',
@@ -17,6 +17,6 @@
         after:content-[''] after:h-16 after:w-16 after:rounded-full after:absolute after:bg-gradient-to-b from-white/20 to-white after:duration-1000 after:ease-out after:-z-10 after:blur-lg
 "
 >
-	<Icon {icon} size="xl"></Icon>
-	<Body>{text}</Body>
+	<Icon {icon} iconSize="xl"></Icon>
+	<Body class="{customClass}"><slot /></Body>
 </button>

@@ -1,8 +1,8 @@
 <script>
 	import Body from '$lib/components/typography/Body.svelte';
 	import Icon from '$lib/components/iconography/Icon.svelte';
-
-	export let text = 'Text';
+	let customClass = '';
+	export { customClass as class };
 	export let icon;
 	const FullWidth = {
 		True: 'TRUE',
@@ -35,5 +35,5 @@
 "
 >
 	<Icon {icon}></Icon>
-	<Body>{text}</Body>
+	<Body class="{customClass}"><slot /></Body>
 </button>
