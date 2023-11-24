@@ -2,6 +2,7 @@
 	import BodySmall from '$lib/components/typography/BodySmall.svelte';
 	import Icon from '$lib/components/iconography/Icon.svelte';
 	export let icon;
+	export let textClass = '';
 	let customClass = '';
 	export { customClass as class };
 	const Type = {
@@ -17,7 +18,7 @@
 </script>
 
 <button
-	class="px-3 py-2 rounded-full backdrop-blur-sm justify-center items-center gap-1.5 inline-flex line-clamp-1 overflow-visible ease-out duration-300 text-sm text-center leading-[14px]
+	class="{customClass} px-3 py-2 rounded-full backdrop-blur-sm justify-center items-center gap-1.5 inline-flex line-clamp-1 overflow-visible ease-out duration-300 text-sm text-center leading-[14px]
         {type === Type.Actionable
 		? 'hover:bg-white/30 hover:text-gray-900 hover:before:opacity-100 hover:after:opacity-100'
 		: 'bg-gray-900 rounded-lg text-white'}
@@ -31,5 +32,5 @@
 	{:else}
 		<Icon {icon} iconSize="sm"></Icon>
 	{/if}
-	<BodySmall class="{customClass}"><slot /></BodySmall>
+	<BodySmall class="{textClass}"><slot /></BodySmall>
 </button>
