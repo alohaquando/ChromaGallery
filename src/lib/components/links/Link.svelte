@@ -19,5 +19,5 @@
     {linkSize === Size.Large ? 'before:-bottom-1 before:h-1.5' : ''}
     before:absolute before:w-full before:rounded-sm before:bg-white before:left-0 before:origin-right before:scale-x-0 before:ease-in-out before:transition-transform before:duration-300 hover:before:origin-left hover:before:scale-x-100"
 >
-	<Body class="{customClass}"><slot /></Body>
+	<span><slot /></span>
 </a>
