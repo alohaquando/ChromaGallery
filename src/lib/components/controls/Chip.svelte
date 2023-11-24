@@ -1,9 +1,9 @@
 <script>
 	import Body from '$lib/components/typography/Body.svelte';
 	import Icon from '$lib/components/iconography/Icon.svelte';
-
-	export let text = 'Text';
 	export let icon;
+	let customClass = '';
+	export { customClass as class };
 	const Type = {
 		Actionable: 'ACTIONABLE',
 		ViewOnly: 'VIEW-ONLY'
@@ -30,9 +30,9 @@
 "
 >
 	{#if state === State.Active}
-		<Icon {icon} iconType="solid" size="sm"></Icon>
+		<Icon {icon} iconType="solid" iconSize="sm"></Icon>
 	{:else}
-		<Icon {icon} size="sm"></Icon>
+		<Icon {icon} iconSize="sm"></Icon>
 	{/if}
-	<Body>{text}</Body>
+	<Body class="{customClass}"><slot /></Body>
 </button>
