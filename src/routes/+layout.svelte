@@ -1,9 +1,9 @@
 <script>
-	import '../styles/index.css';
+	import '../app.postcss';
 	import { onMount } from 'svelte';
-	import { auth, db } from '../services/firebase/firebase';
+	import { auth, db } from '$lib/services/firebase/firebase';
 	import { getDoc, doc, setDoc } from 'firebase/firestore';
-	import { authStore } from '../stores/store';
+	import { authStore } from '$lib/stores/store';
 	import { getAdditionalUserInfo, getAuth, onAuthStateChanged } from 'firebase/auth';
 
 	const nonAuthRoutes = ['/'];
@@ -48,14 +48,14 @@
 			});
 		});
 	});
-	let userEmail = ""
-	let userName = ""
+	let userEmail = '';
+	let userName = '';
 	const authen = getAuth();
 	onAuthStateChanged(authen, (user) => {
 		if (user) {
 			console.log(user);
-			userName= user.displayName
-			userEmail= user.email
+			userName = user.displayName;
+			userEmail = user.email;
 		} else {
 			console.log('Not sign in');
 		}
@@ -69,7 +69,6 @@
 	<h1>{userName}</h1>
 	<h1>{userEmail}</h1>
 </nav>
-
 
 <header></header>
 <slot />

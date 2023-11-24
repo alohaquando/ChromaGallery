@@ -1,8 +1,8 @@
 <script>
 	import { getDoc, doc, setDoc } from 'firebase/firestore';
-	import { authHandlers, authStore } from '../../stores/store';
-	import { db } from '../../services/firebase/firebase';
-	import Item from '../../component/Item.svelte';
+	import { authHandlers, authStore } from '$lib/stores/store';
+	import { db } from '$lib/services/firebase/firebase';
+	import Item from '$lib/wip/backend/Item.svelte';
 
 	let itemList = [];
 	let currItem = '';
@@ -63,16 +63,22 @@
 				<p>You have no Item</p>
 			{/if}
 			{#each itemList as item, index}
-				<Item {item} {index} {removeItem} {editItem}  />
+				<Item {item} {index} {removeItem} {editItem} />
 			{/each}
 		</main>
-		<div class={'flex border rounded  justify-between w-[50%] m-auto ' + (error ? 'errorBorder' : '')}>
-			<input 
-            class=" border border-blue-500"
-            bind:value={currItem} type="text" placeholder="Enter Item Name" />
+		<div
+			class={'flex border rounded  justify-between w-[50%] m-auto ' + (error ? 'errorBorder' : '')}
+		>
+			<input
+				class=" border border-blue-500"
+				bind:value={currItem}
+				type="text"
+				placeholder="Enter Item Name"
+			/>
 			<button
-            class="flex border rounded justify-between border-red-500 w-[100px]" 
-            on:click={addItem}>Add</button>
+				class="flex border rounded justify-between border-red-500 w-[100px]"
+				on:click={addItem}>Add</button
+			>
 		</div>
 	</div>
 {/if}
