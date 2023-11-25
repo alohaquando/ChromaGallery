@@ -13,7 +13,7 @@
 </svelte:head>
 <svelte:window bind:scrollY={scrollY} />
 
-<HeaderMain {scrollY}>text</HeaderMain>
+<HeaderMain {scrollY}></HeaderMain>
 <div class="container mx-auto px-6">
 	<slot />
 </div>
