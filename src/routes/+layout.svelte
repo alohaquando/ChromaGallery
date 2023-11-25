@@ -62,6 +62,11 @@
 	});
 </script>
 
+<svelte:head>
+	<meta title="Chroma Gallery"/>
+	<meta name="theme-color" content="#000000" >
+</svelte:head>
+
 <nav>
 	<a href="/" class=" text-blue-500">home</a>
 	<a href="/about" class=" text-green-500">about</a>
@@ -71,5 +76,7 @@
 </nav>
 
 <header></header>
-<slot />
+<div class="container mx-auto px-6">
+	<slot />
+</div>
 <footer></footer>
