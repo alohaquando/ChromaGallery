@@ -1,71 +1,11 @@
 <script lang="ts">
 	import '../app.postcss';
-	import { onMount } from 'svelte';
-	import { auth, db } from '$lib/services/firebase/firebase';
-	import { doc, getDoc, setDoc } from 'firebase/firestore';
-	import { authStore } from '$lib/stores/store';
-	import { getAuth, onAuthStateChanged } from 'firebase/auth';
-	import HeaderBack from '$lib/components/navigation/HeaderBack.svelte';
-	import Footer from '$lib/components/navigation/Footer.svelte';
+
+	import HeaderMain from '$lib/components/navigation/HeaderMain.svelte';
+	import NavBar from '$lib/components/navigation/NavBar.svelte';
 
 	let scrollY: number;
-
-	const nonAuthRoutes = ['/'];
-	onMount(() => {
-		const unsubcribe = auth.onAuthStateChanged(async (user) => {
-			const currentPath = window.location.pathname;
-
-			if (!user && nonAuthRoutes.includes(currentPath)) {
-				// window.location.href= "/";
-				return;
-			}
-
-			if (user && currentPath === '/') {
-				// window.location.href = '/dashboard';
-			}
-
-			if (!user) {
-				return;
-			}
-
-			let dataToSetToStore;
-			const docRef = doc(db, 'users', user.uid);
-			const docSnap = await getDoc(docRef);
-			if (!docSnap.exists()) {
-				const userRef = doc(db, 'user', user.uid);
-				dataToSetToStore = {
-					email: user?.email,
-					items: []
-				};
-				await setDoc(userRef, dataToSetToStore, { merge: true });
-			} else {
-				const userData = docSnap.data();
-				dataToSetToStore = userData;
-			}
-			authStore.update((curr) => {
-				return {
-					...curr,
-					user,
-					data: dataToSetToStore,
-					loading: false
-				};
-			});
-		});
-	});
-	let userEmail = '';
-	let userName = '';
-	const authen = getAuth();
-	onAuthStateChanged(authen, (user) => {
-		if (user) {
-			console.log(user);
-			userName = user.displayName;
-			userEmail = user.email;
-		} else {
-			console.log('Not sign in');
-		}
-	});
 </script>
-
 
 <svelte:head>
 	<meta title="Chroma Gallery"/>
@@ -73,16 +13,11 @@
 </svelte:head>
 <svelte:window bind:scrollY={scrollY} />
 
-<nav>
-	<a class=" text-blue-500" href="/">home</a>
-	<a class=" text-green-500" href="/about">about</a>
-	<a class=" text-yellow-500" href="/dashboard">dashboard</a>
-	<h1>{userName}</h1>
-	<h1>{userEmail}</h1>
-</nav>
-
-<HeaderBack hasButton {scrollY}>text</HeaderBack>
+<HeaderMain {scrollY}>text</HeaderMain>
 <div class="container mx-auto px-6">
 	<slot />
 </div>
-<footer></footer>
+
+<div class="h-32"/>
+
+<NavBar class="fixed bottom-0 left-0 z-50"/>
