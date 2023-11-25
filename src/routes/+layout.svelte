@@ -66,8 +66,12 @@
 	});
 </script>
 
+
+<svelte:head>
+	<meta title="Chroma Gallery"/>
+	<meta name="theme-color" content="#000000" >
+</svelte:head>
 <svelte:window bind:scrollY={scrollY} />
-<HeaderBack hasButton {scrollY}>text</HeaderBack>
 
 <nav>
 	<a class=" text-blue-500" href="/">home</a>
@@ -76,6 +80,9 @@
 	<h1>{userName}</h1>
 	<h1>{userEmail}</h1>
 </nav>
-<slot />
-<Footer></Footer>
 
+<HeaderBack hasButton {scrollY}>text</HeaderBack>
+<div class="container mx-auto px-6">
+	<slot />
+</div>
+<footer></footer>
