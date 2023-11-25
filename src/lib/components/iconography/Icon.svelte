@@ -13,3 +13,4 @@
 </script>
 
 <Fa {icon} class="text-{iconSize}" />
+
