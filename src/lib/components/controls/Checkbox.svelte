@@ -14,7 +14,7 @@
 		<input
 			{checked}
 			class=" peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border-2 border-white/50 transition-all  checked:bg-white"
-			{id} {name} type="radio" {value}
+			{id} {name} type="checkbox" {value}
 		/>
 
 		<!-- Icon span	-->
@@ -24,6 +24,3 @@
 		</span>
 	</label>
 </div>
-<!-- use this format below for multiple radios btn. *note using same "name" different "id" -->
-<!-- <Radio id="1" name="1"></Radio>
-    <Radio id="2" name="1"></Radio> -->
