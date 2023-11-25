@@ -8,6 +8,7 @@
 	export let design: 'filled' | 'outlined' = 'outlined';
 	export let type: 'button' | 'submit' | 'reset' | undefined = 'button';
 	export let disabled: boolean = false;
+	export let href: string | undefined = undefined;
 	let textClass = '';
 	let customClasses = '';
 	export { customClasses as class };
@@ -37,7 +38,12 @@
 
 </script>
 
-<button on:click class="px-5 rounded-full backdrop-blur-sm justify-center items-center gap-2 inline-flex overflow-visible ease-out duration-300 h-10 line-clamp-1 truncate
+<svelte:element
+	this={href?"a":"button"}
+	on:click
+	on:keydown
+	tabindex="0"
+	role="button" class="px-5 rounded-full backdrop-blur-sm justify-center items-center gap-2 inline-flex overflow-visible ease-out duration-300 h-10 line-clamp-1 truncate
 
 disabled:text-white/50 disabled:hover:before:opacity-0 disabled:hover:after:opacity-0
 disabled:hover:bg-transparent
@@ -54,4 +60,4 @@ hover:bg-white/40 hover:text-gray-900 hover:before:opacity-100 hover:after:opaci
 	<Body class="{textClass}">
 	<slot />
 	</Body>
-</button>
+</svelte:element>

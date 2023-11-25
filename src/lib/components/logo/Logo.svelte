@@ -1,9 +1,10 @@
 <script>
 	import Body from "$lib/components/typography/Body.svelte";
-  let customClass = '';
-  export { customClass as class };
+  let customClasses = '';
+  export { customClasses as class };
 </script>
 
-<span class="justify-center items-center inline-flex">
-  <Body class={customClass}><slot /></Body>
+<span class="flex-col w-fit justify-center text-center {customClasses}">
+  <Body>that online</Body>
+  <Body>museum</Body>
 </span>
