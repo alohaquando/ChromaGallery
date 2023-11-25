@@ -8,8 +8,6 @@
 	let showNav: boolean = true;
 	let scrolled: boolean = true;
 	let designClass = '';
-	let customClass = '';
-	export { customClass as class };
 	export let hasButton: boolean = false;
 	let buttonClass: string;
 	export const handleShowNav = () => {
@@ -36,11 +34,10 @@
 
 <div
 	class="{designClass} sticky top-0 left-0 z-50 h-16 mb-2 w-full  justify-between items-center inline-flex duration-500 ease-in-out">
-
 	<div class="flex container mx-auto px-6 justify-between items-center">
 		<Fab class="{buttonClass}" icon="faAngleLeft" size="sm"></Fab>
 		{#if hasButton}
-			<Button disabled={actionDisabled} buttonStyle="DEFAULT">
+			<Button disabled={actionDisabled} design="filled">
 				<slot />
 			</Button>
 		{/if}
