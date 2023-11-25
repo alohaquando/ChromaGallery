@@ -2,10 +2,13 @@
 	import BlockItem from '$lib/components/item/BlockItem.svelte';
 	import Link from '$lib/components/links/Link.svelte';
 	import Body from '$lib/components/typography/Body.svelte';
+	import HeroImage from '$lib/components/layouts/HeroImage.svelte';
 </script>
 
-<BlockItem itemNum={1}></BlockItem>
-<BlockItem itemNum={28} style='grid'></BlockItem>
+<HeroImage src="https://via.placeholder.com/342x272" name="Shrimp" artist="Shrimp" time="1:43 AM 11/26/2023"></HeroImage>
+
+<BlockItem itemNum={1} title="My collection" subtitle="Single collection"></BlockItem>
+<BlockItem itemNum={28} style='grid' title="Grid collection" subtitle=""></BlockItem>
 
 <div class="gap-5 flex mt-5">
 <Link type="body">display</Link>

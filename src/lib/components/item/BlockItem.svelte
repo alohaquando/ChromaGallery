@@ -15,15 +15,17 @@
 	if (itemNum !== 1) {
 		str += 's';
 	}
+	export let title: string = '';
+	export let subtitle: string = '';
 </script>
 
-<div class="w-72 h-64 flex-col justify-start items-start gap-6 inline-flex">
+<div class="w-72 flex-col justify-start items-start gap-6 inline-flex">
 	<a
-		class="self-stretch grow shrink basis-0 rounded-lg justify-start items-start gap-1 inline-flex overflow-hidden relative"
+		class="w-full h-52 rounded-lg gap-1 inline-flex overflow-hidden relative"
 		href="{itemLink}">
 		<img alt="" class="bg-white/70 grow shrink basis-0 self-stretch" src="{src1}" />
 		{#if blockStyle === 'grid'}
-			<div class="grow shrink basis-0 self-stretch flex-col justify-start items-start gap-1 inline-flex">
+			<div class="grow shrink basis-0 self-stretch flex-col gap-1 inline-flex">
 				<img alt="" class="bg-white/70 grow shrink basis-0 self-stretch" src="{src2}" />
 				<img alt="" class="bg-white/70 grow shrink basis-0 self-stretch" src="{src3}" />
 			</div>
@@ -32,8 +34,12 @@
 			<Body>{itemNum} {str}</Body>
 		</InfoChip>
 	</a>
-	<div class="self-stretch flex-col justify-start items-start flex gap-2">
-		<Link class="before:!bottom-0.5" href="{itemLink}" type="body">Title</Link>
-		<Body class="text-white/50">Subtitle</Body>
-	</div>
+	{#if title}
+		<div class="self-stretch flex-col flex gap-4">
+			<Link href="{itemLink}" type="body">{title}</Link>
+			{#if subtitle}
+				<Body class="text-white/50">{subtitle}</Body>
+			{/if}
+		</div>
+	{/if}
 </div>
