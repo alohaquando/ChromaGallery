@@ -28,11 +28,50 @@
 		src: url('$lib/assets/fonts/Outfit-Regular.woff2') format('woff2');
 	}
 
-	html {
-		@apply bg-black text-white font-sans trim-both text-base;
+	:root {
+		@apply overflow-x-clip bg-black text-white;
+		touch-action: manipulation;
+		-webkit-tap-highlight-color: transparent;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
 	}
 }
 
-.h-xl{
-    height: 125%;
+@layer utilities {
+	.scrollbar-none::-webkit-scrollbar {
+		display: none;
+	}
+
+	.scrollbar-none {
+		-ms-overflow-style: none; /* IE and Edge */
+		scrollbar-width: none; /* Firefox */
+	}
+
+	.min-h-screen-safe {
+		min-height: calc(100vh - env(safe-area-inset-bottom, 0) - env(safe-area-inset-top, 0));
+	}
+
+	.min-h-sm-screen-safe {
+		min-height: calc(80vh - env(safe-area-inset-bottom, 0) - env(safe-area-inset-top, 0));
+	}
+
+	.min-h-md-screen-safe {
+		min-height: calc(80vh - env(safe-area-inset-bottom, 0) - env(safe-area-inset-top, 0));
+	}
+
+	.pb-safe {
+		padding-bottom: max(env(safe-area-inset-bottom) + 12px, 12px);
+	}
+
+
+	.blur-fix {
+		-webkit-backface-visibility: hidden;
+		-moz-backface-visibility: hidden;
+		-webkit-transform: translate3d(0, 0, 0);
+		-moz-transform: translate3d(0, 0, 0);
+	}
+
+	.h-xl{
+		height: 125%;
+	}
 }
