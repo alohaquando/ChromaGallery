@@ -20,7 +20,7 @@
 	<Footer></Footer>
 </div>
 
-<div class="h-32"/>
+<div class="h-32" />
 
-<NavBar class="fixed bottom-0 left-0 z-50"/>
+<NavBar class="fixed bottom-0 left-0 z-40" />
 

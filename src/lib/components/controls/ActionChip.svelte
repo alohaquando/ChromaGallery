@@ -36,32 +36,32 @@
 	let activeClasses: string;
 	switch (active) {
 		case true: {
-			activeClasses = "bg-white/50 text-gray-900 active:bg-white/100"
+			activeClasses = 'bg-white/50 text-gray-900 active:bg-white/100';
 			break;
 		}
 		case false: {
-			activeClasses = "border border-white border-opacity-30"
+			activeClasses = 'border border-white border-opacity-30';
 			break;
 		}
 	}
 </script>
 
 <svelte:element
-	this={href ? "a" : "button"}
-	{disabled}
-	{type}
-	{href}
-	on:click
-	on:keydown
-	tabindex="0"
-	role="button"
 	class="{customClasses} {activeClasses} {widthClasses} px-3 rounded-full backdrop-blur-sm justify-center items-center gap-1.5 inline-flex line-clamp-1 overflow-visible ease-out duration-300 text-sm text-center truncate h-8
 
       hover:bg-white/30 hover:text-gray-900 hover:before:opacity-100 hover:after:opacity-100 text-opacity-70
 
-   after:content-[''] after:h-full after:w-full after:rounded-full after:absolute after:top-auto after:bg-gradient-to-b after:blur-md after:opacity-0 after:duration-1000 after:ease-out after:-z-10
-   before:content-[''] before:h-full before:w-full before:bg-gradient-to-b from-white/0 via-white/40 to-white before:rounded-full before:blur-md before:absolute before:opacity-0 before:duration-1000 before:ease-out before:-z-10
-">
+   after:content-[''] after:h-full after:w-full after:rounded-full after:absolute after:top-auto after:bg-gradient-to-b from-transparent to-white after:blur-md after:opacity-0 after:duration-1000 after:ease-out after:-z-10
+        before:content-[''] before:h-full before:w-full before:bg-gradient-to-b from-black/40 via-white/60 to-white before:rounded-full before:blur-sm before:absolute before:opacity-0 before:duration-1000 before:ease-out before:-z-10
+"
+	{disabled}
+	{href}
+	on:click
+	on:keydown
+	role="button"
+	tabindex="0"
+	this={href ? "a" : "button"}
+	{type}>
 	{#if active}
 		<Icon {icon} type="solid" size="sm"></Icon>
 	{:else}
