@@ -68,8 +68,8 @@
 
 
 <svelte:head>
-	<meta title="Chroma Gallery"/>
-	<meta name="theme-color" content="#000000" >
+	<meta title="Chroma Gallery" />
+	<meta content="#000000" name="theme-color">
 </svelte:head>
 <svelte:window bind:scrollY={scrollY} />
 
@@ -84,5 +84,6 @@
 <HeaderBack hasButton {scrollY}>text</HeaderBack>
 <div class="container mx-auto px-6">
 	<slot />
+	<Footer></Footer>
 </div>
-<footer></footer>
+
