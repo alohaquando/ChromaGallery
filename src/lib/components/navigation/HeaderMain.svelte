@@ -23,7 +23,9 @@
 
 <div
 	class="{designClass} sticky top-0 left-0 z-50 h-16 mb-2 w-full  justify-center items-center inline-flex duration-500 ease-in-out">
-	<Logo/>
+	<a href="/" class="px-4 flex self-stretch items-center">
+		<Logo/>
+	</a>
 	<div
 		class="pointer-events-none absolute top-0 -bottom-2 left-0 right-0 -z-20 touch-none transition-all ">
 		<div
