@@ -13,20 +13,22 @@
 	<Divider></Divider>
 	<Title>Get in contact</Title>
 	<div class="inline-flex justify-between w-full">
-		<Fab href="" icon="faFacebook" type="brands"></Fab>
+		<Fab color="blue" href="" icon="faFacebook" type="brands"></Fab>
 		<Fab href="" icon="faInstagram" type="brands"></Fab>
 		<Fab href="" icon="faXTwitter" type="brands"></Fab>
 		<Fab href="" icon="faYoutube" type="brands"></Fab>
 	</div>
 	<Divider></Divider>
 	<Title>Account</Title>
-	<Body>Manage your bookmarks and lists of your favourite piece of art with an that online museum account</Body>
+	<Body>Manage your bookmarks and lists of your favourite piece of art with an that online museum
+	account
+	</Body>
 	<Button href="">Become a member</Button>
 	<Divider></Divider>
 	<div class="w-full flex justify-between items-center">
 		<div>
 			<Link href="">Privacy</Link>
-			<Link class="pl-5" href="">Terms</Link>
+			<Link class="ml-5" href="">Terms</Link>
 		</div>
 		<span class="text-white/50 items-center flex"><Icon icon="faCopyright"></Icon><Body class="text-white/50">2023 Chroma Gallery</Body></span>
 	</div>
