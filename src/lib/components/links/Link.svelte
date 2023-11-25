@@ -1,10 +1,5 @@
 <!--suppress JSUnreachableSwitchBranches -->
 <script lang="ts">
-	import Body from '$lib/components/typography/Body.svelte';
-	import Title from '$lib/components/typography/Title.svelte';
-	import Headline from '$lib/components/typography/Headline.svelte';
-	import Display from '$lib/components/typography/Display.svelte';
-
 	let customClasses = '';
 	export { customClasses as class };
 	export let href: string | undefined = undefined;
@@ -13,46 +8,46 @@
 	let typeClasses: string;
 	switch (type) {
 		case 'body': {
-			typeClasses = 'before:-bottom-1.5 before:h-0.5';
+			typeClasses = 'before:-bottom-0.5 before:h-0.5';
 			break;
 		}
 		case 'title': {
-			typeClasses = 'before:-bottom-2 before:h-0.5';
+			typeClasses = 'before:-bottom-0.5 before:h-0.5';
 			break;
 		}
 		case 'headline': {
-			typeClasses = 'before:-bottom-3 before:h-1';
+			typeClasses = 'before:-bottom-1 before:h-1';
 			break;
 		}
 		case 'display': {
-			typeClasses = 'before:-bottom-4 before:h-1';
+			typeClasses = 'before:-bottom-1.5 before:h-1';
 			break;
 		}
 	}
 </script>
 
 <a
-	class="{typeClasses} {customClasses} relative max-w-fit before:content-['']
+	class="{typeClasses} {customClasses} relative max-w-fit  before:content-['']
     before:absolute before:w-full before:rounded-sm before:bg-white before:left-0 before:origin-right before:scale-x-0 before:ease-in-out before:transition-transform before:duration-300 hover:before:origin-left hover:before:scale-x-100"
 	{href}
 >
 	<span>
 		{#if type === "body"}
-			<Body>
+			<span class="font-display trim-both text-base">
 			<slot />
-			</Body>
+			</span>
 			{:else if type === 'title'}
-			<Title>
+			<span class="font-display trim-both text-2xl">
 			<slot />
-			</Title>
+			</span>
 			{:else if type === 'headline'}
-			<Headline>
+			<span class="font-display trim-both text-3xl">
 			<slot />
-			</Headline>
+			</span>
 			{:else if type === 'display'}
-			<Display>
+			<span class="font-display trim-both text-5xl">
 			<slot />
-			</Display>
+			</span>
 			{/if}
 	</span>
 </a>
