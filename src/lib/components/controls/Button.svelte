@@ -48,8 +48,8 @@ hover:bg-white/40 hover:text-gray-900 hover:before:opacity-100 hover:after:opaci
 
         {widthClasses} {designClasses} {customClasses}
 
-        after:content-[''] after:h-full after:w-full after:rounded-full after:absolute after:top-auto after:bg-gradient-to-b after:blur-lg after:opacity-0 after:duration-1000 after:ease-out after:-z-10
-        before:content-[''] before:h-full before:w-full before:bg-gradient-to-b from-white/0 via-white/40 to-white before:rounded-full before:blur-md before:absolute before:opacity-0 before:duration-1000 before:ease-out before:-z-10
+        after:content-[''] after:h-full after:w-full after:rounded-full after:absolute after:top-auto after:bg-gradient-to-b from-transparent to-white after:blur-md after:opacity-0 after:duration-1000 after:ease-out after:-z-10
+        before:content-[''] before:h-full before:w-full before:bg-gradient-to-b from-black/40 via-white/60 to-white before:rounded-full before:blur-sm before:absolute before:opacity-0 before:duration-1000 before:ease-out before:-z-10
 "
 	{disabled}
 	on:click

@@ -26,7 +26,7 @@
 	<Button href="">Become a member</Button>
 	<Divider></Divider>
 	<div class="w-full flex justify-between items-center">
-		<div>
+		<div class="flex">
 			<Link href="">Privacy</Link>
 			<Link class="ml-5" href="">Terms</Link>
 		</div>

@@ -2,7 +2,8 @@
 	import BlockItem from '$lib/components/item/BlockItem.svelte';
 	import Link from '$lib/components/links/Link.svelte';
 	import Body from '$lib/components/typography/Body.svelte';
-	import HeroImage from '$lib/components/layouts/HeroImage.svelte';
+	import HeroImage from '$lib/components/item/HeroImage.svelte';
+	import Dialog from '$lib/components/pop-up/Dialog.svelte';
 </script>
 
 <HeroImage src="https://via.placeholder.com/342x272" name="Shrimp" artist="Shrimp" time="1:43 AM 11/26/2023"></HeroImage>
@@ -16,3 +17,5 @@
 <Link type="headline">display</Link>
 <Link type="display">display</Link>
 </div>
+
+<!--<Dialog title="Warning" text="COOKIES!!!!! !!!!!!!!!!!!!! !!!!!!!!!!!!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!!" option1="Ignore" option2="Accept"></Dialog>-->

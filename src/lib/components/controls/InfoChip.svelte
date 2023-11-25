@@ -26,9 +26,6 @@
 	class="{customClasses} {widthClasses} px-3 py-2  backdrop-blur-sm justify-center items-center gap-1.5 inline-flex line-clamp-1 overflow-visible ease-out duration-300 text-sm text-center leading-[14px]
 
 	bg-gray-900 rounded-lg text-white
-
-   after:content-[''] after:h-full after:w-full after:rounded-full after:absolute after:top-auto after:bg-gradient-to-b after:blur-md after:opacity-0 after:duration-1000 after:ease-out after:-z-10
-   before:content-[''] before:h-full before:w-full before:bg-gradient-to-b from-white/0 via-white/40 to-white before:rounded-full before:blur-md before:absolute before:opacity-0 before:duration-1000 before:ease-out before:-z-10
 ">
 	<Icon {icon} size="sm"></Icon>
 	<BodySmall class="{textClass}">
