@@ -62,7 +62,7 @@
    after:content-[''] after:h-full after:w-full after:rounded-full after:absolute after:top-auto after:bg-gradient-to-b after:blur-md after:opacity-0 after:duration-1000 after:ease-out after:-z-10
    before:content-[''] before:h-full before:w-full before:bg-gradient-to-b from-white/0 via-white/40 to-white before:rounded-full before:blur-md before:absolute before:opacity-0 before:duration-1000 before:ease-out before:-z-10
 ">
-	{#if state === State.Active}
+	{#if active}
 		<Icon {icon} type="solid" size="sm"></Icon>
 	{:else}
 		<Icon {icon} size="sm"></Icon>
