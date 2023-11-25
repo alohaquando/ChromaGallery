@@ -2,27 +2,14 @@
 	import Body from '$lib/components/typography/Body.svelte';
 	import Display from '$lib/components/typography/Display.svelte';
 	import Headline from '$lib/components/typography/Headline.svelte';
+	import Link from '$lib/components/links/Link.svelte';
 </script>
 
-<div class="flex">
-	<div
-		class="bg-amber-400 my-2 py-5 px-5 mx-2 rounded-2xl
-fill-amber-100 flex content-center justify-center items-center"
-	>
-		<Display class="">Without trim</Display>
-	</div>
-
-	<div
-		class="bg-amber-400 my-2 py-5 px-5 mx-2 rounded-2xl
-fill-amber-100 flex content-center justify-center items-center"
-	>
-		<Headline>Testing</Headline>
-	</div>
-
-	<div
-		class="bg-amber-400 my-2 py-5 px-5 mx-2 rounded-2xl
-fill-amber-100 flex content-center justify-center items-center"
-	>
-		<Body>Testing</Body>
-	</div>
+<div class="flex flex-col space-y-8">
+<Body>Heloo 123456
+<Link type="body">Testing</Link>
+</Body>
+<Link type="title">Testing</Link>
+<Link type="headline">Testing</Link>
+<Link type="display">Testing</Link>
 </div>

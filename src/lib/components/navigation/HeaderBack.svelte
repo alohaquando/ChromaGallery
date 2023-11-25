@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Button from '$lib/components/controls/Button.svelte';
-	import Fab from '$lib/components/Fab/Fab.svelte';
+	import Fab from '$lib/components/controls/Fab.svelte';
 
 	export let scrollY: number;
 	export let actionDisabled: boolean = false;

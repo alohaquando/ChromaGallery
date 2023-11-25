@@ -5,8 +5,8 @@
 	import { doc, getDoc, setDoc } from 'firebase/firestore';
 	import { authStore } from '$lib/stores/store';
 	import { getAuth, onAuthStateChanged } from 'firebase/auth';
-	import HeaderBack from '$lib/components/navigator/HeaderBack.svelte';
-	import Footer from '$lib/components/navigator/Footer.svelte';
+	import HeaderBack from '$lib/components/navigation/HeaderBack.svelte';
+	import Footer from '$lib/components/navigation/Footer.svelte';
 
 	let scrollY: number;
 
