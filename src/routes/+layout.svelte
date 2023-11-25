@@ -1,10 +1,14 @@
-<script>
+<script lang="ts">
 	import '../app.postcss';
 	import { onMount } from 'svelte';
 	import { auth, db } from '$lib/services/firebase/firebase';
-	import { getDoc, doc, setDoc } from 'firebase/firestore';
+	import { doc, getDoc, setDoc } from 'firebase/firestore';
 	import { authStore } from '$lib/stores/store';
-	import { getAdditionalUserInfo, getAuth, onAuthStateChanged } from 'firebase/auth';
+	import { getAuth, onAuthStateChanged } from 'firebase/auth';
+	import HeaderBack from '$lib/components/navigator/HeaderBack.svelte';
+	import Footer from '$lib/components/navigator/Footer.svelte';
+
+	let scrollY: number;
 
 	const nonAuthRoutes = ['/'];
 	onMount(() => {
@@ -62,14 +66,16 @@
 	});
 </script>
 
+<svelte:window bind:scrollY={scrollY} />
+<HeaderBack hasButton {scrollY}>text</HeaderBack>
+
 <nav>
-	<a href="/" class=" text-blue-500">home</a>
-	<a href="/about" class=" text-green-500">about</a>
-	<a href="/dashboard" class=" text-yellow-500">dashboard</a>
+	<a class=" text-blue-500" href="/">home</a>
+	<a class=" text-green-500" href="/about">about</a>
+	<a class=" text-yellow-500" href="/dashboard">dashboard</a>
 	<h1>{userName}</h1>
 	<h1>{userEmail}</h1>
 </nav>
-
-<header></header>
 <slot />
-<footer></footer>
+<Footer></Footer>
+

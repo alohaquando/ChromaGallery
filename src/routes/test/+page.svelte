@@ -1,6 +1,5 @@
 <script>
 	import Fab from '$lib/components/Fab/Fab.svelte';
-	import Radio from '$lib/components/controls/Radio.svelte';
 	import Button from '$lib/components/controls/Button.svelte';
 	import Chip from '$lib/components/controls/Chip.svelte';
 </script>
@@ -10,6 +9,6 @@
 
 <Fab icon="faCircleInfo"></Fab>
 
-<Fab icon="faCircleInfo" buttonSize="lg">hello</Fab>
+<Fab icon="faCircleInfo" size='lg' text>hello</Fab>
 
-<Radio id="1"></Radio>
+<div class="h-screen w-full bg-amber-500 flex">a</div>
