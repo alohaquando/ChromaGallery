@@ -1,18 +1,32 @@
-<script>
+<!--suppress JSUnreachableSwitchBranches -->
+<script lang="ts">
+	// noinspection ES6UnusedImports
 	import Fa from 'svelte-fa';
-
-	export let icon;
-	export let iconType = 'regular';
 	import * as solidModule from '@fortawesome/pro-solid-svg-icons';
 	import * as regularModule from '@fortawesome/pro-regular-svg-icons';
+	import * as brandModule from '@fortawesome/free-brands-svg-icons';
 
-	if (iconType === 'solid') {
-		icon = solidModule[icon];
-	} else if (iconType === 'regular') {
-		icon = regularModule[icon];
+	export let icon: string | undefined | null = undefined;
+	export let type: 'regular' | 'solid' | 'brands' = 'regular';
+	export let size = 'base';
+	let customClasses = '';
+	export { customClasses as class };
+
+	switch (type) {
+		case 'solid':
+			icon = solidModule[icon as keyof unknown];
+			break;
+		case 'regular':
+			icon = regularModule[icon as keyof unknown];
+			break;
+		case 'brands':
+			icon = brandModule[icon as keyof unknown];
+			break;
 	}
 
-	export let size = 'base';
 </script>
 
-<Fa {icon} class="text-{size}" />
+{#if icon}
+	<Fa class="text-{size} {customClasses}" {icon} />
+{/if}
+

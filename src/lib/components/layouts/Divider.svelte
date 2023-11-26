@@ -1,0 +1,1 @@
+<div class="w-full h-[0px] border border-white border-opacity-30"></div>
