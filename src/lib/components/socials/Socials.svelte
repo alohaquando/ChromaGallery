@@ -26,7 +26,7 @@
             break;
 		}
         case 'apple': {
-            bg = 'bg-black'
+            bg = 'bg-black hover:bg-neutral-900 active:bg-neutral-800'
             text = ' Apple'
             icon = 'faApple'
 			tc = 'text-white';
