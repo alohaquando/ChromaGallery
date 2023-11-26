@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Headline from '$lib/components/typography/Headline.svelte';
 	import Link from '$lib/components/links/Link.svelte';
+	import Block from '$lib/components/block/Block.svelte';
 
 	let imgSrc: string = '';
 	export { imgSrc as src };
@@ -10,11 +11,15 @@
 	export { itemName as name };
 	export let artist: string = '';
 	export let time: string = '';
+	let customClass = '';
+	export { customClass as class };
+	let imgAlt = '';
+	export { imgAlt as alt };
 </script>
 
-<div class="w-full flex-col gap-6 inline-flex">
-	<div class="w-full max-h-72 rounded-lg justify-center gap-2.5 inline-flex bg-black/20 backdrop-blur-lg">
-		<img alt="" class="basis-0 bg-white/70" src="{imgSrc}" />
+<div class="w-full flex-col gap-6 inline-flex {customClass}">
+	<div class="w-full h-72 rounded-lg flex overflow-hidden relative">
+		<Block alt="{imgAlt}" class="" src="{imgSrc}"></Block>
 	</div>
 	<div class="flex-col gap-6 flex">
 		<Link href="{itemLink}" type="headline">

@@ -26,10 +26,12 @@
 	export { altImg as alt };
 	let imgSrc = '';
 	export { imgSrc as src };
+	let customClass = '';
+	export { customClass as class };
 </script>
 
 <div
-	class="{sizeClass} {typeClass} justify-center items-center inline-flex relative overflow-hidden">
+	class="{sizeClass} {typeClass} {customClass} justify-center items-center inline-flex relative overflow-hidden bg-white/70">
 	{#if type === 'placeholder'}
 		<img
 			alt="{altImg}"
