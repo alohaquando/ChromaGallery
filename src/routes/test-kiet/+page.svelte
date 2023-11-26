@@ -6,6 +6,8 @@
 	import Dialog from '$lib/components/pop-up/Dialog.svelte';
 	import Block from '$lib/components/block/Block.svelte';
 	import Modal from '$lib/components/pop-up/Modal.svelte';
+	import Button from '$lib/components/controls/Button.svelte';
+	import Socials from '$lib/components/socials/Socials.svelte';
 </script>
 
 <HeroImage src="https://via.placeholder.com/342x272" name="Shrimp" artist="Shrimp" time="1:43 AM 11/26/2023"></HeroImage>
@@ -30,5 +32,9 @@
 </div>
 
 <!--<Modal buttonText="Buton" title="Modao"></Modal>-->
+
+<Socials design='facebook'></Socials>
+<Socials design='google' signup= {false}></Socials>
+<Socials design='apple'></Socials>
 
 <!--<Dialog title="Warning" text="COOKIES!!!!! !!!!!!!!!!!!!! !!!!!!!!!!!!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!!" option1="Ignore" option2="Accept"></Dialog>-->
