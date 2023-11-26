@@ -4,6 +4,8 @@
 	import Body from '$lib/components/typography/Body.svelte';
 	import HeroImage from '$lib/components/item/HeroImage.svelte';
 	import Dialog from '$lib/components/pop-up/Dialog.svelte';
+	import Button from '$lib/components/controls/Button.svelte';
+	import Socials from '$lib/components/socials/Socials.svelte';
 </script>
 
 <HeroImage src="https://via.placeholder.com/342x272" name="Shrimp" artist="Shrimp" time="1:43 AM 11/26/2023"></HeroImage>
@@ -17,5 +19,9 @@
 <Link type="headline">display</Link>
 <Link type="display">display</Link>
 </div>
+
+<Socials design='facebook'></Socials>
+<Socials design='google' signup= {false}></Socials>
+<Socials design='apple'></Socials>
 
 <!--<Dialog title="Warning" text="COOKIES!!!!! !!!!!!!!!!!!!! !!!!!!!!!!!!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!!" option1="Ignore" option2="Accept"></Dialog>-->

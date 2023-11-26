@@ -8,6 +8,9 @@ dependencies:
   '@fortawesome/fontawesome-free':
     specifier: ^6.4.2
     version: 6.4.2
+  '@fortawesome/free-brands-svg-icons':
+    specifier: ^6.4.2
+    version: 6.4.2
   '@fortawesome/pro-duotone-svg-icons':
     specifier: ^6.4.2
     version: 6.4.2
@@ -813,6 +816,14 @@ packages:
     resolution: {integrity: sha512-m5cPn3e2+FDCOgi1mz0RexTUvvQibBebOUlUlW0+YrMjDTPkiJ6VTKukA1GRsvRw+12KyJndNjj0O4AgTxm2Pg==, tarball: https://npm.fontawesome.com/@fortawesome/fontawesome-free/-/6.4.2/fontawesome-free-6.4.2.tgz}
     engines: {node: '>=6'}
     requiresBuild: true
+    dev: false
+
+  /@fortawesome/free-brands-svg-icons@6.4.2:
+    resolution: {integrity: sha512-LKOwJX0I7+mR/cvvf6qIiqcERbdnY+24zgpUSouySml+5w8B4BJOx8EhDR/FTKAu06W12fmUIcv6lzPSwYKGGg==, tarball: https://npm.fontawesome.com/@fortawesome/free-brands-svg-icons/-/6.4.2/free-brands-svg-icons-6.4.2.tgz}
+    engines: {node: '>=6'}
+    requiresBuild: true
+    dependencies:
+      '@fortawesome/fontawesome-common-types': 6.4.2
     dev: false
 
   /@fortawesome/pro-duotone-svg-icons@6.4.2:
