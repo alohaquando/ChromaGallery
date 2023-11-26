@@ -4,6 +4,7 @@
 	import Body from '$lib/components/typography/Body.svelte';
 	import HeroImage from '$lib/components/item/HeroImage.svelte';
 	import Dialog from '$lib/components/pop-up/Dialog.svelte';
+	import Block from '$lib/components/block/Block.svelte';
 </script>
 
 <HeroImage src="https://via.placeholder.com/342x272" name="Shrimp" artist="Shrimp" time="1:43 AM 11/26/2023"></HeroImage>
@@ -16,6 +17,15 @@
 <Link type="title">display</Link>
 <Link type="headline">display</Link>
 <Link type="display">display</Link>
+</div>
+
+<Block type="placeholder" size="small"></Block>
+<Block type="bookmark" size="small"></Block>
+<div class="h-28 w-36 flex">
+	<Block type="bookmark" size="fit"></Block>
+</div>
+<div class="h-32 w-44 flex">
+	<Block type="placeholder" size="fit"></Block>
 </div>
 
 <!--<Dialog title="Warning" text="COOKIES!!!!! !!!!!!!!!!!!!! !!!!!!!!!!!!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!!" option1="Ignore" option2="Accept"></Dialog>-->

@@ -2,14 +2,23 @@
 	import Body from '$lib/components/typography/Body.svelte';
 	import Link from '$lib/components/links/Link.svelte';
 	import InfoChip from '$lib/components/controls/InfoChip.svelte';
+	import Block from '$lib/components/block/Block.svelte';
 
 	let blockStyle: 'grid' | 'single' = 'single';
 	export { blockStyle as style };
 	let itemLink = '';
 	export { itemLink as href };
+
 	export let src1 = '';
 	export let src2 = '';
 	export let src3 = '';
+	export let alt1 = '';
+	export let alt2 = '';
+	export let alt3 = '';
+	let singleSrc = src1;
+	export { singleSrc as src };
+	let singleAlt = alt1;
+	export { singleAlt as alt };
 	export let itemNum: number = 0;
 	let str = 'Item';
 	if (itemNum !== 1) {
@@ -23,11 +32,11 @@
 	<a
 		class="w-full h-52 rounded-lg gap-1 inline-flex overflow-hidden relative"
 		href="{itemLink}">
-		<img alt="" class="bg-white/70 grow shrink basis-0 self-stretch" src="{src1}" />
+		<Block alt="{singleAlt}" src="{singleSrc}"></Block>
 		{#if blockStyle === 'grid'}
 			<div class="grow shrink basis-0 self-stretch flex-col gap-1 inline-flex">
-				<img alt="" class="bg-white/70 grow shrink basis-0 self-stretch" src="{src2}" />
-				<img alt="" class="bg-white/70 grow shrink basis-0 self-stretch" src="{src3}" />
+				<Block alt="{alt2}" src="{src2}"></Block>
+				<Block alt="{alt3}" src="{src3}"></Block>
 			</div>
 		{/if}
 		<InfoChip class="absolute bottom-2 right-2 !rounded-2xl !bg-opacity-40 py-4">
