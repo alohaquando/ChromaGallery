@@ -2,7 +2,7 @@
 	import Icon from '../iconography/Icon.svelte';
 
 	export let size: 'small' | 'fit' = 'fit';
-	export let iconSize = '';
+	let iconSize = '';
 	iconSize = (size === 'small' ? 'base' : '6xl');
 	export let type: 'placeholder' | 'bookmark' = 'placeholder';
 	let sizeClass = '';
@@ -22,9 +22,9 @@
 			typeClass = 'bg-gradient-to-b from-indigo-600 to-fuchsia-700  rounded-lg';
 			break;
 	}
-	let altImg: string;
+	let altImg = '';
 	export { altImg as alt };
-	let imgSrc: string;
+	let imgSrc = '';
 	export { imgSrc as src };
 </script>
 

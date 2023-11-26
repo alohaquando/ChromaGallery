@@ -20,7 +20,21 @@ export default {
 				unitsPerEm: 1000
 			}
 		},
-		extend: {}
+		extend: {
+			keyframes: {
+				fly: {
+					from: {
+						transform: 'translateY(100%)'
+					},
+					to: {
+						transform: 'translateY(0)'
+					}
+				}
+			},
+			animation: {
+				fly: 'fly 0.8s ease-out'
+			}
+		}
 	},
 	plugins: [require('tailwindcss-leading-trim')]
 };

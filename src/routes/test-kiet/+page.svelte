@@ -5,6 +5,7 @@
 	import HeroImage from '$lib/components/item/HeroImage.svelte';
 	import Dialog from '$lib/components/pop-up/Dialog.svelte';
 	import Block from '$lib/components/block/Block.svelte';
+	import Modal from '$lib/components/pop-up/Modal.svelte';
 </script>
 
 <HeroImage src="https://via.placeholder.com/342x272" name="Shrimp" artist="Shrimp" time="1:43 AM 11/26/2023"></HeroImage>
@@ -27,5 +28,7 @@
 <div class="h-32 w-44 flex">
 	<Block type="placeholder" size="fit"></Block>
 </div>
+
+<!--<Modal buttonText="Buton" title="Modao"></Modal>-->
 
 <!--<Dialog title="Warning" text="COOKIES!!!!! !!!!!!!!!!!!!! !!!!!!!!!!!!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!!" option1="Ignore" option2="Accept"></Dialog>-->

@@ -3,6 +3,7 @@
 	import Fab from '$lib/components/controls/Fab.svelte';
 
 	export let scrollY: number;
+	export let responsive: boolean = true;
 	export let actionDisabled: boolean = false;
 	let prevY: number;
 	let showNav: boolean = true;
@@ -33,7 +34,7 @@
 </script>
 
 <div
-	class="{designClass} sticky top-0 left-0 z-50 h-16 mb-2 w-full  justify-between items-center inline-flex duration-500 ease-in-out">
+	class="{responsive === true ? {designClass} : ''} sticky top-0 left-0 z-50 h-16 mb-2 w-full  justify-between items-center inline-flex duration-500 ease-in-out">
 	<div class="flex container mx-auto px-6 justify-between items-center">
 		<Fab class="{buttonClass}" icon="faAngleLeft" size="sm"></Fab>
 		{#if hasButton}
