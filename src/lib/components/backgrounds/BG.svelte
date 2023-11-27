@@ -3,6 +3,15 @@
 	export let design: 'top' | 'top-large' | 'center' = 'top';
 
 	let formattedColor: string;
+	export let randomized: boolean = false;
+
+	if (randomized) {
+		setInterval(
+			function() {
+				color = Math.floor(Math.random() * 16777215).toString(16);
+			}, 2000);
+	}
+
 	$: formattedColor = `#${color}`;
 
 	let designClassesCirclePrimary: string;
@@ -52,9 +61,11 @@
 	<!--</editor-fold>-->
 
 	<!--<editor-fold desc="Color overlay">-->
-	<div class="absolute top-0 bottom-0 left-0 right-0 w-full h-full mix-blend-color-burn -z-20 "
+	<div class="absolute top-0 bottom-0 left-0 right-0 w-full h-full mix-blend-color-burn -z-20 transition duration-[3000ms]"
 			 style="background-color: {formattedColor}; " />
 	<!--</editor-fold>-->
 </div>
 <!--</editor-fold>-->
 
+<!--Example-->
+<!--<BG randomized/>-->
