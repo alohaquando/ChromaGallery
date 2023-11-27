@@ -43,7 +43,7 @@
 	class="{customClasses} {buttonClass} h-12 !px-6 !duration-200 !border-none hover:after:!opacity-0 hover:before:!opacity-0 font-bold"
 	{icon} iconSize="xl" iconType="brands">
 	{#if design === 'google'}
-		<div class="text-xl w-6 inline-flex justify-center">
+		<div class="text-xl w-8 pr-2">
 			<Google />
 		</div>
 	{/if}
