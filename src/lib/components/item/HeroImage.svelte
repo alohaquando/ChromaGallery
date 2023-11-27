@@ -3,6 +3,7 @@
 	import Link from '$lib/components/links/Link.svelte';
 	import Block from '$lib/components/block/Block.svelte';
 
+
 	let imgSrc: string = '';
 	export { imgSrc as src };
 	let itemLink: string = '';
@@ -13,12 +14,12 @@
 	export let time: string = '';
 	let customClass = '';
 	export { customClass as class };
-	let imgAlt = '';
+	let imgAlt: string;
 	export { imgAlt as alt };
 </script>
 
 <div class="w-full flex-col gap-6 inline-flex {customClass}">
-	<div class="w-full h-72 rounded-lg flex overflow-hidden relative">
+	<div class="w-full h-80 rounded-lg flex overflow-hidden relative  bg-black/5 backdrop-blur-md">
 		<Block alt="{imgAlt}" class="" src="{imgSrc}"></Block>
 	</div>
 	<div class="flex-col gap-6 flex">

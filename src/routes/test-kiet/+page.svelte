@@ -13,7 +13,7 @@
 <HeroImage src="https://via.placeholder.com/342x272" name="Shrimp" artist="Shrimp" time="1:43 AM 11/26/2023"></HeroImage>
 
 <BlockItem itemNum={1} title="My collection" subtitle="Single collection"></BlockItem>
-<BlockItem itemNum={28} style='grid' title="Grid collection" subtitle=""></BlockItem>
+<BlockItem src="https://via.placeholder.com/342x272" itemNum={28} style='grid' title="Grid collection" subtitle=""></BlockItem>
 
 <div class="gap-5 flex mt-5">
 <Link type="body">display</Link>
@@ -22,13 +22,13 @@
 <Link type="display">display</Link>
 </div>
 
-<Block type="placeholder" size="small"></Block>
-<Block type="bookmark" size="small"></Block>
+<Block icon></Block>
+<Block icon bookmark></Block>
 <div class="h-28 w-36 flex">
-	<Block type="bookmark" size="fit"></Block>
+	<Block bookmark></Block>
 </div>
-<div class="h-32 w-44 flex">
-	<Block type="placeholder" size="fit"></Block>
+<div class="h-72 w-96 flex">
+	<Block src="https://via.placeholder.com/342x272"></Block>
 </div>
 
 <!--<Modal buttonText="Buton" title="Modao"></Modal>-->

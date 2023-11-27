@@ -3,7 +3,7 @@
 	import Icon from '../iconography/Icon.svelte';
 	import Body from '../typography/Body.svelte';
 
-	export let type;
+	export let type: string;
 	export let textClass = '';
 	export let href: string | undefined = undefined;
 	let customClasses = '';

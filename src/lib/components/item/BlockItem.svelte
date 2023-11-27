@@ -8,13 +8,12 @@
 	export { blockStyle as style };
 	let itemLink = '';
 	export { itemLink as href };
-
 	export let src1 = '';
 	export let src2 = '';
 	export let src3 = '';
-	export let alt1 = '';
-	export let alt2 = '';
-	export let alt3 = '';
+	export let alt1: string;
+	export let alt2: string;
+	export let alt3: string;
 	let singleSrc = src1;
 	export { singleSrc as src };
 	let singleAlt = alt1;
