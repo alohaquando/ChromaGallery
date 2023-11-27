@@ -1,6 +1,6 @@
 <script>
 	import { getDoc, doc, setDoc } from 'firebase/firestore';
-	import { authHandlers, authStore } from '$lib/stores/store';
+	import { authHandlers, authStore } from '../../lib/stores/store';
 	import { db } from '$lib/services/firebase/firebase';
 	import Item from '$lib/wip/backend/Item.svelte';
 
@@ -29,7 +29,7 @@
 		itemList = newItemList;
 	}
 	function removeItem(index) {
-		let newItemList = itemList.filter((val, i) => {
+		let newItemList = [...itemList].filter((val, i) => {
 			return i !== index;
 		});
 		itemList = newItemList;
@@ -58,7 +58,6 @@
 			<button on:click={saveItems}>Save</button>
 		</div>
 		<main>
-			<button class="text-red-500" onclick={authHandlers.logout}>Logout</button>
 			{#if itemList.length === 0}
 				<p>You have no Item</p>
 			{/if}
@@ -70,7 +69,7 @@
 			class={'flex border rounded  justify-between w-[50%] m-auto ' + (error ? 'errorBorder' : '')}
 		>
 			<input
-				class=" border border-blue-500"
+				class=" border border-blue-500 text-black"
 				bind:value={currItem}
 				type="text"
 				placeholder="Enter Item Name"

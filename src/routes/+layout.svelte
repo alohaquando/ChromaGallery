@@ -3,16 +3,17 @@
 	import { onMount } from 'svelte';
 	import { auth, db } from '$lib/services/firebase/firebase';
 	import { getDoc, doc, setDoc } from 'firebase/firestore';
-	import { authStore } from '$lib/stores/store';
+	import { authHandlers, authStore } from '$lib/stores/store';
 	import { getAdditionalUserInfo, getAuth, onAuthStateChanged } from 'firebase/auth';
 
 	const nonAuthRoutes = ['/'];
+
 	onMount(() => {
 		const unsubcribe = auth.onAuthStateChanged(async (user) => {
 			const currentPath = window.location.pathname;
 
 			if (!user && nonAuthRoutes.includes(currentPath)) {
-				// window.location.href= "/";
+				// window.location.href = '/';
 				return;
 			}
 
@@ -25,10 +26,12 @@
 			}
 
 			let dataToSetToStore;
+
 			const docRef = doc(db, 'users', user.uid);
 			const docSnap = await getDoc(docRef);
+
 			if (!docSnap.exists()) {
-				const userRef = doc(db, 'user', user.uid);
+				const userRef = doc(db, 'users', user.uid);
 				dataToSetToStore = {
 					email: user?.email,
 					items: []
@@ -62,12 +65,18 @@
 	});
 </script>
 
-<nav>
-	<a href="/" class=" text-blue-500">home</a>
-	<a href="/about" class=" text-green-500">about</a>
-	<a href="/dashboard" class=" text-yellow-500">dashboard</a>
-	<h1>{userName}</h1>
-	<h1>{userEmail}</h1>
+<nav class="flex justify-around py-5">
+	<div class="flex gap-5">
+		<a href="/home" class=" text-blue-500">home</a>
+		<a href="/about" class=" text-green-500">about</a>
+		<a href="/dashboard" class=" text-yellow-500">dashboard</a>
+		<a href="/login" class=" text-pink-500">login</a>
+	</div>
+	<div class="flex gap-5">
+		<h1>{userName}</h1>
+		<h1>{userEmail}</h1>
+		<button class="text-red-500" on:click={authHandlers.logout}>Logout</button>
+	</div>
 </nav>
 
 <header></header>
