@@ -22,7 +22,7 @@
 		case 'top': {
 			designClassesCirclePositioning = 'h-full'
 			designClassesCirclePrimary = 'top-[10%] transform -translate-y-1/2 left-6 right-6 h-auto aspect-square bg-gradient-to-t from-white/95';
-			designClassesCircleSecondary = 'top-[10%] transform -translate-y-1/2 left-6 right-6 h-auto aspect-square bg-gradient-to-t from-transparent via-black/10 to-black/20 ';
+			designClassesCircleSecondary = 'top-[10%] transform -translate-y-1/2 left-6 right-6 h-auto aspect-square bg-gradient-to-t from-transparent via-black/30 to-black/40 ';
 			break;
 		}
 		case 'top-large': {
