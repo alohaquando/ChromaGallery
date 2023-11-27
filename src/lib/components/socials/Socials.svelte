@@ -43,12 +43,12 @@
 
 
 <svelte:element
-	this={href? 'a':'button'}
+	class="px-6 h-12 rounded-[99px] shadow justify-start items-center gap-4 inline-flex transition {bg} {customClasses}"
 	on:click
 	on:keydown
-	tabindex="0"
 	role="button"
-	class="px-6 h-12 rounded-[99px] shadow justify-start items-center gap-4 inline-flex transition {bg} {customClasses}">
+	tabindex="0"
+	this={href? 'a':'button'}>
 
 	{#if design === 'google'}
 		<div class="text-xl w-6 flex justify-center">
