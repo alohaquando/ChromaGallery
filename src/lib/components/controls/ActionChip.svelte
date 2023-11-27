@@ -25,14 +25,6 @@
 			break;
 		}
 	}
-
-	const State = {
-		Enabled: 'ENABLED',
-		Active: 'ACTIVE'
-	};
-
-	export let state = State.Enabled;
-
 	let activeClasses: string;
 	switch (active) {
 		case true: {

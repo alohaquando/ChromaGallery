@@ -9,10 +9,10 @@
 	export let type: 'button' | 'submit' | 'reset' | undefined = 'button';
 	export let disabled: boolean = false;
 	export let href: string | undefined = undefined;
-	let textClass = '';
+	export let iconType: undefined;
+	export let iconSize = '';
 	let customClasses = '';
 	export { customClasses as class };
-
 	let widthClasses: string;
 	switch (width) {
 		case 'fit': {
@@ -56,8 +56,8 @@ hover:bg-white/40 hover:text-gray-900 hover:before:opacity-100 hover:after:opaci
 	on:keydown
 	role="button" tabindex="0" this={href?"a":"button"}
 	{type}>
-	<Icon {icon} />
-	<Body class="{textClass}">
+	<Icon {icon} size={iconSize} type={iconType} />
+	<Body>
 	<slot />
 	</Body>
 </svelte:element>

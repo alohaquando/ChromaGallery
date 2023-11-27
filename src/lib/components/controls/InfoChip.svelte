@@ -5,7 +5,6 @@
 
 	export let icon: string | undefined = undefined;
 	export let width: 'fit' | 'full' = 'fit';
-	let textClass = '';
 	let customClasses = '';
 	export { customClasses as class };
 
@@ -28,7 +27,7 @@
 	bg-gray-900 rounded-lg text-white
 ">
 	<Icon {icon} size="sm"></Icon>
-	<BodySmall class="{textClass}">
+	<BodySmall>
 		<slot />
 	</BodySmall>
 </div>

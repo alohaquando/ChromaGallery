@@ -9,50 +9,38 @@
 	export { customClasses as class };
 	export let href: string | undefined = undefined;
 	export let type: 'body' | 'title' | 'headline' | 'display' = 'body';
+	let componentOptions = [
+		{
+			type: 'body',
+			component: Body,
+			class: 'bg-link-sm'
+		},
+		{
+			type: 'title',
+			component: Title,
+			class: 'bg-link-sm'
+		},
+		{
+			type: 'headline',
+			component: Headline,
+			class: 'bg-link-md'
+		},
+		{
+			type: 'display',
+			component: Display,
+			class: 'bg-link-lg'
+		}
+	];
 
-	let typeClasses: string;
-	switch (type) {
-		case 'body': {
-			typeClasses = 'before:translate-y-2.5 before:h-0.5';
-			break;
-		}
-		case 'title': {
-			typeClasses = 'before:translate-y-3 before:h-0.5';
-			break;
-		}
-		case 'headline': {
-			typeClasses = 'before:translate-y-5 before:h-1';
-			break;
-		}
-		case 'display': {
-			typeClasses = 'before:translate-y-7 before:h-1';
-			break;
-		}
-	}
+	let component = componentOptions.find(option => option.type == type)?.component;
+	let typeClass = componentOptions.find(option => option.type == type)?.class;
 </script>
 
 <a
-	class="{typeClasses} {customClasses} relative max-w-fit flex items-center cursor-pointer
-    before:absolute before:w-full before:rounded-sm before:bg-white before:left-0 before:origin-right before:scale-x-0 before:ease-in-out before:transition-transform before:duration-300 hover:before:origin-left hover:before:scale-x-100"
+	class="{customClasses} relative max-w-fit cursor-pointer"
 	{href}
 >
-	<span>
-		{#if type === "body"}
-			<Body>
-			<slot />
-			</Body>
-			{:else if type === 'title'}
-			<Title>
-			<slot />
-			</Title>
-			{:else if type === 'headline'}
-			<Headline>
-			<slot />
-			</Headline>
-			{:else if type === 'display'}
-			<Display>
-			<slot />
-			</Display>
-			{/if}
-	</span>
+	<svelte:component class="{typeClass} inline bg-gradient-to-b from-white to-white" this={component}>
+		<slot />
+	</svelte:component>
 </a>
