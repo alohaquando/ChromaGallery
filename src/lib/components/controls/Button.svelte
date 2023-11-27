@@ -39,7 +39,7 @@
 </script>
 
 <svelte:element
-	class="px-5 rounded-full backdrop-blur-sm justify-center items-center gap-2 inline-flex overflow-visible ease-out duration-300 h-10 line-clamp-1
+	class="px-5 rounded-full inline-flex items-center backdrop-blur-sm justify-center gap-2 overflow-visible ease-out duration-300 h-10 line-clamp-1
 
 disabled:text-white/50 disabled:hover:before:opacity-0 disabled:hover:after:opacity-0
 disabled:hover:bg-transparent
@@ -57,7 +57,7 @@ hover:bg-white/40 hover:text-gray-900 hover:before:opacity-100 hover:after:opaci
 	role="button" tabindex="0" this={href?"a":"button"}
 	{type}>
 	<Icon {icon} size={iconSize} type={iconType} />
-	<Body>
+	<Body class="inline-flex items-center">
 	<slot />
 	</Body>
 </svelte:element>

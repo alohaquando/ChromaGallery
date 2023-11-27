@@ -4,12 +4,13 @@
 	import Google from '$lib/assets/svgs/Google.svelte';
 	import Button from '$lib/components/controls/Button.svelte';
 
+	let component = Button;
 	let customClasses = '';
 	export { customClasses as class };
 	export let href = '';
 	export let design: 'facebook' | 'google' | 'apple';
 	export let signup: boolean = true;
-	let buttonClass: string, text: string, icon= '';
+	let buttonClass: string, text: string, icon = '';
 	switch (design) {
 		case 'facebook': {
 			buttonClass = '!bg-blue-600 hover:!bg-blue-700 active:!bg-blue-800 !text-white hover:!text-white';
@@ -38,23 +39,14 @@
 	}
 </script>
 
-<svelte:element
-	class="{customClasses} {buttonClass} !duration-200 !border-none hover:after:!opacity-0 hover:before:!opacity-0 font-bold"
-	on:click
-	on:keydown
-	role="button"
-	tabindex="0"
-	this={href? 'a': 'Button'}
-	{icon}
-iconSize="xl"
-iconType="brands"
->
-
+<Button
+	class="{customClasses} {buttonClass} h-12 !px-6 !duration-200 !border-none hover:after:!opacity-0 hover:before:!opacity-0 font-bold"
+	{icon} iconSize="xl" iconType="brands">
 	{#if design === 'google'}
-		<div class="text-xl w-6 flex justify-center">
+		<div class="text-xl w-6 inline-flex justify-center">
 			<Google />
 		</div>
 	{/if}
-{txt} {text}
-</svelte:element>
+	{txt} {text}
+</Button>
 

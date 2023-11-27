@@ -9,31 +9,31 @@
 	import Button from '$lib/components/controls/Button.svelte';
 	import Socials from '$lib/components/socials/Socials.svelte';
 </script>
-<HeroImage src="https://via.placeholder.com/342x272" name="Shrimp" artist="Shrimp" time="1:43 AM 11/26/2023"></HeroImage>
+<!--<HeroImage src="https://via.placeholder.com/342x272" name="Shrimp" artist="Shrimp" time="1:43 AM 11/26/2023"></HeroImage>-->
 
-<BlockItem itemNum={1} title="My collection" subtitle="Single collection"></BlockItem>
-<BlockItem src="https://via.placeholder.com/342x272" itemNum={28} style='grid' title="Grid collection" subtitle=""></BlockItem>
+<!--<BlockItem itemNum={1} title="My collection" subtitle="Single collection"></BlockItem>-->
+<!--<BlockItem src="https://via.placeholder.com/342x272" itemNum={28} style='grid' title="Grid collection" subtitle=""></BlockItem>-->
 
-<div class="gap-5 flex mt-5">
-<Link type="body">display</Link>
-<Link type="title">display</Link>
-<Link type="headline">display</Link>
-<Link type="display">display</Link>
-</div>
+<!--<div class="gap-5 flex mt-5">-->
+<!--<Link type="body">display</Link>-->
+<!--<Link type="title">display</Link>-->
+<!--<Link type="headline">display</Link>-->
+<!--<Link type="display">display</Link>-->
+<!--</div>-->
 
-<Block icon></Block>
-<Block icon bookmark></Block>
-<div class="h-28 w-36 flex">
-	<Block bookmark></Block>
-</div>
-<div class="h-72 w-96 flex">
-	<Block src="https://via.placeholder.com/342x272"></Block>
-</div>
+<!--<Block icon></Block>-->
+<!--<Block icon bookmark></Block>-->
+<!--<div class="h-28 w-36 flex">-->
+<!--	<Block bookmark></Block>-->
+<!--</div>-->
+<!--<div class="h-72 w-96 flex">-->
+<!--	<Block src="https://via.placeholder.com/342x272"></Block>-->
+<!--</div>-->
 
 <!--&lt;!&ndash;<Modal buttonText="Buton" title="Modao"></Modal>&ndash;&gt;-->
 
-<!--<Socials design='facebook'></Socials>-->
-<!--<Socials design='google' signup= {false}></Socials>-->
-<!--<Socials design='apple'></Socials>-->
+<Socials design='facebook'></Socials>
+<Socials design='google' signup={false}></Socials>
+<Socials design='apple'></Socials>
 
 <!--<Dialog title="Warning" text="COOKIES!!!!! !!!!!!!!!!!!!! !!!!!!!!!!!!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!!" option1="Ignore" option2="Accept"></Dialog>-->
