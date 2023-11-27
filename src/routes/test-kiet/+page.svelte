@@ -8,7 +8,9 @@
 	import Modal from '$lib/components/pop-up/Modal.svelte';
 	import Button from '$lib/components/controls/Button.svelte';
 	import Socials from '$lib/components/socials/Socials.svelte';
+	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
 </script>
+<PageTitle>A Title</PageTitle>
 <!--<HeroImage src="https://via.placeholder.com/342x272" name="Shrimp" artist="Shrimp" time="1:43 AM 11/26/2023"></HeroImage>-->
 
 <!--<BlockItem itemNum={1} title="My collection" subtitle="Single collection"></BlockItem>-->
