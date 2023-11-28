@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Body from '$lib/components/typography/Body.svelte';
 	import Icon from '$lib/components/iconography/Icon.svelte';
 	import Google from '$lib/assets/svgs/Google.svelte';
 	import Button from '$lib/components/controls/Button.svelte';
