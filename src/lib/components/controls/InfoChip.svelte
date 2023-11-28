@@ -5,6 +5,7 @@
 
 	export let icon: string | undefined = undefined;
 	export let width: 'fit' | 'full' = 'fit';
+	export let design: 'filled' | 'text' = 'filled';
 	let customClasses = '';
 	export { customClasses as class };
 
@@ -19,12 +20,23 @@
 			break;
 		}
 	}
+
+	let designClasses: string;
+	switch (design) {
+		case 'filled': {
+			designClasses = "bg-gray-900 rounded-lg"
+			break
+		}
+		case 'text': {
+			designClasses = ""
+			break
+		}
+	}
 </script>
 
 <div
-	class="{customClasses} {widthClasses} px-3 py-2  backdrop-blur-sm justify-center items-center gap-1.5 inline-flex line-clamp-1 overflow-visible ease-out duration-300 text-sm text-center leading-[14px]
-
-	bg-gray-900 rounded-lg text-white
+	class="{customClasses} {widthClasses} {designClasses} px-3 py-2 backdrop-blur-sm justify-center items-center gap-1.5 inline-flex line-clamp-1 overflow-visible ease-out duration-300 text-sm text-center leading-[14px]
+	 text-white
 ">
 	<Icon {icon} size="sm"></Icon>
 	<BodySmall>
