@@ -24,8 +24,9 @@
 	<Fab icon="faStar"></Fab>
 </div>
 
-<BodyLarge
-	>This ball sports a distinctive stripe pattern that results from an innovative manufacturing
+<div>
+	<BodyLarge>
+		This ball sports a distinctive stripe pattern that results from an innovative manufacturing
 	process. Plastic of two colours is blown into a mould using a method that prevents the colours
 	from mixing. The ball is a by-product of a demonstration of the extrusion blow-mould machine
 	invented by the Hong Kong engineer Chiang Chen. The development of the two-colour production
@@ -33,16 +34,13 @@
 	the confluence of the Yangtze River and its tributary, the Jialing, in mainland China: one was
 	muddy and the other clear, but the two currents remained distinct rather than blending together.
 	Despite the success of his manufacturing method, Chiang was never able to file a patent for it,
-	and it was soon widely imitated to create other types of products.</BodyLarge
->
+	and it was soon widely imitated to create other types of products.
+	</BodyLarge>
+</div>
 
 <ListItem href="/" leadingText="Object ID" trailingText="HEE-NC-57001" />
 <ListItem href="/" leadingText="Place made" trailingText="Vietnam, Ho Chi Minh City" />
-<ListItem
-	href="/"
-	leadingText="Object IDNamed collection"
-	trailingText="Harold E. Edgerton Collection"
-/>
+<ListItem href="/" leadingText="Object IDNamed collection" trailingText="Harold E. Edgerton Collection" />
 
 <div class="mt-12 gap-y-8 flex flex-col">
 	<BodyLarge class="mt-12">Related</BodyLarge>
