@@ -51,29 +51,29 @@
 		<!--	<ListItem href="/" leadingText="Named collection" trailingText="Harold E. Edgerton Collection" />-->
 	</div>
 
-	<div class="mt-12 gap-y-8 flex flex-col">
-		<BodyLarge class="mt-12">Related</BodyLarge>
+<!--	<div class="mt-12 gap-y-8 flex flex-col">-->
+<!--		<BodyLarge class="mt-12">Related</BodyLarge>-->
 
-		<HeroImage
-			alt="Image Alt Text"
-			artist="Srijon Chowdhury"
-			class="my-4"
-			href="item-link"
-			name="Related Contents"
-			src=""
-			time="Circa 2315"
-		></HeroImage>
+<!--		<HeroImage-->
+<!--			alt="Image Alt Text"-->
+<!--			artist="Srijon Chowdhury"-->
+<!--			class="my-4"-->
+<!--			href="item-link"-->
+<!--			name="Related Contents"-->
+<!--			src=""-->
+<!--			time="Circa 2315"-->
+<!--		></HeroImage>-->
 
-		<HeroImage
-			alt="Image Alt Text"
-			artist="Srijon Chowdhury"
-			class="my-4"
-			href="item-link"
-			name="Related Contents"
-			src=""
-			time="Circa 2315"
-		></HeroImage>
-	</div>
+<!--		<HeroImage-->
+<!--			alt="Image Alt Text"-->
+<!--			artist="Srijon Chowdhury"-->
+<!--			class="my-4"-->
+<!--			href="item-link"-->
+<!--			name="Related Contents"-->
+<!--			src=""-->
+<!--			time="Circa 2315"-->
+<!--		></HeroImage>-->
+<!--	</div>-->
 
 {/if}
 

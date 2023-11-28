@@ -5,7 +5,7 @@
 	export { customClass as class };
 </script>
 
-<div class="{customClass} pt-14 w-full flex justify-center items-center">
+<div class="{customClass} pt-14 w-full flex justify-center items-center text-center">
 	<Display>
 		<slot />
 	</Display>

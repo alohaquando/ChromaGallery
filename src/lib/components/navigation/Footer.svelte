@@ -8,7 +8,8 @@
 	import Icon from '$lib/components/iconography/Icon.svelte';
 </script>
 
-<div class="py-16 w-full justify-start items-start gap-8 inline-flex flex-col">
+<div class="pb-16 pt-32 w-full justify-start items-start gap-8 inline-flex flex-col">
+	<Divider full/>
 	<Fab icon="faArrowUp" size='lg'>Back to top</Fab>
 	<Divider></Divider>
 	<Title>Get in contact</Title>

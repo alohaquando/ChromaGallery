@@ -35,7 +35,7 @@
 	{:else}
 		<img
 			alt={altImg}
-			class="h-full w-full object-contain absolute ring"
+			class="h-full w-full object-contain absolute"
 			src="{imgSrc}" />
 	{/if}
 </div>

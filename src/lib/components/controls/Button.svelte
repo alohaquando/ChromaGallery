@@ -9,7 +9,7 @@
 	export let type: 'button' | 'submit' | 'reset' | undefined = 'button';
 	export let disabled: boolean = false;
 	export let href: string | undefined = undefined;
-	export let iconType: string | undefined = "regular";
+	export let iconType: string | undefined = 'regular';
 	export let iconSize = '';
 	let customClasses = '';
 	export { customClasses as class };
@@ -54,7 +54,8 @@ hover:bg-white/40 hover:text-gray-900 hover:before:opacity-100 hover:after:opaci
 	{disabled}
 	on:click
 	on:keydown
-	role="button" tabindex="0" this={href?"a":"button"}
+	role="button" tabindex="0" this={href ? "a" : "button"}
+	{href}
 	{type}>
 	<Icon {icon} size={iconSize} type={iconType} />
 	<Body class="inline-flex items-center">

@@ -36,7 +36,7 @@
 	<input
 		{autocomplete}
 		{autofocus}
-		class="{stateClasses} bg-black border border-white/30 rounded-xl placeholder-white/50 block w-full p-2.5 transition outline-none text-white font-sans trim-both
+		class="{stateClasses} bg-black/30 border border-white/30 rounded-xl placeholder-white/50 block w-full p-2.5 transition outline-none text-white font-sans trim-both
 		focus:ring-white focus:ring-2
 		disabled:placeholder-white/30 disabled:text-white/70
 		read-only:focus:ring-0 read-only:text-white/70"

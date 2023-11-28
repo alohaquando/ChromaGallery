@@ -41,7 +41,7 @@
 </script>
 
 <!--<editor-fold desc="Background">-->
-<div class="absolute top-0 left-0 w-screen h-[150vh] overflow-hidden">
+<div class="absolute top-0 left-0 w-screen h-[150vh] overflow-hidden select-none pointer-events-none">
 
 	<!--<editor-fold desc="Full linear gradient">-->
 	<div class="absolute top-0 bottom-0 left-0 right-0 w-full h-full bg-gradient-to-b from-white/50 -z-30" />

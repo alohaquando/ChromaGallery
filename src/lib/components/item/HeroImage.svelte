@@ -18,7 +18,7 @@
 </script>
 
 <div class="w-full flex-col gap-6 inline-flex {customClass}">
-	<div class="w-full h-80 rounded-lg flex overflow-hidden relative  bg-black/5 backdrop-blur-md">
+	<div class="w-full h-80 rounded-lg flex overflow-hidden relative">
 		<Block alt="{imgAlt}" class="" src="{imgSrc}"></Block>
 	</div>
 	<div class="flex-col gap-6 flex">
