@@ -8,27 +8,23 @@
 </script>
 
 
-<div class="mb-4 text-center"><PageTitle>Hi New Friend</PageTitle></div>
+<PageTitle>Hi New Friend</PageTitle>
 
-<div class="mb-4 text-center">
+<div class="mt-16 gap-8 flex flex-col items-center w-full">
+<div class="mb-4 items-center gap-4 flex flex-col">
     <Socials design='facebook'></Socials>
-</div>
-
-<div class="mb-4 text-center">
     <Socials design='google'></Socials>
-</div>
-
-<div class="mb-4 text-center">
     <Socials design='apple'></Socials>
 </div>
 
-<div class="mb-4"><Divider></Divider></div>
+<Divider></Divider>
 
-<div class="mb-4"><TextField placeholder="Email"></TextField></div>
-<div class="mb-4 text-center"><Button design='filled' class=" w-[342px]">Sign up</Button></div>
+<TextField placeholder="Email"></TextField>
+<Button design='filled' width='full'>Sign up</Button>
 
-<div class="mb-4"><Divider></Divider></div>
-<div class="mb-4 w-[174px] text-center text-white text-opacity-70 text-base leading-normal">
+<Divider></Divider>
+<div>
     <BodySmall>Already a member?</BodySmall>
 </div>
-<div class="mb-4 text-center"><Button design='outlined'>Sign in</Button></div>
+<Button design='outlined'>Sign in</Button>
+</div>

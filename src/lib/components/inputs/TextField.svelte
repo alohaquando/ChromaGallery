@@ -29,7 +29,7 @@
 </script>
 
 
-<div class="flex flex-col">
+<div class="flex flex-col w-full">
 	{#if label}
 		<label class="block mb-2 text-sm font-sans trim-both pb-4" for={id}>{label}</label>
 	{/if}
