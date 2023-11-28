@@ -7,19 +7,19 @@
 </script>
 
 <HeroImage
-	src="image-src.jpg"
-	href="item-link"
-	name="La sezione islamica"
-	artist="Srijon Chowdhury"
-	time="Circa 2315"
 	alt="Image Alt Text"
+	artist="Srijon Chowdhury"
 	class="my-4"
+	href=""
+	name="La sezione islamica"
+	src="image-src.jpg"
+	time="Circa 2315"
 ></HeroImage>
 
-<div class="flex justify-between my-4">
+<div class="flex justify-between items-end">
 	<div class="flex justify-between">
-		<Button type="submit" icon="faPlus" class="mr-2">Add to list</Button>
-		<Button type="submit" icon="faVolume" class="ml-2">Audio guide</Button>
+		<Button class="" icon="faPlus" type="submit">Add to list</Button>
+		<Button class="ml-4" icon="faVolume" type="submit">Audio guide</Button>
 	</div>
 	<Fab icon="faStar"></Fab>
 </div>
@@ -36,9 +36,9 @@
 	and it was soon widely imitated to create other types of products.</BodyLarge
 >
 
-<ListItem leadingText="Object ID" trailingText="HEE-NC-57001" />
-<ListItem leadingText="Place made" trailingText="Vietnam, Ho Chi Minh City" />
-<ListItem leadingText="Object IDNamed collection" trailingText="Harold E. Edgerton Collection" />
+<ListItem href="/" leadingText="Object ID" trailingText="HEE-NC-57001" />
+<ListItem href="/" leadingText="Place made" trailingText="Vietnam, Ho Chi Minh City" />
+<ListItem href="/" leadingText="Object IDNamed collection" trailingText="Harold E. Edgerton Collection" />
 
 <div
 	class="text-white text-xl font-normal font-['Atkinson Hyperlegible'] leading-[30px] my-[32px] inline-block align-middle"
@@ -47,21 +47,21 @@
 </div>
 
 <HeroImage
-	src="image-src.jpg"
+	alt="Image Alt Text"
+	artist="Srijon Chowdhury"
+	class="my-4"
 	href="item-link"
 	name="Related Contents"
-	artist="Srijon Chowdhury"
+	src="image-src.jpg"
 	time="Circa 2315"
-	alt="Image Alt Text"
-	class="my-4"
 ></HeroImage>
 
 <HeroImage
-	src="image-src.jpg"
+	alt="Image Alt Text"
+	artist="Srijon Chowdhury"
+	class="my-4"
 	href="item-link"
 	name="Related Contents"
-	artist="Srijon Chowdhury"
+	src="image-src.jpg"
 	time="Circa 2315"
-	alt="Image Alt Text"
-	class="my-4"
 ></HeroImage>
