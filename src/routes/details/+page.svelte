@@ -16,7 +16,7 @@
 	time="Circa 2315"
 ></HeroImage>
 
-<div class="flex justify-between items-end">
+<div class="flex justify-between items-end mb-4">
 	<div class="flex justify-between">
 		<Button class="" icon="faPlus" type="submit">Add to list</Button>
 		<Button class="ml-4" icon="faVolume" type="submit">Audio guide</Button>
@@ -38,30 +38,32 @@
 
 <ListItem href="/" leadingText="Object ID" trailingText="HEE-NC-57001" />
 <ListItem href="/" leadingText="Place made" trailingText="Vietnam, Ho Chi Minh City" />
-<ListItem href="/" leadingText="Object IDNamed collection" trailingText="Harold E. Edgerton Collection" />
+<ListItem
+	href="/"
+	leadingText="Object IDNamed collection"
+	trailingText="Harold E. Edgerton Collection"
+/>
 
-<div
-	class="text-white text-xl font-normal font-['Atkinson Hyperlegible'] leading-[30px] my-[32px] inline-block align-middle"
->
-	Related
+<div class="mt-12 gap-y-8 flex flex-col">
+	<BodyLarge class="mt-12">Related</BodyLarge>
+
+	<HeroImage
+		alt="Image Alt Text"
+		artist="Srijon Chowdhury"
+		class="my-4"
+		href="item-link"
+		name="Related Contents"
+		src="image-src.jpg"
+		time="Circa 2315"
+	></HeroImage>
+
+	<HeroImage
+		alt="Image Alt Text"
+		artist="Srijon Chowdhury"
+		class="my-4"
+		href="item-link"
+		name="Related Contents"
+		src="image-src.jpg"
+		time="Circa 2315"
+	></HeroImage>
 </div>
-
-<HeroImage
-	alt="Image Alt Text"
-	artist="Srijon Chowdhury"
-	class="my-4"
-	href="item-link"
-	name="Related Contents"
-	src="image-src.jpg"
-	time="Circa 2315"
-></HeroImage>
-
-<HeroImage
-	alt="Image Alt Text"
-	artist="Srijon Chowdhury"
-	class="my-4"
-	href="item-link"
-	name="Related Contents"
-	src="image-src.jpg"
-	time="Circa 2315"
-></HeroImage>
