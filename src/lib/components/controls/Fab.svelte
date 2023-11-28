@@ -3,7 +3,7 @@
 	import Icon from '../iconography/Icon.svelte';
 	import Body from '../typography/Body.svelte';
 
-	export let type: string | undefined;
+	export let iconType: 'regular' | 'solid' | 'brands' | undefined = "regular";
 	export let textClass = '';
 	export let href: string | undefined = undefined;
 	let customClasses = '';
@@ -39,9 +39,9 @@
 	role="button"
 	tabindex="0"
 >
-	<Icon {icon} size="2xl" {type}></Icon>
+	<Icon {icon} size="2xl" type={iconType}></Icon>
 	{#if $$slots.default}
-		<Body class={textClass}>
+		<Body class="{textClass} pt-1 leading-tight">
 			<slot />
 		</Body>
 	{/if}
