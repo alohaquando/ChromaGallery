@@ -67,6 +67,21 @@
 		padding-bottom: max(env(safe-area-inset-bottom) + 12px, 12px);
 	}
 
+	@supports (-webkit-touch-callout: none) {
+		/*noinspection CssInvalidPropertyValue*/
+		.min-h-screen-safe {
+			min-height: -webkit-fill-available;
+		}
+
+		.min-h-sm-screen-safe {
+			min-height: calc(70vh - env(safe-area-inset-bottom, 0) - env(safe-area-inset-top, 0));
+		}
+
+		.min-h-md-screen-safe {
+			min-height: calc(82vh - env(safe-area-inset-bottom, 0) - env(safe-area-inset-top, 0));
+		}
+	}
+
 
 	.blur-fix {
 		-webkit-backface-visibility: hidden;
