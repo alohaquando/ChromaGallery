@@ -3,7 +3,6 @@
 	import Link from '$lib/components/links/Link.svelte';
 	import Block from '$lib/components/block/Block.svelte';
 
-
 	let imgSrc: string = '';
 	export { imgSrc as src };
 	let itemLink: string = '';
