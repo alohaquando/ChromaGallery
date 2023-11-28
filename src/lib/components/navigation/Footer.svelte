@@ -13,10 +13,10 @@
 	<Divider></Divider>
 	<Title>Get in contact</Title>
 	<div class="inline-flex justify-between w-full">
-		<Fab color="blue" href="" icon="faFacebook" type="brands"></Fab>
-		<Fab href="" icon="faInstagram" type="brands"></Fab>
-		<Fab href="" icon="faXTwitter" type="brands"></Fab>
-		<Fab href="" icon="faYoutube" type="brands"></Fab>
+		<Fab href="" icon="faFacebook" iconType="brands"></Fab>
+		<Fab href="" icon="faInstagram" iconType="brands"></Fab>
+		<Fab href="" icon="faXTwitter" iconType="brands"></Fab>
+		<Fab href="" icon="faYoutube" iconType="brands"></Fab>
 	</div>
 	<Divider></Divider>
 	<Title>Account</Title>
