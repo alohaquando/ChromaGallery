@@ -3,7 +3,10 @@
 	import Fab from '$lib/components/controls/Fab.svelte';
 	import InfoChip from '$lib/components/controls/InfoChip.svelte';
 	import HeroImage from '$lib/components/item/HeroImage.svelte';
+	import BG from '$lib/components/backgrounds/BG.svelte';
 </script>
+
+<BG randomized design="top-large"/>
 
 <!--Replace div -> Background-->
 <div class="w-full h-xl pt-16 flex flex-col items-center gap-10">
