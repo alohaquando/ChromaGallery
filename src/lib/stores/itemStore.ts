@@ -3,26 +3,25 @@ import { doc, getDoc } from 'firebase/firestore';
 import { db } from '$lib/services/firebase/firebase';
 
 interface ItemData {
-	title: string;
-	artist: string;
-	foundedYear: string;
-	image: string;
-	description: string;
-	location: string;
+	title: string | undefined;
+	artist: string | undefined;
+	foundedYear: string | undefined;
+	image: string | undefined;
+	description: string | undefined;
+	location: string | undefined;
 }
 
-const item: ItemData | any = {
-	title: '',
-	artist: '',
-	foundedYear: '',
-	image: '',
-	description: '',
-	location: ''
-};
+const item: ItemData | any = null;
 
 const { subscribe, set, update } = writable(item);
 
 export const itemStore = {
+	artist: undefined,
+	title: undefined,
+	foundedYear: undefined,
+	image: undefined,
+	description: undefined,
+	location: undefined,
 	subscribe,
 	getItem: async (id: string) => {
 		const docRef = doc(db, 'Item', id);
