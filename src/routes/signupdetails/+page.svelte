@@ -8,16 +8,16 @@
 </script>
 
 
-<div class="mb-4 text-center"><PageTitle>Let's get you ready</PageTitle></div>
+<PageTitle>Let's get you ready</PageTitle>
 
-<div class="mb-4"><TextField placeholder="myemail@google.com"></TextField></div>
+<div class="mt-16 gap-8 flex flex-col items-center w-full">
+<TextField placeholder="myemail@google.com"></TextField>
+<Divider></Divider>
 
-<div class="mb-4"><Divider></Divider></div>
+<TextField placeholder="Password"></TextField>
+<TextField placeholder="Confirm password"></TextField>
 
-<div class="mb-4"><TextField placeholder="Password"></TextField></div>
-<div class="mb-4"><TextField placeholder="Confirm password"></TextField></div>
-
-<div class="mb-4"><Divider></Divider></div>
-
-<div class="mb-4"><TextField placeholder="Full Name"></TextField></div>
-<div class="mb-4 text-center"><Button design='filled'>Complete sign up</Button></div>
+<Divider></Divider>
+<TextField placeholder="Full Name"></TextField>
+<Button design='filled' width='full'>Complete sign up</Button>
+</div>

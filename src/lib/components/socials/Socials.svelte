@@ -39,7 +39,7 @@
 </script>
 
 <Button
-	class="{customClasses} {buttonClass} h-12 !px-6 !duration-200 !border-none hover:after:!opacity-0 hover:before:!opacity-0 font-bold"
+	class="{customClasses} {buttonClass} h-12 !px-6 !duration-200 !border-none hover:after:!opacity-0 hover:before:!opacity-0 font-bold w-full"
 	{icon} iconSize="xl" iconType="brands">
 	{#if design === 'google'}
 		<div class="text-xl w-8 pr-2">
