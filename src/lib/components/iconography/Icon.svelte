@@ -1,4 +1,4 @@
-<!--suppress JSUnreachableSwitchBranches -->
+suppress JSUnreachableSwitchBranches
 <script lang="ts">
 	// noinspection ES6UnusedImports
 	import Fa from 'svelte-fa';
@@ -23,10 +23,8 @@
 			icon = brandModule[icon as keyof unknown];
 			break;
 	}
-
 </script>
 
 {#if icon}
 	<Fa class="text-{size} {customClasses}" {icon} />
 {/if}
-
