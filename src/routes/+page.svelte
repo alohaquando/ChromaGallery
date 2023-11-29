@@ -26,9 +26,24 @@
 
 <div class="w-full h-20 mt-7"></div>
 <DisplayLarge class="mt-20"></DisplayLarge>
-<HeroImage alt="" artist="Olve Sande" class="mt-12" name="La ceramica italiana del Novecento"
-					 src="https://blog.artsper.com/wp-content/uploads/2022/06/44151m.jpg"></HeroImage>
-<HeroImage alt="" artist="Francesco Gennari" class="mt-12" name="Officine italiance del Rinascimento"
-					 src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/de1bbf90617233.5e1c78d58d809.jpg"></HeroImage>
-<HeroImage alt="" artist="Antoine Levi" class="mt-12" name="Ceramiche del Vicino Oriente antico"
-					 src="https://theartofeducation.edu/wp-content/uploads/2022/10/VanGoghLegoMeme.jpeg"></HeroImage>
+<HeroImage
+	alt=""
+	artist="Olve Sande"
+	class="mt-12"
+	name="La ceramica italiana del Novecento"
+	src="https://blog.artsper.com/wp-content/uploads/2022/06/44151m.jpg"
+></HeroImage>
+<HeroImage
+	alt=""
+	artist="Francesco Gennari"
+	class="mt-12"
+	name="Officine italiance del Rinascimento"
+	src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/de1bbf90617233.5e1c78d58d809.jpg"
+></HeroImage>
+<HeroImage
+	alt=""
+	artist="Antoine Levi"
+	class="mt-12"
+	name="Ceramiche del Vicino Oriente antico"
+	src="https://theartofeducation.edu/wp-content/uploads/2022/10/VanGoghLegoMeme.jpeg"
+></HeroImage>

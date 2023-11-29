@@ -4,7 +4,7 @@
 	export let bookmark: boolean = false;
 	export let icon: boolean = false;
 	let iconSize = '';
-	iconSize = (!icon ? '6xl' : 'base');
+	iconSize = !icon ? '6xl' : 'base';
 	let stretchClass = 'grow shrink basis-0 self-stretch';
 	let typeClass = '';
 	switch (bookmark) {
@@ -24,18 +24,16 @@
 </script>
 
 <div
-	class="{!icon ? stretchClass : 'h-14 w-14'} {typeClass} {customClass} justify-center items-center inline-flex relative overflow-hidden">
+	class="{!icon
+		? stretchClass
+		: 'h-14 w-14'} {typeClass} {customClass} justify-center items-center inline-flex relative overflow-hidden"
+>
 	{#if bookmark}
-		<Icon icon="faStar" type="solid" class="absolute" size="{iconSize}"></Icon>
+		<Icon icon="faStar" type="solid" class="absolute" size={iconSize}></Icon>
 		{#if !icon}
-			<div
-				class="absolute h-16 w-16 blur-xl bg-white rounded-full">
-			</div>
+			<div class="absolute h-16 w-16 blur-xl bg-white rounded-full"></div>
 		{/if}
 	{:else}
-		<img
-			alt={altImg}
-			class="h-full w-full object-contain absolute"
-			src="{imgSrc}" />
+		<img alt={altImg} class="h-full w-full object-contain absolute" src={imgSrc} />
 	{/if}
 </div>

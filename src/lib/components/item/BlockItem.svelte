@@ -28,14 +28,12 @@
 </script>
 
 <div class="w-72 flex-col justify-start items-start gap-6 inline-flex">
-	<a
-		class="w-full h-52 rounded-lg gap-1 inline-flex overflow-hidden relative"
-		href="{itemLink}">
-		<Block alt="{singleAlt}" src="{singleSrc}"></Block>
+	<a class="w-full h-52 rounded-lg gap-1 inline-flex overflow-hidden relative" href={itemLink}>
+		<Block alt={singleAlt} src={singleSrc}></Block>
 		{#if blockStyle === 'grid'}
 			<div class="grow shrink basis-0 self-stretch flex-col gap-1 inline-flex">
-				<Block alt="{alt2}" src="{src2}"></Block>
-				<Block alt="{alt3}" src="{src3}"></Block>
+				<Block alt={alt2} src={src2}></Block>
+				<Block alt={alt3} src={src3}></Block>
 			</div>
 		{/if}
 		<InfoChip class="absolute bottom-2 right-2 !rounded-2xl !bg-opacity-40 py-4">
@@ -44,7 +42,7 @@
 	</a>
 	{#if title}
 		<div class="self-stretch flex-col flex gap-4">
-			<Link href="{itemLink}" type="body">{title}</Link>
+			<Link href={itemLink} type="body">{title}</Link>
 			{#if subtitle}
 				<Body class="text-white/50">{subtitle}</Body>
 			{/if}

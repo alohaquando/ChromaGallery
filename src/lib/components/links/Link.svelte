@@ -32,15 +32,15 @@
 		}
 	];
 
-	let component = componentOptions.find(option => option.type == type)?.component;
-	let typeClass = componentOptions.find(option => option.type == type)?.class;
+	let component = componentOptions.find((option) => option.type == type)?.component;
+	let typeClass = componentOptions.find((option) => option.type == type)?.class;
 </script>
 
-<a
-	class="{customClasses} relative max-w-fit cursor-pointer"
-	{href}
->
-	<svelte:component class="{typeClass} inline bg-gradient-to-b from-white to-white" this={component}>
+<a class="{customClasses} relative max-w-fit cursor-pointer" {href}>
+	<svelte:component
+		this={component}
+		class="{typeClass} inline bg-gradient-to-b from-white to-white"
+	>
 		<slot />
 	</svelte:component>
 </a>

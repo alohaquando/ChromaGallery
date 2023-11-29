@@ -6,7 +6,7 @@
 	import BG from '$lib/components/backgrounds/BG.svelte';
 </script>
 
-<BG color="9EDC5F"/>
+<BG color="9EDC5F" />
 
 <PageTitle>Let's get you ready</PageTitle>
 
@@ -19,5 +19,5 @@
 
 	<Divider></Divider>
 	<TextField id="" name="" placeholder="Full Name"></TextField>
-	<Button design='filled' type="submit" width='full'>Complete sign up</Button>
+	<Button design="filled" type="submit" width="full">Complete sign up</Button>
 </form>

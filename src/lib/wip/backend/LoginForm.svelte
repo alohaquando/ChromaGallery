@@ -6,7 +6,7 @@
 	let error = false;
 	let register = false;
 	let authenticating = false;
-	
+
 	async function handleAuthenticate() {
 		if (authenticating) {
 			return;
@@ -109,7 +109,7 @@
 			</div>
 		{/if}
 		<button on:click={handleRegister} class="bg-blue-400 rounded p-1 hover:text-white"
-		>SignOut</button
-	>
+			>SignOut</button
+		>
 	</div>
 </div>

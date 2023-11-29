@@ -1,4 +1,4 @@
-suppress JSUnreachableSwitchBranches
+<!--suppress JSUnreachableSwitchBranches -->
 <script lang="ts">
 	// noinspection ES6UnusedImports
 	import Fa from 'svelte-fa';
@@ -25,6 +25,7 @@ suppress JSUnreachableSwitchBranches
 	}
 </script>
 
+suppress JSUnreachableSwitchBranches
 {#if icon}
 	<Fa class="text-{size} {customClasses}" {icon} />
 {/if}

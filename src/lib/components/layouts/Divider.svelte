@@ -3,9 +3,9 @@
 
 	let widthClasses: string;
 	if (full) {
-		widthClasses = "w-screen -translate-x-6"
+		widthClasses = 'w-screen -translate-x-6';
 	} else {
-		widthClasses = "w-full"
+		widthClasses = 'w-full';
 	}
 </script>
 

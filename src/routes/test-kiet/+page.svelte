@@ -10,6 +10,7 @@
 	import Socials from '$lib/components/socials/Socials.svelte';
 	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
 </script>
+
 <PageTitle>A Title</PageTitle>
 <!--<HeroImage src="https://via.placeholder.com/342x272" name="Shrimp" artist="Shrimp" time="1:43 AM 11/26/2023"></HeroImage>-->
 
@@ -34,8 +35,8 @@
 
 <!--&lt;!&ndash;<Modal buttonText="Buton" title="Modao"></Modal>&ndash;&gt;-->
 
-<Socials design='facebook'></Socials>
-<Socials design='google' signup={false}></Socials>
-<Socials design='apple'></Socials>
+<Socials design="facebook"></Socials>
+<Socials design="google" signup={false}></Socials>
+<Socials design="apple"></Socials>
 
 <!--<Dialog title="Warning" text="COOKIES!!!!! !!!!!!!!!!!!!! !!!!!!!!!!!!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!!" option1="Ignore" option2="Accept"></Dialog>-->

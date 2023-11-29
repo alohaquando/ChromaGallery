@@ -35,10 +35,10 @@
 			designClasses = 'bg-white text-gray-900 active:bg-white/80 hover:bg-white/70';
 		}
 	}
-
 </script>
 
 <svelte:element
+	this={href ? 'a' : 'button'}
 	class="px-5 rounded-full inline-flex items-center backdrop-blur-sm justify-center gap-2 overflow-visible ease-out duration-300 h-10 line-clamp-1
 
 disabled:text-white/50 disabled:hover:before:opacity-0 disabled:hover:after:opacity-0
@@ -54,11 +54,13 @@ hover:bg-white/40 hover:text-gray-900 hover:before:opacity-100 hover:after:opaci
 	{disabled}
 	on:click
 	on:keydown
-	role="button" tabindex="0" this={href ? "a" : "button"}
+	role="button"
+	tabindex="0"
 	{href}
-	{type}>
+	{type}
+>
 	<Icon {icon} size={iconSize} type={iconType} />
 	<Body class="inline-flex items-center">
-	<slot />
+		<slot />
 	</Body>
 </svelte:element>

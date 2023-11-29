@@ -6,7 +6,7 @@
 	export let icon: string | undefined = undefined;
 	export let width: 'fit' | 'full' = 'fit';
 	export let active: boolean = false;
-	'outlined';
+	('outlined');
 	export let type: 'button' | 'submit' | 'reset' | undefined = 'button';
 	export let disabled: boolean = false;
 	export let href: string | undefined = undefined;
@@ -39,6 +39,7 @@
 </script>
 
 <svelte:element
+	this={href ? 'a' : 'button'}
 	class="{customClasses} {activeClasses} {widthClasses} px-3 rounded-full backdrop-blur-sm justify-center items-center gap-1.5 inline-flex line-clamp-1 overflow-visible ease-out duration-300 text-sm text-center truncate h-8
 
       hover:bg-white/30 hover:text-gray-900 hover:before:opacity-100 hover:after:opacity-100 text-opacity-70
@@ -52,14 +53,14 @@
 	on:keydown
 	role="button"
 	tabindex="0"
-	this={href ? "a" : "button"}
-	{type}>
+	{type}
+>
 	{#if active}
 		<Icon {icon} type="solid" size="sm"></Icon>
 	{:else}
 		<Icon {icon} size="sm"></Icon>
 	{/if}
-	<BodySmall class="{textClass}">
+	<BodySmall class={textClass}>
 		<slot />
 	</BodySmall>
 </svelte:element>

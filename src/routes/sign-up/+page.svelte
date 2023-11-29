@@ -8,27 +8,27 @@
 	import BG from '$lib/components/backgrounds/BG.svelte';
 </script>
 
-<BG color="9EDC5F"/>
+<BG color="9EDC5F" />
 
 <PageTitle>Hi new friend</PageTitle>
 
 <div class="mt-16 gap-8 flex flex-col items-center w-full">
 	<div class="mb-4 items-center gap-4 flex flex-col w-full">
-		<Socials design='facebook' href="/"></Socials>
-		<Socials design='google' href="/"></Socials>
-		<Socials design='apple' href="/"></Socials>
+		<Socials design="facebook" href="/"></Socials>
+		<Socials design="google" href="/"></Socials>
+		<Socials design="apple" href="/"></Socials>
 	</div>
 
 	<Divider></Divider>
 
 	<form class="contents">
 		<TextField id="" name="" placeholder="Email"></TextField>
-		<Button design='filled' width='full' type="submit">Sign up</Button>
+		<Button design="filled" width="full" type="submit">Sign up</Button>
 	</form>
 
 	<Divider></Divider>
 	<div>
 		<BodySmall>Already a member?</BodySmall>
 	</div>
-	<Button design='outlined'>Sign in</Button>
+	<Button design="outlined">Sign in</Button>
 </div>

@@ -10,9 +10,9 @@
 
 <svelte:head>
 	<meta title="Chroma Gallery" />
-	<meta content="#000000" name="theme-color">
+	<meta content="#000000" name="theme-color" />
 </svelte:head>
-<svelte:window bind:scrollY={scrollY} />
+<svelte:window bind:scrollY />
 
 <HeaderMain {scrollY}></HeaderMain>
 <div class="container mx-auto px-6">
@@ -23,4 +23,3 @@
 <div class="h-32" />
 
 <NavBar class="fixed bottom-0 left-0 z-40" />
-

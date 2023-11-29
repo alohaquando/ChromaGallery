@@ -6,7 +6,9 @@
 	export { customClasses as class };
 </script>
 
-<div class="h-16 w-full  justify-center items-center inline-flex duration-500 ease-in-out {customClasses}">
+<div
+	class="h-16 w-full justify-center items-center inline-flex duration-500 ease-in-out {customClasses}"
+>
 	<div class="container mx-auto px-6 space-x-6 flex justify-center">
 		<NavItem icon="faHome" href="/">Home</NavItem>
 		<NavItem icon="faSearch" href="/">Browse</NavItem>
@@ -14,8 +16,10 @@
 	</div>
 
 	<div
-		class="pointer-events-none absolute -bottom-1 -top-20 left-0 right-0 -z-20 touch-none transition-all ">
+		class="pointer-events-none absolute -bottom-1 -top-20 left-0 right-0 -z-20 touch-none transition-all"
+	>
 		<div
-			class="'opacity-100' blur-fix absolute h-full w-full backdrop-blur-lg [mask-image:linear-gradient(to_top,black,black,transparent)]" />
+			class="'opacity-100' blur-fix absolute h-full w-full backdrop-blur-lg [mask-image:linear-gradient(to_top,black,black,transparent)]"
+		/>
 	</div>
 </div>

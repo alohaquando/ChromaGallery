@@ -3,7 +3,7 @@
 	import Icon from '../iconography/Icon.svelte';
 	import Body from '../typography/Body.svelte';
 
-	export let iconType: 'regular' | 'solid' | 'brands' | undefined = "regular";
+	export let iconType: 'regular' | 'solid' | 'brands' | undefined = 'regular';
 	export let textClass = '';
 	export let href: string | undefined = undefined;
 	let customClasses = '';
