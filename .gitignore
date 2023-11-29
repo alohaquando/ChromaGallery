@@ -3,6 +3,7 @@ node_modules
 /build
 /.svelte-kit
 /.idea
+/.vscode
 /package
 .env
 .env.*
