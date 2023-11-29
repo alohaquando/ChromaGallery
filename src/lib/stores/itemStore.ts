@@ -11,7 +11,14 @@ interface ItemData {
 	location: string | undefined;
 }
 
-const item: ItemData | any = null;
+const item: ItemData | any = {
+	title: '',
+	artist: '',
+	foundedYear: '',
+	image: '',
+	description: '',
+	location: ''
+};
 
 const { subscribe, set, update } = writable(item);
 
