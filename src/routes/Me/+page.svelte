@@ -54,6 +54,8 @@
 	</div>
 	<div class="w-full h-60 relative">
 		<Fab icon="faCircleUser" size="lg" class="flex mx-1/2 absolute left-[20%]">Sign me in</Fab>
-		<Fab icon="faStar" size="lg" class="flex mx-1/2 absolute right-[15%] bottom-0">Sign me in</Fab>
+		<Fab icon="faSparkles" size="lg" class="flex mx-1/2 absolute right-[15%] bottom-0"
+			>Sign me in</Fab
+		>
 	</div>
 </div>
