@@ -1,13 +1,13 @@
 <script>
 	import Bg from '$lib/components/backgrounds/BG.svelte';
-	import DisplayLarge from '$lib/components/typography/DisplayLarge.svelte';
+	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
 	import BodyLarge from '$lib/components/typography/BodyLarge.svelte';
 </script>
 
 <Bg />
 
-<div class="w-full flex flex-col justify-center items-center gap-20 my-20">
-	<DisplayLarge>Terms</DisplayLarge>
+<div class="w-full flex flex-col justify-center items-center gap-20">
+	<PageTitle>Terms</PageTitle>
 	<BodyLarge>
 		This ball sports a distinctive stripe pattern that results from an innovative manufacturing
 		process. Plastic of two colours is blown into a mould using a method that prevents the colours
