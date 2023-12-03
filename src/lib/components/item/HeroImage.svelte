@@ -21,13 +21,15 @@
 	<div class="w-full h-80 rounded-lg flex overflow-hidden relative">
 		<Block alt={imgAlt} class="" src={imgSrc}></Block>
 	</div>
-	<div class="flex-col gap-6 flex">
-		<Link href={itemLink} type="headline">
-			{itemName}
-		</Link>
-		<Headline>{artist}</Headline>
-		<Headline class="!text-white/50">
-			{time}
-		</Headline>
-	</div>
+	{#if itemName}
+		<div class="flex-col gap-6 flex">
+			<Link href={itemLink} type="headline">
+				{itemName}
+			</Link>
+			<Headline>{artist}</Headline>
+			<Headline class="!text-white/50">
+				{time}
+			</Headline>
+		</div>
+	{/if}
 </div>

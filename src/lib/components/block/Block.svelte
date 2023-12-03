@@ -3,16 +3,30 @@
 
 	export let bookmark: boolean = false;
 	export let icon: boolean = false;
+	let link = '';
+	export { link as href };
+
 	let iconSize = '';
 	iconSize = !icon ? '6xl' : 'base';
-	let stretchClass = 'grow shrink basis-0 self-stretch';
+
+	export let stretch: boolean = true;
+	let sizeClass = '';
+	switch (stretch) {
+		case false:
+			sizeClass = '';
+			break;
+		case true:
+			sizeClass = 'grow shrink basis-0 self-stretch';
+			break;
+	}
+
 	let typeClass = '';
 	switch (bookmark) {
 		case false:
 			typeClass = '';
 			break;
 		case true:
-			typeClass = 'bg-gradient-to-b from-indigo-600 to-fuchsia-700  rounded-lg';
+			typeClass = 'bg-gradient-to-b from-indigo-600 to-fuchsia-700  rounded-lg inline-flex justify-center items-center';
 			break;
 	}
 	let altImg: string;
@@ -23,10 +37,11 @@
 	export { customClass as class };
 </script>
 
-<div
+<svelte:element
 	class="{!icon
-		? stretchClass
-		: 'h-14 w-14'} {typeClass} {customClass} justify-center items-center inline-flex relative overflow-hidden"
+		? sizeClass
+		: 'h-14 w-14'} {typeClass} {customClass} relative overflow-hidden"
+	this={link ? 'a' : 'div'}
 >
 	{#if bookmark}
 		<Icon icon="faStar" type="solid" class="absolute" size={iconSize}></Icon>
@@ -34,6 +49,6 @@
 			<div class="absolute h-16 w-16 blur-xl bg-white rounded-full"></div>
 		{/if}
 	{:else}
-		<img alt={altImg} class="h-full w-full object-contain absolute" src={imgSrc} />
+		<img alt={altImg} class="{stretch ? 'w-full h-full' : 'h-auto w-full'} {icon ? 'absolute' : ''}" src={imgSrc} />
 	{/if}
-</div>
+</svelte:element>
