@@ -27,7 +27,7 @@
 	export let subtitle: string = '';
 </script>
 
-<div class="w-72 flex-col justify-start items-start gap-6 inline-flex">
+<div class="w-72 flex-col justify-start items-start gap-6 inline-flex w-full">
 	<a class="w-full h-52 rounded-lg gap-1 inline-flex overflow-hidden relative" href={itemLink}>
 		<Block alt={singleAlt} src={singleSrc}></Block>
 		{#if blockStyle === 'grid'}
