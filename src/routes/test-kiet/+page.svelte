@@ -33,10 +33,10 @@
 <!--	<Block src="https://via.placeholder.com/342x272"></Block>-->
 <!--</div>-->
 
-<!--&lt;!&ndash;<Modal buttonText="Buton" title="Modao"></Modal>&ndash;&gt;-->
+<Modal buttonText="Buton" title="Modao"></Modal>
 
-<Socials design="facebook"></Socials>
+<!-- <Socials design="facebook"></Socials>
 <Socials design="google" signup={false}></Socials>
-<Socials design="apple"></Socials>
+<Socials design="apple"></Socials> -->
 
 <!--<Dialog title="Warning" text="COOKIES!!!!! !!!!!!!!!!!!!! !!!!!!!!!!!!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!!" option1="Ignore" option2="Accept"></Dialog>-->

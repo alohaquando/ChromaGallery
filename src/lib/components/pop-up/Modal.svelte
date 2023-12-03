@@ -10,5 +10,6 @@
 	class="fixed -bottom-3 left-0 z-50 w-full h-full backdrop-blur-xl bg-gradient-to-b from-neutral-900 to-black/90 flex border-t-4 border-white/20 animate-fly flex-col"
 >
 	<HeaderBack hasButton responsive="false">{buttonText}</HeaderBack>
-	<Headline class="p-6">{title}</Headline>
+	<Headline class="px-6 mt-4">{title}</Headline>
+	<div class="mt-8 gap-4 px-6"><slot /></div>
 </div>
