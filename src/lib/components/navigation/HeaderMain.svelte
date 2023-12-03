@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Logo from '$lib/components/logo/Logo.svelte';
+	import LogoSimple from '$lib/components/logo/LogoSimple.svelte';
 
 	export let scrollY: number;
 	let prevY: number;
@@ -23,9 +24,10 @@
 <div
 	class="{designClass} sticky top-0 left-0 z-50 h-16 mb-2 w-full justify-center items-center inline-flex duration-500 ease-in-out"
 >
-	<a href="/" class="px-4 flex self-stretch items-center">
-		<Logo />
+	<a href="/" class="px-4 py-4">
+		<LogoSimple class="h-6 !fill-white" />
 	</a>
+
 	<div
 		class="pointer-events-none absolute top-0 -bottom-2 left-0 right-0 -z-20 touch-none transition-all"
 	>
