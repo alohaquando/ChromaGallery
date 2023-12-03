@@ -25,7 +25,6 @@
 	}
 </script>
 
-suppress JSUnreachableSwitchBranches
 {#if icon}
 	<Fa class="text-{size} {customClasses}" {icon} />
 {/if}
