@@ -10,8 +10,8 @@
 	export let data: Item[] = [];
 </script>
 
-<div class="grid grid-cols-2 gap-4">
-	<div class="grid gap-4">
+<div class="flex gap-4">
+	<div class="flex flex-col w-1/2 gap-4">
 		{#each data as data, index}
 			{#if index % 2 === 0}
 				<Block
@@ -22,7 +22,7 @@
 			{/if}
 		{/each}
 	</div>
-	<div class="grid gap-4">
+	<div class="flex flex-col w-1/2 gap-4">
 		{#each data as data, index}
 			{#if index % 2 === 1}
 				<Block
