@@ -5,12 +5,20 @@
 	import NavBar from '$lib/components/navigation/NavBar.svelte';
 	import Footer from '$lib/components/navigation/Footer.svelte';
 
+	import faviconIco from '$lib/assets/favicons/favicon.ico'
+	import faviconSvg from '$lib/assets/favicons/icon.svg'
+	import faviconApple from '$lib/assets/favicons/apple-touch-icon.png'
+
 	let scrollY: number;
 </script>
 
 <svelte:head>
 	<meta title="Chroma Gallery" />
 	<meta content="#000000" name="theme-color" />
+
+	<link rel="icon" href={faviconIco} sizes="32x32">
+	<link rel="icon" href={faviconSvg} type="image/svg+xml">
+	<link rel="apple-touch-icon" href={faviconApple}>
 </svelte:head>
 <svelte:window bind:scrollY />
 
