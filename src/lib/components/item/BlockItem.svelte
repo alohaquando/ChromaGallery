@@ -4,6 +4,8 @@
 	import InfoChip from '$lib/components/controls/InfoChip.svelte';
 	import Block from '$lib/components/block/Block.svelte';
 
+	let customClass = '';
+	export { customClass as class };
 	let blockStyle: 'grid' | 'single' = 'single';
 	export { blockStyle as style };
 	let itemLink = '';
@@ -27,7 +29,7 @@
 	export let subtitle: string = '';
 </script>
 
-<div class="w-72 flex-col justify-start items-start gap-6 inline-flex">
+<div class="{customClass} w-72 flex-col justify-start items-start gap-6 inline-flex flex-shrink-0">
 	<a class="w-full h-52 rounded-lg gap-1 inline-flex overflow-hidden relative" href={itemLink}>
 		<Block alt={singleAlt} src={singleSrc}></Block>
 		{#if blockStyle === 'grid'}

@@ -6,26 +6,22 @@
 	import HeroImage from '$lib/components/item/HeroImage.svelte';
 	import BlockItem from '$lib/components/item/BlockItem.svelte';
 	import Fab from '$lib/components/controls/Fab.svelte';
+	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
 </script>
 
 <Bg />
-<div class="h-full w-full flex flex-col justify-center items-center gap-20 mb-14 mt-12">
-	<DisplayLarge>Browse</DisplayLarge>
 
-	<Button icon="faMagnifyingGlass">Search</Button>
-</div>
+<PageTitle>Browse</PageTitle>
+<Button width="full" icon="faMagnifyingGlass" class="mb-12 mt-20">Search</Button>
+
+<div class="h-full flex flex-col justify-center gap-14">
 <!-- Collections -->
-<div class="h-full w-full flex flex-col justify-center gap-8 mb-20">
+<div class="h-full flex flex-col justify-center gap-8">
 	<BodyLarge>Collections</BodyLarge>
 	<!-- scrolling  -->
-	<div class="w-full h-full flex items-center overflow-x-auto gap-4">
-		<div class="min-w-[280px]">
-			<BlockItem href="/" style="grid" itemNum={12} title="Ceramiche Precolombiane"></BlockItem>
-		</div>
-		<div class="min-w-[280px]">
-			<BlockItem href="/" style="grid" itemNum={12} title="La ceramica in Europa dal XVI al XX"
-			></BlockItem>
-		</div>
+	<div class="flex items-center overflow-x-scroll gap-4">
+			<BlockItem src1="" alt1="" src2="" alt2="" src3="" alt3="" href="/" style="grid" itemNum={12} title="Ceramiche Precolombiane"></BlockItem>
+			<BlockItem src1="" alt1="" src2="" alt2="" src3="" alt3="" href="/" style="grid" itemNum={12} title="La ceramica in Europa dal XVI al XX"></BlockItem>
 		<Fab icon="" size="lg" class="translate-y-[-25%]">View all</Fab>
 	</div>
 </div>
@@ -48,4 +44,5 @@
 			<HeroImage alt="Image Alt Text" class="h-[88px] bg-red-500"></HeroImage>
 		</div>
 	</div>
+</div>
 </div>
