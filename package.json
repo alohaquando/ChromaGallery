@@ -42,6 +42,7 @@
     "@fortawesome/sharp-regular-svg-icons": "^6.4.2",
     "@fortawesome/sharp-solid-svg-icons": "^6.4.2",
     "firebase": "^10.6.0",
+    "svelte-dnd-action": "^0.9.33",
     "svelte-fa": "^3.0.4",
     "tailwindcss-leading-trim": "^1.1.0"
   }

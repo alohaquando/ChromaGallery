@@ -10,6 +10,8 @@
 	import Socials from '$lib/components/socials/Socials.svelte';
 	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
 	import Grid from '$lib/components/item/Grid.svelte';
+	import RowItem from '$lib/components/item/RowItem.svelte';
+	import BG from '$lib/components/backgrounds/BG.svelte';
 
 	let dataInput = [
 		{
@@ -35,6 +37,7 @@
 	];
 </script>
 
+<BG randomized />
 <!--<PageTitle>A Title</PageTitle>-->
 <!--<HeroImage src="https://via.placeholder.com/342x272" name="Shrimp" artist="Shrimp" time="1:43 AM 11/26/2023"></HeroImage>-->
 
@@ -65,4 +68,7 @@
 
 <!--<Dialog title="Warning" text="COOKIES!!!!! !!!!!!!!!!!!!! !!!!!!!!!!!!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!!" option1="Ignore" option2="Accept"></Dialog>-->
 
-<Grid data={dataInput}></Grid>
+<!--<Grid data={dataInput}></Grid>-->
+<RowItem class="py-4" type="checkbox"></RowItem>
+<RowItem class="py-4" type="edit"></RowItem>
+<RowItem class="py-4" type="view"></RowItem>

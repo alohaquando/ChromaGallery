@@ -29,8 +29,8 @@
 			typeClass = 'bg-gradient-to-b from-indigo-600 to-fuchsia-700  rounded-lg inline-flex justify-center items-center';
 			break;
 	}
-	let altImg: string;
-	export { altImg as alt };
+	let imgAlt: string;
+	export { imgAlt as alt };
 	let imgSrc = '';
 	export { imgSrc as src };
 	let customClass = '';
@@ -49,6 +49,6 @@
 			<div class="absolute h-16 w-16 blur-xl bg-white rounded-full"></div>
 		{/if}
 	{:else}
-		<img alt={altImg} class="{stretch ? 'w-full h-full' : 'h-auto w-full'} {icon ? 'absolute' : ''}" src={imgSrc} />
+		<img alt={imgAlt} class="{stretch ? 'w-full h-full' : 'h-auto w-full'} {icon ? 'absolute' : ''}" src={imgSrc} />
 	{/if}
 </svelte:element>

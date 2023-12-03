@@ -22,17 +22,53 @@ export default {
 		},
 		extend: {
 			keyframes: {
-				fly: {
+				flyUp: {
 					from: {
 						transform: 'translateY(100%)'
 					},
 					to: {
 						transform: 'translateY(0)'
 					}
+				},
+				flyDown: {
+					from: {
+						transform: 'translateY(-100%)'
+					},
+					to: {
+						transform: 'translateY(0)'
+					}
+				},
+				flyLeft: {
+					from: {
+						transform: 'translateX(100%)'
+					},
+					to: {
+						transform: 'translateX(0)'
+					}
+				},
+				flyRight: {
+					from: {
+						transform: 'translateX(-100%)'
+					},
+					to: {
+						transform: 'translateX(0)'
+					}
+				},
+				flyRight40: {
+					'0%, 20%': {
+						transform: 'translateX(-40px)'
+					},
+					'100%': {
+						transform: 'translateX(0)'
+					}
 				}
 			},
 			animation: {
-				fly: 'fly 0.8s ease-out'
+				flyUp: 'flyUp 0.8s ease-out',
+				flyDown: 'flyDown 0.8s ease-out',
+				flyLeft: 'flyLeft 0.8s ease-out',
+				flyRight: 'flyRight 0.8s ease-out',
+				flyRight40: 'flyRight40 1s ease-out'
 			}
 		}
 	},
