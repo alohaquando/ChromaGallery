@@ -2,33 +2,26 @@
 	import Headline from '$lib/components/typography/Headline.svelte';
 	import Link from '$lib/components/links/Link.svelte';
 	import Block from '$lib/components/item/Block.svelte';
+	import type { Collection, Item } from '../../../model';
 
-	let imgSrc: string = '';
-	export { imgSrc as src };
-	let itemLink: string = '';
-	export { itemLink as href };
-	let itemName: string = '';
-	export { itemName as name };
-	export let artist: string = '';
-	export let time: string = '';
+	export let data: Item;
+	export let hideInfo: boolean = false;
 	let customClass = '';
 	export { customClass as class };
-	let imgAlt: string;
-	export { imgAlt as alt };
 </script>
 
 <div class="w-full flex-col gap-6 inline-flex {customClass}">
 	<div class="w-full h-80 rounded-lg flex overflow-hidden relative">
-		<Block alt={imgAlt} class="" src={imgSrc}></Block>
+		<Block alt={data.title} class="" src={data.src}></Block>
 	</div>
-	{#if itemName}
+	{#if !hideInfo}
 		<div class="flex-col gap-6 flex">
-			<Link href={itemLink} type="headline">
-				{itemName}
+			<Link href="../routes/item/{data.id}" type="headline">
+				{data.title}
 			</Link>
-			<Headline>{artist}</Headline>
+			<Headline>{data.author}</Headline>
 			<Headline class="!text-white/50">
-				{time}
+				{data.time}
 			</Headline>
 		</div>
 	{/if}

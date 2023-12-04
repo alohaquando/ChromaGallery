@@ -21,7 +21,9 @@
 		subtitle: 'a',
 		collection: 'Char',
 		author: 'Kiet',
-		src: ''
+		src: '',
+		time: 'TOMORROW',
+		description: 'idkman'
 	};
 	let item2: Item = {
 		id: '2',
@@ -29,7 +31,9 @@
 		subtitle: 'b',
 		collection: 'Char',
 		author: 'Kiet',
-		src: ''
+		src: '',
+		time: 'TOMORROW',
+		description: 'idkman'
 	};
 	let item3: Item = {
 		id: '3',
@@ -37,7 +41,9 @@
 		subtitle: 'c',
 		collection: 'Char',
 		author: 'Kiet',
-		src: ''
+		src: '',
+		time: 'TOMORROW',
+		description: 'idkman'
 	};
 
 	let itemList = [item1, item2, item3];

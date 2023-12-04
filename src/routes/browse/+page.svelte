@@ -18,7 +18,9 @@
 		subtitle: 'a',
 		collection: 'Char',
 		author: 'Kiet',
-		src: 'https://mymodernmet.com/wp/wp-content/uploads/2018/06/free-art-resources-3.jpg'
+		src: 'https://mymodernmet.com/wp/wp-content/uploads/2018/06/free-art-resources-3.jpg',
+		time: 'TOMORROW',
+		description: 'idkman'
 	};
 	let item2: Item = {
 		id: '2',
@@ -26,7 +28,9 @@
 		subtitle: 'b',
 		collection: 'Char',
 		author: 'Kiet',
-		src: 'https://www.artmajeur.com/medias/hero_new/v/a/van-lanigh/artwork/17330824_melting-down.jpg'
+		src: 'https://www.artmajeur.com/medias/hero_new/v/a/van-lanigh/artwork/17330824_melting-down.jpg',
+		time: 'TOMORROW',
+		description: 'idkman'
 	};
 	let item3: Item = {
 		id: '3',
@@ -34,7 +38,9 @@
 		subtitle: 'c',
 		collection: 'Char',
 		author: 'Shrimp',
-		src: 'https://mymodernmet.com/wp/wp-content/uploads/2018/06/free-art-resources-3.jpg'
+		src: 'https://mymodernmet.com/wp/wp-content/uploads/2018/06/free-art-resources-3.jpg',
+		time: 'TOMORROW',
+		description: 'idkman'
 	};
 
 	let itemList = [item1, item2, item3];

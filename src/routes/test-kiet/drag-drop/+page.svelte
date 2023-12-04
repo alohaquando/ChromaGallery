@@ -12,7 +12,9 @@
 			subtitle: 'first',
 			collection: 'nope',
 			author: '',
-			src: ''
+			src: '',
+			time: 'TOMORROW',
+			description: 'idkman'
 		},
 		{
 			id: '2',
@@ -20,7 +22,9 @@
 			subtitle: 'second',
 			collection: 'nope',
 			author: '',
-			src: ''
+			src: '',
+			time: 'TOMORROW',
+			description: 'idkman'
 		},
 		{
 			id: '3',
@@ -28,7 +32,9 @@
 			subtitle: 'third',
 			collection: 'nope',
 			author: '',
-			src: ''
+			src: '',
+			time: 'TOMORROW',
+			description: 'idkman'
 		},
 		{
 			id: '4',
@@ -36,7 +42,9 @@
 			subtitle: 'fourth',
 			collection: 'nope',
 			author: '',
-			src: ''
+			src: '',
+			time: 'TOMORROW',
+			description: 'idkman'
 		},
 		{
 			id: '5',
@@ -44,7 +52,9 @@
 			subtitle: 'fifth',
 			collection: 'nope',
 			author: '',
-			src: ''
+			src: '',
+			time: 'TOMORROW',
+			description: 'idkman'
 		}
 	];
 
