@@ -10,6 +10,7 @@
 	import Block from '$lib/components/item/Block.svelte';
 	import Grid from '$lib/components/item/Grid.svelte';
 	import type { Collection, Item } from '../../model.js';
+	import CollectionList from '$lib/components/item/CollectionList.svelte';
 
 	let item1: Item = {
 		id: '1',
@@ -17,7 +18,7 @@
 		subtitle: 'a',
 		collection: 'Char',
 		author: 'Kiet',
-		src: ''
+		src: 'https://mymodernmet.com/wp/wp-content/uploads/2018/06/free-art-resources-3.jpg'
 	};
 	let item2: Item = {
 		id: '2',
@@ -25,7 +26,7 @@
 		subtitle: 'b',
 		collection: 'Char',
 		author: 'Kiet',
-		src: ''
+		src: 'https://www.artmajeur.com/medias/hero_new/v/a/van-lanigh/artwork/17330824_melting-down.jpg'
 	};
 	let item3: Item = {
 		id: '3',
@@ -33,17 +34,26 @@
 		subtitle: 'c',
 		collection: 'Char',
 		author: 'Shrimp',
-		src: ''
+		src: 'https://mymodernmet.com/wp/wp-content/uploads/2018/06/free-art-resources-3.jpg'
 	};
 
 	let itemList = [item1, item2, item3];
 
-	let collection: Collection = {
+	let collection1: Collection = {
 		id: 'col1',
 		title: 'Char',
 		subtitle: 'Characters',
 		itemList: itemList
 	};
+
+	let collection2: Collection = {
+		id: 'col1',
+		title: 'Char',
+		subtitle: 'Characters',
+		itemList: itemList
+	};
+
+	let collectionList: Collection[] = [collection1, collection2];
 </script>
 
 <Bg randomized />
@@ -56,12 +66,7 @@
 	<div class="h-full flex flex-col justify-center gap-8">
 		<BodyLarge>Collections</BodyLarge>
 		<!-- scrolling  -->
-		<div class="flex items-center overflow-x-scroll gap-4 scrollbar-none">
-			<CollectionBlock
-				data={collection}></CollectionBlock>
-			<CollectionBlock data={collection}></CollectionBlock>
-			<Fab class="translate-y-[-25%] shrink-0" icon="" size="lg">View all</Fab>
-		</div>
+		<CollectionList data={collectionList}></CollectionList>
 	</div>
 	<!-- All items -->
 	<div class="w-full flex flex-col justify-center gap-8">
