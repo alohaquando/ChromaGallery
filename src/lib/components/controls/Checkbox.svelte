@@ -1,5 +1,7 @@
 <script lang="ts">
-	export let id: number;
+	import type { Item } from '../../../model';
+
+	export let id: string;
 	export let name: string;
 	export let value: string;
 	export let checked: boolean = false;
@@ -7,6 +9,11 @@
 
 	let customClass = '';
 	export { customClass as class };
+
+	export let data: Item | undefined;
+	if (data) {
+		id = data.id;
+	}
 </script>
 
 <div class="{customClass} inline-flex items-center group justify-center">

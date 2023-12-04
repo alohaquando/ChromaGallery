@@ -1,35 +1,24 @@
 <script lang="ts">
-	import Block from '$lib/components/block/Block.svelte';
-
-	type Item = {
-		href: string;
-		src: string;
-		title: string;
-	};
+	import Block from '$lib/components/item/Block.svelte';
+	import type { Item } from '../../../model';
 
 	export let data: Item[] = [];
 </script>
 
 <div class="flex gap-4">
 	<div class="flex flex-col w-1/2 gap-4">
-		{#each data as data, index}
+		{#each data as item, index}
 			{#if index % 2 === 0}
 				<Block
-					href={data.href}
-					alt={data.title}
-					src={data.src}
-					stretch={false} class="rounded-lg" />
+					data={item} class="rounded-lg" />
 			{/if}
 		{/each}
 	</div>
 	<div class="flex flex-col w-1/2 gap-4">
-		{#each data as data, index}
+		{#each data as item, index}
 			{#if index % 2 === 1}
 				<Block
-					href={data.href}
-					alt={data.title}
-					src={data.src}
-					stretch={false} class="rounded-lg" />
+					data={item} class="rounded-lg" />
 			{/if}
 		{/each}
 	</div>

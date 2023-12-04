@@ -1,10 +1,10 @@
-<script>
-	import BlockItem from '$lib/components/item/BlockItem.svelte';
+<script lang="ts">
+	import CollectionBlock from '$lib/components/item/CollectionBlock.svelte';
 	import Link from '$lib/components/links/Link.svelte';
 	import Body from '$lib/components/typography/Body.svelte';
 	import HeroImage from '$lib/components/item/HeroImage.svelte';
 	import Dialog from '$lib/components/pop-up/Dialog.svelte';
-	import Block from '$lib/components/block/Block.svelte';
+	import Block from '$lib/components/item/Block.svelte';
 	import Modal from '$lib/components/pop-up/Modal.svelte';
 	import Button from '$lib/components/controls/Button.svelte';
 	import Socials from '$lib/components/socials/Socials.svelte';
@@ -12,37 +12,73 @@
 	import Grid from '$lib/components/item/Grid.svelte';
 	import RowItem from '$lib/components/item/RowItem.svelte';
 	import BG from '$lib/components/backgrounds/BG.svelte';
+	import type { Item } from '../../model.js';
+	import type { Collection } from '../../model.js';
 
-	let dataInput = [
-		{
-			href: '/',
-			src: 'https://www.artmajeur.com/medias/hero_new/v/a/van-lanigh/artwork/17330824_melting-down.jpg',
-			title: ''
-		},
-		{
-			href: '/',
-			src: 'https://mymodernmet.com/wp/wp-content/uploads/2018/06/free-art-resources-3.jpg',
-			title: ''
-		},
-		{
-			href: '/',
-			src: 'https://mymodernmet.com/wp/wp-content/uploads/2018/06/free-art-resources-3.jpg',
-			title: ''
-		},
-		{
-			href: '/',
-			src: 'https://www.artmajeur.com/medias/hero_new/v/a/van-lanigh/artwork/17330824_melting-down.jpg',
-			title: ''
-		}
-	];
+	let item1: Item = {
+		id: '1',
+		title: 'A',
+		subtitle: 'a',
+		collection: 'Char',
+		author: 'Kiet',
+		src: ''
+	};
+	let item2: Item = {
+		id: '2',
+		title: 'B',
+		subtitle: 'b',
+		collection: 'Char',
+		author: 'Kiet',
+		src: ''
+	};
+	let item3: Item = {
+		id: '3',
+		title: 'C',
+		subtitle: 'c',
+		collection: 'Char',
+		author: 'Kiet',
+		src: ''
+	};
+
+	let itemList = [item1, item2, item3];
+
+	let collection: Collection = {
+		id: 'col1',
+		title: 'Char',
+		subtitle: 'Characters',
+		itemList: itemList
+	};
+
+	// let dataInput = [
+	// 	{
+	// 		href: '/',
+	// 		src: 'https://www.artmajeur.com/medias/hero_new/v/a/van-lanigh/artwork/17330824_melting-down.jpg',
+	// 		title: ''
+	// 	},
+	// 	{
+	// 		href: '/',
+	// 		src: 'https://mymodernmet.com/wp/wp-content/uploads/2018/06/free-art-resources-3.jpg',
+	// 		title: ''
+	// 	},
+	// 	{
+	// 		href: '/',
+	// 		src: 'https://mymodernmet.com/wp/wp-content/uploads/2018/06/free-art-resources-3.jpg',
+	// 		title: ''
+	// 	},
+	// 	{
+	// 		href: '/',
+	// 		src: 'https://www.artmajeur.com/medias/hero_new/v/a/van-lanigh/artwork/17330824_melting-down.jpg',
+	// 		title: ''
+	// 	}
+	// ];
 </script>
 
 <BG randomized />
 <!--<PageTitle>A Title</PageTitle>-->
 <!--<HeroImage src="https://via.placeholder.com/342x272" name="Shrimp" artist="Shrimp" time="1:43 AM 11/26/2023"></HeroImage>-->
 
-<!--<BlockItem itemNum={1} title="My collection" subtitle="Single collection"></BlockItem>-->
-<!--<BlockItem src="https://via.placeholder.com/342x272" itemNum={28} style='grid' title="Grid collection" subtitle=""></BlockItem>-->
+<Block data={item1} stretch={false}></Block>
+<CollectionBlock style="grid" data={collection}></CollectionBlock>
 
 <!--<div class="gap-5 flex mt-5">-->
 <!--<Link type="body">display</Link>-->
@@ -69,6 +105,3 @@
 <!--<Dialog title="Warning" text="COOKIES!!!!! !!!!!!!!!!!!!! !!!!!!!!!!!!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!!" option1="Ignore" option2="Accept"></Dialog>-->
 
 <!--<Grid data={dataInput}></Grid>-->
-<RowItem class="py-4" type="checkbox"></RowItem>
-<RowItem class="py-4" type="edit"></RowItem>
-<RowItem class="py-4" type="view"></RowItem>

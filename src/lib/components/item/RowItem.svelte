@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Block from '$lib/components/block/Block.svelte';
+	import Block from '$lib/components/item/Block.svelte';
 	import Checkbox from '$lib/components/controls/Checkbox.svelte';
 	import Body from '$lib/components/typography/Body.svelte';
 	import Fab from '$lib/components/controls/Fab.svelte';
@@ -35,13 +35,13 @@
 		<Fab on:click={onDelete} icon="faMinus" size="mini" hover={false}
 				 class="{animationClass} shrink-0 text-red-500 !border-red-500"></Fab>
 	{/if}
-	<Block alt="{data.title}" class="{animationClass} rounded-lg shrink-0 !h-16 !w-16" icon src="{data.src}"></Block>
+	<Block class="{animationClass} rounded-lg shrink-0 !h-16 !w-16" {data} icon link={false}></Block>
 	<div class="{animationClass} w-full gap-y-3 flex flex-col">
 		<Body>{data.title}</Body>
 		<Body class="opacity-50">{data.subtitle}</Body>
 	</div>
 	{#if type === 'checkbox'}
-		<Checkbox class="shrink-0" id={data.id} name="{data.title}"></Checkbox>
+		<Checkbox class="shrink-0" {data} name="{data.collection}"></Checkbox>
 	{:else if type === 'edit'}
 		<Icon icon="faEquals" class="shrink-0 w-6 h-6" />
 	{/if}

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Headline from '$lib/components/typography/Headline.svelte';
 	import Link from '$lib/components/links/Link.svelte';
-	import Block from '$lib/components/block/Block.svelte';
+	import Block from '$lib/components/item/Block.svelte';
 
 	let imgSrc: string = '';
 	export { imgSrc as src };
