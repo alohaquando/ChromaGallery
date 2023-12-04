@@ -13,7 +13,9 @@
 		dragDisabled = type !== 'edit';
 	}
 
-	const flipDurationMs = 200;
+	$:type, typeCheck();
+
+	const flipDurationMs = 100;
 
 	let items: Item[];
 	export { items as data };
@@ -33,8 +35,6 @@
 	function onDelete(item: Item) {
 		items = items.filter((i: Item) => i.id != item.id);
 	}
-
-	$:type, typeCheck();
 </script>
 
 <div on:consider="{handleConsider}"

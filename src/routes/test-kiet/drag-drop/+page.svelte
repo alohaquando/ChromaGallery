@@ -37,7 +37,7 @@
 		}
 	];
 
-	let type = 'checkbox';
+	let type = 'edit';
 
 	// function for toggle button
 	function onClick() {
