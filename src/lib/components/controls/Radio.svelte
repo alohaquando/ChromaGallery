@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let id: string;
+	export let id: number;
 	export let name: string;
 	export let value: string;
 	export let checked: boolean = false;
