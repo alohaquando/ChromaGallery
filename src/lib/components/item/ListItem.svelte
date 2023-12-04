@@ -2,10 +2,12 @@
 	import Body from '$lib/components/typography/Body.svelte';
 	import Link from '$lib/components/links/Link.svelte';
 	import Icon from '$lib/components/iconography/Icon.svelte';
+	import type { Item } from '../../../model';
 
+	export let data: Item;
+	export let link: boolean = true;
 	export let leadingText: string | undefined = '';
 	export let trailingText: string | undefined = '';
-	export let href: string | undefined = undefined;
 	export let icon: string | undefined = undefined;
 	export let clickable: boolean = false;
 
@@ -43,7 +45,7 @@
 	</div>
 
 	<div class="grow flex-1 flex items-center hyphens-auto">
-		<svelte:component {href} this={href ? Link : Body}>
+		<svelte:component href="../routes/item/{data.id}" this={link ? Link : Body}>
 			{trailingText}
 		</svelte:component>
 	</div>
