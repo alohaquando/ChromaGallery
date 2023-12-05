@@ -3,6 +3,8 @@
 	import Divider from '$lib/components/layouts/Divider.svelte';
 	import TextField from '$lib/components/inputs/TextField.svelte';
 	import BodyLarge from '$lib/components/typography/BodyLarge.svelte';
+
+	export let isEmail = false;
 </script>
 
 <Modal title="Update password" buttonText="Update">
@@ -12,10 +14,10 @@
 	</div>
 	<Divider></Divider>
 	<div class=" flex flex-col justify-center gap-4 pt-8">
-		<BodyLarge>New password</BodyLarge>
+		<BodyLarge>New {isEmail ? 'email' : 'password'}</BodyLarge>
 		<div class="flex justify-center items-center flex-col gap-6">
-			<TextField placeholder="New password"></TextField>
-			<TextField placeholder="Confirm new password"></TextField>
+			<TextField placeholder="New {isEmail ? 'email' : 'password'}"></TextField>
+			<TextField placeholder="Confirm new {isEmail ? 'email' : 'password'}"></TextField>
 		</div>
 	</div>
 </Modal>
