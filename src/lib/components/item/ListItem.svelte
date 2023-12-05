@@ -4,8 +4,7 @@
 	import Icon from '$lib/components/iconography/Icon.svelte';
 	import type { Item } from '../../../model';
 
-	export let data: Item;
-	export let link: boolean = true;
+	export let href: string | undefined = undefined;
 	export let leadingText: string | undefined = '';
 	export let trailingText: string | undefined = '';
 	export let icon: string | undefined = undefined;
@@ -45,7 +44,7 @@
 	</div>
 
 	<div class="grow flex-1 flex items-center hyphens-auto">
-		<svelte:component href="../routes/item/{data.id}" this={link ? Link : Body}>
+		<svelte:component {href} this={href ? Link : Body}>
 			{trailingText}
 		</svelte:component>
 	</div>
