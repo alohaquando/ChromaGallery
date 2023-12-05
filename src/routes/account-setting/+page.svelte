@@ -2,7 +2,6 @@
 	import Modal from '$lib/components/pop-up/Modal.svelte';
 	import ListItem from '$lib/components/item/ListItem.svelte';
 	import Item from '$lib/wip/backend/Item.svelte';
-
 	export let data: Item = {};
 </script>
 
