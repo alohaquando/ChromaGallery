@@ -1,12 +1,16 @@
-<script>
+<script lang="ts">
 	import Bg from '$lib/components/backgrounds/BG.svelte';
 	import DisplayLarge from '$lib/components/typography/DisplayLarge.svelte';
 	import Button from '$lib/components/controls/Button.svelte';
 	import BodyLarge from '$lib/components/typography/BodyLarge.svelte';
 	import BodySmall from '$lib/components/typography/BodySmall.svelte';
-	import BlockItem from '$lib/components/item/BlockItem.svelte';
+	import CollectionBlock from '$lib/components/item/CollectionBlock.svelte';
 	import Fab from '$lib/components/controls/Fab.svelte';
 	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
+	import Grid from '$lib/components/item/GridItem.svelte';
+	import GridCollection from '$lib/components/item/GridCollection.svelte';
+
+	import { collection1, collection2, collectionList, itemList } from '$lib/../data';
 
 	// account name
 	export let name = 'Sheen Hahn';
@@ -14,7 +18,7 @@
 	export let signIn = true;
 </script>
 
-<Bg />
+<Bg randomized />
 <!-- Sign In -->
 <div class="w-full h-full flex flex-col justify-center items-center  {signIn ? '' : 'hidden'}">
 	<div class="w-full h-full flex flex-col justify-center items-center gap-8">
@@ -30,20 +34,11 @@
 	</div>
 
 	<!--	Bookmark -->
-	<div class="w-full flex pb-10">
-		<BlockItem itemNum={12} title="Bookmark"></BlockItem>
+	<div class="w-full flex">
+		<CollectionBlock bookmark data={collection1}></CollectionBlock>
 	</div>
 
-	<div class="w-full flex flex-col items-start justify-center gap-10 ">
-		<div class="w-full flex justify-center gap-4">
-			<BlockItem itemNum={12} title="Title"></BlockItem>
-			<BlockItem itemNum={12} title="Title"></BlockItem>
-		</div>
-		<div class="w-full flex justify-center gap-4">
-			<BlockItem itemNum={12} title="Title"></BlockItem>
-			<BlockItem itemNum={12} title="Title"></BlockItem>
-		</div>
-	</div>
+	<GridCollection class="mt-10"></GridCollection>
 </div>
 
 <!-- Not Sign In -->

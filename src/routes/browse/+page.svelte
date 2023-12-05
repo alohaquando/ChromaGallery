@@ -8,58 +8,11 @@
 	import Fab from '$lib/components/controls/Fab.svelte';
 	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
 	import Block from '$lib/components/item/Block.svelte';
-	import Grid from '$lib/components/item/Grid.svelte';
-	import type { Collection, Item } from '../../model.js';
+	import Grid from '$lib/components/item/GridItem.svelte';
+	import type { Collection, Item } from '$lib/../model.js';
 	import CollectionList from '$lib/components/item/CollectionList.svelte';
+	import { itemList1, collectionList } from '$lib/../data.js';
 
-	let item1: Item = {
-		id: '1',
-		title: 'A',
-		subtitle: 'a',
-		collection: 'Char',
-		author: 'Kiet',
-		src: 'https://mymodernmet.com/wp/wp-content/uploads/2018/06/free-art-resources-3.jpg',
-		time: 'TOMORROW',
-		description: 'idkman'
-	};
-	let item2: Item = {
-		id: '2',
-		title: 'B',
-		subtitle: 'b',
-		collection: 'Char',
-		author: 'Kiet',
-		src: 'https://www.artmajeur.com/medias/hero_new/v/a/van-lanigh/artwork/17330824_melting-down.jpg',
-		time: 'TOMORROW',
-		description: 'idkman'
-	};
-	let item3: Item = {
-		id: '3',
-		title: 'C',
-		subtitle: 'c',
-		collection: 'Char',
-		author: 'Shrimp',
-		src: 'https://mymodernmet.com/wp/wp-content/uploads/2018/06/free-art-resources-3.jpg',
-		time: 'TOMORROW',
-		description: 'idkman'
-	};
-
-	let itemList = [item1, item2, item3];
-
-	let collection1: Collection = {
-		id: 'col1',
-		title: 'Char',
-		subtitle: 'Characters',
-		itemList: itemList
-	};
-
-	let collection2: Collection = {
-		id: 'col1',
-		title: 'Char',
-		subtitle: 'Characters',
-		itemList: itemList
-	};
-
-	let collectionList: Collection[] = [collection1, collection2];
 </script>
 
 <Bg randomized />
@@ -78,6 +31,6 @@
 	<div class="w-full flex flex-col justify-center gap-8">
 		<BodyLarge>All items</BodyLarge>
 
-		<Grid data={itemList}></Grid>
+		<Grid data={itemList1}></Grid>
 	</div>
 </div>

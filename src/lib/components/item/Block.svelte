@@ -2,7 +2,7 @@
 	import Icon from '../iconography/Icon.svelte';
 	import type { Item } from '../../../model';
 
-	let item: Item;
+	let item: Item | undefined;
 	export { item as data };
 	export let bookmark: boolean = false;
 	export let icon: boolean = false;

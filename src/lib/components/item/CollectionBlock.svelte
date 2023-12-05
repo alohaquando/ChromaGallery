@@ -5,15 +5,14 @@
 	import Block from '$lib/components/item/Block.svelte';
 	import type { Collection } from '../../../model';
 
-	let collection: Collection;
-	export { collection as data };
+	export let data: Collection;
 
 	let customClass = '';
 	export { customClass as class };
 	let blockStyle: 'grid' | 'single' = 'single';
 	export { blockStyle as style };
 
-	let amount = collection.itemList.length;
+	let amount = data.itemList.length;
 	let str = 'Item';
 	if (amount !== 1) {
 		str += 's';
@@ -26,16 +25,20 @@
 	}
 </script>
 
-<div class="{customClass} w-72 flex-col justify-start items-start gap-6 inline-flex flex-shrink-0">
-	<a class="w-full h-52 rounded-lg gap-1 inline-flex overflow-hidden relative" href="../routes/item/{collection.id}">
-		<Block data={collection.itemList[0]} link={false}></Block>
-		{#if blockStyle === 'grid' && collection.itemList[1]}
+<div class="{customClass} w-72 flex-col justify-start items-start gap-6 inline-flex">
+	<a class="w-full h-52 rounded-lg gap-1 inline-flex overflow-hidden relative" href="../routes/item/{data.id}">
+		{#if !bookmark}
+			<Block data={data.itemList[0]}></Block>
+		{:else}
+			<Block data={data.itemList[0]} bookmark></Block>
+		{/if}
+		{#if blockStyle === 'grid' && data.itemList[1]}
 			<div class="grow shrink basis-0 self-stretch flex-col gap-1 inline-flex">
-				{#if (collection.itemList[1])}
-					<Block link={false} data={collection.itemList[1]}></Block>
+				{#if (data.itemList[1])}
+					<Block link={false} data={data.itemList[1]}></Block>
 				{/if}
-				{#if (collection.itemList[2])}
-					<Block link={false} data={collection.itemList[2]}></Block>
+				{#if (data.itemList[2])}
+					<Block link={false} data={data.itemList[2]}></Block>
 				{/if}
 			</div>
 		{/if}
@@ -45,9 +48,15 @@
 	</a>
 	{#if title}
 		<div class="self-stretch flex-col flex gap-4">
-			<Link href="../routes/item/{collection.id}" type="body">{collection.title}</Link>
-			{#if subtitle}
-				<Body class="text-white/50">{collection.subtitle}</Body>
+			<Link href="../routes/item/{data.id}" type="body">
+				{#if !bookmark}
+					{data.title}
+				{:else}
+					Bookmark
+				{/if}
+			</Link>
+			{#if subtitle && !bookmark}
+				<Body class="text-white/50">{data.subtitle}</Body>
 			{/if}
 		</div>
 	{/if}

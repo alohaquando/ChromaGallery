@@ -9,74 +9,10 @@
 	import Button from '$lib/components/controls/Button.svelte';
 	import Socials from '$lib/components/socials/Socials.svelte';
 	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
-	import Grid from '$lib/components/item/Grid.svelte';
+	import Grid from '$lib/components/item/GridItem.svelte';
 	import RowItem from '$lib/components/item/RowItem.svelte';
 	import BG from '$lib/components/backgrounds/BG.svelte';
-	import type { Item } from '../../model.js';
-	import type { Collection } from '../../model.js';
-
-	let item1: Item = {
-		id: '1',
-		title: 'A',
-		subtitle: 'a',
-		collection: 'Char',
-		author: 'Kiet',
-		src: '',
-		time: 'TOMORROW',
-		description: 'idkman'
-	};
-	let item2: Item = {
-		id: '2',
-		title: 'B',
-		subtitle: 'b',
-		collection: 'Char',
-		author: 'Kiet',
-		src: '',
-		time: 'TOMORROW',
-		description: 'idkman'
-	};
-	let item3: Item = {
-		id: '3',
-		title: 'C',
-		subtitle: 'c',
-		collection: 'Char',
-		author: 'Kiet',
-		src: '',
-		time: 'TOMORROW',
-		description: 'idkman'
-	};
-
-	let itemList = [item1, item2, item3];
-
-	let collection: Collection = {
-		id: 'col1',
-		title: 'Char',
-		subtitle: 'Characters',
-		itemList: itemList
-	};
-
-	// let dataInput = [
-	// 	{
-	// 		href: '/',
-	// 		src: 'https://www.artmajeur.com/medias/hero_new/v/a/van-lanigh/artwork/17330824_melting-down.jpg',
-	// 		title: ''
-	// 	},
-	// 	{
-	// 		href: '/',
-	// 		src: 'https://mymodernmet.com/wp/wp-content/uploads/2018/06/free-art-resources-3.jpg',
-	// 		title: ''
-	// 	},
-	// 	{
-	// 		href: '/',
-	// 		src: 'https://mymodernmet.com/wp/wp-content/uploads/2018/06/free-art-resources-3.jpg',
-	// 		title: ''
-	// 	},
-	// 	{
-	// 		href: '/',
-	// 		src: 'https://www.artmajeur.com/medias/hero_new/v/a/van-lanigh/artwork/17330824_melting-down.jpg',
-	// 		title: ''
-	// 	}
-	// ];
+	import {item1, collection1} from '../../data';
 </script>
 
 <BG randomized />
@@ -84,7 +20,7 @@
 <!--<HeroImage src="https://via.placeholder.com/342x272" name="Shrimp" artist="Shrimp" time="1:43 AM 11/26/2023"></HeroImage>-->
 
 <Block data={item1} stretch={false}></Block>
-<CollectionBlock style="grid" data={collection}></CollectionBlock>
+<CollectionBlock style="grid" data={collection1}></CollectionBlock>
 
 <!--<div class="gap-5 flex mt-5">-->
 <!--<Link type="body">display</Link>-->

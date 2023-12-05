@@ -9,7 +9,7 @@
 
 <div class="flex items-center overflow-y-clip overflow-x-scroll gap-4 scrollbar-none">
 	{#each data as collection}
-		<CollectionBlock data={collection} style="grid"></CollectionBlock>
+		<CollectionBlock class="shrink-0" data={collection} style="grid"></CollectionBlock>
 	{/each}
 	<Fab class="translate-y-[-25%] shrink-0" icon="" size="lg">View all</Fab>
 </div>
