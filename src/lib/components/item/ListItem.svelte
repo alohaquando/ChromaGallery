@@ -2,24 +2,19 @@
 	import Body from '$lib/components/typography/Body.svelte';
 	import Link from '$lib/components/links/Link.svelte';
 	import Icon from '$lib/components/iconography/Icon.svelte';
-	import type { Item } from '../../../model';
-
-	export let href: string | undefined = undefined;
 	export let leadingText: string | undefined = '';
 	export let trailingText: string | undefined = '';
+	export let href: string | undefined = undefined;
 	export let icon: string | undefined = undefined;
 	export let clickable: boolean = false;
 
 	export let topDivider: boolean = true;
 	export let bottomDivider: boolean = true;
-
 	export let design: 'default' | 'destructive' = 'default';
 
 	let textClasses: string;
-	// noinspection JSUnreachableSwitchBranches
 	switch (design) {
 		case 'default': {
-			textClasses = '';
 			break;
 		}
 		case 'destructive': {
@@ -30,31 +25,28 @@
 </script>
 
 <svelte:element
-	class="flex flex-row min-h-[3rem] py-4 justify-between space-x-4 relative items-center w-full {textClasses}"
-	on:click
-	role={clickable ? 'button' : ''}
-	tabindex="0"
 	this={clickable ? 'button' : 'div'}
+	on:click
+	tabindex="0"
+	role={clickable ? 'button' : ''}
+	class="flex flex-row min-h-[3rem] py-4 justify-between space-x-4 relative items-center"
 >
-
-	<div class="grow flex-1 flex items-center">
+	<div class="grow flex-1 flex items-center {textClasses}">
 		<Body>
-		{leadingText}
+			{leadingText}
 		</Body>
 	</div>
-
+	<div />
 	<div class="grow flex-1 flex items-center hyphens-auto">
-		<svelte:component {href} this={href ? Link : Body}>
+		<svelte:component this={href ? Link : Body} {href}>
 			{trailingText}
 		</svelte:component>
 	</div>
-
 	<Icon {icon} size="sm" />
-
-	{#if (topDivider)}
+	{#if topDivider}
 		<div class=" h-px bg-[#222222] w-full absolute top-0 -left-4" />
 	{/if}
-	{#if (bottomDivider)}
+	{#if bottomDivider}
 		<div class=" h-px bg-[#222222] w-full absolute -bottom-px -left-4" />
 	{/if}
 </svelte:element>
