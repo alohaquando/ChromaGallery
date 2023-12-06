@@ -1,9 +1,10 @@
-<script>
+<script lang="ts">
 	import DisplayLarge from '$lib/components/typography/DisplayLarge.svelte';
 	import Fab from '$lib/components/controls/Fab.svelte';
 	import InfoChip from '$lib/components/controls/InfoChip.svelte';
 	import HeroImage from '$lib/components/item/HeroImage.svelte';
 	import BG from '$lib/components/backgrounds/BG.svelte';
+	import { item1, item2, item3 } from '$lib/../data.js';
 </script>
 
 <BG design="top-large" randomized />
@@ -21,29 +22,13 @@
 		<Fab class="-mt-20" icon="faSearch" size="lg">Show me<br />more</Fab>
 		<Fab class="mt-8" icon="faPlay" size="lg">Relax me</Fab>
 	</div>
-	<InfoChip design="text" icon="faAngleDown" class="opacity-50">Scroll for more</InfoChip>
+	<InfoChip class="opacity-50" design="text" icon="faAngleDown">Scroll for more</InfoChip>
 </div>
 
 <div class="w-full h-20 mt-7"></div>
 <DisplayLarge class="mt-20"></DisplayLarge>
-<HeroImage
-	alt=""
-	artist="Olve Sande"
-	class="mt-12"
-	name="La ceramica italiana del Novecento"
-	src="https://blog.artsper.com/wp-content/uploads/2022/06/44151m.jpg"
-></HeroImage>
-<HeroImage
-	alt=""
-	artist="Francesco Gennari"
-	class="mt-12"
-	name="Officine italiance del Rinascimento"
-	src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/de1bbf90617233.5e1c78d58d809.jpg"
-></HeroImage>
-<HeroImage
-	alt=""
-	artist="Antoine Levi"
-	class="mt-12"
-	name="Ceramiche del Vicino Oriente antico"
-	src="https://theartofeducation.edu/wp-content/uploads/2022/10/VanGoghLegoMeme.jpeg"
-></HeroImage>
+<div class="w-full flex flex-col gap-10">
+	<HeroImage data={item1}></HeroImage>
+	<HeroImage data={item2}></HeroImage>
+	<HeroImage data={item3}></HeroImage>
+</div>

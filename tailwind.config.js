@@ -55,7 +55,7 @@ export default {
 					}
 				},
 				flyRight40: {
-					'0%, 20%': {
+					'0%': {
 						transform: 'translateX(-40px)'
 					},
 					'100%': {
