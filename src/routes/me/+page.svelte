@@ -9,11 +9,11 @@
 	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
 	import Grid from '$lib/components/item/GridItem.svelte';
 	import GridCollection from '$lib/components/item/GridCollection.svelte';
+	import { user1 } from '$lib/../data';
 
 	import { collection1, collection2, collectionList, itemList } from '$lib/../data';
 
 	// account name
-	export let name = 'Sheen Hahn';
 	// Sign In condition
 	export let signIn = true;
 </script>
@@ -22,7 +22,7 @@
 <!-- Sign In -->
 <div class="w-full h-full flex flex-col justify-center items-center  {signIn ? '' : 'hidden'}">
 	<div class="w-full h-full flex flex-col justify-center items-center gap-8">
-		<PageTitle>{name}</PageTitle>
+		<PageTitle>{user1.name}</PageTitle>
 
 		<Button icon="faGear">Account settings</Button>
 	</div>

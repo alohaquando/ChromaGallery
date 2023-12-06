@@ -64,11 +64,11 @@ export default {
 				}
 			},
 			animation: {
-				flyUp: 'flyUp 0.8s ease-out',
-				flyDown: 'flyDown 0.8s ease-out',
-				flyLeft: 'flyLeft 0.8s ease-out',
-				flyRight: 'flyRight 0.8s ease-out',
-				flyRight40: 'flyRight40 1s ease-out'
+				flyUp: 'flyUp 0.4s ease-out',
+				flyDown: 'flyDown 0.4s ease-out',
+				flyLeft: 'flyLeft 0.4s ease-out',
+				flyRight: 'flyRight 0.4s ease-out',
+				flyRight40: 'flyRight40 0.8s ease-out'
 			}
 		}
 	},

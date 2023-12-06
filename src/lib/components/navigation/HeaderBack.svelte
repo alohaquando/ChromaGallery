@@ -2,6 +2,11 @@
 	import Button from '$lib/components/controls/Button.svelte';
 	import Fab from '$lib/components/controls/Fab.svelte';
 
+	export let isRelative: boolean = false;
+	let displayClass = 'sticky';
+	if (isRelative) {
+		displayClass = 'relative';
+	}
 	export let exit: boolean = false;
 	export let scrollY: number;
 	export let responsive: boolean = true;
@@ -37,7 +42,7 @@
 <div
 	class="{responsive === true
 		? { designClass }
-		: ''} sticky top-0 left-0 z-50 h-16 mb-2 w-full justify-between items-center inline-flex duration-500 ease-in-out"
+		: ''} {displayClass} top-0 left-0 z-30 h-16 mb-2 w-full justify-between items-center inline-flex duration-500 ease-in-out"
 >
 	<div class="flex container mx-auto px-6 justify-between items-center">
 		<Fab class={buttonClass} icon="{exit ? 'faTimes' : 'faAngleLeft'}" size="sm"></Fab>
