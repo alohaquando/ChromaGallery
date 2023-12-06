@@ -1,17 +1,31 @@
 export interface Item {
 	id: string | undefined;
 	src: string | undefined;
-	title: string | undefined;
-	subtitle: string | undefined;
-	collection: string | undefined;
+	name: string | undefined;
+	location: string | undefined;
 	author: string | undefined;
 	description: string;
-	time: string | undefined;
+	year: string | undefined;
 }
 
 export interface Collection {
 	id: string | undefined;
-	title: string | undefined;
-	subtitle: string | undefined;
-	itemList: Item[];
+	name: string | undefined;
+	description: string | undefined;
+	items: string[];
+}
+
+export interface User {
+	uid: string;
+	email: string;
+	name: string;
+	lists: string[];
+	isAdmin: boolean;
+}
+
+export interface List {
+	ID: string;
+	name: string;
+	Item: string[];
+	description: string;
 }

@@ -35,11 +35,14 @@
 	function onDelete(item: Item) {
 		items = items.filter((i: Item) => i.id != item.id);
 	}
+
+	let customClass = '';
+	export { customClass as class };
 </script>
 
-<div on:consider="{handleConsider}"
-		 on:finalize="{handleFinalize}"
-		 use:dndzone="{{items, dragDisabled, flipDurationMs}}">
+<div class="{customClass} flex flex-col"
+		 on:consider="{handleConsider}"
+		 on:finalize="{handleFinalize}" use:dndzone="{{items, dragDisabled, flipDurationMs}}">
 	{#each items as item (item.id)}
 		<div animate:flip="{{ duration: flipDurationMs }}">
 			<RowItem on:delete={() => onDelete(item)} {type} class="border border-[#222222] rounded-lg" data={item}></RowItem>

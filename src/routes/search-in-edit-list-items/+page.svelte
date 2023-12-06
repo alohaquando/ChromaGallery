@@ -9,7 +9,6 @@
 <Modal buttonText="Save" title="Edit items">
 	<div class="flex justify-center items-center flex-col gap-6">
 		<TextField id="1" name="1" placeholder="q"></TextField>
-		<DragList class="" data={itemList}></DragList>
-
+		<DragList class="gap-4 w-full" data={itemList}></DragList>
 	</div>
 </Modal>

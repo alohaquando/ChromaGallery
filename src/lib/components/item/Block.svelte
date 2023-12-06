@@ -2,8 +2,7 @@
 	import Icon from '../iconography/Icon.svelte';
 	import type { Item } from '../../../model';
 
-	let item: Item | undefined;
-	export { item as data };
+	export let data: Item | undefined;
 	export let bookmark: boolean = false;
 	export let icon: boolean = false;
 
@@ -43,7 +42,7 @@
 	class="{!icon
 		? sizeClass
 		: 'h-14 w-14'} {typeClass} {customClass} relative overflow-hidden"
-	href="../routes/item/{item.id}"
+	href="../routes/item/{data.id}"
 	this={link ? 'a' : 'div'}
 >
 	{#if bookmark}
@@ -52,7 +51,7 @@
 			<div class="absolute h-16 w-16 blur-xl bg-white rounded-full"></div>
 		{/if}
 	{:else}
-		<img alt={item.title} class="{stretch ? 'w-full h-full' : 'h-auto w-full'} {icon ? 'absolute' : ''}"
-				 src={item.src} />
+		<img alt={data.name} class="{stretch ? 'w-full h-full' : 'h-auto w-full'} {icon ? 'absolute' : ''} object-cover"
+				 src={data.src} />
 	{/if}
 </svelte:element>

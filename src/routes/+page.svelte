@@ -28,7 +28,7 @@
 <div class="w-full h-20 mt-7"></div>
 <DisplayLarge class="mt-20"></DisplayLarge>
 <div class="w-full flex flex-col gap-10">
-	<HeroImage data={item1}></HeroImage>
-	<HeroImage data={item2}></HeroImage>
-	<HeroImage data={item3}></HeroImage>
+	<HeroImage data={item1} hideYear></HeroImage>
+	<HeroImage data={item2} hideYear></HeroImage>
+	<HeroImage data={item3} hideYear></HeroImage>
 </div>

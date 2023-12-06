@@ -16,8 +16,8 @@
 </script>
 
 <BG randomized />
-<!--<PageTitle>A Title</PageTitle>-->
-<!--<HeroImage src="https://via.placeholder.com/342x272" name="Shrimp" artist="Shrimp" time="1:43 AM 11/26/2023"></HeroImage>-->
+<PageTitle>A Title</PageTitle>
+<HeroImage data={item1}></HeroImage>
 
 <Block data={item1} stretch={false}></Block>
 <CollectionBlock style="grid" data={collection1}></CollectionBlock>

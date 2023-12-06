@@ -4,6 +4,7 @@
 	import Block from '$lib/components/item/Block.svelte';
 	import type { Item } from '../../../model';
 
+	export let hideYear: boolean = false;
 	export let data: Item;
 	export let hideInfo: boolean = false;
 	let customClass = '';
@@ -12,17 +13,19 @@
 
 <div class="w-full flex-col gap-6 inline-flex {customClass}">
 	<div class="w-full h-80 rounded-lg flex overflow-hidden relative">
-		<Block {data} stretch={false}></Block>
+		<Block class="object-cover" {data} stretch={false}></Block>
 	</div>
 	{#if !hideInfo}
 		<div class="flex-col gap-6 flex">
 			<Link href="../routes/item/{data.id}" type="headline">
-				{data.title}
+				{data.name}
 			</Link>
 			<Headline>{data.author}</Headline>
-			<Headline class="!text-white/50">
-				{data.time}
-			</Headline>
+			{#if !hideYear}
+				<Headline class="!text-white/50">
+					{data.year}
+				</Headline>
+			{/if}
 		</div>
 	{/if}
 </div>
