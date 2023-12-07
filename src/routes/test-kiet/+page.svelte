@@ -19,7 +19,6 @@
 <BG randomized />
 
 <FileInput></FileInput>
-<FileInput state="edit"></FileInput>
 
 <!--<PageTitle>A Title</PageTitle>-->
 <!--<HeroImage data={item1}></HeroImage>-->
