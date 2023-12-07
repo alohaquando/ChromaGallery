@@ -1,17 +1,17 @@
 export interface Item {
-	id: string | undefined;
-	src: string | undefined;
-	name: string | undefined;
-	location: string | undefined;
-	author: string | undefined;
+	id: string;
+	src: string;
+	name: string;
+	location: string;
+	author: string;
 	description: string;
-	year: string | undefined;
+	year: string;
 }
 
 export interface Collection {
-	id: string | undefined;
-	name: string | undefined;
-	description: string | undefined;
+	id: string;
+	name: string;
+	description: string;
 	items: string[];
 }
 
@@ -24,7 +24,7 @@ export interface User {
 }
 
 export interface List {
-	ID: string;
+	id: string;
 	name: string;
 	Item: string[];
 	description: string;

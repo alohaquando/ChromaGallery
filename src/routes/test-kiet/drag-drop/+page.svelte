@@ -3,11 +3,11 @@
 	import DragList from '$lib/components/item/DragList.svelte';
 	import Button from '$lib/components/controls/Button.svelte';
 	import {
-		itemList
+		allItem
 	} from '$lib/../data';
 
 	// data
-	let items: Item[] = itemList;
+	let items: Item[] = allItem;
 
 	let type = 'edit';
 

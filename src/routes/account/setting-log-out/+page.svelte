@@ -1,9 +1,10 @@
-<script lang="ts">
+<script>
+	import Dialog from '$lib/components/pop-up/Dialog.svelte';
 	import Modal from '$lib/components/pop-up/Modal.svelte';
 	import ListItem from '$lib/components/item/ListItem.svelte';
 </script>
 
-<Modal title="Account setting">
+<Modal exit title="Account setting" transition={false}>
 	<div class=" flex flex-col justify-center items-center">
 		<ListItem
 			bottomDivider={false}
@@ -39,3 +40,6 @@
 		/>
 	</div>
 </Modal>
+
+<Dialog option1="Cancel" option2="Log out" text="Are you sure you want to log out" title="Log Out"
+></Dialog>

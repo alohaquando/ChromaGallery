@@ -10,7 +10,7 @@
 	import Block from '$lib/components/item/Block.svelte';
 	import Grid from '$lib/components/item/GridItem.svelte';
 	import CollectionList from '$lib/components/item/CollectionList.svelte';
-	import { itemList1, collectionList } from '$lib/../data.js';
+	import { itemList1, allCollection } from '$lib/../data.js';
 
 </script>
 
@@ -24,7 +24,7 @@
 	<div class="h-full flex flex-col justify-center gap-8">
 		<BodyLarge>Collections</BodyLarge>
 		<!-- scrolling  -->
-		<CollectionList data={collectionList}></CollectionList>
+		<CollectionList data={allCollection}></CollectionList>
 	</div>
 	<!-- All items -->
 	<div class="w-full flex flex-col justify-center gap-8">

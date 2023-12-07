@@ -5,12 +5,12 @@
 	import Button from '$lib/components/controls/Button.svelte';
 </script>
 
-<Modal title="Update password" buttonText="Update">
+<Modal buttonMessage="Update" hasButton title="Update password" transition={false}>
 	<div class="">
 		<div class="w-full h-full pt-[25vh] flex flex-col justify-center items-center gap-6">
 			<Icon icon="faCheck" size="6xl"></Icon>
 			<BodyLarge>Update successful</BodyLarge>
-			<Button design="filled" class="mt-20">Back to settings</Button>
+			<Button class="mt-20" design="filled">Back to settings</Button>
 		</div>
 	</div>
 </Modal>

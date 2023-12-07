@@ -19,7 +19,7 @@
 			break;
 		}
 		case 'destructive': {
-			textClasses = 'text-red-400';
+			textClasses = 'text-red-400 underline';
 			break;
 		}
 	}

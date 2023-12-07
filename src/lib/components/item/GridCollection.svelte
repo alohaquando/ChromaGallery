@@ -1,9 +1,9 @@
 <script lang="ts">
 	import type { Collection } from '$lib/../model';
-	import { collection2, collectionList } from '../../../data';
+	import { collection2, allCollection } from '../../../data';
 	import CollectionBlock from '$lib/components/item/CollectionBlock.svelte';
 
-	export let data: Collection[] = collectionList;
+	export let data: Collection[] = allCollection;
 	let customClass = '';
 	export { customClass as class };
 </script>

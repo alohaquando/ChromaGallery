@@ -52,7 +52,7 @@ export const item5: Item = {
 
 export let itemList1 = [item1, item2];
 export let itemList2 = [item3, item4, item5];
-export let itemList: Item[] = [item1, item2, item3, item4, item5];
+export let allItem: Item[] = [item1, item2, item3, item4, item5];
 
 // Sample Collections
 export const collection1: Collection = {
@@ -76,7 +76,8 @@ export const collection3: Collection = {
 	items: ['i1', 'i3', 'i5']
 };
 
-export let collectionList: Collection[] = [collection1, collection2, collection3];
+export let allCollection: Collection[] = [collection1, collection2, collection3];
+
 // Sample Users
 export const user1: User = {
 	uid: 'u1',
@@ -104,22 +105,24 @@ export const user3: User = {
 
 // Sample Lists
 export const list1: List = {
-	ID: 'l1',
+	id: 'l1',
 	name: 'Favorites',
 	Item: ['i1', 'i4'],
 	description: 'Personal favorites from different art movements.'
 };
 
 export const list2: List = {
-	ID: 'l2',
+	id: 'l2',
 	name: 'Must-See',
 	Item: ['i2', 'i3', 'i5'],
 	description: 'Artworks that everyone should experience.'
 };
 
 export const list3: List = {
-	ID: 'l3',
+	id: 'l3',
 	name: 'Time Travel',
 	Item: ['i1', 'i4', 'i5'],
 	description: 'Journey through different time periods in art history.'
 };
+
+export let allList = [list1, list2, list3];

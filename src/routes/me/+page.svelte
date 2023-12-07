@@ -11,7 +11,7 @@
 	import GridCollection from '$lib/components/item/GridCollection.svelte';
 	import { user1 } from '$lib/../data';
 
-	import { collection1, collection2, collectionList, itemList } from '$lib/../data';
+	import { collection1, collection2, allCollection, allItem } from '$lib/../data';
 
 	// account name
 	// Sign In condition

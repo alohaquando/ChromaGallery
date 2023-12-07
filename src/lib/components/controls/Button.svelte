@@ -8,6 +8,10 @@
 	if (hover) {
 		hoverEffect = 'hover:bg-white/40 hover:text-gray-900 hover:before:opacity-100 hover:after:opacity-100';
 	}
+	export let destructive: boolean = false;
+	if (destructive) {
+		hoverEffect = 'text-red-500 hover:underline';
+	}
 	export let icon: string | undefined = undefined;
 	export let width: 'fit' | 'full' = 'fit';
 	export let design: 'filled' | 'outlined' = 'outlined';
