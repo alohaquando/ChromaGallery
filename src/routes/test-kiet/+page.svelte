@@ -12,15 +12,20 @@
 	import Grid from '$lib/components/item/GridItem.svelte';
 	import RowItem from '$lib/components/item/RowItem.svelte';
 	import BG from '$lib/components/backgrounds/BG.svelte';
-	import {item1, collection1} from '../../data';
+	import { item1, collection1 } from '../../data';
+	import FileInput from '$lib/components/inputs/FileInput.svelte';
 </script>
 
 <BG randomized />
-<PageTitle>A Title</PageTitle>
-<HeroImage data={item1}></HeroImage>
 
-<Block data={item1} stretch={false}></Block>
-<CollectionBlock style="grid" data={collection1}></CollectionBlock>
+<FileInput></FileInput>
+<FileInput state="edit"></FileInput>
+
+<!--<PageTitle>A Title</PageTitle>-->
+<!--<HeroImage data={item1}></HeroImage>-->
+
+<!--<Block data={item1} stretch={false}></Block>-->
+<!--<CollectionBlock style="grid" data={collection1}></CollectionBlock>-->
 
 <!--<div class="gap-5 flex mt-5">-->
 <!--<Link type="body">display</Link>-->
