@@ -5,19 +5,17 @@
 	import Block from '$lib/components/item/Block.svelte';
 	import type { Collection } from '../../../model';
 	import { itemList } from '../../../data';
+	import { count } from '$lib/components/item/CountItem';
 
 	export let data: Collection;
 
 	let customClass = '';
 	export { customClass as class };
+
 	let blockStyle: 'grid' | 'single' = 'single';
 	export { blockStyle as style };
 
-	let amount = data.items.length;
-	let str = 'Item';
-	if (amount !== 1) {
-		str += 's';
-	}
+	let str = count(data.items);
 	export let title: boolean = true;
 	export let subtitle: boolean = true;
 	export let bookmark: boolean = false;
@@ -44,7 +42,7 @@
 			</div>
 		{/if}
 		<InfoChip class="absolute bottom-2 right-2 !rounded-2xl !bg-opacity-40 py-4">
-			<Body>{amount} {str}</Body>
+			<Body>{str}</Body>
 		</InfoChip>
 	</a>
 	{#if title}

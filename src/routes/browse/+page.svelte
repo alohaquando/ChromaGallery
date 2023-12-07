@@ -9,7 +9,6 @@
 	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
 	import Block from '$lib/components/item/Block.svelte';
 	import Grid from '$lib/components/item/GridItem.svelte';
-	import type { Collection, Item } from '$lib/../model.js';
 	import CollectionList from '$lib/components/item/CollectionList.svelte';
 	import { itemList1, collectionList } from '$lib/../data.js';
 
