@@ -4,9 +4,9 @@
 	import BodyLarge from '$lib/components/typography/BodyLarge.svelte';
 </script>
 
-<Modal title="Update name" buttonText="Update">
+<Modal buttonText="Update" title="Update name">
 	<div class=" flex flex-col justify-center gap-4 pb-8">
 		<BodyLarge>New name</BodyLarge>
-		<TextField placeholder="New name"></TextField>
+		<TextField id="" name="" placeholder="New name"></TextField>
 	</div>
 </Modal>
