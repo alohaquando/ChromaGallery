@@ -16,7 +16,7 @@
 	import FileInput from '$lib/components/inputs/FileInput.svelte';
 </script>
 
-<BG randomized />
+<BG />
 
 <FileInput></FileInput>
 
