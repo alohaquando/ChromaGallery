@@ -123,11 +123,14 @@ export default {
 					}
 				},
 				disappearRight: {
-					'2%': {
+					'5%': {
 						width: '100%',
 						transform: ''
 					},
 					'65%': {
+						width: '0%'
+					},
+					'70%': {
 						width: '0%'
 					},
 					'90%': {
@@ -136,10 +139,47 @@ export default {
 				},
 				spinLeftCW: {
 					'0%': {
-						transform: ''
+						transform: 'translate(0px) rotate(0deg)'
 					},
-					'50%': {},
-					'100%': {}
+					'50%': {
+						transform: 'translate(-20px) rotate(180deg)'
+					},
+					'100%': {
+						transform: 'translate(0px) rotate(360deg)'
+					}
+				},
+				spinLeftACW: {
+					'0%': {
+						transform: 'translate(0px) rotate(0deg)'
+					},
+					'50%': {
+						transform: 'translate(-20px) rotate(-180deg)'
+					},
+					'100%': {
+						transform: 'translate(0px) rotate(-360deg)'
+					}
+				},
+				spinOffCW: {
+					'0%': {
+						transform: 'rotate(0deg) translate(0px) rotate(0deg)'
+					},
+					'50%': {
+						transform: 'rotate(180deg) translate(20px) rotate(180deg)'
+					},
+					'100%': {
+						transform: 'rotate(360deg) translate(0px) rotate(360deg)'
+					}
+				},
+				spinOffACW: {
+					'0%': {
+						transform: 'rotate(0deg) translate(0px) rotate(0deg)'
+					},
+					'50%': {
+						transform: 'rotate(-180deg) translate(20px) rotate(-180deg)'
+					},
+					'100%': {
+						transform: 'rotate(-360deg) translate(0px) rotate(-360deg)'
+					}
 				}
 			},
 			animation: {
@@ -150,7 +190,11 @@ export default {
 				flyRight40: 'flyRight40 0.8s ease-out',
 				pacman1: 'pacman1 3s linear',
 				pacman2: 'pacman2 3s linear',
-				disappearRight: 'disappearRight 3s linear'
+				disappearRight: 'disappearRight 3s linear',
+				spinLeftCW: 'spinLeftCW 1s linear',
+				spinLeftACW: 'spinLeftACW 1s linear',
+				spinOffCW: 'spinOffCW 1s linear',
+				spinOffACW: 'spinOffACW 1s linear'
 			}
 		}
 	},
