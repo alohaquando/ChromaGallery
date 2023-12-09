@@ -5,7 +5,7 @@
 	import BodyLarge from '$lib/components/typography/BodyLarge.svelte';
 </script>
 
-<Modal buttonMessage="Update" hasButton title="Update password" transition={false}>
+<Modal button="Update" title="Update password" transition={false}>
 	<div class=" flex flex-col justify-center gap-4">
 		<BodyLarge>Confirm old password</BodyLarge>
 		<TextField id="" name="" placeholder="Confirm password"></TextField>

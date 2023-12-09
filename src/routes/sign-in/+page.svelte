@@ -12,7 +12,7 @@
 	$: test, console.log(test);
 </script>
 
-<BG color="1877F2" />
+<BG randomized />
 
 <PageTitle>Welcome back</PageTitle>
 <div class="mt-16 gap-8 flex flex-col items-center w-full">

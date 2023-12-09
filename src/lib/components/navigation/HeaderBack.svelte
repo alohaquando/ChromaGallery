@@ -11,11 +11,10 @@
 	export let scrollY: number;
 	export let responsive: boolean = true;
 	export let actionDisabled: boolean = false;
-	export let hasButton: boolean = false;
+
 	let buttonClass: string;
-	export let buttonMessage = '';
-	export let hasDestructive: boolean = false;
-	export let destructiveMessage = 'Delete';
+	export let button: string | undefined;
+	export let destructive: string | undefined;
 
 	let prevY: number;
 	let showNav: boolean = true;
@@ -51,13 +50,13 @@
 	<div class="flex container mx-auto px-6 justify-between items-center">
 		<Fab class={buttonClass} icon="{exit ? 'faTimes' : 'faAngleLeft'}" size="sm"></Fab>
 		<div class="inline-flex gap-2">
-			{#if hasButton}
+			{#if button}
 				<Button disabled={actionDisabled} design="filled">
-					{buttonMessage}
+					{button}
 				</Button>
 			{/if}
-			{#if hasDestructive}
-				<Button destructive>{destructiveMessage}</Button>
+			{#if destructive}
+				<Button destructive>{destructive}</Button>
 			{/if}
 		</div>
 	</div>

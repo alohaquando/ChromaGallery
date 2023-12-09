@@ -10,7 +10,7 @@
 	}
 	export let destructive: boolean = false;
 	if (destructive) {
-		hoverEffect = 'text-red-500 hover:underline';
+		hoverEffect = 'text-red-500';
 	}
 	export let icon: string | undefined = undefined;
 	export let width: 'fit' | 'full' = 'fit';

@@ -7,7 +7,7 @@
 	export let number = 0;
 </script>
 
-<Bg />
+<Bg randomized />
 <Icon
 	class=" absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 !text-9xl text-white/10"
 	icon="faStar"

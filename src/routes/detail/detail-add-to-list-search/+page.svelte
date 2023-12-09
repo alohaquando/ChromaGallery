@@ -7,7 +7,7 @@
 	export let number = 0;
 </script>
 
-<Modal buttonText="Add" title="Add to list">
+<Modal button="Add" title="Add to list">
 	<TextField id="" name="" placeholder=""></TextField>
 	<DragList class="gap-4 mt-6 border-transparent" data={allItem}></DragList>
 </Modal>

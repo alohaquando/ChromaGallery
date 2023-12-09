@@ -17,17 +17,11 @@
 	});
 </script>
 
-<BG />
+<BG randomized />
 
 {#if $itemStore}
 	<HeroImage
-		alt="Image Alt Text"
-		artist={$itemStore.artist}
-		class="my-4"
-		href=""
-		name={$itemStore.title}
-		src={$itemStore.image}
-		time={$itemStore.foundedYear}
+		data={$itemStore}
 	></HeroImage>
 
 	<div class="flex justify-between items-end mb-12">
@@ -52,23 +46,11 @@
 		<BodyLarge class="mt-12">Related</BodyLarge>
 
 		<HeroImage
-			alt="Image Alt Text"
-			artist="Srijon Chowdhury"
-			class="my-4"
-			href="item-link"
-			name="Related Contents"
-			src=""
-			time="Circa 2315"
+			data={$itemStore}
 		></HeroImage>
 
 		<HeroImage
-			alt="Image Alt Text"
-			artist="Srijon Chowdhury"
-			class="my-4"
-			href="item-link"
-			name="Related Contents"
-			src=""
-			time="Circa 2315"
+			data={$itemStore}
 		></HeroImage>
 	</div>
 {/if}

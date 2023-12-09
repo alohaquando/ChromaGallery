@@ -6,7 +6,7 @@
 	import BG from '$lib/components/backgrounds/BG.svelte';
 </script>
 
-<BG color="9EDC5F" />
+<BG randomized />
 
 <PageTitle>Let's get you ready</PageTitle>
 

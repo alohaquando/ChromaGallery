@@ -1,3 +1,5 @@
+<!--suppress ALL -->
+
 <script lang="ts">
 	import type { Comment } from 'postcss';
 	import type { Collection } from '../../../model';

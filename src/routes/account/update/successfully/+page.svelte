@@ -5,7 +5,7 @@
 	import Button from '$lib/components/controls/Button.svelte';
 </script>
 
-<Modal buttonMessage="Update" hasButton title="Update password" transition={false}>
+<Modal button="Update" title="Update password" transition={false}>
 	<div class="">
 		<div class="w-full h-full pt-[25vh] flex flex-col justify-center items-center gap-6">
 			<Icon icon="faCheck" size="6xl"></Icon>

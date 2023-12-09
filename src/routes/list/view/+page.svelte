@@ -7,7 +7,7 @@
 	export let number = 0;
 </script>
 
-<Bg></Bg>
+<Bg randomized></Bg>
 
 <Headline class="text-decoration-line: underline  underline-offset-8 pt-8 pb-6"
 >My list with a lovingly long name

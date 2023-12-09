@@ -2,9 +2,12 @@
 	import Modal from '$lib/components/pop-up/Modal.svelte';
 	import TextField from '$lib/components/inputs/TextField.svelte';
 	import ListItem from '$lib/components/item/ListItem.svelte';
+	import BG from '$lib/components/backgrounds/BG.svelte';
 </script>
 
-<Modal buttonText="Save" title="Edit list">
+<BG randomized />
+
+<Modal button="Save" title="Edit list">
 	<div class="gap-6 flex flex-col">
 		<TextField id="" name="" placeholder="Enter something..."></TextField>
 		<TextField id="" name="" placeholder="Enter something..."></TextField>

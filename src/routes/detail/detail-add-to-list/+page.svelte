@@ -6,7 +6,7 @@
 
 </script>
 
-<Modal buttonText="Add" title="Add to list">
+<Modal button="Add" title="Add to list">
 	<div class="flex flex-col justify-center items-center gap-8">
 		<Button icon="faPlus">New list</Button>
 		<Button class="w-full" icon="faSearch">Find list</Button>
