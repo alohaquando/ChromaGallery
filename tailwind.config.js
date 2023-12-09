@@ -61,6 +61,85 @@ export default {
 					'100%': {
 						transform: 'translateX(0)'
 					}
+				},
+				pacman1: {
+					'0%': {},
+					'10%': {
+						transform: 'scale(1.7) translateX(-5px)'
+					},
+					'20%': {
+						transform: 'scale(1.7) translateX(20%) rotate(60deg)'
+					},
+					'30%': {
+						transform: 'scale(1.7) translateX(70%) rotate(0deg)'
+					},
+					'40%': {
+						transform: 'scale(1.7) translateX(110%) rotate(60deg)'
+					},
+					'50%': {
+						transform: 'scale(1.7) translateX(165%) rotate(0deg)'
+					},
+					'60%': {
+						transform: 'scale(1.7) translateX(220%) rotate(60deg)'
+					},
+					'70%': {
+						transform: 'scale(1.7) translateX(250%) rotate(0deg)'
+					},
+					'90%': {
+						transform: 'scale(1.7) translateX(-7px)'
+					},
+					'100%': {
+						transform: ''
+					}
+				},
+				pacman2: {
+					'0%': {},
+					'10%': {
+						transform: 'scale(1.7) translateX(-5px)'
+					},
+					'20%': {
+						transform: 'scale(1.7) translateX(20%) rotate(-60deg)'
+					},
+					'30%': {
+						transform: 'scale(1.7) translateX(70%) rotate(0deg)'
+					},
+					'40%': {
+						transform: 'scale(1.7) translateX(110%) rotate(-60deg)'
+					},
+					'50%': {
+						transform: 'scale(1.7) translateX(165%) rotate(0deg)'
+					},
+					'60%': {
+						transform: 'scale(1.7) translateX(220%) rotate(-60deg)'
+					},
+					'70%': {
+						transform: 'scale(1.7) translateX(250%) rotate(0deg)'
+					},
+					'90%': {
+						transform: 'scale(1.7) translateX(-7px)'
+					},
+					'100%': {
+						transform: ''
+					}
+				},
+				disappearRight: {
+					'2%': {
+						width: '100%',
+						transform: ''
+					},
+					'65%': {
+						width: '0%'
+					},
+					'90%': {
+						width: '100%'
+					}
+				},
+				spinLeftCW: {
+					'0%': {
+						transform: ''
+					},
+					'50%': {},
+					'100%': {}
 				}
 			},
 			animation: {
@@ -68,7 +147,10 @@ export default {
 				flyDown: 'flyDown 0.4s ease-out',
 				flyLeft: 'flyLeft 0.4s ease-out',
 				flyRight: 'flyRight 0.4s ease-out',
-				flyRight40: 'flyRight40 0.8s ease-out'
+				flyRight40: 'flyRight40 0.8s ease-out',
+				pacman1: 'pacman1 3s linear',
+				pacman2: 'pacman2 3s linear',
+				disappearRight: 'disappearRight 3s linear'
 			}
 		}
 	},
