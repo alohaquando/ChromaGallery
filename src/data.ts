@@ -107,21 +107,21 @@ export const user3: User = {
 export const list1: List = {
 	id: 'l1',
 	name: 'Favorites',
-	Item: ['i1', 'i4'],
+	items: ['i1', 'i4'],
 	description: 'Personal favorites from different art movements.'
 };
 
 export const list2: List = {
 	id: 'l2',
 	name: 'Must-See',
-	Item: ['i2', 'i3', 'i5'],
+	items: ['i2', 'i3', 'i5'],
 	description: 'Artworks that everyone should experience.'
 };
 
 export const list3: List = {
 	id: 'l3',
 	name: 'Time Travel',
-	Item: ['i1', 'i4', 'i5'],
+	items: ['i1', 'i4', 'i5'],
 	description: 'Journey through different time periods in art history.'
 };
 
