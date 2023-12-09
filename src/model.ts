@@ -26,6 +26,6 @@ export interface User {
 export interface List {
 	id: string;
 	name: string;
-	Item: string[];
+	items: string[];
 	description: string;
 }
