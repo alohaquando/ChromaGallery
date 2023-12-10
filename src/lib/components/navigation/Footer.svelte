@@ -10,7 +10,7 @@
 
 <div class="pb-16 pt-32 w-full justify-start items-start gap-8 inline-flex flex-col">
 	<Divider full />
-	<Fab href="/" icon="faArrowUp" size="lg">Back to top</Fab>
+	<Fab href="" icon="faArrowUp" size="lg">Back to top</Fab>
 	<Divider></Divider>
 	<Title>Get in contact</Title>
 	<div class="inline-flex justify-between w-full">
