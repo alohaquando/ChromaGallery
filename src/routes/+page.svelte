@@ -18,9 +18,9 @@
 		<DisplayLarge class="relative">artistic</DisplayLarge>
 	</div>
 	<div class="flex w-full justify-between max-w-3xl mt-32">
-		<Fab class="" icon="faUser" size="lg">Sign me<br />in</Fab>
-		<Fab class="-mt-20" icon="faSearch" size="lg">Show me<br />more</Fab>
-		<Fab class="mt-8" icon="faPlay" size="lg">Relax me</Fab>
+		<Fab class="" href="/sign-in" icon="faUser" size="lg">Sign me<br />in</Fab>
+		<Fab class="-mt-20" href="/browse" icon="faSearch" size="lg">Show me<br />more</Fab>
+		<Fab class="mt-8" href="/" icon="faPlay" size="lg">Relax me</Fab>
 	</div>
 	<InfoChip class="opacity-50" design="text" icon="faAngleDown">Scroll for more</InfoChip>
 </div>
