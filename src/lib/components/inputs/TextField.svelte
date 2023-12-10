@@ -1,8 +1,8 @@
 <script lang="ts">
     import Icon from '$lib/components/iconography/Icon.svelte';
-    import { DateInput } from 'date-picker-svelte';
+    import { DateInput, DatePicker } from 'date-picker-svelte';
+    import Fab from '$lib/components/controls/Fab.svelte';
 
-    let date = new Date();
     export let id: string;
     export let placeholder: string;
     export let name: string;
@@ -41,46 +41,70 @@
 
     switch (type) {
         case 'date':
-            value = date;
             disabled = true;
     }
+
+    let date = new Date();
+    const updateDate = () => {
+        if (type === 'date') {
+            const monthName = date.toLocaleString('en-US', { month: 'long' });
+            const day = String(date.getDate()).padStart(2, '0');
+            const year = date.getFullYear();
+
+            value = `${monthName} - ${day} - ${year}`;
+        }
+    };
+
+    $: date, updateDate();
 
     let stateClasses: string;
     if (error) {
         stateClasses = '!border-red-300';
     }
+
+    let isVisible: boolean = true;
+    const toggleVisibility = () => {
+        isVisible = !isVisible;
+    };
+
+
+    let inputClass = 'bg-black/30 border border-white/30 rounded-xl placeholder-white/50 block w-full p-2.5 transition outline-none text-white font-sans trim-both focus:ring-white focus:ring-2 disabled:placeholder-white/30 disabled:text-white/70 read-only:focus:ring-0 read-only:text-white/70';
 </script>
 
-<div class="flex flex-col w-full">
+<div class="flex flex-col w-full relative">
     {#if label}
         <label class="block mb-2 text-sm font-sans trim-both pb-4" for={id}>{label}</label>
     {/if}
-    <input
-            {autocomplete}
-            {autofocus}
-            bind:value
-            class="{stateClasses} bg-black/30 border border-white/30 rounded-xl placeholder-white/50 block w-full p-2.5 transition outline-none text-white font-sans trim-both
-		focus:ring-white focus:ring-2
-		disabled:placeholder-white/30 disabled:text-white/70
-		read-only:focus:ring-0 read-only:text-white/70"
-            {disabled}
-            {form}
-            {id}
-            {max}
-            {maxlength}
-            {min}
-            {minlength}
-            {name}
-            on:change
-            on:input
-            {pattern}
-            {placeholder}
-            {readonly}
-            {required}
-            {size}
-    />
+    <button class="flex items-center relative justify-end">
+        <input
+                {autocomplete}
+                {autofocus}
+                bind:value
+                class="{stateClasses} {inputClass}"
+                {disabled}
+                {form}
+                {id}
+                {max}
+                {maxlength}
+                {min}
+                {minlength}
+                {name}
+                on:change
+                {pattern}
+                {placeholder}
+                {readonly}
+                {required}
+                {size}
+        />
+        {#if type === 'date'}
+            <Fab class="absolute border-none right-4" hover={false} icon="faCalendar" on:click={toggleVisibility}
+                 size="mini"></Fab>
+        {/if}
+    </button>
     {#if type === 'date'}
-        <DateInput bind:value={date}></DateInput>
+        <div class="{!isVisible? 'hidden' : ''} absolute mt-10 right-0">
+            <DatePicker bind:value={date} timePrecision={null} />
+        </div>
     {/if}
     {#if error}
         <div class="flex space-x-2 items-center text-red-300 pt-4">
