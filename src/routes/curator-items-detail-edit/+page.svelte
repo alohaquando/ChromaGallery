@@ -8,7 +8,7 @@
 	import { item2 } from '../../data';
 </script>
 
-<Modal button="Save" class="relative " title="Edit item">
+<Modal button="Save" title="Edit item">
 	<div class="w-full flex-col flex justify-center">
 		<HeroImage data={item2} hideInfo='true'></HeroImage>
 		<FileInput state="edit"></FileInput>

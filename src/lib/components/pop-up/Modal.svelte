@@ -13,7 +13,7 @@
 </script>
 
 <div
-	class="{customClass} absolute -bottom-3 left-0 z-40 w-full h-full backdrop-blur-md bg-gradient-to-b from-neutral-900 to-black flex border-t-4 border-white/20 {transition? 'animate-flyUp' : ''} flex-col"
+	class="{customClass} relative top-0 left-0 z-40 w-screen h-full backdrop-blur-md bg-gradient-to-b from-neutral-900 to-black flex border-t-4 border-white/20 {transition? 'animate-flyUp' : ''} flex-col"
 >
 	<HeaderBack {button} {destructive} {exit} isRelative
 							responsive={false}></HeaderBack>
