@@ -6,7 +6,7 @@
     import { dndzone } from 'svelte-dnd-action';
 
     export let type: 'action' | 'edit' | 'view' = 'action';
-    export let button: boolean = false;
+    export let button: 'add' | 'destructive' = 'add';
     export let icon: string | undefined | null;
 
     let dragDisabled: boolean = true;
