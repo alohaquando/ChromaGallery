@@ -34,6 +34,7 @@
 			break;
 		case 'link':
 			icon = 'faArrowRight';
+			buttonStyle = '!border-none';
 			break;
 	}
 
