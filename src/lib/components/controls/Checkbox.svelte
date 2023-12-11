@@ -7,7 +7,7 @@
 		id = data.id;
 	}
 
-	export let name: string;
+	export let name: string | undefined;
 	export let value: string | undefined;
 	export let checked: boolean = false;
 	import Icon from '$lib/components/iconography/Icon.svelte';

@@ -21,8 +21,8 @@
 
 	let animationClass = '';
 	export let type: 'action' | 'edit' | 'view' = 'action';
-	export let button: 'add' | 'destructive' | 'link' = 'add';
-	export let icon: string | undefined | null;
+	export let button: 'add' | 'destructive' | 'link' | undefined;
+	export let icon: string | undefined;
 	let buttonStyle = '';
 	switch (button) {
 		case 'add':
@@ -70,9 +70,9 @@
 	</div>
 	{#if type === 'action'}
 		{#if button}
-			<Fab {icon} class="{buttonStyle}" size="mini" hover={false}></Fab>
+			<Fab {icon} href={button === 'link' ? data.id : undefined} class="{buttonStyle}" size="mini" hover={false}></Fab>
 		{:else}
-			<Checkbox class="shrink-0" {data} name=""></Checkbox>
+			<Checkbox id={data.id} class="shrink-0" {data} name=""></Checkbox>
 		{/if}
 	{:else if type === 'edit'}
 		<Icon icon="faEquals" class="shrink-0 w-6 h-6" />

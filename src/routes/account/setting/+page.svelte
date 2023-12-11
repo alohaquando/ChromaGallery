@@ -1,7 +1,11 @@
 <script lang="ts">
 	import Modal from '$lib/components/pop-up/Modal.svelte';
 	import ListItem from '$lib/components/item/ListItem.svelte';
+	import Bg from '$lib/components/backgrounds/BG.svelte';
+	import { onMount } from 'svelte';
 </script>
+
+<Bg randomized />
 
 <Modal exit title="Account setting">
 	<div class=" flex flex-col justify-center items-center">
@@ -9,33 +13,36 @@
 			bottomDivider={false}
 			class="w-full"
 			clickable={true}
+			href="update/name"
 			icon="faChevronRight"
-			leadingText="Update name"
 			topDivider={false}
+			trailingText="Update name"
 		/>
 		<ListItem
 			bottomDivider={false}
 			class="w-full"
 			clickable={true}
+			href="update/email"
 			icon="faChevronRight"
-			leadingText="Update email"
 			topDivider={false}
+			trailingText="Update email"
 		/>
 		<ListItem
 			bottomDivider={false}
 			class="w-full"
 			clickable={true}
+			href="update/password"
 			icon="faChevronRight"
-			leadingText="Update password"
 			topDivider={false}
+			trailingText="Update password"
 		/>
 		<ListItem
 			bottomDivider={false}
 			class="w-full"
 			clickable={true}
 			design="destructive"
-			leadingText="Log out"
 			topDivider={false}
+			trailingText="Log out"
 		/>
 	</div>
 </Modal>
