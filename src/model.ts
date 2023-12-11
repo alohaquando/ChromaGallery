@@ -29,28 +29,3 @@ export interface List {
 	items: string[];
 	description: string;
 }
-
-export interface HeaderInfo {
-	type: string;
-	button?: string | undefined;
-	destructive?: string | undefined;
-}
-
-export interface NavigationInfo {
-	type: string;
-}
-
-export interface ModalInfo {
-	toggled: boolean;
-	title: string;
-	exit: boolean | undefined;
-	button: string | undefined;
-	destructive: string | undefined;
-	transition: boolean | undefined;
-}
-
-export interface BgInfo {
-	color: string | undefined;
-	design: string;
-	randomized: boolean;
-}

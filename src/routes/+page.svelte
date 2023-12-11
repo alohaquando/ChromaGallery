@@ -5,6 +5,9 @@
 	import HeroImage from '$lib/components/item/HeroImage.svelte';
 	import { item1, item2, item3 } from '$lib/../data.js';
 	import { setContext } from 'svelte';
+	import { defaultLayout } from '$lib/stores/pageLayout';
+
+	defaultLayout();
 </script>
 
 <div class="w-full h-[80vh] pt-[5vh] flex flex-col items-center justify-between">

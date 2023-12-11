@@ -43,11 +43,14 @@
 			break;
 		}
 	}
+
+	let customClass = '';
+	export {customClass as class };
 </script>
 
 <!--<editor-fold desc="Background">-->
 <div
-	class="absolute top-0 left-0 w-screen h-[150vh] overflow-hidden select-none pointer-events-none"
+	class="{customClass} absolute top-0 left-0 w-screen h-[150vh] overflow-hidden select-none pointer-events-none"
 >
 	<!--<editor-fold desc="Full linear gradient">-->
 	<div

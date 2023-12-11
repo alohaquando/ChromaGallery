@@ -13,6 +13,7 @@
 	let customClasses = '';
 	export { customClasses as class };
 	export let icon: string | undefined = 'faInfoCircle';
+	$:icon;
 	export let size: 'mini' | 'sm' | 'md' | 'lg' = 'md';
 
 	let sizeClasses: string;

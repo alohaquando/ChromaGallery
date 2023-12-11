@@ -14,8 +14,9 @@
 	import { item1, collection1 } from '../../data';
 	import FileInput from '$lib/components/inputs/FileInput.svelte';
 	import TextField from '$lib/components/inputs/TextField.svelte';
-	import { modal, header } from '$lib/stores/pageLayout';
+	import { modal, header, defaultLayout } from '$lib/stores/pageLayout';
 
+	defaultLayout();
 	modal.set({
 		toggled: true,
 		title: 'It works',

@@ -46,7 +46,7 @@
 		<div
 			class="grow flex-1 flex items-center hyphens-auto {textClasses}">
 			<svelte:component {href} this={href ? Link : Body}
-												color="{design === 'destructive' ? 'red-500' : undefined}">
+												linkColor="{design === 'destructive' ? 'from-red-500 to-red-300' : undefined}">
 				{trailingText}
 			</svelte:component>
 		</div>

@@ -5,14 +5,16 @@
 	import NavBar from '$lib/components/navigation/NavBar.svelte';
 	import Footer from '$lib/components/navigation/Footer.svelte';
 	import Modal from '$lib/components/pop-up/Modal.svelte';
+	import Dialog from '$lib/components/pop-up/Dialog.svelte';
 	import BG from '$lib/components/backgrounds/BG.svelte';
 	import faviconIco from '$lib/assets/favicons/favicon.ico';
 	import faviconSvg from '$lib/assets/favicons/icon.svg';
 	import faviconApple from '$lib/assets/favicons/apple-touch-icon.png';
-	import { getContext } from 'svelte';
-	import { header, navbar, modal, background } from '$lib/stores/pageLayout';
+	import { header, navbar, modal, background, dialog, defaultLayout } from '$lib/stores/pageLayout';
 	import { onMount } from 'svelte';
-	import type { HeaderInfo, NavigationInfo, ModalInfo, BgInfo } from '../model';
+	import { beforeUpdate } from 'svelte';
+
+	onMount(() => defaultLayout());
 
 	let scrollY: number;
 </script>
@@ -27,7 +29,12 @@
 </svelte:head>
 <svelte:window bind:scrollY />
 
-<BG color={$background.color} design={$background.design} randomized={$background.randomized} />
+<BG class="{$modal.toggled === true? 'h-[100vh]' : ''}" color={$background.color} design={$background.design}
+		randomized={$background.randomized} />
+
+{#if ($dialog.toggled)}
+	<Dialog title={$dialog.title} text={$dialog.text} button1={$dialog.button1} button2={$dialog.button2}></Dialog>
+{/if}
 
 {#if $header.type === 'main'}
 	<HeaderMain {scrollY}></HeaderMain>
@@ -36,7 +43,8 @@
 {/if}
 
 {#if $modal.toggled === true}
-	<Modal title={$modal.title} exit={$modal.exit} button={$modal.button} destructive={$modal.destructive}
+	<Modal title={$modal.title} href={$modal.href} exit={$modal.exit} button={$modal.button}
+				 buttonFunction={$modal.buttonFunction}
 				 transition={$modal.transition}>
 		<slot />
 	</Modal>
@@ -45,8 +53,8 @@
 		<slot />
 		<Footer></Footer>
 	</div>
+	<div class="h-32" />
 {/if}
 
-<div class="h-32" />
 
 <NavBar class="fixed bottom-0 left-0 z-40" type={$navbar.type} />
