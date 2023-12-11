@@ -33,7 +33,7 @@
 			buttonStyle = '!border-red-500 text-red-500';
 			break;
 		case 'link':
-			icon = 'faArrowRight';
+			icon = 'faChevronRight';
 			buttonStyle = '!border-none';
 			break;
 	}

@@ -30,12 +30,27 @@ export interface List {
 	description: string;
 }
 
-export interface Header {
+export interface HeaderInfo {
 	type: string;
 	button?: string | undefined;
 	destructive?: string | undefined;
 }
 
-export interface Navigation {
-	type: 'user' | 'admin';
+export interface NavigationInfo {
+	type: string;
+}
+
+export interface ModalInfo {
+	toggled: boolean;
+	title: string;
+	exit: boolean | undefined;
+	button: string | undefined;
+	destructive: string | undefined;
+	transition: boolean | undefined;
+}
+
+export interface BgInfo {
+	color: string | undefined;
+	design: string;
+	randomized: boolean;
 }

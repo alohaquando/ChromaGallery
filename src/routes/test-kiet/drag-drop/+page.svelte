@@ -1,5 +1,4 @@
 <script lang="ts">
-    import BG from '$lib/components/backgrounds/BG.svelte';
     import DragList from '$lib/components/item/DragList.svelte';
     import Button from '$lib/components/controls/Button.svelte';
     import {
@@ -20,8 +19,6 @@
         }
     }
 </script>
-
-<BG randomized />
 
 <Button on:click={onClick}>toggle</Button>
 <DragList bind:data={items} button="destructive" {type}></DragList>

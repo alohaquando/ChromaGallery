@@ -6,14 +6,7 @@
     import BG from '$lib/components/backgrounds/BG.svelte';
     import { item1, item2, item3 } from '$lib/../data.js';
     import { setContext } from 'svelte';
-
-    let myVariable = 'Hello from the page!';
-
-    // Set the context to pass the variable to the layout
-    setContext('myVariable', myVariable);
 </script>
-
-<BG design="top-large" randomized />
 
 <!--Replace div -> Background-->
 <div class="w-full h-[80vh] pt-[5vh] flex flex-col items-center justify-between">
