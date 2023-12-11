@@ -11,10 +11,10 @@
 <Modal button="Save">
     <Headline>Featured items</Headline>
 
-    <DragList data={itemList2} type="view" class="gap-4 my-8 w-full"></DragList>
+    <DragList data={itemList2} button="destructive" class="gap-4 my-8 w-full"></DragList>
     
     <Divider></Divider>
 
     <Button class="my-6 w-full px-6" icon="faMagnifyingGlass">Find item to feature</Button>
-    <DragList data={allItem} type="checkbox" class="gap-4"></DragList>
+    <DragList data={allItem} button="add" class="gap-4"></DragList>
 </Modal>
