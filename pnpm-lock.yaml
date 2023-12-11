@@ -58,6 +58,9 @@ devDependencies:
   autoprefixer:
     specifier: ^10.4.16
     version: 10.4.16(postcss@8.4.31)
+  date-picker-svelte:
+    specifier: ^2.10.1
+    version: 2.10.1(svelte@4.2.7)
   eslint-config-prettier:
     specifier: ^8.5.0
     version: 8.10.0(eslint@8.53.0)
@@ -1487,6 +1490,14 @@ packages:
     resolution: {integrity: sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==}
     engines: {node: '>=4'}
     hasBin: true
+    dev: true
+
+  /date-picker-svelte@2.10.1(svelte@4.2.7):
+    resolution: {integrity: sha512-z4cJ33hngSCPlxc1ERVOgRBJHQXwghJMNtQBT0Q2d3Z9IHGmoIYpViS5s9oRbivs4+TDHkIBmqd/8Ldu9xEYhw==}
+    peerDependencies:
+      svelte: ^3.24.0 || ^4.0.0
+    dependencies:
+      svelte: 4.2.7
     dev: true
 
   /debug@4.3.4:

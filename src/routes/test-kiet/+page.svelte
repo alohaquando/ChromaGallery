@@ -14,11 +14,14 @@
 	import BG from '$lib/components/backgrounds/BG.svelte';
 	import { item1, collection1 } from '../../data';
 	import FileInput from '$lib/components/inputs/FileInput.svelte';
+	import TextField from '$lib/components/inputs/TextField.svelte';
 </script>
 
 <BG />
 
-<FileInput></FileInput>
+<TextField type="date"></TextField>
+
+<!--<FileInput></FileInput>-->
 
 <!--<PageTitle>A Title</PageTitle>-->
 <!--<HeroImage data={item1}></HeroImage>-->

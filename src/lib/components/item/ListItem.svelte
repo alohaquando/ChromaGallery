@@ -3,8 +3,8 @@
 	import Link from '$lib/components/links/Link.svelte';
 	import Icon from '$lib/components/iconography/Icon.svelte';
 
-	export let leadingText: string | undefined = '';
-	export let trailingText: string | undefined = '';
+	export let leadingText: string | undefined;
+	export let trailingText: string | undefined;
 	export let href: string | undefined = undefined;
 	export let icon: string | undefined = undefined;
 	export let clickable: boolean = false;
@@ -19,7 +19,7 @@
 			break;
 		}
 		case 'destructive': {
-			textClasses = 'text-red-400 underline';
+			textClasses = 'text-red-400';
 			break;
 		}
 	}
@@ -35,17 +35,22 @@
 	tabindex="0"
 	this={clickable ? 'button' : 'div'}
 >
-	<div class="grow flex-1 flex items-center {textClasses}">
-		<Body>
-		{leadingText}
-		</Body>
-	</div>
-	<div />
-	<div class="grow flex-1 flex items-center hyphens-auto">
-		<svelte:component {href} this={href ? Link : Body}>
-			{trailingText}
-		</svelte:component>
-	</div>
+	{#if leadingText}
+		<div class="grow flex-1 flex items-center {textClasses}">
+			<Body>
+			{leadingText}
+			</Body>
+		</div>
+	{/if}
+	{#if trailingText}
+		<div
+			class="grow flex-1 flex items-center hyphens-auto {textClasses}">
+			<svelte:component {href} this={href ? Link : Body}
+												color="{design === 'destructive' ? 'red-500' : undefined}">
+				{trailingText}
+			</svelte:component>
+		</div>
+	{/if}
 	<Icon {icon} size="sm" />
 	{#if topDivider}
 		<div class=" h-px bg-[#222222] w-full absolute top-0 -left-4" />
