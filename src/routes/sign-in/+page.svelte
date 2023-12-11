@@ -6,10 +6,20 @@
 	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
 	import BodySmall from '$lib/components/typography/BodySmall.svelte';
 	import BG from '$lib/components/backgrounds/BG.svelte';
+	import { authHandlers } from '$lib/stores/store';
 
-	let test: string;
+	let email: string;
+	let password: string;
+	// $: test, console.log(test);
 
-	$: test, console.log(test);
+	async function handleAuthenticateGoogle() {
+		try {
+			await authHandlers.loginWithGoogle();
+			console.log("Hello")
+		} catch (err) {
+			console.log(' There was an auth error', err);
+		}
+	}
 </script>
 
 <BG randomized />
@@ -18,15 +28,15 @@
 <div class="mt-16 gap-8 flex flex-col items-center w-full">
 	<div class="mb-4 items-center gap-4 flex flex-col w-full">
 		<Socials design="facebook" href="/" signup={false}></Socials>
-		<Socials design="google" href="/" on:click={handleAuthenticateGoogle} signup={false}></Socials>
+		<Button design="google" on:click={handleAuthenticateGoogle}>Continue With Google</Button>
 		<Socials design="apple" href="/" signup={false}></Socials>
 	</div>
 
 	<Divider />
 
 	<form class="contents">
-		<TextField bind:value={test} id="" name="" placeholder="Email" type="email"></TextField>
-		<TextField id="" name="" placeholder="Password" type="password"></TextField>
+		<TextField bind:value={email} id="email" name="email" placeholder="Email" type="email"></TextField>
+		<TextField bind:value={password} id="password" name="password" placeholder="Password" type="password"></TextField>
 		<Button design="filled" type="submit" width="full">Sign in</Button>
 		<Button design="outlined">Reset my password</Button>
 	</form>
