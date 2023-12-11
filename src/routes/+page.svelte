@@ -7,7 +7,6 @@
 	import { setContext } from 'svelte';
 </script>
 
-<!--Replace div -> Background-->
 <div class="w-full h-[80vh] pt-[5vh] flex flex-col items-center justify-between">
 	<div class="flex flex-col items-center gap-10 w-full grow justify-center">
 		<DisplayLarge class="relative -left-[10%]">The place</DisplayLarge>

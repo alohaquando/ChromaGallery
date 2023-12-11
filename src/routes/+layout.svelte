@@ -10,25 +10,9 @@
 	import faviconSvg from '$lib/assets/favicons/icon.svg';
 	import faviconApple from '$lib/assets/favicons/apple-touch-icon.png';
 	import { getContext } from 'svelte';
-	import { headerInfo, navbarInfo, modalInfo, bgInfo } from '$lib/stores/pageLayout';
+	import { header, navbar, modal, background } from '$lib/stores/pageLayout';
 	import { onMount } from 'svelte';
 	import type { HeaderInfo, NavigationInfo, ModalInfo, BgInfo } from '../model';
-
-	let header: HeaderInfo;
-	let navbar: NavigationInfo;
-	let modal: ModalInfo;
-	let bg: BgInfo;
-
-	const unsubscribeHeader = headerInfo.subscribe(value => {
-		header = value;
-	});
-
-	const unsubscribeNavigation = navbarInfo.subscribe(value => navbar = value);
-
-	const unsubscribeModal = modalInfo.subscribe(value =>
-		modal = value);
-
-	const unsubscribeBackground = bgInfo.subscribe(value => bg = value);
 
 	let scrollY: number;
 </script>
@@ -43,17 +27,17 @@
 </svelte:head>
 <svelte:window bind:scrollY />
 
-<BG color={bg.color} design={bg.design} randomized={bg.randomized} />
+<BG color={$background.color} design={$background.design} randomized={$background.randomized} />
 
-{#if header.type === 'main'}
+{#if $header.type === 'main'}
 	<HeaderMain {scrollY}></HeaderMain>
-{:else if header.type === 'back'}
-	<HeaderBack button={header.button} destructive={header.destructive}></HeaderBack>
+{:else if $header.type === 'back'}
+	<HeaderBack button={$header.button} destructive={$header.destructive}></HeaderBack>
 {/if}
 
-{#if modal.toggled === true}
-	<Modal title={modal.title} exit={modal.exit} button={modal.button} destructive={modal.destructive}
-				 transition={modal.transition}>
+{#if $modal.toggled === true}
+	<Modal title={$modal.title} exit={$modal.exit} button={$modal.button} destructive={$modal.destructive}
+				 transition={$modal.transition}>
 		<slot />
 	</Modal>
 {:else}
@@ -65,4 +49,4 @@
 
 <div class="h-32" />
 
-<NavBar class="fixed bottom-0 left-0 z-40" type={navbar.type} />
+<NavBar class="fixed bottom-0 left-0 z-40" type={$navbar.type} />

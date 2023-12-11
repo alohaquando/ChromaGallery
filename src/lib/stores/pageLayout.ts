@@ -1,16 +1,16 @@
 import { writable } from 'svelte/store';
 
-export const headerInfo = writable({
+export const header = writable({
 	type: 'main',
 	button: undefined,
 	destructive: undefined
 });
 
-export const navbarInfo = writable({
+export const navbar = writable({
 	type: 'user'
 });
 
-export const modalInfo = writable({
+export const modal = writable({
 	toggled: false,
 	title: '',
 	exit: undefined,
@@ -19,7 +19,7 @@ export const modalInfo = writable({
 	transition: undefined
 });
 
-export const bgInfo = writable({
+export const background = writable({
 	color: 'B61BFF',
 	design: 'top',
 	randomized: true

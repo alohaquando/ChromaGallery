@@ -4,7 +4,7 @@
 	import Body from '../typography/Body.svelte';
 
 	export let hover: boolean = true;
-	let hoverEffect = 'hover:bg-white/0 ';
+	let hoverEffect = 'hover:bg-white/10 ';
 	if (hover) {
 		hoverEffect += ' ' + 'hover:before:opacity-100 hover:after:opacity-100 hover:text-gray-900';
 	}

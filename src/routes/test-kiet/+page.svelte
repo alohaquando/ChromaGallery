@@ -14,9 +14,9 @@
 	import { item1, collection1 } from '../../data';
 	import FileInput from '$lib/components/inputs/FileInput.svelte';
 	import TextField from '$lib/components/inputs/TextField.svelte';
-	import { modalInfo, headerInfo } from '$lib/stores/pageLayout';
+	import { modal, header } from '$lib/stores/pageLayout';
 
-	modalInfo.set({
+	modal.set({
 		toggled: true,
 		title: 'It works',
 		exit: undefined,
@@ -28,8 +28,6 @@
 
 <TextField type="date"></TextField>
 <TextField></TextField>
-
-<Link>asdasdasdas</Link>
 
 <!--<FileInput></FileInput>-->
 
