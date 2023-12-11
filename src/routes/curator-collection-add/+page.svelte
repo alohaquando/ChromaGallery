@@ -11,5 +11,5 @@
 
     <Button class="mt-8 mb-6 w-full" icon="faMagifyingGlass">Find item</Button>
 
-    <DragList data={allItem} button="link" class="gap-4"></DragList>
+    <DragList data={allItem} type="action" class="gap-4"></DragList>
 </Modal>
