@@ -10,7 +10,7 @@
 
 <div class="pb-16 pt-32 w-full justify-start items-start gap-8 inline-flex flex-col">
 	<Divider full />
-	<Fab icon="faArrowUp" size="lg">Back to top</Fab>
+	<Fab href="" icon="faArrowUp" size="lg">Back to top</Fab>
 	<Divider></Divider>
 	<Title>Get in contact</Title>
 	<div class="inline-flex justify-between w-full">
@@ -22,8 +22,8 @@
 	<Divider></Divider>
 	<Title>Account</Title>
 	<Body
-		>Manage your bookmarks and lists of your favourite piece of art with an that online museum
-		account
+	>Manage your bookmarks and lists of your favourite piece of art with an that online museum
+	account
 	</Body>
 	<Button href="">Become a member</Button>
 	<Divider></Divider>
@@ -33,7 +33,7 @@
 			<Link class="ml-5" href="">Terms</Link>
 		</div>
 		<span class="text-white/50 items-center flex"
-			><Icon icon="faCopyright"></Icon><Body class="text-white/50">2023 Chroma Gallery</Body></span
+		><Icon icon="faCopyright"></Icon><Body class="text-white/50">2023 Chroma Gallery</Body></span
 		>
 	</div>
 </div>

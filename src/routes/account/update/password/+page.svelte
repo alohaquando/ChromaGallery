@@ -3,7 +3,10 @@
 	import Divider from '$lib/components/layouts/Divider.svelte';
 	import TextField from '$lib/components/inputs/TextField.svelte';
 	import BodyLarge from '$lib/components/typography/BodyLarge.svelte';
+	import Bg from '$lib/components/backgrounds/BG.svelte';
 </script>
+
+<Bg randomized />
 
 <Modal button="Update" title="Update password" transition={false}>
 	<div class=" flex flex-col justify-center gap-4">

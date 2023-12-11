@@ -24,7 +24,7 @@
 	<div class="w-full h-full flex flex-col justify-center items-center gap-8">
 		<PageTitle>{user1.name}</PageTitle>
 
-		<Button icon="faGear">Account settings</Button>
+		<Button href="../account/setting" icon="faGear">Account settings</Button>
 	</div>
 
 	<!-- My Lists -->

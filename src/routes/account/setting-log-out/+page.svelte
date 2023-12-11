@@ -2,7 +2,10 @@
 	import Dialog from '$lib/components/pop-up/Dialog.svelte';
 	import Modal from '$lib/components/pop-up/Modal.svelte';
 	import ListItem from '$lib/components/item/ListItem.svelte';
+	import Bg from '$lib/components/backgrounds/BG.svelte';
 </script>
+
+<Bg randomized />
 
 <Modal exit title="Account setting" transition={false}>
 	<div class=" flex flex-col justify-center items-center">
