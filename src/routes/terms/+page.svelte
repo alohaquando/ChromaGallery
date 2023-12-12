@@ -1,10 +1,10 @@
 <script>
-	import Bg from '$lib/components/backgrounds/BG.svelte';
 	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
 	import BodyLarge from '$lib/components/typography/BodyLarge.svelte';
-</script>
+	import { defaultLayout } from '$lib/stores/pageLayout.js';
 
-<Bg randomized />
+	defaultLayout();
+</script>
 
 <div class="w-full flex flex-col justify-center items-center gap-20">
 	<PageTitle>Terms</PageTitle>

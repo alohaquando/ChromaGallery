@@ -18,7 +18,7 @@
 	{#if !hideInfo}
 		<div class="flex-col gap-6 flex">
 			<Link href="../routes/item/{data.id}" type="headline">
-				{data.name}
+				{data.title}
 			</Link>
 			<Headline>{data.author}</Headline>
 			{#if !hideYear}

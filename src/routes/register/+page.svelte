@@ -3,7 +3,6 @@
 	import Divider from '$lib/components/layouts/Divider.svelte';
 	import TextField from '$lib/components/inputs/TextField.svelte';
 	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
-	import BG from '$lib/components/backgrounds/BG.svelte';
 	import { authHandlers } from '$lib/stores/store';
 
 	let email = '';
@@ -28,8 +27,6 @@
 		}
 	}
 </script>
-
-<BG randomized />
 
 <PageTitle>Let's get you ready</PageTitle>
 

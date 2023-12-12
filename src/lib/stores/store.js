@@ -29,12 +29,4 @@ export const authHandlers = {
 	}
 };
 
-export const header = writable({
-	type: 'main',
-	button: undefined,
-	destructive: undefined
-});
 
-export const navbar = writable({
-	type: 'user'
-});

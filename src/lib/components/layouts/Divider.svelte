@@ -1,7 +1,7 @@
 <script lang="ts">
 	export let full: boolean = false;
-	export let padding = '';
-	let paddingClass = 'my-' + padding;
+	let customClass = '';
+	export { customClass as class };
 
 	let widthClasses: string;
 	if (full) {
@@ -11,4 +11,4 @@
 	}
 </script>
 
-<div class=" h-px bg-white opacity-[15%] {paddingClass} {widthClasses}"></div>
+<div class=" h-px bg-white opacity-[15%] {customClass} {widthClasses}"></div>

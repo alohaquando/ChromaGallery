@@ -1,7 +1,7 @@
 export interface Item {
 	id: string;
-	src: string;
-	name: string;
+	image: string;
+	title: string;
 	location: string;
 	author: string;
 	description: string;
@@ -28,14 +28,4 @@ export interface List {
 	name: string;
 	items: string[];
 	description: string;
-}
-
-export interface Header {
-	type: string;
-	button?: string | undefined;
-	destructive?: string | undefined;
-}
-
-export interface Navigation {
-	type: 'user' | 'admin';
 }

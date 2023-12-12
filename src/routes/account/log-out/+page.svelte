@@ -1,8 +1,9 @@
 <script lang="ts">
+	import Dialog from '$lib/components/pop-up/Dialog.svelte';
 	import Modal from '$lib/components/pop-up/Modal.svelte';
 	import ListItem from '$lib/components/item/ListItem.svelte';
-	import { onMount } from 'svelte';
-	import { defaultLayout, modal } from '$lib/stores/pageLayout';
+	import { defaultLayout, dialog, modal } from '$lib/stores/pageLayout';
+	import { goto } from '$app/navigation';
 
 	defaultLayout();
 
@@ -10,47 +11,60 @@
 		...modalData,
 		toggled: true,
 		exit: true,
-		href: '/account/me',
-		title: 'Account setting',
-		transition: true
+		title: 'Account setting'
+	}));
+
+	dialog.update(dialogData => ({
+		toggled: true,
+		title: 'Log Out',
+		text: 'Are you sure you want to log out?',
+		button1: {
+			option: 'Cancel',
+			type: '',
+			function: function() {
+				goto('setting');
+			}
+		},
+		button2: {
+			option: 'Log out',
+			type: 'filled',
+			function: function() {
+			}
+		}
 	}));
 </script>
-
 <div class=" flex flex-col justify-center items-center">
 	<ListItem
 		bottomDivider={false}
 		class="w-full"
 		clickable={true}
-		href="update/name"
 		icon="faChevronRight"
+		leadingText="Update name"
 		topDivider={false}
-		trailingText="Update name"
 	/>
 	<ListItem
 		bottomDivider={false}
 		class="w-full"
 		clickable={true}
-		href="update/email"
 		icon="faChevronRight"
+		leadingText="Update email"
 		topDivider={false}
-		trailingText="Update email"
 	/>
 	<ListItem
 		bottomDivider={false}
 		class="w-full"
 		clickable={true}
-		href="update/password"
 		icon="faChevronRight"
+		leadingText="Update password"
 		topDivider={false}
-		trailingText="Update password"
 	/>
 	<ListItem
 		bottomDivider={false}
 		class="w-full"
 		clickable={true}
 		design="destructive"
-		href="log-out"
+		leadingText="Log out"
 		topDivider={false}
-		trailingText="Log out"
 	/>
 </div>
+

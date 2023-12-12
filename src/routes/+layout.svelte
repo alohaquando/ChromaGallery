@@ -1,8 +1,16 @@
 <script lang="ts">
 	import '../app.postcss';
 	import HeaderMain from '$lib/components/navigation/HeaderMain.svelte';
+	import HeaderBack from '$lib/components/navigation/HeaderBack.svelte';
 	import NavBar from '$lib/components/navigation/NavBar.svelte';
 	import Footer from '$lib/components/navigation/Footer.svelte';
+	import Modal from '$lib/components/pop-up/Modal.svelte';
+	import Dialog from '$lib/components/pop-up/Dialog.svelte';
+	import BG from '$lib/components/backgrounds/BG.svelte';
+	import faviconIco from '$lib/assets/favicons/favicon.ico';
+	import faviconSvg from '$lib/assets/favicons/icon.svg';
+	import faviconApple from '$lib/assets/favicons/apple-touch-icon.png';
+	import { header, navbar, modal, background, dialog, defaultLayout } from '$lib/stores/pageLayout';
 	import { onMount } from 'svelte';
 	import { auth, db } from '$lib/services/firebase/firebase';
 	import { doc, getDoc, setDoc } from 'firebase/firestore';
@@ -45,15 +53,39 @@
 <svelte:head>
 	<meta title="Chroma Gallery" />
 	<meta content="#000000" name="theme-color" />
+
+	<link href={faviconIco} rel="icon" sizes="32x32">
+	<link href={faviconSvg} rel="icon" type="image/svg+xml">
+	<link href={faviconApple} rel="apple-touch-icon">
 </svelte:head>
 <svelte:window bind:scrollY />
 
-<HeaderMain {scrollY}></HeaderMain>
-<div class="container mx-auto px-6">
-	<slot />
-	<Footer></Footer>
-</div>
+<BG class="{$modal.toggled === true? 'h-[100vh]' : ''}" color={$background.color} design={$background.design}
+		randomized={$background.randomized} />
 
-<div class="h-32" />
+{#if ($dialog.toggled)}
+	<Dialog title={$dialog.title} text={$dialog.text} button1={$dialog.button1} button2={$dialog.button2}></Dialog>
+{/if}
 
-<NavBar class="fixed bottom-0 left-0 z-40" />
+{#if $header.type === 'main'}
+	<HeaderMain {scrollY}></HeaderMain>
+{:else if $header.type === 'back'}
+	<HeaderBack button={$header.button} destructive={$header.destructive}></HeaderBack>
+{/if}
+
+{#if $modal.toggled === true}
+	<Modal class="container mx-auto px-6" title={$modal.title} href={$modal.href} exit={$modal.exit} button={$modal.button}
+				 buttonFunction={$modal.buttonFunction}
+				 transition={$modal.transition}>
+		<slot />
+	</Modal>
+{:else}
+	<div class="container mx-auto px-6">
+		<slot />
+		<Footer></Footer>
+	</div>
+	<div class="h-32" />
+	<NavBar class="fixed bottom-0 left-0 z-40" type={$navbar.type} />
+{/if}
+
+

@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Bg from '$lib/components/backgrounds/BG.svelte';
 	import DisplayLarge from '$lib/components/typography/DisplayLarge.svelte';
 	import Button from '$lib/components/controls/Button.svelte';
 	import BodyLarge from '$lib/components/typography/BodyLarge.svelte';
@@ -11,10 +10,10 @@
 	import Grid from '$lib/components/item/GridItem.svelte';
 	import CollectionList from '$lib/components/item/CollectionList.svelte';
 	import { itemList1, allCollection } from '$lib/../data.js';
+	import { defaultLayout } from '$lib/stores/pageLayout';
 
+	defaultLayout();
 </script>
-
-<Bg randomized />
 
 <PageTitle>Browse</PageTitle>
 <Button class="mb-12 mt-20" icon="faMagnifyingGlass" width="full">Search</Button>

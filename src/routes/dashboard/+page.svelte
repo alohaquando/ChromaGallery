@@ -1,8 +1,11 @@
 <script>
 	import { getDoc, doc, setDoc } from 'firebase/firestore';
-	import { authHandlers, authStore } from '../../lib/stores/store';
+	import { authHandlers, authStore } from '$lib/stores/store.js';
 	import { db } from '$lib/services/firebase/firebase';
 	import Item from '$lib/wip/backend/Item.svelte';
+	import { defaultLayout } from '$lib/stores/pageLayout.js';
+
+	defaultLayout();
 
 	let itemList = [];
 	let currItem = '';
@@ -28,6 +31,7 @@
 		currItem = itemList[index];
 		itemList = newItemList;
 	}
+
 	function removeItem(index) {
 		let newItemList = [...itemList].filter((val, i) => {
 			return i !== index;
@@ -76,21 +80,23 @@
 			/>
 			<button
 				class="flex border rounded justify-between border-red-500 w-[100px]"
-				on:click={addItem}>Add</button
+				on:click={addItem}>Add
+			</button
 			>
 		</div>
 	</div>
 {/if}
 
 <style>
-	.enterItem {
-		display: flex;
-		align-items: stretch;
-		/* border: 1px solid blue; */
-		border-radius: 5px;
-		overflow: hidden;
-	}
-	.errorBorder {
-		border-color: coral !important;
-	}
+    .enterItem {
+        display: flex;
+        align-items: stretch;
+        /* border: 1px solid blue; */
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+    .errorBorder {
+        border-color: coral !important;
+    }
 </style>

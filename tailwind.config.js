@@ -30,6 +30,14 @@ export default {
 						transform: 'translateY(0)'
 					}
 				},
+				flyUpOut: {
+					from: {
+						transform: 'translateY(0)'
+					},
+					to: {
+						transform: 'translateY(100%)'
+					}
+				},
 				flyDown: {
 					from: {
 						transform: 'translateY(-100%)'

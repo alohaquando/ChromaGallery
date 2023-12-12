@@ -5,10 +5,7 @@
 	import TextField from '$lib/components/inputs/TextField.svelte';
 	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
 	import BodySmall from '$lib/components/typography/BodySmall.svelte';
-	import BG from '$lib/components/backgrounds/BG.svelte';
 </script>
-
-<BG color="9EDC5F" />
 
 <PageTitle>Hi new friend</PageTitle>
 

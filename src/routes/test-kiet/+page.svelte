@@ -11,15 +11,24 @@
 	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
 	import Grid from '$lib/components/item/GridItem.svelte';
 	import RowItem from '$lib/components/item/RowItem.svelte';
-	import BG from '$lib/components/backgrounds/BG.svelte';
 	import { item1, collection1 } from '../../data';
 	import FileInput from '$lib/components/inputs/FileInput.svelte';
 	import TextField from '$lib/components/inputs/TextField.svelte';
+	import { modal, header, defaultLayout } from '$lib/stores/pageLayout';
+
+	defaultLayout();
+	modal.set({
+		toggled: true,
+		title: 'It works',
+		exit: undefined,
+		button: undefined,
+		destructive: undefined,
+		transition: undefined
+	});
 </script>
 
-<BG />
-
 <TextField type="date"></TextField>
+<TextField></TextField>
 
 <!--<FileInput></FileInput>-->
 
@@ -45,7 +54,7 @@
 <!--	<Block src="https://via.placeholder.com/342x272"></Block>-->
 <!--</div>-->
 
-<!--<Modal buttonText="Buton" title="Modao"></Modal>-->
+<!--<ModalInfo buttonText="Buton" title="Modao"></ModalInfo>-->
 
 <!--<Socials design="facebook"></Socials>-->
 <!--<Socials design="google" signup={false}></Socials>-->

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Modal from '$lib/components/pop-up/Modal.svelte';
+	import ModalInfo from '$lib/components/pop-up/Modal.svelte';
 	import TextField from '$lib/components/inputs/TextField.svelte';
 	import DragList from '$lib/components/item/DragList.svelte';
 	import { allItem } from '../../../data';

@@ -61,8 +61,6 @@
 	});
 </script>
 
-<BG randomized />
-
 <PageTitle>Welcome back</PageTitle>
 <div class="mt-16 gap-8 flex flex-col items-center w-full">
 	<div class="mb-4 items-center gap-4 flex flex-col w-full">
