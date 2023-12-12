@@ -2,8 +2,9 @@
 	import ModalInfo from '$lib/components/pop-up/Modal.svelte';
 	import Button from '$lib/components/controls/Button.svelte';
 	import DragList from '$lib/components/item/DragList.svelte';
-	import { allItem } from '../../../data.js';
+	import { allCollection } from '../../../data.js';
 	import { defaultLayout, modal } from '$lib/stores/pageLayout';
+	import CollectionList from '$lib/components/item/CollectionList.svelte';
 	import { onMount } from 'svelte';
 	import { itemStore } from '$lib/stores/itemStore.js';
 
@@ -39,4 +40,4 @@
 	<Button icon="faPlus">New list</Button>
 	<Button class="w-full" icon="faSearch">Find list</Button>
 </div>
-<DragList class="gap-4 mt-6" data={itemList}></DragList>
+<CollectionList class="gap-4 mt-6" data={allCollection} rowType></CollectionList>
