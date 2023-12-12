@@ -3,13 +3,11 @@
 	import Divider from '$lib/components/layouts/Divider.svelte';
 	import TextField from '$lib/components/inputs/TextField.svelte';
 	import BodyLarge from '$lib/components/typography/BodyLarge.svelte';
-	import { defaultLayout, modal } from '$lib/stores/pageLayout';
-
-	defaultLayout();
+	import { modal } from '$lib/stores/modal';
 
 	modal.update(modalData => ({
 		...modalData,
-		toggled: true,
+		modalPage: true,
 		href: '/account/setting',
 		title: 'Account setting',
 		button: 'Save'

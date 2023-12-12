@@ -3,13 +3,12 @@
 	import Button from '$lib/components/controls/Button.svelte';
 	import DragList from '$lib/components/item/DragList.svelte';
 	import { allCollection } from '../../../data.js';
-	import { defaultLayout, modal } from '$lib/stores/pageLayout';
 	import CollectionList from '$lib/components/item/CollectionList.svelte';
+	import { modal } from '$lib/stores/modal';
 
-	defaultLayout();
 	modal.update(modalData => ({
 		...modalData,
-		toggled: true,
+		modalPage: true,
 		exit: true,
 		title: 'Add to list',
 		button: 'Add'

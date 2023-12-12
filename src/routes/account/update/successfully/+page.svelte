@@ -3,13 +3,12 @@
 	import Icon from '$lib/components/iconography/Icon.svelte';
 	import BodyLarge from '$lib/components/typography/BodyLarge.svelte';
 	import Button from '$lib/components/controls/Button.svelte';
-	import { defaultLayout, modal } from '$lib/stores/pageLayout';
-
-	defaultLayout();
+	import { defaultLayout } from '$lib/stores/pageLayout';
+	import { modal } from '$lib/stores/modal';
 
 	modal.update(modalData => ({
 		...modalData,
-		toggled: true,
+		modalPage: true,
 		href: '/account/setting',
 		title: 'Account setting'
 	}));

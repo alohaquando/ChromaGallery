@@ -12,6 +12,7 @@
 
 	import { collection1, collection2, allCollection, allItem } from '../../../data';
 	import { defaultLayout } from '$lib/stores/pageLayout';
+	import { modal, previousState } from '$lib/stores/modal';
 
 
 	// account name

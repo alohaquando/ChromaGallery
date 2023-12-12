@@ -24,7 +24,8 @@
 	}
 </script>
 
-<div class="{customClass} w-72 flex-col justify-start items-start gap-6 inline-flex">
+<div
+	class="{customClass} {bookmark? 'w-full' : 'sm:w-72 w-full'} flex-col justify-start items-start gap-6 inline-flex grow">
 	<a class="w-full h-52 rounded-lg gap-1 inline-flex overflow-hidden relative" href="../routes/item/{data.id}">
 		{#if !bookmark}
 			<Block data={allItem.find((item) => item.id === data.items[0])}></Block>

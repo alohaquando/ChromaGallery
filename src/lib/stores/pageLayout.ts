@@ -1,103 +1,42 @@
-import { writable } from 'svelte/store';
-
-export const header = writable({
-	type: 'main',
-	href: '',
-	button: undefined,
-	buttonFunction: function () {},
-	destructive: undefined,
-	destructiveFunction: function () {},
-	actionDisabled: undefined
-});
-
-export const navbar = writable({
-	type: 'user'
-});
-
-export const modal = writable({
-	toggled: false,
-	href: '',
-	title: '',
-	exit: false,
-	button: undefined,
-	buttonFunction: function () {},
-	transition: false
-});
-
-export function resetModal() {
-	modal.set({
-		toggled: false,
-		href: '',
-		title: '',
-		exit: false,
-		button: undefined,
-		buttonFunction: function () {},
-		transition: false
-	});
-}
-
-export const background = writable({
-	color: 'B61BFF',
-	design: 'top',
-	randomized: true
-});
-
-export const dialog = writable({
-	toggled: false,
-	title: '',
-	text: '',
-	button1: {
-		option: '',
-		type: '',
-		function: function () {}
-	},
-	button2: {
-		option: '',
-		type: 'filled',
-		function: function () {}
-	}
-});
+import { resetHeader } from '$lib/stores/header';
+import { resetNavbar } from '$lib/stores/navbar';
+import { modal, previousState, resetModal } from '$lib/stores/modal';
+import { resetBackground } from '$lib/stores/background';
+import { resetDialog } from '$lib/stores/dialog';
 
 export const defaultLayout = () => {
-	header.set({
-		type: 'main',
-		href: '',
-		button: undefined,
-		buttonFunction: function () {},
-		destructive: undefined,
-		destructiveFunction: function () {},
-		actionDisabled: undefined
-	});
-	navbar.set({
-		type: 'user'
-	});
-	modal.set({
-		toggled: false,
-		href: '',
-		title: '',
-		exit: false,
-		button: undefined,
-		buttonFunction: function () {},
-		transition: false
-	});
-	background.set({
-		color: 'B61BFF',
-		design: 'top',
-		randomized: true
-	});
-	dialog.set({
-		toggled: false,
-		title: '',
-		text: '',
-		button1: {
-			option: '',
-			type: '',
-			function: function () {}
-		},
-		button2: {
-			option: '',
-			type: 'filled',
-			function: function () {}
-		}
-	});
+	resetHeader();
+	resetNavbar();
+	resetModal();
+	resetBackground();
+	resetDialog();
+};
+
+let ModalState: boolean;
+let PrevState: boolean;
+modal.subscribe((value) => (ModalState = value.modalPage));
+previousState.subscribe((value) => PrevState);
+
+export const stateCheck = () => {
+	if (!PrevState && ModalState) {
+		modal.update((modalData) => ({
+			...modalData,
+			animation: 'animate-flyUp',
+			exit: true
+		}));
+
+		previousState.set(true);
+	} else if (PrevState && ModalState) {
+		modal.update((modalData) => ({
+			...modalData,
+			animation: '',
+			exit: false
+		}));
+	} else if (PrevState && !ModalState) {
+		modal.update((modalData) => ({
+			...modalData,
+			animation: 'animate-flyUpOut'
+		}));
+		previousState.set(false);
+	}
 };

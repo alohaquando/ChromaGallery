@@ -14,11 +14,11 @@
 	import { item1, collection1 } from '../../data';
 	import FileInput from '$lib/components/inputs/FileInput.svelte';
 	import TextField from '$lib/components/inputs/TextField.svelte';
-	import { modal, header, defaultLayout } from '$lib/stores/pageLayout';
+	import { header } from '$lib/stores/header';
+	import { modal } from '$lib/stores/modal';
 
-	defaultLayout();
 	modal.set({
-		toggled: true,
+		modalPage: true,
 		title: 'It works',
 		exit: undefined,
 		button: undefined,

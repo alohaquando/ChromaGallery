@@ -3,13 +3,14 @@
 	import TextField from '$lib/components/inputs/TextField.svelte';
 	import DragList from '$lib/components/item/DragList.svelte';
 	import { allItem } from '../../../data';
-	import { modal } from '$lib/stores/pageLayout';
+
+	import { modal } from '$lib/stores/modal';
 
 	export let number = 0;
 
 	modal.update(modalData => ({
 		...modalData,
-		toggled: true,
+		modalPage: true,
 		exit: true,
 		title: 'Add to list',
 		button: 'Add'

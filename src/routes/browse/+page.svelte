@@ -10,9 +10,6 @@
 	import Grid from '$lib/components/item/GridItem.svelte';
 	import CollectionList from '$lib/components/item/CollectionList.svelte';
 	import { itemList1, allCollection } from '$lib/../data.js';
-	import { defaultLayout } from '$lib/stores/pageLayout';
-
-	defaultLayout();
 </script>
 
 <PageTitle>Browse</PageTitle>

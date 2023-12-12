@@ -1,6 +1,9 @@
 <script lang="ts">
 	import HeaderBack from '$lib/components/navigation/HeaderBack.svelte';
 	import Headline from '$lib/components/typography/Headline.svelte';
+	import { afterNavigate, beforeNavigate } from '$app/navigation';
+	import { modal, previousState } from '$lib/stores/modal';
+	import { onMount } from 'svelte';
 
 	let link: string | undefined;
 	export { link as href };
@@ -9,14 +12,14 @@
 	export let button: string | undefined;
 	export let buttonFunction = () => {
 	};
-	export let transition: boolean = true;
+	export let animation = '';
 
 	let customClass = '';
 	export { customClass as class };
 </script>
 
 <div
-	class="{customClass} relative top-0 z-40 w-full h-screen backdrop-blur-md bg-gradient-to-b from-neutral-900 via-black/40 via-90% to-black/0 flex border-t-4 border-white/20 {transition? 'animate-flyUp' : ''} flex-col"
+	class="{customClass} {animation} relative top-5 z-40 w-screen h-[95vh] backdrop-blur-md bg-gradient-to-b from-neutral-900 via-black/40 via-90% to-black/0 flex border-t-4 border-white/20 flex-col"
 >
 	<HeaderBack {button} {buttonFunction} {exit} href="{link}" isRelative
 							responsive={false}></HeaderBack>

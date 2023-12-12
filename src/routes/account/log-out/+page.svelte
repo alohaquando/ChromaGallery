@@ -2,36 +2,18 @@
 	import Dialog from '$lib/components/pop-up/Dialog.svelte';
 	import Modal from '$lib/components/pop-up/Modal.svelte';
 	import ListItem from '$lib/components/item/ListItem.svelte';
-	import { defaultLayout, dialog, modal } from '$lib/stores/pageLayout';
 	import { goto } from '$app/navigation';
-
-	defaultLayout();
+	import { modal } from '$lib/stores/modal';
+	import { dialog } from '$lib/stores/dialog';
 
 	modal.update(modalData => ({
 		...modalData,
-		toggled: true,
+		modalPage: true,
 		exit: true,
 		title: 'Account setting'
 	}));
 
-	dialog.update(dialogData => ({
-		toggled: true,
-		title: 'Log Out',
-		text: 'Are you sure you want to log out?',
-		button1: {
-			option: 'Cancel',
-			type: '',
-			function: function() {
-				goto('setting');
-			}
-		},
-		button2: {
-			option: 'Log out',
-			type: 'filled',
-			function: function() {
-			}
-		}
-	}));
+
 </script>
 <div class=" flex flex-col justify-center items-center">
 	<ListItem

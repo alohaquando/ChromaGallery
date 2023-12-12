@@ -7,8 +7,6 @@
 	import { findItem } from '$lib/utils/filter';
 	import { defaultLayout } from '$lib/stores/pageLayout';
 
-	defaultLayout();
-
 	let itemList = findItem(collection1.items);
 	let str = count(collection1.items);
 </script>

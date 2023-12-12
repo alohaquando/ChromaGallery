@@ -10,35 +10,42 @@
 	import faviconIco from '$lib/assets/favicons/favicon.ico';
 	import faviconSvg from '$lib/assets/favicons/icon.svg';
 	import faviconApple from '$lib/assets/favicons/apple-touch-icon.png';
-	import { header, navbar, modal, background, dialog, defaultLayout } from '$lib/stores/pageLayout';
+	import { defaultLayout, stateCheck } from '$lib/stores/pageLayout';
 	import { onMount } from 'svelte';
 	import { auth, db } from '$lib/services/firebase/firebase';
 	import { doc, getDoc, setDoc } from 'firebase/firestore';
 	import { authStore } from '$lib/stores/store';
 	import { itemStore } from '$lib/stores/itemStore';
+	import { header } from '$lib/stores/header';
+	import { navbar } from '$lib/stores/navbar';
+	import { modal } from '$lib/stores/modal';
+	import { background } from '$lib/stores/background';
+	import { dialog } from '$lib/stores/dialog';
+	import { afterNavigate } from '$app/navigation';
+
 	let scrollY: number;
 
-		// ******Bookmark******
+	// ******Bookmark******
 	onMount(() => {
 		const bookmarkItem = auth.onAuthStateChanged(async (user) => {
 			if (!user) {
 				return;
 			}
-			let dataToSetToStore:any;
-			const docRef = doc(db, 'users', user.uid, "lists", "NVdWTuqsEWR0CdJIsJ7R");
+			let dataToSetToStore: any;
+			const docRef = doc(db, 'users', user.uid, 'lists', 'NVdWTuqsEWR0CdJIsJ7R');
 			const docSnap = await getDoc(docRef);
 			if (!docSnap.exists()) {
-				const userRef = doc(db, 'users', user.uid, "lists", "NVdWTuqsEWR0CdJIsJ7R");
+				const userRef = doc(db, 'users', user.uid, 'lists', 'NVdWTuqsEWR0CdJIsJ7R');
 				dataToSetToStore = {
 					email: user?.email,
-					items: [],
+					items: []
 				};
 				await setDoc(userRef, dataToSetToStore, { merge: true });
 			} else {
 				const userData = docSnap.data();
 				dataToSetToStore = userData;
 			}
-			authStore.update((curr:any) => {
+			authStore.update((curr: any) => {
 				return {
 					...curr,
 					user,
@@ -47,6 +54,11 @@
 				};
 			});
 		});
+	});
+
+	afterNavigate(() => {
+		defaultLayout();
+		stateCheck();
 	});
 </script>
 
@@ -60,26 +72,22 @@
 </svelte:head>
 <svelte:window bind:scrollY />
 
-<BG class="{$modal.toggled === true? 'h-[100vh]' : ''}" color={$background.color} design={$background.design}
+<BG class="{$modal.modalPage === true? 'h-[90vh]' : ''}" color={$background.color} design={$background.design}
 		randomized={$background.randomized} />
 
-{#if ($dialog.toggled)}
-	<Dialog title={$dialog.title} text={$dialog.text} button1={$dialog.button1} button2={$dialog.button2}></Dialog>
-{/if}
-
-{#if $header.type === 'main'}
-	<HeaderMain {scrollY}></HeaderMain>
-{:else if $header.type === 'back'}
-	<HeaderBack button={$header.button} destructive={$header.destructive}></HeaderBack>
-{/if}
-
-{#if $modal.toggled === true}
-	<Modal class="container mx-auto px-6" title={$modal.title} href={$modal.href} exit={$modal.exit} button={$modal.button}
+{#if $modal.modalPage === true}
+	<Modal class="container mx-auto px-6" title={$modal.title} href={$modal.href} exit={$modal.exit}
+				 button={$modal.button}
 				 buttonFunction={$modal.buttonFunction}
-				 transition={$modal.transition}>
+				 animation={$modal.animation}>
 		<slot />
 	</Modal>
 {:else}
+	{#if $header.type === 'main'}
+		<HeaderMain {scrollY}></HeaderMain>
+	{:else if $header.type === 'back'}
+		<HeaderBack button={$header.button} destructive={$header.destructive}></HeaderBack>
+	{/if}
 	<div class="container mx-auto px-6">
 		<slot />
 		<Footer></Footer>
@@ -87,5 +95,3 @@
 	<div class="h-32" />
 	<NavBar class="fixed bottom-0 left-0 z-40" type={$navbar.type} />
 {/if}
-
-
