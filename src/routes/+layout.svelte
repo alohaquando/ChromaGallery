@@ -11,7 +11,7 @@
 	import faviconSvg from '$lib/assets/favicons/icon.svg';
 	import faviconApple from '$lib/assets/favicons/apple-touch-icon.png';
 	import { defaultLayout, stateCheck } from '$lib/stores/pageLayout';
-	import { onMount } from 'svelte';
+	import { afterUpdate, onMount } from 'svelte';
 	import { auth, db } from '$lib/services/firebase/firebase';
 	import { doc, getDoc, setDoc } from 'firebase/firestore';
 	import { authStore } from '$lib/stores/store';
@@ -21,7 +21,7 @@
 	import { modal } from '$lib/stores/modal';
 	import { background } from '$lib/stores/background';
 	import { dialog } from '$lib/stores/dialog';
-	import { afterNavigate } from '$app/navigation';
+	import { afterNavigate, beforeNavigate } from '$app/navigation';
 
 	let scrollY: number;
 
@@ -58,8 +58,12 @@
 
 	afterNavigate(() => {
 		defaultLayout();
+	});
+
+	afterUpdate(() => {
 		stateCheck();
 	});
+
 </script>
 
 <svelte:head>

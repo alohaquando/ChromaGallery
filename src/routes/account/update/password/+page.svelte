@@ -1,9 +1,7 @@
 <script lang="ts">
-	import Modal from '$lib/components/pop-up/Modal.svelte';
 	import Divider from '$lib/components/layouts/Divider.svelte';
 	import TextField from '$lib/components/inputs/TextField.svelte';
 	import BodyLarge from '$lib/components/typography/BodyLarge.svelte';
-	import { defaultLayout } from '$lib/stores/pageLayout';
 	import { modal } from '$lib/stores/modal';
 
 	modal.update(modalData => ({

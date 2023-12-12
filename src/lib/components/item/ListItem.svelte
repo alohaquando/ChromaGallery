@@ -3,8 +3,7 @@
 	import Link from '$lib/components/links/Link.svelte';
 	import Icon from '$lib/components/iconography/Icon.svelte';
 
-	export let leadingText: string | undefined;
-	export let trailingText: string | undefined;
+	export let text: string | undefined;
 	export let href: string | undefined = undefined;
 	export let icon: string | undefined = undefined;
 	export let clickable: boolean = false;
@@ -28,29 +27,18 @@
 	export { customClass as class };
 </script>
 
-<svelte:element
+<button
 	class="{customClass} flex flex-row min-h-[3rem] py-4 justify-between space-x-4 relative items-center"
 	on:click
-	role={clickable ? 'button' : ''}
 	tabindex="0"
-	this={clickable ? 'button' : 'div'}
 >
-	{#if leadingText}
-		<div class="grow flex-1 flex items-center {textClasses}">
-			<Body>
-			{leadingText}
-			</Body>
-		</div>
-	{/if}
-	{#if trailingText}
-		<div
-			class="grow flex-1 flex items-center hyphens-auto {textClasses}">
-			<svelte:component {href} this={href ? Link : Body}
-												linkColor="{design === 'destructive' ? 'from-red-500 to-red-300' : undefined}">
-				{trailingText}
-			</svelte:component>
-		</div>
-	{/if}
+	<div
+		class="grow flex-1 flex items-center hyphens-auto {textClasses}">
+		<svelte:component {href} linkColor="{design === 'destructive' ? 'from-red-500 to-red-300' : undefined}"
+											this={href ? Link : Body}>
+			{text}
+		</svelte:component>
+	</div>
 	<Icon {icon} size="sm" />
 	{#if topDivider}
 		<div class=" h-px bg-[#222222] w-full absolute top-0 -left-4" />
@@ -58,7 +46,7 @@
 	{#if bottomDivider}
 		<div class=" h-px bg-[#222222] w-full absolute -bottom-px -left-4" />
 	{/if}
-</svelte:element>
+</button>
 
 <!--Example-->
 <!--<ListItem leadingText="This" trailingText="That"/>-->

@@ -1,11 +1,8 @@
 <script lang="ts">
-	import Modal from '$lib/components/pop-up/Modal.svelte';
 	import ListItem from '$lib/components/item/ListItem.svelte';
-	import { onMount } from 'svelte';
 	import { modal, previousState } from '$lib/stores/modal';
 	import { resetDialog, toggleDialog } from '$lib/stores/dialog';
 	import Dialog from '$lib/components/pop-up/Dialog.svelte';
-	import { goto } from '$app/navigation';
 
 	modal.update(modalData => ({
 		...modalData,
@@ -35,8 +32,8 @@
 		clickable={true}
 		href="update/name"
 		icon="faChevronRight"
+		text="Update name"
 		topDivider={false}
-		trailingText="Update name"
 	/>
 	<ListItem
 		bottomDivider={false}
@@ -44,8 +41,8 @@
 		clickable={true}
 		href="update/email"
 		icon="faChevronRight"
+		text="Update email"
 		topDivider={false}
-		trailingText="Update email"
 	/>
 	<ListItem
 		bottomDivider={false}
@@ -53,8 +50,8 @@
 		clickable={true}
 		href="update/password"
 		icon="faChevronRight"
+		text="Update password"
 		topDivider={false}
-		trailingText="Update password"
 	/>
 	<ListItem
 		bottomDivider={false}
@@ -62,8 +59,8 @@
 		clickable={true}
 		design="destructive"
 		on:click={toggleDialog}
+		text="Log out"
 		topDivider={false}
-		trailingText="Log out"
 	/>
 </div>
 <Dialog button1={button1} button2={button2} text="Are you sure you want to log out?" title="Log out"></Dialog>

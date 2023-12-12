@@ -28,12 +28,8 @@
 	export { customClass as class };
 </script>
 
-<svelte:element
+<div
 	class="{customClass} flex flex-row min-h-[3rem] py-4 justify-between space-x-4 relative items-center"
-	on:click
-	role={clickable ? 'button' : ''}
-	tabindex="0"
-	this={clickable ? 'button' : 'div'}
 >
 	{#if leadingText}
 		<div class="grow flex-1 flex items-center {textClasses}">
@@ -58,4 +54,4 @@
 	{#if bottomDivider}
 		<div class=" h-px bg-[#222222] w-full absolute -bottom-px -left-4" />
 	{/if}
-</svelte:element>
+</div>

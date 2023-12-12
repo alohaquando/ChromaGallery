@@ -6,18 +6,18 @@
 	import CollectionBlock from '$lib/components/item/CollectionBlock.svelte';
 	import Fab from '$lib/components/controls/Fab.svelte';
 	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
-	import Grid from '$lib/components/item/GridItem.svelte';
 	import GridCollection from '$lib/components/item/GridCollection.svelte';
 	import { user1 } from '../../../data';
 
 	import { collection1, collection2, allCollection, allItem } from '../../../data';
-	import { defaultLayout } from '$lib/stores/pageLayout';
+	import { defaultLayout, stateCheck } from '$lib/stores/pageLayout';
 	import { modal, previousState } from '$lib/stores/modal';
 
 
 	// account name
 	// Sign In condition
 	export let signIn = true;
+	stateCheck();
 </script>
 
 {#if signIn}

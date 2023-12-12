@@ -1,9 +1,7 @@
 <script lang="ts">
-	import Modal from '$lib/components/pop-up/Modal.svelte';
 	import Icon from '$lib/components/iconography/Icon.svelte';
 	import BodyLarge from '$lib/components/typography/BodyLarge.svelte';
 	import Button from '$lib/components/controls/Button.svelte';
-	import { defaultLayout } from '$lib/stores/pageLayout';
 	import { modal } from '$lib/stores/modal';
 
 	modal.update(modalData => ({

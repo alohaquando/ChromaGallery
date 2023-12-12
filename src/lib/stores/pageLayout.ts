@@ -15,17 +15,16 @@ export const defaultLayout = () => {
 let ModalState: boolean;
 let PrevState: boolean;
 modal.subscribe((value) => (ModalState = value.modalPage));
-previousState.subscribe((value) => PrevState);
+previousState.subscribe((value) => (PrevState = value));
 
 export const stateCheck = () => {
 	if (!PrevState && ModalState) {
+		previousState.set(true);
 		modal.update((modalData) => ({
 			...modalData,
 			animation: 'animate-flyUp',
 			exit: true
 		}));
-
-		previousState.set(true);
 	} else if (PrevState && ModalState) {
 		modal.update((modalData) => ({
 			...modalData,
@@ -33,10 +32,10 @@ export const stateCheck = () => {
 			exit: false
 		}));
 	} else if (PrevState && !ModalState) {
+		previousState.set(false);
 		modal.update((modalData) => ({
 			...modalData,
 			animation: 'animate-flyUpOut'
 		}));
-		previousState.set(false);
 	}
 };
