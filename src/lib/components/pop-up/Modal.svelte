@@ -16,7 +16,7 @@
 </script>
 
 <div
-	class="{customClass} relative top-0 z-40 w-screen h-screen backdrop-blur-md bg-gradient-to-b from-neutral-900 via-black/40 via-90% to-black/0 flex border-t-4 border-white/20 {transition? 'animate-flyUp' : ''} flex-col overflow-y-scroll"
+	class="{customClass} relative top-0 z-40 w-full h-screen backdrop-blur-md bg-gradient-to-b from-neutral-900 via-black/40 via-90% to-black/0 flex border-t-4 border-white/20 {transition? 'animate-flyUp' : ''} flex-col"
 >
 	<HeaderBack {button} {buttonFunction} {exit} href="{link}" isRelative
 							responsive={false}></HeaderBack>
