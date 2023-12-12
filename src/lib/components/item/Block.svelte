@@ -30,7 +30,8 @@
 			typeClass = '';
 			break;
 		case true:
-			typeClass = 'bg-gradient-to-b from-indigo-600 to-fuchsia-700  rounded-lg inline-flex justify-center items-center';
+			typeClass =
+				'bg-gradient-to-b from-indigo-600 to-fuchsia-700  rounded-lg inline-flex justify-center items-center';
 			break;
 	}
 
@@ -39,11 +40,11 @@
 </script>
 
 <svelte:element
+	this={link ? 'a' : 'div'}
 	class="{!icon
 		? sizeClass
 		: 'h-14 w-14'} {typeClass} {customClass} relative overflow-hidden w-full"
-	href="../routes/item/{data.id}"
-	this={link ? 'a' : 'div'}
+	href="../item/{data.id}"
 >
 	{#if bookmark}
 		<Icon icon="faStar" type="solid" class="absolute" size={iconSize}></Icon>
@@ -51,7 +52,10 @@
 			<div class="absolute h-16 w-16 blur-xl bg-white rounded-full"></div>
 		{/if}
 	{:else}
-		<img alt={data.title} class="{stretch ? 'w-full h-full' : 'h-auto w-full'} {icon ? 'absolute' : ''} object-cover"
-				 src={data.image} />
+		<img
+			alt={data.title}
+			class="{stretch ? 'w-full h-full' : 'h-auto w-full'} {icon ? 'absolute' : ''} object-cover"
+			src={data.image}
+		/>
 	{/if}
 </svelte:element>

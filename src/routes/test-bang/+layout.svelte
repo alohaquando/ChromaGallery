@@ -9,35 +9,35 @@
 
 	const nonAuthRoutes = ['/'];
 	// ******Bookmark******
-	// onMount(() => {
-	// 	const bookmarkItem = auth.onAuthStateChanged(async (user) => {
-	// 		if (!user) {
-	// 			return;
-	// 		}
-	// 		let dataToSetToStore;
-	// 		const docRef = doc(db, 'users', user.uid, "lists", "NVdWTuqsEWR0CdJIsJ7R");
-	// 		const docSnap = await getDoc(docRef);
-	// 		if (!docSnap.exists()) {
-	// 			const userRef = doc(db, 'users', user.uid, "lists", "NVdWTuqsEWR0CdJIsJ7R");
-	// 			dataToSetToStore = {
-	// 				email: user?.email,
-	// 				items: [],
-	// 			};
-	// 			await setDoc(userRef, dataToSetToStore, { merge: true });
-	// 		} else {
-	// 			const userData = docSnap.data();
-	// 			dataToSetToStore = userData;
-	// 		}
-	// 		authStore.update((curr) => {
-	// 			return {
-	// 				...curr,
-	// 				user,
-	// 				data: dataToSetToStore,
-	// 				loading: false
-	// 			};
-	// 		});
-	// 	});
-	// });
+	onMount(() => {
+		const bookmarkItem = auth.onAuthStateChanged(async (user) => {
+			if (!user) {
+				return;
+			}
+			let dataToSetToStore;
+			const docRef = doc(db, 'users', user.uid, "lists", "bookmark");
+			const docSnap = await getDoc(docRef);
+			if (!docSnap.exists()) {
+				const userRef = doc(db, 'users', user.uid, "lists", "bookmark");
+				dataToSetToStore = {
+					email: user?.email,
+					items: [],
+				};
+				await setDoc(userRef, dataToSetToStore, { merge: true });
+			} else {
+				const userData = docSnap.data();
+				dataToSetToStore = userData;
+			}
+			authStore.update((curr) => {
+				return {
+					...curr,
+					user,
+					data: dataToSetToStore,
+					loading: false
+				};
+			});
+		});
+	});
 
 	// ******Create List******
 	// onMount(() => {

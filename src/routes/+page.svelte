@@ -67,7 +67,7 @@
 	</div>
 	<div class="flex w-full justify-between max-w-3xl mt-32">
 		{#if userEmail}
-		<Fab class="" href="/sign-in" icon="faUser" size="lg">{userEmail}</Fab>
+		<Fab class="" href="/account/me" icon="faUser" size="lg">My account</Fab>
 		{:else}
 		<Fab class="" href="/sign-in" icon="faUser" size="lg">Sign me<br />in</Fab>
 		{/if}

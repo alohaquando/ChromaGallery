@@ -19,7 +19,6 @@
 	// Sign In condition
 	export let signIn = true;
 
-
 	let userEmail ;
 	let userName;
 	const authen = getAuth();
@@ -38,7 +37,7 @@
 	<!-- Sign In -->
 	<div class="w-full h-full flex flex-col justify-center items-center">
 		<div class="w-full h-full flex flex-col justify-center items-center gap-8">
-			<PageTitle>{user1.name}</PageTitle>
+			<PageTitle>{userName}</PageTitle>
 
 			<Button href="../account/setting" icon="faGear">Account settings</Button>
 		</div>

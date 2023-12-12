@@ -11,8 +11,27 @@
 	import CollectionList from '$lib/components/item/CollectionList.svelte';
 	import { itemList1, allCollection } from '$lib/../data.js';
 	import { defaultLayout } from '$lib/stores/pageLayout';
+	import { onMount } from 'svelte';
+	import { itemStore } from '$lib/stores/itemStore';
 
 	defaultLayout();
+
+	let itemList = [];
+	onMount(async () => {
+		itemStore
+			.getAllItems()
+			.then((itemsData) => {
+				itemList = itemsData;
+				console.log(itemList);
+				
+				// Do something with the items data
+			})
+			.catch((error) => {
+				// Handle errors
+				console.error('Error:', error);
+			});
+	});
+
 </script>
 
 <PageTitle>Browse</PageTitle>
@@ -29,6 +48,6 @@
 	<div class="w-full flex flex-col justify-center gap-8">
 		<BodyLarge>All items</BodyLarge>
 
-		<Grid data={itemList1}></Grid>
+		<Grid data={itemList}></Grid>
 	</div>
 </div>
