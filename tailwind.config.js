@@ -35,7 +35,7 @@ export default {
 						transform: 'translateY(0)'
 					},
 					to: {
-						transform: 'translateY(100%)'
+						transform: 'translateY(120%)'
 					}
 				},
 				flyDown: {
@@ -192,6 +192,7 @@ export default {
 			},
 			animation: {
 				flyUp: 'flyUp 0.4s ease-out',
+				flyUpOut: 'flyUpOut 0.4s ease-out',
 				flyDown: 'flyDown 0.4s ease-out',
 				flyLeft: 'flyLeft 0.4s ease-out',
 				flyRight: 'flyRight 0.4s ease-out',

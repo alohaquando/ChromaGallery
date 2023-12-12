@@ -1,10 +1,9 @@
 <script lang="ts">
 	import HeroImage from '$lib/components/item/HeroImage.svelte';
-	import ListItem from '$lib/components/item/ListItem.svelte';
+	import InfoRow from '$lib/components/item/InfoRow.svelte';
 	import Fab from '$lib/components/controls/Fab.svelte';
 	import Button from '$lib/components/controls/Button.svelte';
 	import BodyLarge from '$lib/components/typography/BodyLarge.svelte';
-
 	import { itemStore } from '$lib/stores/itemStore';
 	import { onMount } from 'svelte';
 	import { auth, db } from '$lib/services/firebase/firebase';
@@ -59,7 +58,7 @@
 </script>
 
 {#if $itemStore}
-	<HeroImage data={$itemStore}></HeroImage>
+	<HeroImage imageFull data={$itemStore}></HeroImage>
 
 	<div class="flex justify-between items-end mb-12">
 		<div class="flex space-x-2">
@@ -74,8 +73,8 @@
 	</BodyLarge>
 
 	<div class="mt-8">
-		<ListItem href="/" leadingText="Object ID" trailingText={data.slug} />
-		<ListItem href="/" leadingText="Place made" trailingText={$itemStore.location} />
+		<InfoRow href="#" leadingText="Object ID" trailingText={data.slug} />
+		<InfoRow href="#" leadingText="Place made" trailingText={$itemStore.location} />
 		<!--	<ListItem href="/" leadingText="Named collection" trailingText="Harold E. Edgerton Collection" />-->
 	</div>
 

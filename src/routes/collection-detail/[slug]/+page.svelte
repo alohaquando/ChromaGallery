@@ -3,11 +3,9 @@
 	import BodyLarge from '$lib/components/typography/BodyLarge.svelte';
 	import Grid from '$lib/components/item/GridItem.svelte';
 	import { count } from '$lib/utils/countItem';
-	import { collection1 } from '../../data';
+	import { collection1 } from '../../../data';
 	import { findItem } from '$lib/utils/filter';
 	import { defaultLayout } from '$lib/stores/pageLayout';
-
-	defaultLayout();
 
 	let itemList = findItem(collection1.items);
 	let str = count(collection1.items);

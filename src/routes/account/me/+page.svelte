@@ -1,18 +1,17 @@
 <script lang="ts">
-	import DisplayLarge from '$lib/components/typography/DisplayLarge.svelte';
-	import Button from '$lib/components/controls/Button.svelte';
-	import BodyLarge from '$lib/components/typography/BodyLarge.svelte';
-	import BodySmall from '$lib/components/typography/BodySmall.svelte';
-	import CollectionBlock from '$lib/components/item/CollectionBlock.svelte';
-	import Fab from '$lib/components/controls/Fab.svelte';
-	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
-	import Grid from '$lib/components/item/GridItem.svelte';
-	import GridCollection from '$lib/components/item/GridCollection.svelte';
+    import DisplayLarge from '$lib/components/typography/DisplayLarge.svelte';
+    import Button from '$lib/components/controls/Button.svelte';
+    import BodyLarge from '$lib/components/typography/BodyLarge.svelte';
+    import BodySmall from '$lib/components/typography/BodySmall.svelte';
+    import CollectionBlock from '$lib/components/item/CollectionBlock.svelte';
+    import Fab from '$lib/components/controls/Fab.svelte';
+    import PageTitle from '$lib/components/layouts/PageTitle.svelte';
+    import GridCollection from '$lib/components/item/GridCollection.svelte';
+    import { user1 } from '../../../data';
 	import { user1 } from '../../../data';
-
-	import { collection1, collection2, allCollection, allItem } from '../../../data';
-	import { defaultLayout } from '$lib/stores/pageLayout';
 	import { getAuth, onAuthStateChanged } from 'firebase/auth';
+	import { defaultLayout, stateCheck } from '$lib/stores/pageLayout';
+	import { modalData, previousState } from '$lib/stores/modal';
 
 
 	// account name
@@ -38,7 +37,6 @@
 	<div class="w-full h-full flex flex-col justify-center items-center">
 		<div class="w-full h-full flex flex-col justify-center items-center gap-8">
 			<PageTitle>{userName}</PageTitle>
-
 			<Button href="../account/setting" icon="faGear">Account settings</Button>
 		</div>
 

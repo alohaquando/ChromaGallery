@@ -1,22 +1,30 @@
 <script lang="ts">
-	import '../app.postcss';
-	import HeaderMain from '$lib/components/navigation/HeaderMain.svelte';
-	import HeaderBack from '$lib/components/navigation/HeaderBack.svelte';
-	import NavBar from '$lib/components/navigation/NavBar.svelte';
-	import Footer from '$lib/components/navigation/Footer.svelte';
-	import Modal from '$lib/components/pop-up/Modal.svelte';
-	import Dialog from '$lib/components/pop-up/Dialog.svelte';
-	import BG from '$lib/components/backgrounds/BG.svelte';
-	import faviconIco from '$lib/assets/favicons/favicon.ico';
-	import faviconSvg from '$lib/assets/favicons/icon.svg';
-	import faviconApple from '$lib/assets/favicons/apple-touch-icon.png';
-	import { header, navbar, modal, background, dialog, defaultLayout } from '$lib/stores/pageLayout';
-	import { onMount } from 'svelte';
-	import { auth, db } from '$lib/services/firebase/firebase';
-	import { doc, getDoc, setDoc } from 'firebase/firestore';
-	import { authStore } from '$lib/stores/store';
-	import { itemStore } from '$lib/stores/itemStore';
-	let scrollY: number;
+    import '../app.postcss';
+    import HeaderMain from '$lib/components/navigation/HeaderMain.svelte';
+    import HeaderBack from '$lib/components/navigation/HeaderBack.svelte';
+    import NavBar from '$lib/components/navigation/NavBar.svelte';
+    import Footer from '$lib/components/navigation/Footer.svelte';
+    import Modal from '$lib/components/pop-up/Modal.svelte';
+    import Dialog from '$lib/components/pop-up/Dialog.svelte';
+    import BG from '$lib/components/backgrounds/BG.svelte';
+    import faviconIco from '$lib/assets/favicons/favicon.ico';
+    import faviconSvg from '$lib/assets/favicons/icon.svg';
+    import faviconApple from '$lib/assets/favicons/apple-touch-icon.png';
+    import { defaultLayout, generateModal, stateCheck } from '$lib/stores/pageLayout';
+    import { onMount } from 'svelte';
+    import { auth, db } from '$lib/services/firebase/firebase';
+    import { doc, getDoc, setDoc } from 'firebase/firestore';
+    import { authStore } from '$lib/stores/store';
+    import { itemStore } from '$lib/stores/itemStore';
+    import { header } from '$lib/stores/header';
+    import { navbar } from '$lib/stores/navbar';
+    import { modalData } from '$lib/stores/modal';
+    import type { modal } from '$lib/stores/modal';
+    import { background } from '$lib/stores/background';
+    import { dialog } from '$lib/stores/dialog';
+    import { afterNavigate, beforeNavigate, onNavigate } from '$app/navigation';
+
+    let scrollY: number;
 
 	// ******Set Default Bookmark******
 	onMount(() => {
@@ -51,8 +59,8 @@
 </script>
 
 <svelte:head>
-	<meta title="Chroma Gallery" />
-	<meta content="#000000" name="theme-color" />
+    <meta title="Chroma Gallery" />
+    <meta content="#000000" name="theme-color" />
 
 	<link href={faviconIco} rel="icon" sizes="32x32" />
 	<link href={faviconSvg} rel="icon" type="image/svg+xml" />
@@ -60,45 +68,26 @@
 </svelte:head>
 <svelte:window bind:scrollY />
 
-<BG
-	class={$modal.toggled === true ? 'h-[100vh]' : ''}
-	color={$background.color}
-	design={$background.design}
-	randomized={$background.randomized}
-/>
+<BG class="{$modalData.modalPage === true? 'h-[90vh]' : ''}" color={$background.color} design={$background.design}
+    randomized={$background.randomized} />
 
-{#if $dialog.toggled}
-	<Dialog
-		title={$dialog.title}
-		text={$dialog.text}
-		button1={$dialog.button1}
-		button2={$dialog.button2}
-	></Dialog>
-{/if}
-
-{#if $header.type === 'main'}
-	<HeaderMain {scrollY}></HeaderMain>
-{:else if $header.type === 'back'}
-	<HeaderBack button={$header.button} destructive={$header.destructive}></HeaderBack>
-{/if}
-
-{#if $modal.toggled === true}
-	<Modal
-		class="container mx-auto px-6"
-		title={$modal.title}
-		href={$modal.href}
-		exit={$modal.exit}
-		button={$modal.button}
-		buttonFunction={$modal.buttonFunction}
-		transition={$modal.transition}
-	>
-		<slot />
-	</Modal>
+{#if $modalData.modalPage === true}
+    <Modal title={$modalData.title} href={$modalData.href} exit={$modalData.exit}
+           button={$modalData.button}
+           buttonFunction={$modalData.buttonFunction}
+    >
+        <slot />
+    </Modal>
 {:else}
-	<div class="container mx-auto px-6">
-		<slot />
-		<Footer></Footer>
-	</div>
-	<div class="h-32" />
-	<NavBar class="fixed bottom-0 left-0 z-40" type={$navbar.type} />
+    {#if $header.type === 'main'}
+        <HeaderMain {scrollY}></HeaderMain>
+    {:else if $header.type === 'back'}
+        <HeaderBack button={$header.button} destructive={$header.destructive}></HeaderBack>
+    {/if}
+    <div class="container mx-auto px-6">
+        <slot />
+        <Footer></Footer>
+    </div>
+    <div class="h-32" />
+    <NavBar class="fixed bottom-0 left-0 z-40" type={$navbar.type} />
 {/if}

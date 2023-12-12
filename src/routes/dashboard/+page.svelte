@@ -5,8 +5,6 @@
 	import Item from '$lib/wip/backend/Item.svelte';
 	import { defaultLayout } from '$lib/stores/pageLayout.js';
 
-	defaultLayout();
-
 	let itemList = [];
 	let currItem = '';
 	let error = false;

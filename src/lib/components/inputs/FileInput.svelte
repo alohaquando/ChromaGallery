@@ -4,16 +4,18 @@
 	export let state: 'add' | 'edit' = 'add';
 	export let id: string = 'imageInput';
 
+	export let fileInput;
+
 	let selectedImage: File | null = null;
 	let imageUrl: string | null = null;
 
 	const handleGetImage = () => {
-		const fileInput = document.getElementById(id);
+		fileInput = document.getElementById(id);
 		fileInput?.click(); // Trigger the file input click event
 	};
 
 	const handleFileChange = (event: Event & { target: HTMLInputElement }) => {
-		const fileInput = event.target;
+		fileInput = event.target;
 
 		if (fileInput.files && fileInput.files[0]) {
 			selectedImage = fileInput.files[0];
@@ -28,7 +30,7 @@
 		imageUrl = null;
 
 		// Clear the file input value
-		const fileInput = document.getElementById(id) as HTMLInputElement;
+		fileInput = document.getElementById(id) as HTMLInputElement;
 		fileInput.value = '';
 		state = 'add';
 	};
@@ -39,7 +41,7 @@
 			 type="file" />
 {#if state === 'add'}
 	<label for="{id}"
-				 class="w-full h-32 rounded-2xl border border-white/50 border-dashed justify-center items-center inline-flex cursor-pointer relative">
+				 class="w-full h-40 rounded-2xl border border-white/50 border-dashed justify-center items-center inline-flex cursor-pointer relative">
 		<Button icon="faPlus" on:click={handleGetImage} class="z-10">Add image</Button>
 	</label>
 

@@ -4,6 +4,11 @@
 	import Block from '$lib/components/item/Block.svelte';
 	import type { Item } from '../../../model';
 
+	export let imageFull: boolean = false;
+	let heightClass = 'h-80';
+	if (imageFull) {
+		heightClass = 'h-auto';
+	}
 	export let hideYear: boolean = false;
 	export let data: Item;
 	export let hideInfo: boolean = false;
@@ -12,7 +17,7 @@
 </script>
 
 <div class="w-full flex-col gap-6 inline-flex {customClass}">
-	<div class="w-full h-80 rounded-lg flex overflow-hidden relative">
+	<div class="w-full {heightClass} rounded-lg flex overflow-hidden relative">
 		<Block class="object-cover" {data} stretch={false}></Block>
 	</div>
 	{#if !hideInfo}

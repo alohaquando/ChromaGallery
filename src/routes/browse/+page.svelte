@@ -23,7 +23,7 @@
 			.then((itemsData) => {
 				itemList = itemsData;
 				console.log(itemList);
-				
+
 				// Do something with the items data
 			})
 			.catch((error) => {

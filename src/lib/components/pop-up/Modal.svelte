@@ -9,19 +9,18 @@
 	export let button: string | undefined;
 	export let buttonFunction = () => {
 	};
-	export let transition: boolean = true;
-
-	let customClass = '';
-	export { customClass as class };
+	export let animation = '';
 </script>
 
 <div
-	class="{customClass} relative top-0 z-40 w-full h-screen backdrop-blur-md bg-gradient-to-b from-neutral-900 via-black/40 via-90% to-black/0 flex border-t-4 border-white/20 {transition? 'animate-flyUp' : ''} flex-col"
+	class="{animation} container mx-auto pb-32 px-6 relative top-5 z-40 w-auto min-h-[95vh] backdrop-blur-md bg-gradient-to-b from-neutral-900 via-black/40 via-90% to-black/0 rounded-t-3xl overflow-clip"
 >
-	<HeaderBack {button} {buttonFunction} {exit} href="{link}" isRelative
+	<HeaderBack {button} {buttonFunction} {exit} href="{link}" isRelative noBackdrop
 							responsive={false}></HeaderBack>
-	<Headline class="px-6 mt-4">{title}</Headline>
-	<div class="mt-12 px-6">
-		<slot />
+	<div class="container mx-auto px-6">
+		<Headline class=" mt-4">{title}</Headline>
+		<div class="mt-12">
+			<slot />
+		</div>
 	</div>
 </div>

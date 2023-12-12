@@ -1,14 +1,10 @@
 <script lang="ts">
-	import Dialog from '$lib/components/pop-up/Dialog.svelte';
-	import Modal from '$lib/components/pop-up/Modal.svelte';
 	import ListItem from '$lib/components/item/ListItem.svelte';
-	import { defaultLayout, dialog, modal } from '$lib/stores/pageLayout';
-	import { goto } from '$app/navigation';
 	import { authHandlers } from '$lib/stores/store';
+	import { modalData } from '$lib/stores/modal';
+	import { dialog } from '$lib/stores/dialog';
 
-	defaultLayout();
-
-	modal.update((modalData) => ({
+	modalData.update((modalData) => ({
 		...modalData,
 		toggled: true,
 		exit: true,
@@ -32,7 +28,7 @@
 			function: function () {
 				authHandlers.logout();
 				goto('/')
-				
+
 			}
 		}
 	}));
@@ -72,3 +68,4 @@
 		topDivider={false}
 	/>
 </div>
+
