@@ -10,6 +10,7 @@
 
 	authStore.subscribe((curr) => {
 		itemList = curr.data.items;
+		console.log(curr.data.items[3])
 	});
 
 	function addItem() {
@@ -37,7 +38,7 @@
 
 	async function saveItems() {
 		try {
-			const userRef = doc(db, 'users', $authStore.user.uid);
+			const userRef = doc(db, 'users', $authStore.user.uid, 'lists', 'NVdWTuqsEWR0CdJIsJ7R');
 			await setDoc(
 				userRef,
 				{

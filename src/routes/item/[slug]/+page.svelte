@@ -17,13 +17,18 @@
 	});
 </script>
 
-<BG randomized />
+<BG />
 
 {#if $itemStore}
 	<HeroImage
-		data={$itemStore}
+		alt="Image Alt Text"
+		artist={$itemStore.author}
+		class="my-4"
+		href=""
+		name={$itemStore.title}
+		src={$itemStore.image}
+		time={$itemStore.year}
 	></HeroImage>
-
 	<div class="flex justify-between items-end mb-12">
 		<div class="flex space-x-2">
 			<Button icon="faPlus" type="submit">Add to list</Button>
@@ -46,11 +51,23 @@
 		<BodyLarge class="mt-12">Related</BodyLarge>
 
 		<HeroImage
-			data={$itemStore}
+			alt="Image Alt Text"
+			artist="Srijon Chowdhury"
+			class="my-4"
+			href="item-link"
+			name="Related Contents"
+			src=""
+			time="Circa 2315"
 		></HeroImage>
 
 		<HeroImage
-			data={$itemStore}
+			alt="Image Alt Text"
+			artist="Srijon Chowdhury"
+			class="my-4"
+			href="item-link"
+			name="Related Contents"
+			src=""
+			time="Circa 2315"
 		></HeroImage>
 	</div>
 {/if}

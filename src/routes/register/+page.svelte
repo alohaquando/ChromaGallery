@@ -4,6 +4,29 @@
 	import TextField from '$lib/components/inputs/TextField.svelte';
 	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
 	import BG from '$lib/components/backgrounds/BG.svelte';
+	import { authHandlers } from '$lib/stores/store';
+
+	let email = '';
+	let password = '';
+	let confirmPassword = '';
+	let fullName = '';
+	let error = false;
+	async function handleSignUpAuthenticate() {
+		try {
+			if (password != confirmPassword) {
+				console.log('Password does not match');
+				return;
+			}
+			await authHandlers.signup(email, password);
+			let error = false;
+			console.log('Successfully signed up');
+			await authHandlers.login(email, password);
+			window.location.href = '/';
+		} catch (err) {
+			let error = true;
+			console.log(' There was an auth error', err);
+		}
+	}
 </script>
 
 <BG randomized />
@@ -11,13 +34,29 @@
 <PageTitle>Let's get you ready</PageTitle>
 
 <form class="mt-16 gap-8 flex flex-col items-center w-full">
-	<TextField id="" name="" placeholder="myemail@google.com"></TextField>
+	<TextField bind:value={email} id="email" name="email" placeholder="myemail@google.com"
+	></TextField>
 	<Divider></Divider>
 
-	<TextField id="" name="" placeholder="Password"></TextField>
-	<TextField id="" name="" placeholder="Confirm password"></TextField>
+	<TextField
+		bind:value={password}
+		id="password"
+		name="password"
+		placeholder="Password"
+		type="password"
+	></TextField>
+	<TextField
+		bind:value={confirmPassword}
+		id="confirmPassword"
+		name="confirmPassword"
+		placeholder="Confirm password"
+		type="password"
+	></TextField>
 
 	<Divider></Divider>
-	<TextField id="" name="" placeholder="Full Name"></TextField>
-	<Button design="filled" type="submit" width="full">Complete sign up</Button>
+	<TextField bind:value={fullName} id="fullName" name="fullName" placeholder="Full Name"
+	></TextField>
+	<Button design="filled" type="button" width="full" on:click={handleSignUpAuthenticate}
+		>Complete sign up</Button
+	>
 </form>

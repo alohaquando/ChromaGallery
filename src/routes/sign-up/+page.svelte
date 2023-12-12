@@ -22,7 +22,7 @@
 	<Divider></Divider>
 
 	<form class="contents">
-		<TextField id="" name="" placeholder="Email"></TextField>
+		<TextField id="email" name="email" placeholder="Email"></TextField>
 		<Button design="filled" width="full" type="submit">Sign up</Button>
 	</form>
 
@@ -30,5 +30,5 @@
 	<div>
 		<BodySmall>Already a member?</BodySmall>
 	</div>
-	<Button design="outlined">Sign in</Button>
+	<Button design="outlined" href="/sign-in">Sign in</Button>
 </div>
