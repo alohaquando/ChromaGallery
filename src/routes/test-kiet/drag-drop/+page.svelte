@@ -13,7 +13,7 @@
     // function for toggle button
     function onClick() {
         if (type === 'action') {
-            type = 'edit';
+            type = 'edit-items';
         } else {
             type = 'action';
         }

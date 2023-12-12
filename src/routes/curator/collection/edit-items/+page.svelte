@@ -1,19 +1,18 @@
 <script lang="ts">
+    import Headline from '$lib/components/typography/Headline.svelte';
     import Button from '$lib/components/controls/Button.svelte';
     import DragList from '$lib/components/item/DragList.svelte';
-    import { allItem } from '../../../../../data';
+    import { allItem } from '../../../../data';
     import { modalData } from '$lib/stores/modal';
 
     modalData.update(modalData => ({
         ...modalData,
         modalPage: true,
         href: '/account/setting',
-        title: 'Edit items',
+        title: 'Account setting',
         button: 'Save'
     }));
 </script>
 
-<div class="flex justify-center items-center flex-col gap-6">
-    <Button class="w-full" icon="faSearch">Find item</Button>
-    <DragList class="w-full gap-4 " data={allItem}></DragList>
-</div>
+<Button class="mt-8 mb-6" icon="faMagifyingGlass" width="full">Find item</Button>
+<DragList class="gap-4" data={allItem} type="edit"></DragList>

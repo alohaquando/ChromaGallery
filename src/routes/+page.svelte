@@ -9,7 +9,7 @@
 	import { item1, item2, item3 } from '$lib/../data.js';
 	import { setContext } from 'svelte';
 
-	let itemList = [];
+	let itemList: string[];
 	let isDataLoaded = false;
 
 	const unsubscribe = itemStore.subscribe((data) => {
@@ -88,17 +88,17 @@
 	<p>Loading...</p>
 {/if} -->
 {#if isDataLoaded}
-  {#if itemList.length > 0}
-    {#each itemList as item}
-      {#if item.id}
-        <HeroImage
-          data={item} hideYear></HeroImage>
-      {/if}
-    {/each}
-  {:else}
-    <p>No items available.</p>
-  {/if}
+	{#if itemList.length > 0}
+		{#each itemList as item}
+			{#if item.id}
+				<HeroImage
+					data={item} hideYear></HeroImage>
+			{/if}
+		{/each}
+	{:else}
+		<p>No items available.</p>
+	{/if}
 {:else}
-  <!-- Loading state or placeholder -->
-  <p>Loading...</p>
+	<!-- Loading state or placeholder -->
+	<p>Loading...</p>
 {/if}

@@ -1,30 +1,29 @@
 <script lang="ts">
-	import CollectionBlock from '$lib/components/item/CollectionBlock.svelte';
-	import Link from '$lib/components/links/Link.svelte';
-	import Body from '$lib/components/typography/Body.svelte';
-	import HeroImage from '$lib/components/item/HeroImage.svelte';
-	import Dialog from '$lib/components/pop-up/Dialog.svelte';
-	import Block from '$lib/components/item/Block.svelte';
-	import Modal from '$lib/components/pop-up/Modal.svelte';
-	import Button from '$lib/components/controls/Button.svelte';
-	import Socials from '$lib/components/socials/Socials.svelte';
-	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
-	import Grid from '$lib/components/item/GridItem.svelte';
-	import RowItem from '$lib/components/item/RowItem.svelte';
-	import { item1, collection1 } from '../../data';
-	import FileInput from '$lib/components/inputs/FileInput.svelte';
-	import TextField from '$lib/components/inputs/TextField.svelte';
-	import { header } from '$lib/stores/header';
-	import { modal } from '$lib/stores/modal';
+    import CollectionBlock from '$lib/components/item/CollectionBlock.svelte';
+    import Link from '$lib/components/links/Link.svelte';
+    import Body from '$lib/components/typography/Body.svelte';
+    import HeroImage from '$lib/components/item/HeroImage.svelte';
+    import Dialog from '$lib/components/pop-up/Dialog.svelte';
+    import Block from '$lib/components/item/Block.svelte';
+    import Button from '$lib/components/controls/Button.svelte';
+    import Socials from '$lib/components/socials/Socials.svelte';
+    import PageTitle from '$lib/components/layouts/PageTitle.svelte';
+    import Grid from '$lib/components/item/GridItem.svelte';
+    import RowItem from '$lib/components/item/RowItem.svelte';
+    import { item1, collection1 } from '../../data';
+    import FileInput from '$lib/components/inputs/FileInput.svelte';
+    import TextField from '$lib/components/inputs/TextField.svelte';
+    import { header } from '$lib/stores/header';
+    import { modal } from '$lib/stores/modal';
 
-	modal.set({
-		modalPage: true,
-		title: 'It works',
-		exit: undefined,
-		button: undefined,
-		destructive: undefined,
-		transition: undefined
-	});
+    modal.set({
+        modalPage: true,
+        title: 'It works',
+        exit: undefined,
+        button: undefined,
+        destructive: undefined,
+        transition: undefined
+    });
 </script>
 
 <TextField type="date"></TextField>

@@ -1,20 +1,19 @@
 <script lang="ts">
-	import ModalInfo from '$lib/components/pop-up/Modal.svelte';
-	import TextField from '$lib/components/inputs/TextField.svelte';
-	import DragList from '$lib/components/item/DragList.svelte';
-	import { allItem } from '../../../data';
+    import TextField from '$lib/components/inputs/TextField.svelte';
+    import DragList from '$lib/components/item/DragList.svelte';
+    import { allItem } from '../../../data';
 
-	import { modal } from '$lib/stores/modal';
+    import { modalData } from '$lib/stores/modal';
 
-	export let number = 0;
+    export let number = 0;
 
-	modal.update(modalData => ({
-		...modalData,
-		modalPage: true,
-		exit: true,
-		title: 'Add to list',
-		button: 'Add'
-	}));
+    modalData.update(modalData => ({
+        ...modalData,
+        modalPage: true,
+        exit: true,
+        title: 'Add to list',
+        button: 'Add'
+    }));
 </script>
 
 <TextField id="" name="" placeholder=""></TextField>
