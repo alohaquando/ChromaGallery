@@ -13,7 +13,6 @@
 		| 'email'
 		| 'month'
 		| 'number'
-		| 'password'
 		| 'range'
 		| 'search'
 		| 'tel'
@@ -33,6 +32,7 @@
 	export let pattern: any | undefined = undefined;
 	export let size: number | undefined = undefined;
 	export let value: string | Date | undefined | null = null;
+	export let options: string[] = [];
 
 	let stateClasses: string;
 	if (error) {
@@ -54,6 +54,7 @@
 		{disabled}
 		{form}
 		{id}
+		list="{id}-list"
 		{max}
 		{maxlength}
 		{min}
@@ -65,8 +66,12 @@
 		{readonly}
 		{required}
 		{size}
-
 	/>
+	<datalist id="{id}-list">
+		{#each options as option}
+			<option value={option}></option>
+		{/each}
+	</datalist>
 
 	{#if error}
 		<div class="flex space-x-2 items-center text-red-300 pt-4">
@@ -81,3 +86,6 @@
         filter: invert(1);
     }
 </style>
+
+<!--Example-->
+<!--<Datalist label="Label" id="" name="" placeholder="Select an option or enter your own value" options={['Choice A', "Choice B", "Choice C"]}></Datalist>-->

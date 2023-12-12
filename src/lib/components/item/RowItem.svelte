@@ -20,10 +20,26 @@
 	export { customClass as class };
 
 	let animationClass = '';
-	export let type: 'checkbox' | 'edit' | 'view' = 'checkbox';
+	export let type: 'action' | 'edit' | 'view' = 'action';
+	export let button: 'add' | 'destructive' | 'link' = 'add';
+	export let icon: string | undefined | null;
+	let buttonStyle = '';
+	switch (button) {
+		case 'add':
+			icon = 'faPlus';
+			break;
+		case 'destructive':
+			icon = 'faMinus';
+			buttonStyle = '!border-red-500 text-red-500';
+			break;
+		case 'link':
+			icon = 'faArrowRight';
+			buttonStyle = '!border-none';
+			break;
+	}
 
 	// switch (type) {
-	// 	case 'checkbox':
+	// 	case 'action':
 	// 		break;
 	// 	case 'edit':
 	// 		animationClass = 'animate-flyRight40';
@@ -52,8 +68,12 @@
 		<Body>{data.name}</Body>
 		<Body class="opacity-50 line-clamp-1">{data.author}</Body>
 	</div>
-	{#if type === 'checkbox'}
-		<Checkbox class="shrink-0" {data} name=""></Checkbox>
+	{#if type === 'action'}
+		{#if button}
+			<Fab {icon} class="{buttonStyle}" size="mini" hover={false}></Fab>
+		{:else}
+			<Checkbox class="shrink-0" {data} name=""></Checkbox>
+		{/if}
 	{:else if type === 'edit'}
 		<Icon icon="faEquals" class="shrink-0 w-6 h-6" />
 	{/if}

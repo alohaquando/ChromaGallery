@@ -29,3 +29,13 @@ export interface List {
 	items: string[];
 	description: string;
 }
+
+export interface Header {
+	type: string;
+	button?: string | undefined;
+	destructive?: string | undefined;
+}
+
+export interface Navigation {
+	type: 'user' | 'admin';
+}
