@@ -41,7 +41,7 @@
 <svelte:element
 	class="{!icon
 		? sizeClass
-		: 'h-14 w-14'} {typeClass} {customClass} relative overflow-hidden"
+		: 'h-14 w-14'} {typeClass} {customClass} relative overflow-hidden w-full"
 	href="../routes/item/{data.id}"
 	this={link ? 'a' : 'div'}
 >
@@ -51,7 +51,7 @@
 			<div class="absolute h-16 w-16 blur-xl bg-white rounded-full"></div>
 		{/if}
 	{:else}
-		<img alt={data.name} class="{stretch ? 'w-full h-full' : 'h-auto w-full'} {icon ? 'absolute' : ''} object-cover"
-				 src={data.src} />
+		<img alt={data.title} class="{stretch ? 'w-full h-full' : 'h-auto w-full'} {icon ? 'absolute' : ''} object-cover"
+				 src={data.image} />
 	{/if}
 </svelte:element>

@@ -2,8 +2,8 @@ import type { Item, Collection, User, List } from './model';
 
 export const item1: Item = {
 	id: 'i1',
-	src: 'https://practicalpages.files.wordpress.com/2010/02/starry-night-van-gogh.jpg',
-	name: 'Starry Night',
+	image: 'https://practicalpages.files.wordpress.com/2010/02/starry-night-van-gogh.jpg',
+	title: 'Starry Night',
 	location: 'A1',
 	author: 'Vincent van Gogh',
 	description: 'A mesmerizing night sky with swirling stars.',
@@ -12,8 +12,9 @@ export const item1: Item = {
 
 export const item2: Item = {
 	id: 'i2',
-	src: 'https://uploads6.wikiart.org/images/salvador-dali/the-persistence-of-memory-1931.jpg!Large.jpg',
-	name: 'The Persistence of Memory',
+	image:
+		'https://uploads6.wikiart.org/images/salvador-dali/the-persistence-of-memory-1931.jpg!Large.jpg',
+	title: 'The Persistence of Memory',
 	location: 'B2',
 	author: 'Salvador Dalí',
 	description: 'Melting clocks draped over surreal landscapes.',
@@ -22,8 +23,9 @@ export const item2: Item = {
 
 export const item3: Item = {
 	id: 'i3',
-	src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/640px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg',
-	name: 'Mona Lisa',
+	image:
+		'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/640px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg',
+	title: 'Mona Lisa',
 	location: 'C3',
 	author: 'Leonardo da Vinci',
 	description: 'Enigmatic smile captured in a timeless portrait.',
@@ -32,8 +34,9 @@ export const item3: Item = {
 
 export const item4: Item = {
 	id: 'i4',
-	src: 'https://i2.wp.com/guernicaremakings.com/wp-content/uploads/2017/03/Vasco_Gargalo_Guernica.jpg',
-	name: 'Guernica',
+	image:
+		'https://i2.wp.com/guernicaremakings.com/wp-content/uploads/2017/03/Vasco_Gargalo_Guernica.jpg',
+	title: 'Guernica',
 	location: 'D4',
 	author: 'Pablo Picasso',
 	description: 'A powerful anti-war statement depicting tragedy and suffering.',
@@ -42,8 +45,8 @@ export const item4: Item = {
 
 export const item5: Item = {
 	id: 'i5',
-	src: 'https://www.edvardmunch.org/images/paintings/the-scream.jpg',
-	name: 'The Scream',
+	image: 'https://www.edvardmunch.org/images/paintings/the-scream.jpg',
+	title: 'The Scream',
 	location: 'E5',
 	author: 'Edvard Munch',
 	description: 'Iconic representation of existential angst and fear.',

@@ -65,7 +65,7 @@
 	{/if}
 	<Block class="{animationClass} rounded-lg shrink-0 !h-16 !w-16" {data} icon link={false}></Block>
 	<div class="{animationClass} w-full gap-y-3 flex flex-col">
-		<Body>{data.name}</Body>
+		<Body>{data.title}</Body>
 		<Body class="opacity-50 line-clamp-1">{data.author}</Body>
 	</div>
 	{#if type === 'action'}
