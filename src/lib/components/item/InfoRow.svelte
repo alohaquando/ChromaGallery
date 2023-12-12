@@ -7,8 +7,6 @@
 	export let trailingText: string | undefined;
 	export let href: string | undefined = undefined;
 	export let icon: string | undefined = undefined;
-	export let clickable: boolean = false;
-
 	export let topDivider: boolean = true;
 	export let bottomDivider: boolean = true;
 	export let design: 'default' | 'destructive' = 'default';
