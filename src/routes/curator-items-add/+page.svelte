@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Modal from '$lib/components/pop-up/Modal.svelte';
 	import FileInput from '$lib/components/inputs/FileInput.svelte';
-	import HeroImage from '$lib/components/item/HeroImage.svelte';
+	import TextArea from '$lib/components/inputs/TextArea.svelte';
 	import TextField from '$lib/components/inputs/TextField.svelte';
 	import Divider from '$lib/components/layouts/Divider.svelte';
 
@@ -18,7 +18,7 @@
 			<TextField id='' label="Name" name="" placeholder='' type="name"></TextField>
 			<TextField id='' label="Artist" name="" placeholder='' type="text"></TextField>
 			<TextField id='' label="Time" name="" placeholder='' type="date"></TextField>
-			<TextField id='' label="Description" name="" placeholder=''></TextField>
+			<TextArea id="" label="Description" name=""></TextArea>
 
 		</div>
 
