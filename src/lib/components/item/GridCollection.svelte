@@ -3,7 +3,7 @@
 	import { collection2, allCollection } from '../../../data';
 	import CollectionBlock from '$lib/components/item/CollectionBlock.svelte';
 
-	export let data: Collection[] = allCollection;
+	export let data: Collection[] | undefined = allCollection;
 	let customClass = '';
 	export { customClass as class };
 </script>

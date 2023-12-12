@@ -1,14 +1,12 @@
 <script lang="ts">
-    import DisplayLarge from '$lib/components/typography/DisplayLarge.svelte';
-    import Button from '$lib/components/controls/Button.svelte';
-    import BodyLarge from '$lib/components/typography/BodyLarge.svelte';
-    import BodySmall from '$lib/components/typography/BodySmall.svelte';
-    import CollectionBlock from '$lib/components/item/CollectionBlock.svelte';
-    import Fab from '$lib/components/controls/Fab.svelte';
-    import PageTitle from '$lib/components/layouts/PageTitle.svelte';
-    import GridCollection from '$lib/components/item/GridCollection.svelte';
-    import { user1 } from '../../../data';
-	import { user1 } from '../../../data';
+	import DisplayLarge from '$lib/components/typography/DisplayLarge.svelte';
+	import Button from '$lib/components/controls/Button.svelte';
+	import BodyLarge from '$lib/components/typography/BodyLarge.svelte';
+	import BodySmall from '$lib/components/typography/BodySmall.svelte';
+	import CollectionBlock from '$lib/components/item/CollectionBlock.svelte';
+	import Fab from '$lib/components/controls/Fab.svelte';
+	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
+	import GridCollection from '$lib/components/item/GridCollection.svelte';
 	import { getAuth, onAuthStateChanged } from 'firebase/auth';
 	import { defaultLayout, stateCheck } from '$lib/stores/pageLayout';
 	import { modalData, previousState } from '$lib/stores/modal';
@@ -18,7 +16,7 @@
 	// Sign In condition
 	export let signIn = true;
 
-	let userEmail ;
+	let userEmail;
 	let userName;
 	const authen = getAuth();
 	onAuthStateChanged(authen, (user) => {
@@ -48,10 +46,10 @@
 
 		<!--	Bookmark -->
 		<div class="w-full flex">
-			<CollectionBlock bookmark data={collection1}></CollectionBlock>
+			<CollectionBlock bookmark></CollectionBlock>
 		</div>
 
-		<GridCollection data={allCollection} class="mt-10"></GridCollection>
+		<GridCollection class="mt-10"></GridCollection>
 	</div>
 {:else}
 	<!-- Not Sign In -->

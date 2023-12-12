@@ -7,7 +7,7 @@
 	import { allItem } from '../../../data';
 	import { count } from '$lib/utils/countItem';
 
-	export let data: Collection;
+	export let data: Collection | undefined;
 
 	let customClass = '';
 	export { customClass as class };
