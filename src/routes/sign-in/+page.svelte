@@ -45,20 +45,6 @@
 			console.log(' There was an auth error', err);
 		}
 	}
-
-	// Check if Logged-in
-	let userEmail = '';
-	let userName = '';
-	const authen = getAuth();
-	onAuthStateChanged(authen, (user) => {
-		if (user) {
-			console.log(user);
-			userName = user.displayName;
-			userEmail = user.email;
-		} else {
-			console.log('Not sign in');
-		}
-	});
 </script>
 
 <PageTitle>Welcome back</PageTitle>

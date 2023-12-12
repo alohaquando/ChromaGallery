@@ -8,7 +8,7 @@
 	let email = '';
 	let password = '';
 	let confirmPassword = '';
-	let fullName = '';
+	let displayName = '';
 	let error = false;
 	async function handleSignUpAuthenticate() {
 		try {
@@ -16,7 +16,7 @@
 				console.log('Password does not match');
 				return;
 			}
-			await authHandlers.signup(email, password);
+			await authHandlers.signup(email, password, displayName);
 			let error = false;
 			console.log('Successfully signed up');
 			await authHandlers.login(email, password);
@@ -51,7 +51,7 @@
 	></TextField>
 
 	<Divider></Divider>
-	<TextField bind:value={fullName} id="fullName" name="fullName" placeholder="Full Name"
+	<TextField bind:value={displayName} id="fullName" name="fullName" placeholder="Full Name"
 	></TextField>
 	<Button design="filled" type="button" width="full" on:click={handleSignUpAuthenticate}
 		>Complete sign up</Button

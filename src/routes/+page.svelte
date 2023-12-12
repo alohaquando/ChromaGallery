@@ -8,6 +8,7 @@
 	import { faCarTilt } from '@fortawesome/pro-solid-svg-icons';
 	import { item1, item2, item3 } from '$lib/../data.js';
 	import { setContext } from 'svelte';
+	import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 	let itemList = [];
 	let isDataLoaded = false;
@@ -16,17 +17,6 @@
 		itemList = data;
 		isDataLoaded = true; // Set the flag when data is loaded
 	});
-
-	// onMount(async () => {
-	// 	console.log("OM triggered")
-	// 	try {
-	// 		await itemStore.getAllItems();
-	// 		console.log(itemList)
-	// 	} catch (error) {
-	// 		console.error('Error fetching items:', error.message);
-	// 	}
-	// });
-	// onDestroy(unsubscribe);
 	onMount(async () => {
 		itemStore
 			.getAllItems()
@@ -52,6 +42,20 @@
 	// 		console.error('Error:', error);
 	// 	}
 	// });
+
+	// Check if Logged-in
+	let userEmail ;
+	let userName;
+	const authen = getAuth();
+	onAuthStateChanged(authen, (user) => {
+		if (user) {
+			console.log(user);
+			userName = user.displayName;
+			userEmail = user.email;
+		} else {
+			console.log('Not sign in');
+		}
+	});
 </script>
 
 <div class="w-full h-[80vh] pt-[5vh] flex flex-col items-center justify-between">
@@ -62,7 +66,11 @@
 		<DisplayLarge class="relative">artistic</DisplayLarge>
 	</div>
 	<div class="flex w-full justify-between max-w-3xl mt-32">
+		{#if userEmail}
+		<Fab class="" href="/sign-in" icon="faUser" size="lg">{userEmail}</Fab>
+		{:else}
 		<Fab class="" href="/sign-in" icon="faUser" size="lg">Sign me<br />in</Fab>
+		{/if}
 		<Fab class="-mt-20" href="/browse" icon="faSearch" size="lg">Show me<br />more</Fab>
 		<Fab class="mt-8" href="/" icon="faPlay" size="lg">Relax me</Fab>
 	</div>
@@ -88,17 +96,16 @@
 	<p>Loading...</p>
 {/if} -->
 {#if isDataLoaded}
-  {#if itemList.length > 0}
-    {#each itemList as item}
-      {#if item.id}
-        <HeroImage
-          data={item} hideYear></HeroImage>
-      {/if}
-    {/each}
-  {:else}
-    <p>No items available.</p>
-  {/if}
+	{#if itemList.length > 0}
+		{#each itemList as item}
+			{#if item.id}
+				<HeroImage data={item} hideYear></HeroImage>
+			{/if}
+		{/each}
+	{:else}
+		<p>No items available.</p>
+	{/if}
 {:else}
-  <!-- Loading state or placeholder -->
-  <p>Loading...</p>
+	<!-- Loading state or placeholder -->
+	<p>Loading...</p>
 {/if}

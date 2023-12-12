@@ -12,11 +12,26 @@
 
 	import { collection1, collection2, allCollection, allItem } from '../../../data';
 	import { defaultLayout } from '$lib/stores/pageLayout';
+	import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 
 	// account name
 	// Sign In condition
 	export let signIn = true;
+
+
+	let userEmail ;
+	let userName;
+	const authen = getAuth();
+	onAuthStateChanged(authen, (user) => {
+		if (user) {
+			console.log(user);
+			userName = user.displayName;
+			userEmail = user.email;
+		} else {
+			console.log('Not sign in');
+		}
+	});
 </script>
 
 {#if signIn}

@@ -4,35 +4,40 @@
 	import ListItem from '$lib/components/item/ListItem.svelte';
 	import { defaultLayout, dialog, modal } from '$lib/stores/pageLayout';
 	import { goto } from '$app/navigation';
+	import { authHandlers } from '$lib/stores/store';
 
 	defaultLayout();
 
-	modal.update(modalData => ({
+	modal.update((modalData) => ({
 		...modalData,
 		toggled: true,
 		exit: true,
 		title: 'Account setting'
 	}));
 
-	dialog.update(dialogData => ({
+	dialog.update((dialogData) => ({
 		toggled: true,
 		title: 'Log Out',
 		text: 'Are you sure you want to log out?',
 		button1: {
 			option: 'Cancel',
 			type: '',
-			function: function() {
+			function: function () {
 				goto('setting');
 			}
 		},
 		button2: {
 			option: 'Log out',
 			type: 'filled',
-			function: function() {
+			function: function () {
+				authHandlers.logout();
+				goto('/')
+				
 			}
 		}
 	}));
 </script>
+
 <div class=" flex flex-col justify-center items-center">
 	<ListItem
 		bottomDivider={false}
@@ -67,4 +72,3 @@
 		topDivider={false}
 	/>
 </div>
-

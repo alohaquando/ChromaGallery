@@ -29,24 +29,26 @@
 </script>
 
 <svelte:element
+	this={clickable ? 'button' : 'div'}
 	class="{customClass} flex flex-row min-h-[3rem] py-4 justify-between space-x-4 relative items-center"
 	on:click
 	role={clickable ? 'button' : ''}
 	tabindex="0"
-	this={clickable ? 'button' : 'div'}
 >
 	{#if leadingText}
 		<div class="grow flex-1 flex items-center {textClasses}">
 			<Body>
-			{leadingText}
+				{leadingText}
 			</Body>
 		</div>
 	{/if}
 	{#if trailingText}
-		<div
-			class="grow flex-1 flex items-center hyphens-auto {textClasses}">
-			<svelte:component {href} this={href ? Link : Body}
-												linkColor="{design === 'destructive' ? 'from-red-500 to-red-300' : undefined}">
+		<div class="grow flex-1 flex items-center hyphens-auto {textClasses}">
+			<svelte:component
+				this={href ? Link : Body}
+				{href}
+				linkColor={design === 'destructive' ? 'from-red-500 to-red-300' : undefined}
+			>
 				{trailingText}
 			</svelte:component>
 		</div>

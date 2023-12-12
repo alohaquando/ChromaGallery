@@ -4,7 +4,8 @@ import {
 	createUserWithEmailAndPassword,
 	signInWithEmailAndPassword,
 	signInWithPopup,
-	signOut
+	signOut,
+	updateProfile,
 } from 'firebase/auth';
 import { auth } from '$lib/services/firebase/firebase.js';
 
