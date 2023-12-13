@@ -30,7 +30,7 @@
 	<div class="w-full flex justify-between items-center">
 		<div class="flex">
 			<Link href="">Privacy</Link>
-			<Link class="ml-5" href="terms">Terms</Link>
+			<Link class="ml-5" href="/terms">Terms</Link>
 		</div>
 		<span class="text-white/50 items-center flex"
 		><Icon icon="faCopyright"></Icon><Body class="text-white/50">2023 Chroma Gallery</Body></span
