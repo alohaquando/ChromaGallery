@@ -39,7 +39,8 @@
 	async function handleAuthenticateGoogle() {
 		try {
 			await authHandlers.loginWithGoogle();
-			console.log('Hello');
+			console.log('Successfully logged in');
+			window.location.href = ('/')
 		} catch (err) {
 			console.log(' There was an auth error', err);
 		}
@@ -75,5 +76,5 @@
 	<div>
 		<BodySmall>Are you new here?</BodySmall>
 	</div>
-	<Button design="outlined" href="sign-up">Become a member</Button>
+	<Button design="outlined" href="/register">Become a member</Button>
 </div>

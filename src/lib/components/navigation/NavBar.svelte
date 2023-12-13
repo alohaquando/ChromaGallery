@@ -15,7 +15,7 @@
 		<div class="container mx-auto px-6 space-x-6 flex justify-center">
 			<NavItem icon="faHome" href="/">Home</NavItem>
 			<NavItem icon="faSearch" href="/browse">Browse</NavItem>
-			<NavItem icon="faUserCircle" href="/account/me">Me</NavItem>
+			<NavItem icon="faUserCircle" href="/account">Me</NavItem>
 		</div>
 	{:else}
 		<div class="container mx-auto px-6 space-x-6 flex justify-center">

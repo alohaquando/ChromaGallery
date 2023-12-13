@@ -7,7 +7,7 @@
         ...modalData,
         modalPage: true,
         exit: true,
-        href: '/account/me',
+        href: '/account',
         title: 'Create new list',
         transition: true
     }));

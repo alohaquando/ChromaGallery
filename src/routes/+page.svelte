@@ -13,15 +13,11 @@
 	let itemList = [];
 	let isDataLoaded = false;
 
-	const unsubscribe = itemStore.subscribe((data) => {
-		itemList = data;
-		isDataLoaded = true; // Set the flag when data is loaded
-	});
 	onMount(async () => {
 		itemStore
 			.getAllItems()
 			.then((itemsData) => {
-				let itemList = itemsData;
+				itemList = itemsData;
 				console.log(itemList);
 
 				// Do something with the items data
@@ -53,7 +49,7 @@
 			userName = user.displayName;
 			userEmail = user.email;
 		} else {
-			console.log('Not sign in');
+			console.log('Not signed in');
 		}
 	});
 </script>
@@ -67,7 +63,7 @@
 	</div>
 	<div class="flex w-full justify-between max-w-3xl mt-32">
 		{#if userEmail}
-		<Fab class="" href="/account/me" icon="faUser" size="lg">My account</Fab>
+		<Fab class="" href="/account" icon="faUser" size="lg">My account</Fab>
 		{:else}
 		<Fab class="" href="/sign-in" icon="faUser" size="lg">Sign me<br />in</Fab>
 		{/if}
@@ -103,7 +99,7 @@
 			{/if}
 		{/each}
 	{:else}
-		<p>No items available.</p>
+
 	{/if}
 {:else}
 	<!-- Loading state or placeholder -->

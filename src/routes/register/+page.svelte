@@ -8,7 +8,7 @@
 	let email = '';
 	let password = '';
 	let confirmPassword = '';
-	let displayName;
+	let displayName = '';
 	let error = false;
 	async function handleSignUpAuthenticate() {
 		try {
@@ -16,17 +16,17 @@
 				console.log('Password does not match');
 				return;
 			}
-			await authHandlers.signup(email, password)
-	
-			let error = false;
-			
-			console.log('Successfully signed up');
-
-			if(displayName = null){
+			if ((displayName == '')) {
 				console.log('Display name is null');
-				return
+				return;
 			}
+			await authHandlers.signup(email, password);
+			
+			let error = false;
+
 			await authHandlers.updateUserName(displayName);
+
+			console.log('Successfully signed up');
 
 
 			await authHandlers.login(email, password);
