@@ -14,7 +14,6 @@
 
 	// account name
 	// Sign In condition
-	export let signIn = true;
 
 	let userEmail;
 	let userName;
@@ -30,7 +29,7 @@
 	});
 </script>
 
-{#if signIn}
+{#if userEmail != null}
 	<!-- Sign In -->
 	<div class="w-full h-full flex flex-col justify-center items-center">
 		<div class="w-full h-full flex flex-col justify-center items-center gap-8">
@@ -46,7 +45,7 @@
 
 		<!--	Bookmark -->
 		<div class="w-full flex">
-			<CollectionBlock bookmark></CollectionBlock>
+			<!-- <CollectionBlock ></CollectionBlock> -->
 		</div>
 
 		<GridCollection class="mt-10"></GridCollection>
@@ -63,8 +62,8 @@
 			>
 		</div>
 		<div class="pt-14 flex justify-center w-screen">
-			<Fab class="relative -left-[10%]" icon="faCircleUser" size="lg">Sign me<br>in</Fab>
-			<Fab class="mt-20 relative -right-[5%]" icon="faSparkles" size="lg"
+			<Fab class="relative -left-[10%]" icon="faCircleUser" size="lg" href="sign-in">Sign me<br>in</Fab>
+			<Fab class="mt-20 relative -right-[5%]" icon="faSparkles" size="lg" href="/register"
 			>Become a<br>member
 			</Fab
 			>

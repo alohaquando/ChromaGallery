@@ -27,11 +27,12 @@
 		}
 	});
 
-	const authen = getAuth();
-	const userId = authen.currentUser.uid;
-	console.log(authen.currentUser.uid);
-
 	const handleBookmark = async () => {
+		const authen = getAuth();
+		const userId = authen.currentUser.uid;
+		console.log(authen.currentUser.uid);
+
+
 		await setDoc(
 			doc(db, 'users', userId, 'lists', 'bookmark'),
 			{

@@ -3,10 +3,11 @@
     import { modalData, previousState } from '$lib/stores/modal';
     import { resetDialog, toggleDialog } from '$lib/stores/dialog';
     import Dialog from '$lib/components/pop-up/Dialog.svelte';
+	import { authHandlers } from '$lib/stores/store';
 
     modalData.set({
         modalPage: true,
-        href: '/account/me',
+        href: '/account',
         title: 'Account setting',
         exit: true,
         button: undefined,
@@ -26,6 +27,8 @@
         option: 'Log out',
         type: 'filled',
         function: function() {
+            authHandlers.logout()
+            window.location.href = '/'
         }
     };
 </script>

@@ -10,6 +10,7 @@
     }
     export let iconType: 'regular' | 'solid' | 'brands' | undefined = 'regular';
     export let href: string | undefined = undefined;
+    export let target: string | undefined = undefined;
     let customClasses = '';
     export { customClasses as class };
     export let icon: string | undefined = 'faInfoCircle';
@@ -47,6 +48,7 @@
         role="button"
         tabindex="0"
         this={href ? 'a' : 'button'}
+        {target}
 >
     <Icon {icon} size="{size === 'mini' ? 'sm' : '2xl'}"
           type={iconType}></Icon>

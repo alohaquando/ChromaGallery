@@ -8,26 +8,29 @@
 	let email = '';
 	let password = '';
 	let confirmPassword = '';
-	let displayName;
+	let displayName = '';
 	let error = false;
 
 	async function handleSignUpAuthenticate() {
 		try {
-			if (password != confirmPassword) {
+			if (password !== confirmPassword) {
 				console.log('Password does not match');
+				return;
+			}
+			await authHandlers.signup(email, password);
+
+			if ((displayName === '')) {
+				console.log('Display name is null');
 				return;
 			}
 			await authHandlers.signup(email, password);
 
 			let error = false;
 
-			console.log('Successfully signed up');
-
-			if (displayName = null) {
-				console.log('Display name is null');
-				return;
-			}
 			await authHandlers.updateUserName(displayName);
+
+
+			console.log('Successfully signed up');
 
 
 			await authHandlers.login(email, password);
@@ -65,8 +68,7 @@
 	<Divider></Divider>
 	<TextField bind:value={displayName} id="fullName" name="fullName" placeholder="Full Name"
 	></TextField>
-	<Button design="filled" on:click={handleSignUpAuthenticate} type="button" width="full"
-	>Complete sign up
-	</Button
+	<Button design="filled" type="button" width="full" on:click={handleSignUpAuthenticate}
+		>Complete sign up</Button
 	>
 </form>
