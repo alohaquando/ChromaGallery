@@ -15,7 +15,7 @@
 
 	export let hideSubtitle: boolean = false;
 
-	let blockStyle: 'grid' | 'single' = 'single';
+	let blockStyle: 'grid' | 'single' = 'grid';
 	export { blockStyle as style };
 
 	export let hasButton: boolean = true;
