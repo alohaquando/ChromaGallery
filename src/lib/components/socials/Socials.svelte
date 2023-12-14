@@ -4,7 +4,7 @@
 
 	let customClasses = '';
 	export { customClasses as class };
-	export let href: string | undefined;
+	export let href: string | undefined = undefined;
 	export let design: 'facebook' | 'google' | 'apple';
 	export let signup: boolean = true;
 
@@ -46,6 +46,7 @@
 	class="{customClasses} {buttonClass} h-12 px-6 duration-200 border-none hover:after:!opacity-0 hover:before:!opacity-0 w-full"
 	{href}
 	{icon}
+	on:click
 	iconSize="xl"
 	iconType="brands"
 >

@@ -58,6 +58,9 @@ devDependencies:
   autoprefixer:
     specifier: ^10.4.16
     version: 10.4.16(postcss@8.4.31)
+  date-picker-svelte:
+    specifier: ^2.10.1
+    version: 2.10.1(svelte@4.2.7)
   eslint-config-prettier:
     specifier: ^8.5.0
     version: 8.10.0(eslint@8.53.0)
@@ -79,6 +82,9 @@ devDependencies:
   svelte-check:
     specifier: ^3.6.0
     version: 3.6.0(postcss@8.4.31)(svelte@4.2.7)
+  svelte-dnd-action:
+    specifier: ^0.9.33
+    version: 0.9.33(svelte@4.2.7)
   tailwindcss:
     specifier: ^3.3.5
     version: 3.3.5
@@ -1486,6 +1492,14 @@ packages:
     hasBin: true
     dev: true
 
+  /date-picker-svelte@2.10.1(svelte@4.2.7):
+    resolution: {integrity: sha512-z4cJ33hngSCPlxc1ERVOgRBJHQXwghJMNtQBT0Q2d3Z9IHGmoIYpViS5s9oRbivs4+TDHkIBmqd/8Ldu9xEYhw==}
+    peerDependencies:
+      svelte: ^3.24.0 || ^4.0.0
+    dependencies:
+      svelte: 4.2.7
+    dev: true
+
   /debug@4.3.4:
     resolution: {integrity: sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==}
     engines: {node: '>=6.0'}
@@ -2728,6 +2742,14 @@ packages:
       - sass
       - stylus
       - sugarss
+    dev: true
+
+  /svelte-dnd-action@0.9.33(svelte@4.2.7):
+    resolution: {integrity: sha512-sX9ML9yrjw/f5zTS4psfGZk9B20IYZ1Q9f9Zb/YcH7hXPBISGR8vu87VxKvg99AYOVKbkjJAQoDjJGgC7SorVw==}
+    peerDependencies:
+      svelte: '>=3.23.0'
+    dependencies:
+      svelte: 4.2.7
     dev: true
 
   /svelte-eslint-parser@0.33.1(svelte@4.2.7):

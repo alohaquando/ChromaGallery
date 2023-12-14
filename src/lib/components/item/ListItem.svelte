@@ -2,34 +2,47 @@
 	import Body from '$lib/components/typography/Body.svelte';
 	import Link from '$lib/components/links/Link.svelte';
 	import Icon from '$lib/components/iconography/Icon.svelte';
-	export let leadingText: string | undefined = '';
-	export let trailingText: string | undefined = '';
+
+	export let text: string | undefined;
 	export let href: string | undefined = undefined;
 	export let icon: string | undefined = undefined;
-	export let clickable: boolean = false;
+	export let topDivider: boolean = true;
+	export let bottomDivider: boolean = true;
+	export let design: 'default' | 'destructive' = 'default';
+	let textClasses: string;
+	switch (design) {
+		case 'default': {
+			break;
+		}
+		case 'destructive': {
+			textClasses = 'text-red-400';
+			break;
+		}
+	}
+	let customClass = '';
+	export { customClass as class };
 </script>
 
-<svelte:element
-	this={clickable ? 'button' : 'div'}
+<button
+	class="{customClass} flex flex-row min-h-[3rem] py-4 justify-between space-x-4 relative items-center"
 	on:click
 	tabindex="0"
-	role={clickable ? 'button' : ''}
-	class="flex flex-row min-h-[3rem] py-4 justify-between space-x-4 relative items-center"
 >
-	<div class="grow flex-1 flex items-center">
-		<Body>
-			{leadingText}
-		</Body>
-	</div>
-	<div class="grow flex-1 flex items-center hyphens-auto">
-		<svelte:component this={href ? Link : Body} {href}>
-			{trailingText}
+	<div
+		class="grow flex-1 flex items-center hyphens-auto {textClasses}">
+		<svelte:component {href} linkColor="{design === 'destructive' ? 'from-red-500 to-red-300' : undefined}"
+											this={href || design === 'destructive' ? Link : Body}>
+			{text}
 		</svelte:component>
 	</div>
 	<Icon {icon} size="sm" />
-	<div class=" h-px bg-[#222222] w-full absolute top-0 -left-4" />
-	<div class=" h-px bg-[#222222] w-full absolute -bottom-px -left-4" />
-</svelte:element>
+	{#if topDivider}
+		<div class=" h-px bg-[#222222] w-full absolute top-0 -left-4" />
+	{/if}
+	{#if bottomDivider}
+		<div class=" h-px bg-[#222222] w-full absolute -bottom-px -left-4" />
+	{/if}
+</button>
 
 <!--Example-->
 <!--<ListItem leadingText="This" trailingText="That"/>-->

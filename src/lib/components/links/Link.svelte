@@ -9,6 +9,7 @@
 	export { customClasses as class };
 	export let href: string | undefined = undefined;
 	export let type: 'body' | 'title' | 'headline' | 'display' = 'body';
+	export let linkColor = 'from-white to-white';
 	let componentOptions = [
 		{
 			type: 'body',
@@ -36,10 +37,10 @@
 	let typeClass = componentOptions.find((option) => option.type == type)?.class;
 </script>
 
-<a class="{customClasses} relative max-w-fit cursor-pointer" {href}>
+<a class="{customClasses} relative max-w-fit cursor-pointer trim-both" {href}>
 	<svelte:component
+		class="{typeClass} inline bg-gradient-to-r {linkColor}"
 		this={component}
-		class="{typeClass} inline bg-gradient-to-b from-white to-white"
 	>
 		<slot />
 	</svelte:component>

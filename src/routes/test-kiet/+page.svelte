@@ -1,21 +1,41 @@
-<script>
-	import BlockItem from '$lib/components/item/BlockItem.svelte';
-	import Link from '$lib/components/links/Link.svelte';
-	import Body from '$lib/components/typography/Body.svelte';
-	import HeroImage from '$lib/components/item/HeroImage.svelte';
-	import Dialog from '$lib/components/pop-up/Dialog.svelte';
-	import Block from '$lib/components/block/Block.svelte';
-	import Modal from '$lib/components/pop-up/Modal.svelte';
-	import Button from '$lib/components/controls/Button.svelte';
-	import Socials from '$lib/components/socials/Socials.svelte';
-	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
+<script lang="ts">
+    import CollectionBlock from '$lib/components/item/CollectionBlock.svelte';
+    import Link from '$lib/components/links/Link.svelte';
+    import Body from '$lib/components/typography/Body.svelte';
+    import HeroImage from '$lib/components/item/HeroImage.svelte';
+    import Dialog from '$lib/components/pop-up/Dialog.svelte';
+    import Block from '$lib/components/item/Block.svelte';
+    import Button from '$lib/components/controls/Button.svelte';
+    import Socials from '$lib/components/socials/Socials.svelte';
+    import PageTitle from '$lib/components/layouts/PageTitle.svelte';
+    import Grid from '$lib/components/item/GridItem.svelte';
+    import RowItem from '$lib/components/item/RowItem.svelte';
+    import { item1, collection1 } from '../../data';
+    import FileInput from '$lib/components/inputs/FileInput.svelte';
+    import TextField from '$lib/components/inputs/TextField.svelte';
+    import { header } from '$lib/stores/header';
+    import { modal } from '$lib/stores/modal';
+
+    modal.set({
+        modalPage: true,
+        title: 'It works',
+        exit: undefined,
+        button: undefined,
+        destructive: undefined,
+        transition: undefined
+    });
 </script>
 
-<PageTitle>A Title</PageTitle>
-<!--<HeroImage src="https://via.placeholder.com/342x272" name="Shrimp" artist="Shrimp" time="1:43 AM 11/26/2023"></HeroImage>-->
+<TextField type="date"></TextField>
+<TextField></TextField>
 
-<!--<BlockItem itemNum={1} title="My collection" subtitle="Single collection"></BlockItem>-->
-<!--<BlockItem src="https://via.placeholder.com/342x272" itemNum={28} style='grid' title="Grid collection" subtitle=""></BlockItem>-->
+<!--<FileInput></FileInput>-->
+
+<!--<PageTitle>A Title</PageTitle>-->
+<!--<HeroImage data={item1}></HeroImage>-->
+
+<!--<Block data={item1} stretch={false}></Block>-->
+<!--<CollectionBlock style="grid" data={collection1}></CollectionBlock>-->
 
 <!--<div class="gap-5 flex mt-5">-->
 <!--<Link type="body">display</Link>-->
@@ -33,10 +53,12 @@
 <!--	<Block src="https://via.placeholder.com/342x272"></Block>-->
 <!--</div>-->
 
-<!--&lt;!&ndash;<Modal buttonText="Buton" title="Modao"></Modal>&ndash;&gt;-->
+<!--<ModalInfo buttonText="Buton" title="Modao"></ModalInfo>-->
 
-<Socials design="facebook"></Socials>
-<Socials design="google" signup={false}></Socials>
-<Socials design="apple"></Socials>
+<!--<Socials design="facebook"></Socials>-->
+<!--<Socials design="google" signup={false}></Socials>-->
+<!--<Socials design="apple"></Socials>-->
 
 <!--<Dialog title="Warning" text="COOKIES!!!!! !!!!!!!!!!!!!! !!!!!!!!!!!!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!! !!!!!!!!!!" option1="Ignore" option2="Accept"></Dialog>-->
+
+<!--<Grid data={dataInput}></Grid>-->

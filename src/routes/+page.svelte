@@ -1,14 +1,59 @@
-<script>
+<script lang="ts">
+	import { itemStore } from '$lib/stores/itemStore';
 	import DisplayLarge from '$lib/components/typography/DisplayLarge.svelte';
 	import Fab from '$lib/components/controls/Fab.svelte';
 	import InfoChip from '$lib/components/controls/InfoChip.svelte';
 	import HeroImage from '$lib/components/item/HeroImage.svelte';
-	import BG from '$lib/components/backgrounds/BG.svelte';
+	import { onDestroy, onMount } from 'svelte';
+	import { faCarTilt } from '@fortawesome/pro-solid-svg-icons';
+	import { item1, item2, item3 } from '$lib/../data.js';
+	import { setContext } from 'svelte';
+	import { getAuth, onAuthStateChanged } from 'firebase/auth';
+
+	let itemList = [];
+	let isDataLoaded = false;
+
+	onMount(async () => {
+		itemStore
+			.getAllItems()
+			.then((itemsData) => {
+				itemList = itemsData;
+				console.log(itemList);
+
+				// Do something with the items data
+			})
+			.catch((error) => {
+				// Handle errors
+				console.error('Error:', error);
+			});
+	});
+
+	// let itemList = [];
+
+	// onMount(async () => {
+	// 	try {
+	// 		const itemsData = await itemStore.getAllItems();
+	// 		itemList = itemsData;
+	// 	} catch (error) {
+	// 		console.error('Error:', error);
+	// 	}
+	// });
+
+	// Check if Logged-in
+	let userEmail ;
+	let userName;
+	const authen = getAuth();
+	onAuthStateChanged(authen, (user) => {
+		if (user) {
+			console.log(user);
+			userName = user.displayName;
+			userEmail = user.email;
+		} else {
+			console.log('Not signed in');
+		}
+	});
 </script>
 
-<BG design="top-large" randomized />
-
-<!--Replace div -> Background-->
 <div class="w-full h-[80vh] pt-[5vh] flex flex-col items-center justify-between">
 	<div class="flex flex-col items-center gap-10 w-full grow justify-center">
 		<DisplayLarge class="relative -left-[10%]">The place</DisplayLarge>
@@ -17,33 +62,46 @@
 		<DisplayLarge class="relative">artistic</DisplayLarge>
 	</div>
 	<div class="flex w-full justify-between max-w-3xl mt-32">
-		<Fab class="" icon="faUser" size="lg">Sign me<br />in</Fab>
-		<Fab class="-mt-20" icon="faSearch" size="lg">Show me<br />more</Fab>
-		<Fab class="mt-8" icon="faPlay" size="lg">Relax me</Fab>
+		{#if userEmail}
+		<Fab class="" href="/account" icon="faUser" size="lg">My account</Fab>
+		{:else}
+		<Fab class="" href="/sign-in" icon="faUser" size="lg">Sign me<br />in</Fab>
+		{/if}
+		<Fab class="-mt-20" href="/browse" icon="faSearch" size="lg">Show me<br />more</Fab>
+		<Fab class="mt-8" href="/" icon="faPlay" size="lg">Relax me</Fab>
 	</div>
-	<InfoChip design="text" icon="faAngleDown" class="opacity-50">Scroll for more</InfoChip>
+	<InfoChip class="opacity-50" design="text" icon="faAngleDown">Scroll for more</InfoChip>
 </div>
 
 <div class="w-full h-20 mt-7"></div>
 <DisplayLarge class="mt-20"></DisplayLarge>
-<HeroImage
-	alt=""
-	artist="Olve Sande"
-	class="mt-12"
-	name="La ceramica italiana del Novecento"
-	src="https://blog.artsper.com/wp-content/uploads/2022/06/44151m.jpg"
-></HeroImage>
-<HeroImage
-	alt=""
-	artist="Francesco Gennari"
-	class="mt-12"
-	name="Officine italiance del Rinascimento"
-	src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/de1bbf90617233.5e1c78d58d809.jpg"
-></HeroImage>
-<HeroImage
-	alt=""
-	artist="Antoine Levi"
-	class="mt-12"
-	name="Ceramiche del Vicino Oriente antico"
-	src="https://theartofeducation.edu/wp-content/uploads/2022/10/VanGoghLegoMeme.jpeg"
-></HeroImage>
+
+<!-- {#if itemList.length > 0}
+	{#each itemList as item (item.id)}
+		<HeroImage
+			alt="#"
+			author={item.artist}
+			class="mt-12"
+			year={item.year}
+			name={item.title}
+			src={item.src}
+		></HeroImage>
+	{/each}
+{:else}
+
+	<p>Loading...</p>
+{/if} -->
+{#if isDataLoaded}
+	{#if itemList.length > 0}
+		{#each itemList as item}
+			{#if item.id}
+				<HeroImage data={item} hideYear></HeroImage>
+			{/if}
+		{/each}
+	{:else}
+
+	{/if}
+{:else}
+	<!-- Loading state or placeholder -->
+	<p>Loading...</p>
+{/if}

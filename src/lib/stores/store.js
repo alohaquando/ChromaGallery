@@ -4,7 +4,8 @@ import {
 	createUserWithEmailAndPassword,
 	signInWithEmailAndPassword,
 	signInWithPopup,
-	signOut
+	signOut,
+	updateProfile,
 } from 'firebase/auth';
 import { auth } from '$lib/services/firebase/firebase.js';
 
@@ -26,5 +27,10 @@ export const authHandlers = {
 	},
 	logout: async () => {
 		await signOut(auth);
+	},
+	updateUserName: async (name) => {
+		await updateProfile ( auth.currentUser, { displayName : name })
 	}
 };
+
+

@@ -38,6 +38,12 @@
 
 	body {
 		overflow: clip;
+		--date-picker-foreground: #dbdbdb;
+        --date-picker-bg: #292929;
+        --date-picker-highlight-border: hsl(var(--deg), 98%, 49%);
+        --date-picker-highlight-shadow: hsla(var(--deg), 98%, 49%, 50%);
+        --date-picker-selected-color: hsl(var(--deg), 100%, 85%);
+        --date-picker-selected-bg: hsla(var(--deg), 98%, 49%, 20%);
 	}
 }
 
@@ -100,7 +106,7 @@
 	.bg-link-sm {
 		background-size: 0 1.5px;
 		transition: background-size 500ms ease;
-		background-position: 0 90%;
+		background-position: 0 100%;
 		background-repeat: no-repeat;
 	}
 
