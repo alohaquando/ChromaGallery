@@ -9,7 +9,7 @@
 	import Block from '$lib/components/item/Block.svelte';
 	import Grid from '$lib/components/item/GridItem.svelte';
 	import CollectionList from '$lib/components/item/CollectionList.svelte';
-	import { itemList1, allCollection } from '../../../data.js';
+	import { itemList1, allCollection } from '../../data.js';
 	import { defaultLayout } from '$lib/stores/pageLayout';
 	import { onMount } from 'svelte';
 	import { itemStore } from '$lib/stores/itemStore';

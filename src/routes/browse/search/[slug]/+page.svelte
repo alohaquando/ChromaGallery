@@ -1,7 +1,7 @@
 <script lang="ts">
 	import TextField from '$lib/components/inputs/TextField.svelte';
 	import DragList from '$lib/components/item/DragList.svelte';
-	import { allItem } from '../../../../../data';
+	import { allItem } from '../../../../data';
 	import BodySmall from '$lib/components/typography/BodySmall.svelte';
 
 	let items = allItem;
