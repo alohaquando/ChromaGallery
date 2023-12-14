@@ -2,7 +2,7 @@
 	import TextField from '$lib/components/inputs/TextField.svelte';
 	import ListItem from '$lib/components/item/ListItem.svelte';
 	import { modalData } from '$lib/stores/modal';
-	import { item1 } from '../../../../data';
+	import { item1 } from '../../../../../data';
 	import Dialog from '$lib/components/pop-up/Dialog.svelte';
 	import { resetDialog } from '$lib/stores/dialog';
 	import { toggleDialog } from '$lib/stores/dialog';
@@ -10,21 +10,10 @@
 	modalData.update(modalData => ({
 		...modalData,
 		modalPage: true,
-		href: '/account/setting',
+		href: '#',
 		title: 'Edit list',
 		button: 'Save'
 	}));
-
-	modalData.set({
-		modalPage: true,
-		href: '/account/me',
-		title: 'Account setting',
-		exit: true,
-		button: undefined,
-		buttonFunction: function() {
-		},
-		animation: ''
-	});
 
 	let button1 = {
 		option: 'Cancel',

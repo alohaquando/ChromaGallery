@@ -1,9 +1,9 @@
 <script>
 	import { getDoc, doc, setDoc } from 'firebase/firestore';
 	import { authHandlers, authStore } from '$lib/stores/store.js';
-	import { db } from '$lib/services/firebase/firebase';
+	import { db } from '$lib/services/firebase/firebase.js';
 	import Item from '$lib/wip/backend/Item.svelte';
-	import { defaultLayout } from '$lib/stores/pageLayout.js';
+	import { defaultLayout } from '$lib/stores/pageLayout.ts';
 
 	let itemList = [];
 	let currItem = '';

@@ -1,5 +1,5 @@
 <script>
-	import { db } from '$lib/services/firebase/firebase';
+	import { db } from '$lib/services/firebase/firebase.js';
 	import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
 	import { onMount } from 'svelte';
 

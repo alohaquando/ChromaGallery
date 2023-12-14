@@ -2,7 +2,7 @@
 	import ModalInfo from '$lib/components/pop-up/Modal.svelte';
 	import Button from '$lib/components/controls/Button.svelte';
 	import DragList from '$lib/components/item/DragList.svelte';
-	import { allCollection } from '../../../../data.js';
+	import { allCollection } from '../../../../../data.js';
 	import { defaultLayout, modal } from '$lib/stores/pageLayout';
 	import CollectionList from '$lib/components/item/CollectionList.svelte';
 	import { onMount } from 'svelte';

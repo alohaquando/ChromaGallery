@@ -3,7 +3,7 @@
 	import Button from '$lib/components/controls/Button.svelte';
 	import DragList from '$lib/components/item/DragList.svelte';
 
-	import { itemList1 } from '../../data';
+	import { itemList1 } from '../../../../../data';
 </script>
 
 <Modal button="Add" title="Add item to list">

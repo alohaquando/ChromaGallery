@@ -11,7 +11,7 @@
 	import { authStore } from '$lib/stores/store';
 	import { getAuth } from 'firebase/auth';
 
-	/** @type {import('./$types').PageLoad} */
+	/** @type {import('../../../../../.svelte-kit/types/src/routes').PageLoad} */
 	export let data: any;
 
 	onMount(async () => {
@@ -35,7 +35,7 @@
 		await setDoc(
 			doc(db, 'users', userId, 'lists', 'bookmark'),
 			{
-				item: arrayUnion(data.slug),
+				item: arrayUnion(data.slug)
 			},
 			{ merge: true }
 		);
