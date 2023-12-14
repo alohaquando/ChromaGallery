@@ -9,4 +9,4 @@
 
 <Button icon="faMagnifyingGlass" class="mt-16" width="full">Search</Button>
 
-<CollectionList class="mt-12 gap-10" hideSubtitle style='single' data={allCollection}></CollectionList>
+<CollectionList class="mt-12 gap-10" hideSubtitle style='single' data={allCollection} hasButton={false}></CollectionList>
