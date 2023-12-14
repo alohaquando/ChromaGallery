@@ -22,6 +22,8 @@
 	if (bookmark) {
 		blockStyle = 'single';
 	}
+
+	export let hideSubtitle: boolean = false;
 </script>
 
 <div
@@ -55,7 +57,7 @@
 					Bookmark
 				{/if}
 			</Link>
-			{#if subtitle && !bookmark}
+			{#if subtitle && !bookmark && !hideSubtitle}
 				<Body class="text-white/50 line-clamp-2">{data.description}</Body>
 			{/if}
 		</div>

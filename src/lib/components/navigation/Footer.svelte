@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import Fab from '$lib/components/controls/Fab.svelte';
 	import Title from '$lib/components/typography/Title.svelte';
 	import Divider from '$lib/components/layouts/Divider.svelte';
@@ -6,11 +6,25 @@
 	import Button from '$lib/components/controls/Button.svelte';
 	import Link from '$lib/components/links/Link.svelte';
 	import Icon from '$lib/components/iconography/Icon.svelte';
+	import { onMount } from 'svelte';
+
+	let root: HTMLElement;
+
+	onMount(() => {
+		root = document.body.parentNode as HTMLElement;
+	});
+
+	const scrollTop = () => {
+		root.scrollTo({
+			top: 0,
+			behavior: 'smooth'
+		});
+	};
 </script>
 
 <div class="pb-16 pt-32 w-full justify-start items-start gap-8 inline-flex flex-col">
 	<Divider full />
-	<Fab href="" icon="faArrowUp" size="lg">Back to top</Fab>
+	<Fab href="" icon="faArrowUp" on:click={scrollTop} size="lg">Back to <br>top</Fab>
 	<Divider></Divider>
 	<Title>Get in contact</Title>
 	<div class="inline-flex justify-between w-full">
