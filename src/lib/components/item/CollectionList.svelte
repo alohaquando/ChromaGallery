@@ -18,7 +18,13 @@
 	let blockStyle: 'grid' | 'single' = 'grid';
 	export { blockStyle as style };
 
-	export let hasButton: boolean = true;
+	export let wrap: boolean = false;
+	let wrapClass = '';
+	if (wrap) {
+		wrapClass = 'flex-wrap';
+	}
+
+	export let width: 'fixed' | 'full' = 'fixed';
 </script>
 
 {#if rowType}
@@ -28,12 +34,13 @@
 		{/each}
 	</div>
 {:else}
-	<div class="{customClass} flex items-center overflow-y-clip overflow-x-scroll gap-x-4 gap-y-10 scrollbar-none">
+	<div
+		class="{customClass} flex items-center overflow-y-clip overflow-x-scroll gap-x-4 gap-y-10 scrollbar-none {wrapClass}">
 		{#each data as collection}
-			<CollectionBlock {hideSubtitle} class="shrink-0" data={collection} style={blockStyle}></CollectionBlock>
+			<CollectionBlock {width} {hideSubtitle} class="shrink-0" data={collection} style={blockStyle}></CollectionBlock>
 		{/each}
-		{#if hasButton}
-			<Fab class="translate-y-[-25%] shrink-0" icon="" size="lg">View all</Fab>
+		{#if (width === 'fixed')}
+			<Fab class="mr-10 shrink-0 relative -mt-10" icon="" size="lg">View all</Fab>
 		{/if}
 	</div>
 {/if}

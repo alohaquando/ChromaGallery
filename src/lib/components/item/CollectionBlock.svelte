@@ -1,3 +1,4 @@
+<!--suppress ALL -->
 <script lang="ts">
 	import Body from '$lib/components/typography/Body.svelte';
 	import Link from '$lib/components/links/Link.svelte';
@@ -23,10 +24,18 @@
 		blockStyle = 'single';
 	}
 	export let hideSubtitle: boolean = false;
+	export let width: 'fixed' | 'full' = 'fixed';
+	let widthClass = '';
+	switch (width) {
+		case 'fixed':
+			widthClass = 'sm:w-72 w-full';
+		case 'full':
+			widthClass = 'w-72';
+	}
 </script>
 
 <div
-	class="{customClass} {bookmark? 'w-full' : 'sm:w-72 w-full'} flex-col justify-start items-start gap-6 inline-flex grow">
+	class="{customClass} {bookmark? 'w-full' : widthClass} flex-col justify-start items-start gap-6 inline-flex grow">
 	<a class="w-full h-52 rounded-lg gap-1 inline-flex overflow-hidden relative" href="../routes/item/{data.id}">
 		{#if !bookmark}
 			<Block data={allItem.find((item) => item.id === data.items[0])}></Block>
