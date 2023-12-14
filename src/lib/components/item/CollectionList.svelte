@@ -14,6 +14,9 @@
 	 export {customClass as class }
 
 	export let hideSubtitle: boolean = false;
+	
+	let blockStyle: 'grid' | 'single' = 'single';
+    export { blockStyle as style };
 </script>
 
 {#if rowType}
@@ -25,7 +28,7 @@
 	{:else}
 <div class="{customClass} flex items-center overflow-y-clip overflow-x-scroll gap-4 scrollbar-none">
 	{#each data as collection}
-		<CollectionBlock {hideSubtitle} class="shrink-0" data={collection} style="grid"></CollectionBlock>
+		<CollectionBlock style={blockStyle} {hideSubtitle} class="shrink-0" data={collection}></CollectionBlock>
 	{/each}
 	<Fab class="translate-y-[-25%] shrink-0" icon="" size="lg">View all</Fab>
 </div>
