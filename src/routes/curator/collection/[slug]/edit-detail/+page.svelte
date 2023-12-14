@@ -2,7 +2,7 @@
 	import Headline from '$lib/components/typography/Headline.svelte';
 	import TextArea from '$lib/components/inputs/TextField.svelte';
 	import ListItem from '$lib/components/item/ListItem.svelte';
-	import { collection1, item1 } from '../../../../data';
+	import { collection1, item1 } from '../../../../../data';
 	import { modalData } from '$lib/stores/modal';
 	import Dialog from '$lib/components/pop-up/Dialog.svelte';
 	import { resetDialog } from '$lib/stores/dialog';

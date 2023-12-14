@@ -3,7 +3,7 @@
 	export { customClasses as class };
 </script>
 <div class="flex relative group justify-end">
-	<svg class="{customClasses} absolute left-0 group-hover:animate-spinLeftACW" fill="none" viewBox="0 0 24 24"
+	<svg class="{customClasses} absolute left-0 group-hover:animate-pacman2" fill="none" viewBox="0 0 24 24"
 			 xmlns="http://www.w3.org/2000/svg">
 		<path
 			d="M19.743 21.168A11.952 11.952 0 0 1 12 24C5.373 24 0 18.627 0 12S5.373 0 12 0h.038l3.853 10.584 3.852 10.584Z"
@@ -15,7 +15,7 @@
 			</linearGradient>
 		</defs>
 	</svg>
-	<svg class="{customClasses} absolute left-0 group-hover:animate-spinLeftCW" fill="none" viewBox="0 0 24 24"
+	<svg class="{customClasses} absolute left-0 group-hover:animate-pacman1" fill="none" viewBox="0 0 24 24"
 			 xmlns="http://www.w3.org/2000/svg">
 		<path d="M19.743 2.832A11.952 11.952 0 0 0 12 0C5.373 0 0 5.373 0 12s5.373 12 12 12h.038l7.705-21.168Z"
 					fill="url(#b)" />
@@ -26,8 +26,8 @@
 			</linearGradient>
 		</defs>
 	</svg>
-	<div class="overflow-hidden flex justify-end">
-		<svg class="{customClasses} shrink-0" fill="none" viewBox="0 0 114 24"
+	<div class="overflow-hidden flex justify-end group-hover:animate-disappearRight">
+		<svg class="{customClasses} shrink-0 " fill="none" viewBox="0 0 114 24"
 				 xmlns="http://www.w3.org/2000/svg">
 			<!--		<path-->
 			<!--			d="M19.743 21.168A11.952 11.952 0 0 1 12 24C5.373 24 0 18.627 0 12S5.373 0 12 0h.038l3.853 10.584 3.852 10.584Z"-->
