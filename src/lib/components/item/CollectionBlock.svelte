@@ -22,7 +22,6 @@
 	if (bookmark) {
 		blockStyle = 'single';
 	}
-
 	export let hideSubtitle: boolean = false;
 </script>
 
