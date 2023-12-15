@@ -44,7 +44,7 @@
 	class="{!icon
 		? sizeClass
 		: 'h-14 w-14'} {typeClass} {customClass} relative overflow-hidden w-full"
-	href="../item/{data.id}"
+	href="../browse/{data.id}"
 >
 	{#if bookmark}
 		<Icon icon="faStar" type="solid" class="absolute" size={iconSize}></Icon>
