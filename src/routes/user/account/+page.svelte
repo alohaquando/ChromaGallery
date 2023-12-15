@@ -34,7 +34,7 @@
 	<div class="w-full h-full flex flex-col justify-center items-center">
 		<div class="w-full h-full flex flex-col justify-center items-center gap-8">
 			<PageTitle>{userName}</PageTitle>
-			<Button href="../account/setting" icon="faGear">Account settings</Button>
+			<Button href="account/setting" icon="faGear">Account settings</Button>
 		</div>
 
 		<!-- My Lists -->
@@ -62,8 +62,8 @@
 			>
 		</div>
 		<div class="pt-14 flex justify-center w-screen">
-			<Fab class="relative -left-[10%]" icon="faCircleUser" size="lg" href="sign-in">Sign me<br>in</Fab>
-			<Fab class="mt-20 relative -right-[5%]" icon="faSparkles" size="lg" href="/register"
+			<Fab class="relative -left-[10%]" icon="faCircleUser" size="lg" href="account/sign-in">Sign me<br>in</Fab>
+			<Fab class="mt-20 relative -right-[5%]" icon="faSparkles" size="lg" href="account/register"
 			>Become a<br>member
 			</Fab
 			>

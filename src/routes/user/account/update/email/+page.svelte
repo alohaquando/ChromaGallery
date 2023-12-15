@@ -7,7 +7,7 @@
     modalData.update(modalData => ({
         ...modalData,
         modalPage: true,
-        href: '/account/setting',
+        href: '/user/account/setting',
         title: 'Account setting',
         button: 'Save'
     }));

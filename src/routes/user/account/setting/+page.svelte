@@ -7,7 +7,7 @@
 
     modalData.set({
         modalPage: true,
-        href: '/account',
+        href: '/user/account',
         title: 'Account setting',
         exit: true,
         button: undefined,
