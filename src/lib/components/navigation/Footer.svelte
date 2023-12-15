@@ -42,7 +42,6 @@
 	<Fab href="" icon="faArrowUp" on:click={scrollTop} size="lg">Back to <br>top</Fab>
 	<Divider></Divider>
 
-	{#if userEmail != null }
 	<Title>Get in contact</Title>
 	<div class="inline-flex justify-between w-full">
 		<Fab href="" icon="faFacebook" iconType="brands"></Fab>
@@ -51,7 +50,6 @@
 		<Fab href="https://www.youtube.com/channel/UCs-QBT4qkj_YiQw1ZntDO3g" target="_blank" icon="faYoutube" iconType="brands"></Fab>
 	</div>
 	<Divider></Divider>
-	{/if}
 	<Title>Account</Title>
 	<Body
 	>Manage your bookmarks and lists of your favourite piece of art with an that online museum
