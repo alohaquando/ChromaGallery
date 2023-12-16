@@ -40,7 +40,7 @@
 		<!-- My Lists -->
 		<div class="w-full flex justify-between items-center pt-20 pb-4">
 			<BodyLarge>My lists</BodyLarge>
-			<Button href="/list/create" icon="faPlus">New lists</Button>
+			<Button href="/user/list/create" icon="faPlus">New lists</Button>
 		</div>
 
 		<!--	Bookmark -->

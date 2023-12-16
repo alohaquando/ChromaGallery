@@ -17,21 +17,19 @@
 				console.log('Password does not match');
 				return;
 			}
-			await authHandlers.signup(email, password);
-
-			if ((displayName === '')) {
+			
+			if (displayName.length < 3) {
 				console.log('Display name is null');
 				return;
 			}
+			
 			await authHandlers.signup(email, password);
 
 			let error = false;
-
+			
 			await authHandlers.updateUserName(displayName);
 
-
 			console.log('Successfully signed up');
-
 
 			await authHandlers.login(email, password);
 

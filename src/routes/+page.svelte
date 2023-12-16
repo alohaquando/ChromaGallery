@@ -15,7 +15,7 @@
 
 	onMount(async () => {
 		itemStore
-			.getAllItems()
+			.getCollectionItems()
 			.then((itemsData) => {
 				itemList = itemsData;
 				console.log(itemList);
@@ -91,17 +91,8 @@
 
 	<p>Loading...</p>
 {/if} -->
-{#if isDataLoaded}
-	{#if itemList.length > 0}
-		{#each itemList as item}
+{#each itemList as item}
 			{#if item.id}
 				<HeroImage data={item} hideYear></HeroImage>
 			{/if}
 		{/each}
-	{:else}
-
-	{/if}
-{:else}
-	<!-- Loading state or placeholder -->
-	<p>Loading...</p>
-{/if}

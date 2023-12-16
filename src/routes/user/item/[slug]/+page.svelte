@@ -36,7 +36,7 @@
 		await setDoc(
 			doc(db, 'users', userId, 'lists', 'bookmark'),
 			{
-				item: arrayUnion(data.slug)
+				items: arrayUnion(data.slug)
 			},
 			{ merge: true }
 		);
