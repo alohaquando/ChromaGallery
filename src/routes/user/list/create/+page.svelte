@@ -43,7 +43,7 @@
 			dataToSetToStore = {
 				title: listName,
 				description: listDescriptions,
-				image: 'http://123.com',
+				image: "https://png.pngtree.com/png-vector/20190830/ourmid/pngtree-simple-mountain-png-png-image_1711446.jpg",
 				items: []
 			};
 			const docRef = await addDoc(collection(db, 'users', user.uid, 'lists'), dataToSetToStore);
