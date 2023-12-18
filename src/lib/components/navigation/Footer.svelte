@@ -14,10 +14,10 @@
 	<Divider></Divider>
 	<Title>Get in contact</Title>
 	<div class="inline-flex justify-between w-full">
-		<Fab href="" icon="faFacebook" iconType="brands"></Fab>
-		<Fab href="" icon="faInstagram" iconType="brands"></Fab>
-		<Fab href="" icon="faXTwitter" iconType="brands"></Fab>
-		<Fab href="" icon="faYoutube" iconType="brands"></Fab>
+		<Fab href="https://www.facebook.com/" icon="faFacebook" iconType="brands"></Fab>
+		<Fab href="https://www.instagram.com/" icon="faInstagram" iconType="brands"></Fab>
+		<Fab href="https://twitter.com/" icon="faXTwitter" iconType="brands"></Fab>
+		<Fab href="https://www.youtube.com/" icon="faYoutube" iconType="brands"></Fab>
 	</div>
 	<Divider></Divider>
 	<Title>Account</Title>
