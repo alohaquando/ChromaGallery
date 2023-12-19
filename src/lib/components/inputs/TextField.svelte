@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Icon from '$lib/components/iconography/Icon.svelte';
+	import Fab from '$lib/components/controls/Fab.svelte';
 
 	export let id: string;
 	export let placeholder: string;
@@ -33,55 +34,57 @@
 	export let maxlength: number | undefined = undefined;
 	export let pattern: any | undefined = undefined;
 	export let size: number | undefined = undefined;
-	export let value: string | Date | undefined | null = null;
+	export let value: string | undefined | null = null;
 
 	let stateClasses: string;
 	if (error) {
 		stateClasses = '!border-red-300';
 	}
 
-	let inputClass = 'bg-black/30 border border-white/30 rounded-xl placeholder-white/50 block w-full p-2.5 transition outline-none text-white font-sans trim-both focus:ring-white focus:ring-2 disabled:placeholder-white/30 disabled:text-white/70 read-only:focus:ring-0 read-only:text-white/70';
-	let inputWithIconClass = icon ? 'mr-4 relative' : '';
+	const clearValue = () => {
+		value = '';
+	};
 </script>
 
 <div class="flex flex-col w-full relative">
 	{#if label}
 		<label class="block mb-2 text-sm font-sans trim-both pb-4" for={id}>{label}</label>
 	{/if}
-	<input
-		{...{ type }}
-		{autocomplete}
-		bind:value
-		class="{stateClasses} {inputClass} {inputWithIconClass}"
-		{disabled}
-		{form}
-		{id}
-		{max}
-		{maxlength}
-		{min}
-		{minlength}
-		{name}
-		on:change
-		{pattern}
-		{placeholder}
-		{readonly}
-		{required}
-		{size}
+	<div
+		class="flex {stateClasses} bg-black/30 border border-white/30 rounded-xl w-full p-2.5 transition trim-both has-[:focus]:border-white ">
+		<input
+			{...{ type }}
+			{autocomplete}
+			bind:value
+			class="w-full bg-transparent disabled:placeholder-white/30 disabled:text-white/70 read-only:text-white/70 placeholder-white/50 outline-none text-white font-sans focus:right-0"
+			{disabled}
+			{form}
+			{id}
+			{max}
+			{maxlength}
+			{min}
+			{minlength}
+			{name}
+			on:change
+			{pattern}
+			{placeholder}
+			{readonly}
+			{required}
+			{size}
 
-	/>
-
-	{#if icon}
-	<div class="absolute top-1/2 right-4 transform -translate-y-1/2 pointer-events-none"> 
-		<Icon icon={icon} size="s" /> 
+		/>
+		{#if value}
+			<Fab on:click={clearValue} size="mini" noOutline icon="faXmark" class="" />
+		{/if}
 	</div>
-    {/if}
-
 	{#if error}
 		<div class="flex space-x-2 items-center text-red-300 pt-4">
 			<Icon icon="faExclamationCircle" />
 			<label class="block mb-2 text-sm font-sans trim-both" for={id}>{errorMessage}</label>
 		</div>
 	{/if}
+
+
 </div>
 
 

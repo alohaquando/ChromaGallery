@@ -2,13 +2,13 @@
 	import Bg from '$lib/components/backgrounds/BG.svelte';
 	import TextField from '$lib/components/inputs/TextField.svelte';
 	import DragList from '$lib/components/item/DragList.svelte';
-	import { allItem } from '$lib/../data';
+	import { allItem } from '../../../../../data';
 </script>
 
 <Bg randomized />
 
 <div class="mb-6 w-full h-full">
-	<TextField id="" name="" placeholder="Text"></TextField>
+	<TextField icon="faXmark" id="" name="" value="Text"></TextField>
 </div>
 
 <DragList class="gap-4" data={allItem} type="view"></DragList>
