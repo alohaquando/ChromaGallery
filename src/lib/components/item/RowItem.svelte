@@ -20,7 +20,7 @@
     export { customClass as class };
 
     let animationClass = '';
-    export let type: 'action' | 'edit' | 'view' = 'action';
+    export let type: 'action' | 'edit' | 'delete' | 'view' = 'action';
     export let button: 'add' | 'destructive' | 'link' | undefined;
     export let icon: string | undefined;
     let buttonStyle = '';
@@ -62,6 +62,10 @@
     {#if type === 'edit'}
         <Fab on:click={onDelete} icon="faMinus" size="mini" hover={false}
              class="{animationClass} shrink-0 text-red-500 !border-red-500"></Fab>
+    {/if}
+    {#if type === 'delete'}
+    <Fab on:click={onDelete} icon="faMinus" size="mini" hover={false}
+         class="{animationClass} shrink-0 text-red-500 !border-red-500"></Fab>
     {/if}
     <Block class="{animationClass} rounded-lg shrink-0 !h-16 !w-16" {data} icon link={false}></Block>
     <div class="{animationClass} w-full gap-y-3 flex flex-col">
