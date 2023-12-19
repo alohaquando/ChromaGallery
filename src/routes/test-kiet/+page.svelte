@@ -19,9 +19,11 @@
 	import ImageView from '$lib/components/item/ImageView.svelte';
 </script>
 
-<ImageView></ImageView>
-<LogoCurator></LogoCurator>
-<SiteSwitcher></SiteSwitcher>
+<Button>abcdefghijklm</Button>
+
+<!--<ImageView></ImageView>-->
+<!--<LogoCurator></LogoCurator>-->
+<!--<SiteSwitcher></SiteSwitcher>-->
 <!--<TextField type="date"></TextField>-->
 <!--<TextField></TextField>-->
 
