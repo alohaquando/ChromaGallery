@@ -5,7 +5,7 @@
 	import type { DndEvent } from 'svelte-dnd-action';
 	import { dndzone } from 'svelte-dnd-action';
 
-	export let type: 'action' | 'edit' | 'view' = 'action';
+	export let type: 'action' | 'edit' | 'delete' | 'view' = 'action';
 	export let button: 'add' | 'destructive' | 'link' | undefined;
 	export let icon: string | undefined | null;
 
