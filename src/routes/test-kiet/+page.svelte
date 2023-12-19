@@ -16,7 +16,10 @@
 	import { header } from '$lib/stores/header';
 	import SiteSwitcher from '$lib/components/navigation/SiteSwitcher.svelte';
 	import LogoCurator from '$lib/components/logo/LogoCurator.svelte';
+	import ImageView from '$lib/components/item/ImageView.svelte';
 </script>
+
+<ImageView></ImageView>
 <LogoCurator></LogoCurator>
 <SiteSwitcher></SiteSwitcher>
 <!--<TextField type="date"></TextField>-->
