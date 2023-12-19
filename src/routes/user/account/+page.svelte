@@ -8,7 +8,8 @@
 	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
 	import GridCollection from '$lib/components/item/GridCollection.svelte';
 	import { getAuth, onAuthStateChanged } from 'firebase/auth';
-	import { modal, previousState } from '$lib/stores/modal';
+	import SiteSwitcher from '$lib/components/navigation/SiteSwitcher.svelte';
+	import Divider from '$lib/components/layouts/Divider.svelte';
 
 
 	// account name
@@ -26,18 +27,26 @@
 			console.log('Not sign in');
 		}
 	});
+
+	let isUserCurator: boolean = false;
 </script>
 
 {#if userEmail != null}
 	<!-- Sign In -->
 	<div class="w-full h-full flex flex-col justify-center items-center">
-		<div class="w-full h-full flex flex-col justify-center items-center gap-8">
+		<div class="w-full h-full flex flex-col justify-center items-center gap-8 mb-20">
 			<PageTitle>{userName}</PageTitle>
 			<Button href="account/setting" icon="faGear">Account settings</Button>
 		</div>
 
+		{#if isUserCurator}
+			<!--Curator Site-->
+			<SiteSwitcher class=""></SiteSwitcher>
+			<Divider class="my-10"></Divider>
+		{/if}
+
 		<!-- My Lists -->
-		<div class="w-full flex justify-between items-center pt-20 pb-4">
+		<div class="w-full flex justify-between items-center mb-4">
 			<BodyLarge>My lists</BodyLarge>
 			<Button href="/user/list/create" icon="faPlus">New lists</Button>
 		</div>
