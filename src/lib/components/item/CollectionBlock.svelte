@@ -58,7 +58,7 @@
 	</a>
 	{#if title}
 		<div class="self-stretch flex-col flex gap-4">
-			<Link href="../routes/item/{data.id}" type="body">
+			<Link href="../routes/user/collection/{data.id}" type="body">
 				{#if !bookmark}
 					{data.name}
 				{:else}

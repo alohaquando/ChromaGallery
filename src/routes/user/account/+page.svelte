@@ -8,8 +8,7 @@
 	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
 	import GridCollection from '$lib/components/item/GridCollection.svelte';
 	import { getAuth, onAuthStateChanged } from 'firebase/auth';
-	import { defaultLayout, stateCheck } from '$lib/stores/pageLayout';
-	import { modalData, previousState } from '$lib/stores/modal';
+	import { modal, previousState } from '$lib/stores/modal';
 
 
 	// account name

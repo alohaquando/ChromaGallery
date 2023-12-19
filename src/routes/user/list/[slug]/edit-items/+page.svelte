@@ -2,9 +2,9 @@
 	import Button from '$lib/components/controls/Button.svelte';
 	import DragList from '$lib/components/item/DragList.svelte';
 	import { allItem } from '../../../../../data';
-	import { modalData } from '$lib/stores/modal';
+	import { modal } from '$lib/stores/modal';
 
-	modalData.update(modalData => ({
+	modal.update(modalData => ({
 		...modalData,
 		modalPage: true,
 		href: '/account/setting',

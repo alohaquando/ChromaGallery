@@ -1,9 +1,9 @@
 <script lang="ts">
 	import TextField from '$lib/components/inputs/TextField.svelte';
 	import BodyLarge from '$lib/components/typography/BodyLarge.svelte';
-	import { modalData } from '$lib/stores/modal';
+	import { modal } from '$lib/stores/modal';
 
-	modalData.set({
+	modal.set({
 		modalPage: true,
 		href: '/user/account/setting',
 		title: 'Account setting',

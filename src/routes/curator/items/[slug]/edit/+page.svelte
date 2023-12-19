@@ -5,12 +5,12 @@
 	import Divider from '$lib/components/layouts/Divider.svelte';
 	import TextArea from '$lib/components/inputs/TextArea.svelte';
 	import { item2 } from '../../../../../data';
-	import { modalData } from '$lib/stores/modal';
+	import { modal } from '$lib/stores/modal';
 	import Datalist from '$lib/components/inputs/Datalist.svelte';
 	import { resetDialog } from '$lib/stores/dialog';
 	import Dialog from '$lib/components/pop-up/Dialog.svelte';
 
-	modalData.update(modalData => ({
+	modal.update(modalData => ({
 		...modalData,
 		modalPage: true,
 		href: '/account/setting',
@@ -20,7 +20,7 @@
 
 	let options: string[];
 
-	modalData.set({
+	modal.set({
 		modalPage: true,
 		href: '/account/me',
 		title: 'Account setting',

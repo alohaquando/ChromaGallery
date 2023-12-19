@@ -10,6 +10,13 @@
 	import { arrayUnion, collection, doc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
 	import { authStore } from '$lib/stores/store';
 	import { getAuth } from 'firebase/auth';
+	import { header } from '$lib/stores/header';
+
+	header.update(modalData => ({
+		...modalData,
+		type: 'back',
+		href: '/browse'
+	}));
 
 	/** @type {import('../../../../../.svelte-kit/types/src/routes').PageLoad} */
 	export let data: any;

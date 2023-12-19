@@ -4,10 +4,10 @@
 	import TextField from '$lib/components/inputs/TextField.svelte';
 	import Divider from '$lib/components/layouts/Divider.svelte';
 	import { item2 } from '../../../../data';
-	import { modalData } from '$lib/stores/modal';
+	import { modal } from '$lib/stores/modal';
 	import Datalist from '$lib/components/inputs/Datalist.svelte';
 
-	modalData.update(modalData => ({
+	modal.update(modalData => ({
 		...modalData,
 		modalPage: true,
 		href: '/account/setting',

@@ -2,7 +2,7 @@
 	import Grid from '$lib/components/item/GridItem.svelte';
 	import TextField from '$lib/components/inputs/TextField.svelte';
 	import Block from '$lib/components/item/Block.svelte';
-	import { modalData } from '$lib/stores/modal';
+	import { modal } from '$lib/stores/modal';
 	import { onMount } from 'svelte';
 	import { itemStore } from '$lib/stores/itemStore';
 	import Button from '$lib/components/controls/Button.svelte';
@@ -11,7 +11,7 @@
 	import { addDoc, collection, doc, getDoc } from 'firebase/firestore';
 	import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
-	modalData.update((modalData) => ({
+	modal.update((modalData) => ({
 		...modalData,
 		modalPage: true,
 		exit: true,
@@ -23,7 +23,7 @@
 	let listName = '';
 	let listDescriptions = '';
 	const authen = getAuth();
-    let user = authen.currentUser;
+	let user = authen.currentUser;
 	// onAuthStateChanged(authen, (user) => {
 	// 	if (user) {
 	// 		console.log(user);
@@ -31,7 +31,7 @@
 	// 		console.log('Not sign in');
 	// 	}
 	// });
-// console.log(user)
+	// console.log(user)
 	const handleCreateList = async (user) => {
 		if (!user) {
 			return;
@@ -43,7 +43,7 @@
 			dataToSetToStore = {
 				title: listName,
 				description: listDescriptions,
-				image: "https://png.pngtree.com/png-vector/20190830/ourmid/pngtree-simple-mountain-png-png-image_1711446.jpg",
+				image: 'https://png.pngtree.com/png-vector/20190830/ourmid/pngtree-simple-mountain-png-png-image_1711446.jpg',
 				items: []
 			};
 			const docRef = await addDoc(collection(db, 'users', user.uid, 'lists'), dataToSetToStore);
@@ -60,10 +60,10 @@
 				loading: false
 			};
 		});
-        listName = '';
-        listDescriptions = '';
-	}
- 
+		listName = '';
+		listDescriptions = '';
+	};
+
 </script>
 
 <div class="gap-6 flex flex-col">

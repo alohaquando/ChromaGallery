@@ -3,11 +3,11 @@
 	import DragList from '$lib/components/item/DragList.svelte';
 	import { allItem } from '../../../../../../data';
 
-	import { modalData } from '$lib/stores/modal';
+	import { modal } from '$lib/stores/modal';
 
 	export let number = 0;
 
-	modalData.update(modalData => ({
+	modal.update(modalData => ({
 		...modalData,
 		modalPage: true,
 		exit: true,

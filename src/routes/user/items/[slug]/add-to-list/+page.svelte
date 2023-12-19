@@ -7,7 +7,7 @@
 	import CollectionList from '$lib/components/item/CollectionList.svelte';
 	import { onMount } from 'svelte';
 	import { itemStore } from '$lib/stores/itemStore.js';
-	import { modalData } from '$lib/stores/modal';
+	import { modal } from '$lib/stores/modal';
 
 	defaultLayout();
 	modal.update(modalData => ({
@@ -35,7 +35,7 @@
 			});
 	});
 
-	modalData.update(modalData => ({
+	modal.update(modalData => ({
 		...modalData,
 		modalPage: true,
 		exit: true,

@@ -40,11 +40,11 @@
 </script>
 
 <svelte:element
-	this={link ? 'a' : 'div'}
 	class="{!icon
 		? sizeClass
 		: 'h-14 w-14'} {typeClass} {customClass} relative overflow-hidden w-full"
-	href="../user/item/{data.id}"
+	href="../user/items/{data.id}"
+	this={link ? 'a' : 'div'}
 >
 	{#if bookmark}
 		<Icon icon="faStar" type="solid" class="absolute" size={iconSize}></Icon>

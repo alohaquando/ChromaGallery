@@ -2,7 +2,7 @@ import { writable } from 'svelte/store';
 
 export const previousState = writable(false);
 
-export const modalData = writable({
+export const modal = writable({
 	modalPage: false,
 	href: '',
 	title: '',
@@ -13,7 +13,7 @@ export const modalData = writable({
 });
 
 export const resetModal = () => {
-	modalData.set({
+	modal.set({
 		modalPage: false,
 		href: '',
 		title: '',
@@ -23,13 +23,3 @@ export const resetModal = () => {
 		animation: ''
 	});
 };
-
-export interface modal {
-	modalPage: boolean | undefined;
-	href: string | undefined;
-	title: string | undefined;
-	exit: boolean | undefined;
-	button: string | undefined;
-	buttonFunction: () => void | undefined;
-	animation: string | undefined;
-}

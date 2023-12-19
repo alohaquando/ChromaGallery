@@ -3,11 +3,11 @@
 	import BodyLarge from '$lib/components/typography/BodyLarge.svelte';
 	import InfoRow from '$lib/components/item/InfoRow.svelte';
 	import { item2 } from '../../../../data';
-	import { modalData } from '$lib/stores/modal';
+	import { modal } from '$lib/stores/modal';
 	import { resetDialog } from '$lib/stores/dialog';
 	import Dialog from '$lib/components/pop-up/Dialog.svelte';
 
-	modalData.set({
+	modal.set({
 		modalPage: true,
 		href: '/account/me',
 		title: 'Account setting',

@@ -9,7 +9,7 @@
 	import faviconIco from '$lib/assets/favicons/favicon.ico';
 	import faviconSvg from '$lib/assets/favicons/icon.svg';
 	import faviconApple from '$lib/assets/favicons/apple-touch-icon.png';
-	import { defaultLayout, stateCheck } from '$lib/stores/pageLayout';
+	import { defaultLayout } from '$lib/stores/pageLayout';
 	import { onMount } from 'svelte';
 	import { auth, db } from '$lib/services/firebase/firebase';
 	import { doc, getDoc, setDoc } from 'firebase/firestore';
@@ -17,13 +17,14 @@
 	import { itemStore } from '$lib/stores/itemStore';
 	import { header } from '$lib/stores/header';
 	import { navbar } from '$lib/stores/navbar';
-	import { modalData } from '$lib/stores/modal';
+	import { modal, previousState } from '$lib/stores/modal';
 	import { background } from '$lib/stores/background';
 	import { afterNavigate, beforeNavigate, onNavigate } from '$app/navigation';
 
 	let scrollY: number;
 
 	// ******Set Default Bookmark******
+
 	onMount(() => {
 		const bookmarkItem = auth.onAuthStateChanged(async (user) => {
 			if (!user) {
@@ -54,11 +55,34 @@
 		});
 	});
 
-	afterNavigate(() => {
-			defaultLayout();
-			stateCheck();
+	const stateCheck = () => {
+		if (!$previousState && $modal.modalPage) {
+			previousState.set(true);
+			modal.update((modalData) => ({
+				...modalData,
+				animation: 'animate-flyUp'
+			}));
+		} else if ($previousState && $modal.modalPage) {
+			modal.update((modalData) => ({
+				...modalData,
+				animation: ''
+			}));
+		} else if ($previousState && !$modal.modalPage) {
+			previousState.set(false);
+			modal.update((modalData) => ({
+				...modalData,
+				animation: 'animate-flyUpOut'
+			}));
 		}
-	);
+	};
+
+	afterNavigate(() => {
+
+	});
+
+	onNavigate(() => {
+		defaultLayout();
+	});
 </script>
 
 <svelte:head>
@@ -71,13 +95,13 @@
 </svelte:head>
 <svelte:window bind:scrollY />
 
-<BG class="{$modalData.modalPage === true? 'h-[90vh]' : ''}" color={$background.color} design={$background.design}
+<BG class="{$modal.modalPage === true? 'h-[90vh]' : ''}" color={$background.color} design={$background.design}
 		randomized={$background.randomized} />
 
-{#if $modalData.modalPage === true}
-	<Modal title={$modalData.title} href={$modalData.href} exit={$modalData.exit}
-				 button={$modalData.button}
-				 buttonFunction={$modalData.buttonFunction}
+{#if $modal.modalPage === true}
+	<Modal title={$modal.title} href={$modal.href} exit={$modal.exit}
+				 button={$modal.button}
+				 buttonFunction={$modal.buttonFunction}
 	>
 		<slot />
 	</Modal>
@@ -85,7 +109,7 @@
 	{#if $header.type === 'main'}
 		<HeaderMain {scrollY}></HeaderMain>
 	{:else if $header.type === 'back'}
-		<HeaderBack button={$header.button} destructive={$header.destructive}></HeaderBack>
+		<HeaderBack href={$header.href} button={$header.button} destructive={$header.destructive}></HeaderBack>
 	{/if}
 	<div class="container mx-auto px-6">
 		<slot />

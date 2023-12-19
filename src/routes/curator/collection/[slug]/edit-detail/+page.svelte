@@ -3,11 +3,11 @@
 	import TextArea from '$lib/components/inputs/TextField.svelte';
 	import ListItem from '$lib/components/item/ListItem.svelte';
 	import { collection1, item1 } from '../../../../../data';
-	import { modalData } from '$lib/stores/modal';
+	import { modal } from '$lib/stores/modal';
 	import Dialog from '$lib/components/pop-up/Dialog.svelte';
 	import { resetDialog } from '$lib/stores/dialog';
 
-	modalData.update(modalData => ({
+	modal.update(modalData => ({
 		...modalData,
 		modalPage: true,
 		href: '/account/setting',
@@ -15,7 +15,7 @@
 		button: 'Save'
 	}));
 
-	modalData.set({
+	modal.set({
 		modalPage: true,
 		href: '/account/me',
 		title: 'Account setting',
