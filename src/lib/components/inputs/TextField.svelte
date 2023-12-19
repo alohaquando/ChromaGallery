@@ -7,6 +7,7 @@
 	export let label: string | undefined = undefined;
 	export let error: boolean = false;
 	export let errorMessage: string | undefined = 'Please check this input again';
+	export let icon: string | undefined = undefined;
 	export let type:
 		| 'date'
 		| 'datetime-local'
@@ -40,6 +41,7 @@
 	}
 
 	let inputClass = 'bg-black/30 border border-white/30 rounded-xl placeholder-white/50 block w-full p-2.5 transition outline-none text-white font-sans trim-both focus:ring-white focus:ring-2 disabled:placeholder-white/30 disabled:text-white/70 read-only:focus:ring-0 read-only:text-white/70';
+	let inputWithIconClass = icon ? 'mr-4 relative' : '';
 </script>
 
 <div class="flex flex-col w-full relative">
@@ -50,7 +52,7 @@
 		{...{ type }}
 		{autocomplete}
 		bind:value
-		class="{stateClasses} {inputClass}"
+		class="{stateClasses} {inputClass} {inputWithIconClass}"
 		{disabled}
 		{form}
 		{id}
@@ -68,6 +70,12 @@
 
 	/>
 
+	{#if icon}
+	<div class="absolute top-1/2 right-4 transform -translate-y-1/2 pointer-events-none"> 
+		<Icon icon={icon} size="s" /> 
+	</div>
+    {/if}
+
 	{#if error}
 		<div class="flex space-x-2 items-center text-red-300 pt-4">
 			<Icon icon="faExclamationCircle" />
@@ -75,6 +83,7 @@
 		</div>
 	{/if}
 </div>
+
 
 <style>
     ::-webkit-calendar-picker-indicator {
