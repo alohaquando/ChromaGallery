@@ -25,7 +25,7 @@
 	class="{designClass} sticky top-0 left-0 z-30 h-16 mb-2 w-full justify-center items-center inline-flex duration-500 ease-in-out"
 >
 	<a class="px-4 py-4" href="/">
-		<LogoSimple class="h-6 !fill-white" />
+		<LogoSimple animation="spin" class="h-6 !fill-white" />
 	</a>
 
 	<div
