@@ -8,6 +8,7 @@
 	import { defaultLayout } from '$lib/stores/pageLayout';
 	import { onMount } from 'svelte';
 	import { itemStore } from '$lib/stores/itemStore';
+	import { listStore } from '$lib/stores/listStore.js';
 
 	defaultLayout();
 
@@ -25,8 +26,19 @@
 				// Handle errors
 				console.error('Error:', error);
 			});
+			
+			// Get All Collections
+		listStore
+			.getAllCollection()
+			.then((itemsData) => {
+				let collectionsss = itemsData;
+				console.log(collectionsss);
+			})
+			.catch((error) => {
+				// Handle errors
+				console.error('Error:', error);
+			});
 	});
-
 </script>
 
 <PageTitle>Browse</PageTitle>

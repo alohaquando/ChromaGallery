@@ -10,14 +10,18 @@
 	import { getAuth, onAuthStateChanged } from 'firebase/auth';
 	import { defaultLayout, stateCheck } from '$lib/stores/pageLayout';
 	import { modalData, previousState } from '$lib/stores/modal';
-
+	import { onMount } from 'svelte';
+	import { itemStore } from '$lib/stores/itemStore';
+	import { allCollection } from '../../../data';
+	import { listStore } from '$lib/stores/listStore';
 
 	// account name
-	// Sign In condition
-
 	let userEmail;
 	let userName;
+
 	const authen = getAuth();
+	let itemList = [];
+	let userId = authen.currentUser?.uid;
 	onAuthStateChanged(authen, (user) => {
 		if (user) {
 			console.log(user);
@@ -26,6 +30,26 @@
 		} else {
 			console.log('Not sign in');
 		}
+	});
+
+	onMount(async () => {
+		itemStore
+			.getUserLists(userId)
+			.then((itemsData) => {
+				itemList = itemsData;
+				console.log(itemList);
+
+				// Do something with the items data
+			})
+			.catch((error) => {
+				// Handle errors
+				console.error('Error:', error);
+			});
+		listStore
+		.getUserLists(userId);
+		$listStore.subscribe((lists) => {
+			console.log(lists);
+		});
 	});
 </script>
 
@@ -48,7 +72,7 @@
 			<!-- <CollectionBlock ></CollectionBlock> -->
 		</div>
 
-		<GridCollection class="mt-10"></GridCollection>
+		<GridCollection class="mt-10" data={allCollection}></GridCollection>
 	</div>
 {:else}
 	<!-- Not Sign In -->
@@ -58,15 +82,15 @@
 			<BodyLarge>You’re not signed in yet</BodyLarge>
 			<BodySmall>
 				Sign in or become a member to manage your bookmarks and lists of your favorite piece of art
-			</BodySmall
-			>
+			</BodySmall>
 		</div>
 		<div class="pt-14 flex justify-center w-screen">
-			<Fab class="relative -left-[10%]" icon="faCircleUser" size="lg" href="account/sign-in">Sign me<br>in</Fab>
-			<Fab class="mt-20 relative -right-[5%]" icon="faSparkles" size="lg" href="account/register"
-			>Become a<br>member
-			</Fab
+			<Fab class="relative -left-[10%]" icon="faCircleUser" size="lg" href="account/sign-in"
+				>Sign me<br />in</Fab
 			>
+			<Fab class="mt-20 relative -right-[5%]" icon="faSparkles" size="lg" href="account/register"
+				>Become a<br />member
+			</Fab>
 		</div>
 	</div>
 {/if}

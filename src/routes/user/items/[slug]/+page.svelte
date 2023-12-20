@@ -16,7 +16,6 @@
 
 	onMount(async () => {
 		itemStore.getItem(data.slug);
-
 		const docRef = doc(db, 'users', userId, 'lists', 'bookmark');
 		const docSnap = await getDoc(docRef);
 		if (docSnap.exists()) {
@@ -32,7 +31,6 @@
 		const userId = authen.currentUser.uid;
 		console.log(authen.currentUser.uid);
 
-
 		await setDoc(
 			doc(db, 'users', userId, 'lists', 'bookmark'),
 			{
@@ -40,21 +38,7 @@
 			},
 			{ merge: true }
 		);
-		console.log('scu');
-
-		// let dataToSetToStore;
-		// const docRef = doc(db, 'users', userId, 'lists', 'bookmark');
-		// const docSnap = await getDoc(docRef);
-		// if (!docSnap.exists()) {
-		// 	const userRef = doc(db, 'users', userId, 'lists', 'bookmark');
-		// 	dataToSetToStore = {
-		// 		item: [data.slug]
-		// 	};
-		// 	await setDoc(userRef, dataToSetToStore, { merge: true });
-		// } else {
-		// 	const userData = docSnap.data();
-		// 	dataToSetToStore = userData;
-		// }
+		console.log('Bookmarked successfully');
 	};
 </script>
 
@@ -63,7 +47,7 @@
 
 	<div class="flex justify-between items-end mb-12">
 		<div class="flex space-x-2">
-			<Button icon="faPlus" type="submit">Add to list</Button>
+			<Button icon="faPlus" type="submit" href='/user/item/${data.slug}/add-to-list'>Add to list</Button>
 			<Button icon="faVolume" type="submit">Audio guide</Button>
 		</div>
 		<Fab icon="faStar" on:click={handleBookmark}></Fab>
