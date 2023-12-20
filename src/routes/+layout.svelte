@@ -36,6 +36,7 @@
 				const userRef = doc(db, 'users', user.uid, 'lists', 'bookmark');
 				dataToSetToStore = {
 					email: user?.email,
+					title: 'Bookmarks',
 					items: []
 				};
 				await setDoc(userRef, dataToSetToStore, { merge: true });

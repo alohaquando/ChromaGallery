@@ -15,7 +15,7 @@
 
 	onMount(async () => {
 		itemStore
-			.getCollectionItems()
+			.getFeaturedItems()
 			.then((itemsData) => {
 				itemList = itemsData;
 				console.log(itemList);
@@ -27,17 +27,6 @@
 				console.error('Error:', error);
 			});
 	});
-
-	// let itemList = [];
-
-	// onMount(async () => {
-	// 	try {
-	// 		const itemsData = await itemStore.getAllItems();
-	// 		itemList = itemsData;
-	// 	} catch (error) {
-	// 		console.error('Error:', error);
-	// 	}
-	// });
 
 	// Check if Logged-in
 	let userEmail ;
@@ -75,7 +64,6 @@
 
 <div class="w-full h-20 mt-7"></div>
 <DisplayLarge class="mt-20"></DisplayLarge>
-
 <!-- {#if itemList.length > 0}
 	{#each itemList as item (item.id)}
 		<HeroImage
@@ -95,4 +83,4 @@
 			{#if item.id}
 				<HeroImage data={item} hideYear></HeroImage>
 			{/if}
-		{/each}
+{/each}
