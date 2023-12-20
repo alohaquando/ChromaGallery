@@ -3,15 +3,30 @@
 	import TextField from '$lib/components/inputs/TextField.svelte';
 	import BodyLarge from '$lib/components/typography/BodyLarge.svelte';
 	import { modal } from '$lib/stores/modal';
+	import { getAuth, updatePassword } from 'firebase/auth';
 
-	modal.update(modalData => ({
+	modalData.update((modalData) => ({
 		...modalData,
 		modalPage: true,
 		href: '/user/account/setting',
 		title: 'Account setting',
 		button: 'Save'
 	}));
+
+	const auth = getAuth();
+
+	let user = auth.currentUser;
+	let newPassword = '';
+
+	updatePassword(user, newPassword)
+		.then(() => {
+			console.log('Update successful');
+		})
+		.catch((error) => {
+			console.log(error);
+		});
 </script>
+
 <div class=" flex flex-col justify-center gap-4">
 	<BodyLarge>Confirm old password</BodyLarge>
 	<TextField id="" name="" placeholder="Confirm password"></TextField>
@@ -20,7 +35,7 @@
 <div class=" flex flex-col justify-center gap-4">
 	<BodyLarge>New password</BodyLarge>
 	<div class="flex justify-center items-center flex-col gap-6">
-		<TextField id="" name="" placeholder="New password"></TextField>
+		<TextField bind:value={newPassword} id="" name="" placeholder="New password"></TextField>
 		<TextField id="" name="" placeholder="Confirm new password"></TextField>
 	</div>
 </div>
