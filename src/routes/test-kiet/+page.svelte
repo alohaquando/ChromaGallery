@@ -17,9 +17,10 @@
 	import SiteSwitcher from '$lib/components/navigation/SiteSwitcher.svelte';
 	import LogoCurator from '$lib/components/logo/LogoCurator.svelte';
 	import ImageView from '$lib/components/item/ImageView.svelte';
+	import ToggleButton from '$lib/components/controls/ToggleButton.svelte';
 </script>
 
-<Button>abcdefghijklm</Button>
+<ToggleButton />
 
 <!--<ImageView></ImageView>-->
 <!--<LogoCurator></LogoCurator>-->
