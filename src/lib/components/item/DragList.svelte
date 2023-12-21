@@ -7,11 +7,12 @@
 	import { data } from 'autoprefixer';
 	import { createNewItem } from '$lib/stores/model';
 
-	export let placeholder: number | undefined;
-	export let displayLimit: number | undefined;
+
 	export let type: 'action' | 'edit' | 'delete' | 'view' = 'action';
 	export let button: 'add' | 'destructive' | 'link' | undefined;
 	export let icon: string | undefined;
+	export let placeholder: number | undefined;
+	export let displayLimit: number | undefined;
 
 	let dragDisabled: boolean = true;
 

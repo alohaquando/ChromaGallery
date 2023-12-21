@@ -11,7 +11,6 @@
 
 	export let data: Item;
 
-
 	const dispatch = createEventDispatcher();
 
 	function onDelete() {

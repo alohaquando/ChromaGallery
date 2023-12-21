@@ -4,7 +4,7 @@
 	import Body from '$lib/components/typography/Body.svelte';
 	import Icon from '$lib/components/iconography/Icon.svelte';
 	import Checkbox from '$lib/components/controls/Checkbox.svelte';
-	import type { List, Collection } from '../../stores/model.js';
+	import type { List, Collection } from '$lib/stores/model';
 	import { createEventDispatcher } from 'svelte';
 	import { count } from '$lib/utils/countItem.js';
 	import { findItem } from '$lib/utils/filter';
@@ -40,7 +40,7 @@
 <div class="{customClass} w-full h-auto flex items-center gap-4 overflow-hidden">
 	<!-- <Block class="rounded-lg shrink-0 !h-16 !w-16" data={listItems[0]} icon link={false}></Block> -->
 	<div class="w-full gap-y-3 flex flex-col">
-		<Body>{data.title}</Body>
+		<Body>{data.name}</Body>
 		<Body class="opacity-50 line-clamp-1">{str}</Body>
 	</div>
 	{#if button}

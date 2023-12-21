@@ -6,9 +6,15 @@
 	import CollectionBlock from '$lib/components/item/CollectionBlock.svelte';
 	import Fab from '$lib/components/controls/Fab.svelte';
 	import RowCollection from '$lib/components/item/RowCollection.svelte';
+	import { createNewList } from '../../stores/model';
 
-	export let data: Collection[] | List[];
 	export let rowType: boolean = false;
+	export let placeholder: number | undefined;
+	export let displayLimit: number | undefined;
+	export let data: Collection[] | List[] | undefined;
+	if (!data) {
+		data = [];
+	}
 
 	let customClass = '';
 	export { customClass as class };
@@ -25,6 +31,25 @@
 	}
 
 	export let width: 'fixed' | 'full' = 'fixed';
+
+	$: if (displayLimit && data) {
+		data = data.slice(0, displayLimit);
+	}
+
+	const fillList = () => {
+		const currentLength = data.length;
+
+		if (currentLength < placeholder) {
+			const itemsToAdd = placeholder - currentLength;
+			data = [...data, ...Array(itemsToAdd).fill(createNewList())];
+		}
+	};
+
+	$: if (placeholder && data) {
+		fillList();
+	}
+
+	$: fillList(), data;
 </script>
 
 {#if rowType}
