@@ -36,6 +36,7 @@
 		// Check if there is a match and return the captured item ID
 		return match && match[1];
 	}
+
 	const handleAddToList = async () => {
 		const url = window.location.href;
 
@@ -63,7 +64,7 @@
 	}));
 </script>
 
-<div class="flex flex-col justify-center items-center gap-8">
+<div class="flex flex-col justify-center items-center gap-8 ">
 	<Button icon="faPlus">New list</Button>
 	<Button class="w-full" icon="faSearch">Find list</Button>
 </div>

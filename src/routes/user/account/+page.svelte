@@ -8,8 +8,8 @@
 	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
 	import GridCollection from '$lib/components/item/GridCollection.svelte';
 	import { getAuth, onAuthStateChanged } from 'firebase/auth';
-	import { defaultLayout, stateCheck } from '$lib/stores/pageLayout';
-	import { modalData, previousState } from '$lib/stores/modal';
+	import { defaultLayout } from '$lib/stores/pageLayout';
+	import { modal, previousState } from '$lib/stores/modal';
 	import { onMount } from 'svelte';
 	import { itemStore } from '$lib/stores/itemStore';
 	import { allCollection } from '../../../data';
@@ -51,7 +51,7 @@
 				console.error('Error:', error);
 			});
 		listStore
-		.getUserLists(userId);
+			.getUserLists(userId);
 		$listStore.subscribe((lists) => {
 			console.log(lists);
 		});
@@ -97,10 +97,11 @@
 		</div>
 		<div class="pt-14 flex justify-center w-screen">
 			<Fab class="relative -left-[10%]" icon="faCircleUser" size="lg" href="account/sign-in"
-				>Sign me<br />in</Fab
+			>Sign me<br />in
+			</Fab
 			>
 			<Fab class="mt-20 relative -right-[5%]" icon="faSparkles" size="lg" href="account/register"
-				>Become a<br />member
+			>Become a<br />member
 			</Fab>
 		</div>
 	</div>

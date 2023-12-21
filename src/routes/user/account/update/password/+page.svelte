@@ -5,7 +5,7 @@
 	import { modal } from '$lib/stores/modal';
 	import { getAuth, updatePassword } from 'firebase/auth';
 
-	modalData.update((modalData) => ({
+	modal.update((modalData) => ({
 		...modalData,
 		modalPage: true,
 		href: '/user/account/setting',

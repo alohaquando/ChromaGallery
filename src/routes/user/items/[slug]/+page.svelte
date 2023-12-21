@@ -54,7 +54,7 @@
 
 	<div class="flex justify-between items-end mb-12">
 		<div class="flex space-x-2">
-			<Button icon="faPlus" type="submit" href='/user/item/${data.slug}/add-to-list'>Add to list</Button>
+			<Button icon="faPlus" type="submit" href='/user/items/${data.slug}/add-to-list'>Add to list</Button>
 			<Button icon="faVolume" type="submit">Audio guide</Button>
 		</div>
 		<Fab icon="faStar" on:click={handleBookmark}></Fab>
