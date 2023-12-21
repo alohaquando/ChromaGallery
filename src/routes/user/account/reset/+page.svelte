@@ -9,7 +9,7 @@
 <div class="flex items-center justify-center flex-col	 mt-12 gap-4">
 	<TextField label="New password" placeholder="New password"></TextField>
 	<TextField label="Confirm new password" placeholder="Confirm new password"></TextField>
-	<Button class="mt-8" design="filled" type="submit" width="full">Sign in
+	<Button class="mt-8" design="filled" type="submit" width="full">Reset password
 	</Button>
 </div>
 
