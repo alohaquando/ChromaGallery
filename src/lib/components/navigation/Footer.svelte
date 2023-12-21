@@ -71,7 +71,7 @@
 	>Manage your bookmarks and lists of your favourite piece of art with an that online museum
 	account
 	</Body>
-	<Button href="/register">Become a member</Button>
+	<Button href="/user/account/sign-up">Become a member</Button>
 
 	<Divider />
 
