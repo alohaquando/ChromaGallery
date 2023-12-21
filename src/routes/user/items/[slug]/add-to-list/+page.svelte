@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Button from '$lib/components/controls/Button.svelte';
-	import { allCollection } from '../../../../../data.js';
+	import { allCollection } from '$lib/stores/data.js';
 	// import { defaultLayout, modal } from '$lib/stores/pageLayout';
 	import CollectionList from '$lib/components/item/CollectionList.svelte';
 	import { onMount } from 'svelte';

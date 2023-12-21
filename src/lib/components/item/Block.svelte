@@ -1,13 +1,15 @@
 <script lang="ts">
 	import Icon from '../iconography/Icon.svelte';
-	import type { Item } from '../../../model';
+	import type { Item } from '$lib/stores/model';
 
-	export let data: Item | undefined;
+	export let data: Item;
 	export let bookmark: boolean = false;
 	export let icon: boolean = false;
 
 	export let link: boolean = true;
-	let path = '';
+	if (!data) {
+		link = false;
+	}
 
 	let iconSize = '';
 	iconSize = !icon ? '6xl' : 'base';
@@ -17,10 +19,10 @@
 	let sizeClass = '';
 	switch (stretch) {
 		case false:
-			sizeClass = '';
+			sizeClass = 'w-full';
 			break;
 		case true:
-			sizeClass = 'grow shrink basis-0 self-stretch';
+			sizeClass = 'grow shrink basis-0 self-stretch w-full';
 			break;
 	}
 
@@ -42,8 +44,8 @@
 <svelte:element
 	class="{!icon
 		? sizeClass
-		: 'h-14 w-14'} {typeClass} {customClass} relative overflow-hidden w-full"
-	href="../user/items/{data.id}"
+		: 'h-14 w-14'} {typeClass} {customClass} relative overflow-hidden  {(data.image)? '' : 'bg-gradient-to-b from-neutral-600 to-neutral-800'}"
+	href="{data? '../user/items/'+data.id : null}"
 	this={link ? 'a' : 'div'}
 >
 	{#if bookmark}
@@ -52,10 +54,14 @@
 			<div class="absolute h-16 w-16 blur-xl bg-white rounded-full"></div>
 		{/if}
 	{:else}
-		<img
-			alt={data.title}
-			class="{stretch ? 'w-full h-full' : 'h-auto w-full'} {icon ? 'absolute' : ''} object-cover"
-			src={data.image}
-		/>
+		{#if data.image}
+			<img
+				alt={data.title}
+				class="{stretch ? 'w-full h-full' : 'h-auto w-full'} {icon ? 'absolute' : ''} object-cover"
+				src={data.image}
+			/>
+		{:else}
+			<div></div>
+		{/if}
 	{/if}
 </svelte:element>

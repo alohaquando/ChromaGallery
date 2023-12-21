@@ -2,7 +2,7 @@
 	import TextField from '$lib/components/inputs/TextField.svelte';
 	import ListItem from '$lib/components/item/ListItem.svelte';
 	import { modal } from '$lib/stores/modal';
-	import { item1 } from '../../../../../data';
+	import { item1 } from '$lib/stores/data';
 	import Dialog from '$lib/components/pop-up/Dialog.svelte';
 	import { resetDialog } from '$lib/stores/dialog';
 	import { toggleDialog } from '$lib/stores/dialog';

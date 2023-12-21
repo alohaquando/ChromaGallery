@@ -4,9 +4,9 @@
 	export let state: 'add' | 'edit' = 'add';
 	export let id: string = 'imageInput';
 
-	export let fileInput;
+	export let fileInput: any | undefined;
 
-	let selectedImage: File | null = null;
+	let selectedImage: Blob | MediaSource | null = null;
 	let imageUrl: string | null = null;
 
 	const handleGetImage = () => {
@@ -14,7 +14,9 @@
 		fileInput?.click(); // Trigger the file input click event
 	};
 
-	const handleFileChange = (event: Event & { target: HTMLInputElement }) => {
+	const handleFileChange = (event: Event & {
+		target: HTMLInputElement
+	}) => {
 		fileInput = event.target;
 
 		if (fileInput.files && fileInput.files[0]) {

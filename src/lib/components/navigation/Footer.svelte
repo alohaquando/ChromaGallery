@@ -63,7 +63,7 @@
 		></Fab>
 	</div>
 
-	<Divider></Divider>
+	<Divider />
 
 	<!--	Account-->
 	<Title>Account</Title>
@@ -73,7 +73,7 @@
 	</Body>
 	<Button href="/register">Become a member</Button>
 
-	<Divider></Divider>
+	<Divider />
 
 	<!--	Curator site-->
 	<Title>Chroma Curator</Title>
@@ -82,7 +82,7 @@
 	</Body>
 	<Button href="">Go to Chroma Curator</Button>
 
-	<Divider></Divider>
+	<Divider />
 
 	<!--	Privacy and Terms-->
 	<div class="w-full flex justify-between items-center">

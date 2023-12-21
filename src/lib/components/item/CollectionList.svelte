@@ -2,7 +2,7 @@
 
 <script lang="ts">
 	import type { Comment } from 'postcss';
-	import type { Collection, List } from '../../../model';
+	import type { Collection, List } from '../../stores/model';
 	import CollectionBlock from '$lib/components/item/CollectionBlock.svelte';
 	import Fab from '$lib/components/controls/Fab.svelte';
 	import RowCollection from '$lib/components/item/RowCollection.svelte';

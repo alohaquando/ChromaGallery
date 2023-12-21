@@ -5,7 +5,7 @@
 	import { modal } from '$lib/stores/modal';
 	import { getAuth, updateEmail } from 'firebase/auth';
 
-	modalData.update((modalData) => ({
+	modal.update((modalData) => ({
 		...modalData,
 		modalPage: true,
 		href: '/user/account/setting',
@@ -14,13 +14,13 @@
 	}));
 
 	const auth = getAuth();
-    let newEmail = '';
-    updateEmail(auth.currentUser, 'user@example.com')
+	let newEmail = '';
+	updateEmail(auth.currentUser, 'user@example.com')
 		.then(() => {
-            console.log(auth.currentUser.email);
+			console.log(auth.currentUser.email);
 		})
 		.catch((error) => {
-			console.log(error)
+			console.log(error);
 		});
 </script>
 
@@ -28,7 +28,9 @@
 	<BodyLarge>Confirm old password</BodyLarge>
 	<TextField id="" name="" placeholder="Confirm password"></TextField>
 </div>
+
 <Divider class="my-8"></Divider>
+
 <div class=" flex flex-col justify-center gap-4">
 	<BodyLarge>New email</BodyLarge>
 	<div class="flex justify-center items-center flex-col gap-6">

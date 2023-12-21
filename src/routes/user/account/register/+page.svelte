@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import Button from '$lib/components/controls/Button.svelte';
 	import Divider from '$lib/components/layouts/Divider.svelte';
 	import TextField from '$lib/components/inputs/TextField.svelte';
@@ -41,6 +41,8 @@
 			console.log(' There was an auth error', err);
 		}
 	}
+
+	let isCurator: boolean;
 </script>
 
 <PageTitle>Let's get you ready</PageTitle>
@@ -68,11 +70,13 @@
 
 	<Divider></Divider>
 
-	<SwitchCurator />
+	<div>
+		<SwitchCurator bind:toggled={isCurator} />
+	</div>
 
 	<!--	Submit button-->
 	<Button design="filled" on:click={handleSignUpAuthenticate} type="button" width="full"
 	>Complete sign up
-	</Button
-	>
+	</Button>
+
 </form>

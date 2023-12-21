@@ -4,7 +4,7 @@
 	import DragList from '$lib/components/item/DragList.svelte';
 	import Button from '$lib/components/controls/Button.svelte';
 	import { count } from '$lib/utils/countItem';
-	import { collection1, item1 } from '../../../../data';
+	import { collection1, item1 } from '$lib/stores/data';
 	import { findItem } from '$lib/utils/filter';
 	import { modal } from '$lib/stores/modal';
 	import { resetDialog } from '$lib/stores/dialog';

@@ -12,7 +12,7 @@
 	import { modal, previousState } from '$lib/stores/modal';
 	import { onMount } from 'svelte';
 	import { itemStore } from '$lib/stores/itemStore';
-	import { allCollection } from '../../../data';
+	import { allCollection } from '$lib/stores/data';
 	import { listStore } from '$lib/stores/listStore';
 	import SiteSwitcher from '$lib/components/navigation/SiteSwitcher.svelte';
 	import Divider from '$lib/components/layouts/Divider.svelte';

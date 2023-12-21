@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Block from '$lib/components/item/Block.svelte';
-	import type { Item } from '../../../model';
+	import type { Item } from '../../stores/model';
 
 	export let data: Item[];
 </script>

@@ -2,7 +2,7 @@
 	import HeroImage from '$lib/components/item/HeroImage.svelte';
 	import BodyLarge from '$lib/components/typography/BodyLarge.svelte';
 	import InfoRow from '$lib/components/item/InfoRow.svelte';
-	import { item2 } from '../../../../data';
+	import { item2 } from '$lib/stores/data';
 	import { modal } from '$lib/stores/modal';
 	import { resetDialog } from '$lib/stores/dialog';
 	import Dialog from '$lib/components/pop-up/Dialog.svelte';

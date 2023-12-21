@@ -4,8 +4,8 @@
 	import Link from '$lib/components/links/Link.svelte';
 	import InfoChip from '$lib/components/controls/InfoChip.svelte';
 	import Block from '$lib/components/item/Block.svelte';
-	import type { Collection } from '../../../model';
-	import { allItem } from '../../../data';
+	import type { Collection } from '../../stores/model';
+	import { allItem } from '../../stores/data';
 	import { count } from '$lib/utils/countItem';
 
 	export let data: Collection | undefined;

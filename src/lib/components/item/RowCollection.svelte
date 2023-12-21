@@ -4,11 +4,11 @@
 	import Body from '$lib/components/typography/Body.svelte';
 	import Icon from '$lib/components/iconography/Icon.svelte';
 	import Checkbox from '$lib/components/controls/Checkbox.svelte';
-	import type { List, Collection } from '../../../model.js';
+	import type { List, Collection } from '../../stores/model.js';
 	import { createEventDispatcher } from 'svelte';
 	import { count } from '$lib/utils/countItem.js';
 	import { findItem } from '$lib/utils/filter';
-	import { item1 } from '../../../data';
+	import { item1 } from '../../stores/data';
 
 	export let data: List | Collection;
 

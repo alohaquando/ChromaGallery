@@ -6,9 +6,9 @@
 	import DragList from '$lib/components/item/DragList.svelte';
 	import Body from '$lib/components/typography/Body.svelte';
 
-	import { itemList2 } from '../../../data';
+	import { itemList2 } from '$lib/stores/data';
 	import { count } from '$lib/utils/countItem';
-	import { allItem } from '../../../data';
+	import { allItem } from '$lib/stores/data';
 	import FixedButton from '$lib/components/controls/FixedButton.svelte';
 
 	let str = count(allItem);

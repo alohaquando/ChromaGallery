@@ -14,6 +14,4 @@
 	</div>
 	<Body>A Curator account allows you to manage items and collections within Chroma Gallery using a separate site.
 	</Body>
-
-
 </div>

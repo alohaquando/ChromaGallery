@@ -2,7 +2,7 @@
 	import Headline from '$lib/components/typography/Headline.svelte';
 	import Button from '$lib/components/controls/Button.svelte';
 	import CollectionList from '$lib/components/item/CollectionList.svelte';
-	import { allCollection } from '../../../../data';
+	import { allCollection } from '$lib/stores/data';
 	import { modal } from '$lib/stores/modal';
 
 	modal.update(modalData => ({

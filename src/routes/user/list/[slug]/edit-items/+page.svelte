@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Button from '$lib/components/controls/Button.svelte';
 	import DragList from '$lib/components/item/DragList.svelte';
-	import { allItem } from '../../../../../data';
+	import { allItem } from '$lib/stores/data';
 	import { modal } from '$lib/stores/modal';
 
 	modal.update(modalData => ({

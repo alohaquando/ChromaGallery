@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Item } from '../../../model';
+	import type { Item } from '../../stores/model';
 
 	export let id: string;
 	export let name: string;

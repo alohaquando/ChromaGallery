@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { Collection } from '$lib/../model';
-	import { collection2, allCollection } from '../../../data';
+	import type { Collection } from '$lib/stores/model';
+	import { collection2, allCollection } from '../../stores/data';
 	import CollectionBlock from '$lib/components/item/CollectionBlock.svelte';
 
 	export let data: Collection[] | undefined = allCollection;

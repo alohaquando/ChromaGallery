@@ -51,7 +51,7 @@
 		<label class="block mb-2 text-sm font-sans trim-both pb-4" for={id}>{label}</label>
 	{/if}
 	<div
-		class="flex {stateClasses} bg-black/30 rounded-xl w-full p-2.5 transition trim-both has-[:focus]:border-2">
+		class="flex {stateClasses} bg-black/30 rounded-xl w-full p-2.5 transition trim-both border border-white border-opacity-30">
 		<input
 			{...{ type }}
 			{autocomplete}

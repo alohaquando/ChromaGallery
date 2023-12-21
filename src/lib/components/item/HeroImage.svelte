@@ -2,7 +2,7 @@
 	import Headline from '$lib/components/typography/Headline.svelte';
 	import Link from '$lib/components/links/Link.svelte';
 	import Block from '$lib/components/item/Block.svelte';
-	import type { Item } from '../../../model';
+	import type { Item } from '../../stores/model';
 
 	export let imageFull: boolean = false;
 	let heightClass = 'h-80';

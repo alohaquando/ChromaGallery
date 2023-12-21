@@ -4,7 +4,7 @@
 	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
 	import Grid from '$lib/components/item/GridItem.svelte';
 	import CollectionList from '$lib/components/item/CollectionList.svelte';
-	import { allCollection } from '../../data.js';
+	import { allCollection } from '$lib/stores/data.js';
 	import { defaultLayout } from '$lib/stores/pageLayout';
 	import { onMount } from 'svelte';
 	import { itemStore } from '$lib/stores/itemStore';
@@ -26,8 +26,8 @@
 				// Handle errors
 				console.error('Error:', error);
 			});
-			
-			// Get All Collections
+
+		// Get All Collections
 		listStore
 			.getAllCollection()
 			.then((itemsData) => {

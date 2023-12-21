@@ -6,7 +6,7 @@
 	import HeroImage from '$lib/components/item/HeroImage.svelte';
 	import { onDestroy, onMount } from 'svelte';
 	import { faCarTilt } from '@fortawesome/pro-solid-svg-icons';
-	import { item1, item2, item3 } from '$lib/../data.js';
+	import { item1, item2, item3 } from '$lib/stores/data.js';
 	import { setContext } from 'svelte';
 	import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
