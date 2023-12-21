@@ -5,6 +5,7 @@
 	import TextField from '$lib/components/inputs/TextField.svelte';
 	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
 	import BodySmall from '$lib/components/typography/BodySmall.svelte';
+	import Body from '$lib/components/typography/Body.svelte';
 </script>
 
 <PageTitle>Hi new friend</PageTitle>
@@ -16,14 +17,50 @@
 		<Socials design="apple" href="/"></Socials>
 	</div>
 
-	<Divider></Divider>
+	<Divider />
 
 	<form class="contents">
-		<TextField id="email" name="email" placeholder="Email"></TextField>
-		<Button design="filled" width="full" type="submit">Sign up</Button>
+		<!--	Email field-->
+		<div class="w-full flex flex-col gap-4">
+			<label for="email">
+				<Body>Email:</Body>
+			</label>
+			<TextField id="email" name="email" placeholder="myemail@google.com"
+			></TextField>
+		</div>
+
+		<!--	Password field-->
+		<div class="w-full flex flex-col gap-4">
+			<label for="password">
+				<Body>Password:</Body>
+			</label>
+			<TextField
+				id="password"
+				name="password"
+				placeholder="Password"
+				type="password"
+			></TextField>
+		</div>
+
+		<!--	Confirm password field-->
+		<div class="w-full flex flex-col gap-4">
+			<label for="confirmPassword">
+				<Body>Confirm password:</Body>
+			</label>
+			<TextField
+				id="confirmPassword"
+				name="confirmPassword"
+				placeholder="Confirm password"
+				type="password"
+			></TextField>
+		</div>
+
+		<!--		Submit button-->
+		<Button design="filled" type="submit" width="full">Sign up</Button>
 	</form>
 
-	<Divider></Divider>
+	<Divider />
+
 	<div>
 		<BodySmall>Already a member?</BodySmall>
 	</div>

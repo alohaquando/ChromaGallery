@@ -29,7 +29,7 @@
 	});
 
 	// Check if Logged-in
-	let userEmail ;
+	let userEmail;
 	let userName;
 	const authen = getAuth();
 	onAuthStateChanged(authen, (user) => {
@@ -52,9 +52,9 @@
 	</div>
 	<div class="flex w-full justify-between max-w-3xl mt-32">
 		{#if userEmail}
-		<Fab class="" href="/user/account/" icon="faUser" size="lg">My account</Fab>
+			<Fab class="" href="/user/account/" icon="faUser" size="lg">My account</Fab>
 		{:else}
-		<Fab class="" href="/user/account/sign-in" icon="faUser" size="lg">Sign me<br />in</Fab>
+			<Fab class="" href="/user/account/sign-in" icon="faUser" size="lg">Sign me<br />in</Fab>
 		{/if}
 		<Fab class="-mt-20" href="/browse" icon="faSearch" size="lg">Show me<br />more</Fab>
 		<Fab class="mt-8" href="/" icon="faPlay" size="lg">Relax me</Fab>
@@ -79,8 +79,10 @@
 
 	<p>Loading...</p>
 {/if} -->
-{#each itemList as item}
-			{#if item.id}
-				<HeroImage data={item} hideYear></HeroImage>
-			{/if}
-{/each}
+<div class="flex flex-col gap-10">
+	{#each itemList as item}
+		{#if item.id}
+			<HeroImage data={item} hideYear></HeroImage>
+		{/if}
+	{/each}
+</div>

@@ -18,9 +18,11 @@
 	import LogoCurator from '$lib/components/logo/LogoCurator.svelte';
 	import ImageView from '$lib/components/item/ImageView.svelte';
 	import ToggleButton from '$lib/components/controls/ToggleButton.svelte';
+	import SwitchCurator from '$lib/components/inputs/SwitchCurator.svelte';
 </script>
 
 <ToggleButton />
+<SwitchCurator />
 
 <!--<ImageView></ImageView>-->
 <!--<LogoCurator></LogoCurator>-->

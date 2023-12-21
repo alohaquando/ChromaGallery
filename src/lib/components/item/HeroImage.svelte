@@ -17,12 +17,12 @@
 </script>
 
 <div class="w-full flex-col gap-6 inline-flex {customClass}">
-	<div class="w-full {heightClass} rounded-lg flex overflow-hidden relative">
-		<Block class="object-cover" {data} stretch={false}></Block>
+	<div class="w-full {heightClass} rounded-lg flex overflow-hidden relative items-center">
+		<Block class="object-cover rounded-lg" {data} stretch={false}></Block>
 	</div>
 	{#if !hideInfo}
 		<div class="flex-col gap-6 flex">
-			<Link href="../routes/item/{data.id}" type="headline">
+			<Link href="/user/items/{data.id}" type="headline">
 				{data.title}
 			</Link>
 			<Headline>{data.author}</Headline>

@@ -4,6 +4,8 @@
 	import TextField from '$lib/components/inputs/TextField.svelte';
 	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
 	import { authHandlers } from '$lib/stores/store.js';
+	import Body from '$lib/components/typography/Body.svelte';
+	import SwitchCurator from '$lib/components/inputs/SwitchCurator.svelte';
 
 	let email = '';
 	let password = '';
@@ -17,16 +19,16 @@
 				console.log('Password does not match');
 				return;
 			}
-			
+
 			if (displayName.length < 3) {
 				console.log('Display name is null');
 				return;
 			}
-			
+
 			await authHandlers.signup(email, password);
 
 			let error = false;
-			
+
 			await authHandlers.updateUserName(displayName);
 
 			console.log('Successfully signed up');
@@ -44,29 +46,33 @@
 <PageTitle>Let's get you ready</PageTitle>
 
 <form class="mt-16 gap-8 flex flex-col items-center w-full">
-	<TextField bind:value={email} id="email" name="email" placeholder="myemail@google.com"
-	></TextField>
-	<Divider></Divider>
-
-	<TextField
-		bind:value={password}
-		id="password"
-		name="password"
-		placeholder="Password"
-		type="password"
-	></TextField>
-	<TextField
-		bind:value={confirmPassword}
-		id="confirmPassword"
-		name="confirmPassword"
-		placeholder="Confirm password"
-		type="password"
-	></TextField>
+	<!--	Email field-->
+	<div class="w-full flex flex-col gap-4">
+		<label for="email">
+			<Body>Email:</Body>
+		</label>
+		<TextField bind:value={email} disabled id="email" name="email" placeholder="myemail@google.com"
+		></TextField>
+	</div>
 
 	<Divider></Divider>
-	<TextField bind:value={displayName} id="fullName" name="fullName" placeholder="Full Name"
-	></TextField>
-	<Button design="filled" type="button" width="full" on:click={handleSignUpAuthenticate}
-		>Complete sign up</Button
+
+	<!--	FullName field-->
+	<div class="w-full flex flex-col gap-4">
+		<label for="fullName">
+			<Body>Full name:</Body>
+		</label>
+		<TextField bind:value={displayName} id="fullName" name="fullName" placeholder="Full name"
+		></TextField>
+	</div>
+
+	<Divider></Divider>
+
+	<SwitchCurator />
+
+	<!--	Submit button-->
+	<Button design="filled" on:click={handleSignUpAuthenticate} type="button" width="full"
+	>Complete sign up
+	</Button
 	>
 </form>
