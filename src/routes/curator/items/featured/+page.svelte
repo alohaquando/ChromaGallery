@@ -23,7 +23,7 @@
 
     <Divider></Divider>
 
-    <Button class="w-full px-6" icon="faMagnifyingGlass">Find item to feature</Button>
+    <Button class="w-full px-6" icon="faMagnifyingGlass">Find item</Button>
 
     <DragList bind:items={list2} bind:output={list1} button="add" outLimit={3}></DragList>
 </div>
