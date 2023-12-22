@@ -1,68 +1,61 @@
 <script>
-	import Button from '$lib/components/controls/Button.svelte';
-	import Socials from '$lib/components/socials/Socials.svelte';
-	import Divider from '$lib/components/layouts/Divider.svelte';
-	import TextField from '$lib/components/inputs/TextField.svelte';
-	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
-	import BodySmall from '$lib/components/typography/BodySmall.svelte';
-	import Body from '$lib/components/typography/Body.svelte';
+    import Button from '$lib/components/controls/Button.svelte';
+    import Socials from '$lib/components/socials/Socials.svelte';
+    import Divider from '$lib/components/layouts/Divider.svelte';
+    import TextField from '$lib/components/inputs/TextField.svelte';
+    import PageTitle from '$lib/components/layouts/PageTitle.svelte';
+    import BodySmall from '$lib/components/typography/BodySmall.svelte';
+    import Body from '$lib/components/typography/Body.svelte';
 </script>
 
 <PageTitle>Hi new friend</PageTitle>
 
 <div class="mt-16 gap-8 flex flex-col items-center w-full">
-	<div class="mb-4 items-center gap-4 flex flex-col w-full">
-		<Socials design="facebook" href="/"></Socials>
-		<Socials design="google" href="/"></Socials>
-		<Socials design="apple" href="/"></Socials>
-	</div>
+    <div class="mb-4 items-center gap-4 flex flex-col w-full">
+        <Socials design="facebook" href=""></Socials>
+        <Socials design="google" href=""></Socials>
+        <Socials design="apple" href=""></Socials>
+    </div>
 
-	<Divider />
+    <Divider />
 
-	<form class="contents">
-		<!--	Email field-->
-		<div class="w-full flex flex-col gap-4">
-			<label for="email">
-				<Body>Email:</Body>
-			</label>
-			<TextField id="email" name="email" placeholder="myemail@google.com"
-			></TextField>
-		</div>
+    <form class="contents">
+        <!--	Email field-->
+        <div class="w-full flex flex-col gap-4">
+            <TextField id="email" label="Email" name="email"
+                       placeholder="myemail@google.com"></TextField>
+        </div>
 
-		<!--	Password field-->
-		<div class="w-full flex flex-col gap-4">
-			<label for="password">
-				<Body>Password:</Body>
-			</label>
-			<TextField
-				id="password"
-				name="password"
-				placeholder="Password"
-				type="password"
-			></TextField>
-		</div>
+        <!--	Password field-->
+        <div class="w-full flex flex-col gap-4">
+            <TextField
+                    id="password"
+                    label="Password"
+                    name="password"
+                    placeholder="Password"
+                    type="password"
+            ></TextField>
+        </div>
 
-		<!--	Confirm password field-->
-		<div class="w-full flex flex-col gap-4">
-			<label for="confirmPassword">
-				<Body>Confirm password:</Body>
-			</label>
-			<TextField
-				id="confirmPassword"
-				name="confirmPassword"
-				placeholder="Confirm password"
-				type="password"
-			></TextField>
-		</div>
+        <!--	Confirm password field-->
+        <div class="w-full flex flex-col gap-4">
+            <TextField
+                    id="confirmPassword"
+                    label="Confirm Password:"
+                    name="confirmPassword"
+                    placeholder="Confirm password"
+                    type="password"
+            ></TextField>
+        </div>
 
-		<!--		Submit button-->
-		<Button design="filled" type="submit" width="full">Sign up</Button>
-	</form>
+        <!--		Submit button-->
+        <Button design="filled" type="submit" width="full">Sign up</Button>
+    </form>
 
-	<Divider />
+    <Divider />
 
-	<div>
-		<BodySmall>Already a member?</BodySmall>
-	</div>
-	<Button design="outlined" href="/sign-in">Sign in</Button>
+    <div>
+        <BodySmall>Already a member?</BodySmall>
+    </div>
+    <Button design="outlined" href="/sign-in">Sign in</Button>
 </div>
