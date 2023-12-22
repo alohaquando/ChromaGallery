@@ -21,7 +21,6 @@
 	import SwitchCurator from '$lib/components/inputs/SwitchCurator.svelte';
 </script>
 
-<RowItem></RowItem>
 <!--<ToggleButton />-->
 <!--<SwitchCurator />-->
 

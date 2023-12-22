@@ -13,8 +13,8 @@
 </div>
 
 <Title>Collections</Title>
-<DragList class="gap-4 mt-8 mb-16" data={allItem} type="view"></DragList>
+<DragList class="gap-4 mt-8 mb-16" items={allItem} type="view"></DragList>
 
 <Title>Items</Title>
-<DragList class="gap-4 mt-8" data={allItem} type="view"></DragList>
+<DragList class="gap-4 mt-8" items={allItem} type="view"></DragList>
 

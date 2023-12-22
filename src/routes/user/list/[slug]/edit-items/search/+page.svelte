@@ -15,5 +15,5 @@
 
 <div class="flex justify-center items-center flex-col gap-6">
 	<TextField id="1" name="1" placeholder="Find item"></TextField>
-	<DragList class="gap-4 w-full" data={allItem}></DragList>
+	<DragList class="gap-4 w-full" items={allItem}></DragList>
 </div>

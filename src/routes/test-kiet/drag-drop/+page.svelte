@@ -21,4 +21,4 @@
 </script>
 
 <Button on:click={onClick}>toggle</Button>
-<DragList bind:data={items} button="destructive" {type}></DragList>
+<DragList bind:items button="destructive" {type}></DragList>

@@ -10,7 +10,7 @@
 <TextField id="" name="" placeholder="Search"></TextField>
 
 {#if items}
-	<DragList class="gap-4 mt-8" data={items} type="view"></DragList>
+	<DragList class="gap-4 mt-8" {items} type="view"></DragList>
 {:else}
 	<div class="mt-12 flex flex-col items-center w-full">
 		<BodySmall>No result found</BodySmall>

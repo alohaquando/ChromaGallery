@@ -15,5 +15,5 @@
 
 <div class="flex justify-center items-center flex-col gap-6">
 	<Button class="w-full" icon="faSearch">Find item</Button>
-	<DragList class="w-full gap-4 " data={allItem}></DragList>
+	<DragList class="w-full gap-4 " items={allItem}></DragList>
 </div>

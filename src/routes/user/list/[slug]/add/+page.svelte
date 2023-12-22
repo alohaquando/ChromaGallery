@@ -9,6 +9,6 @@
 <Modal button="Add" title="Add item to list">
 	<div class="flex justify-center items-center flex-col gap-6">
 		<Button class="w-full" icon="faSearch">Find list</Button>
-		<DragList class="w-full gap-4 " data={itemList1}></DragList>
+		<DragList class="w-full gap-4 " items={itemList1}></DragList>
 	</div>
 </Modal>

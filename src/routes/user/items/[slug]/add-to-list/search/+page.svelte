@@ -17,5 +17,5 @@
 </script>
 
 <TextField id="" name="" placeholder="Search list"></TextField>
-<DragList class="gap-4 mt-6 border-transparent" data={allItem}></DragList>
+<DragList class="gap-4 mt-6 border-transparent" items={allItem}></DragList>
 

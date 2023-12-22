@@ -50,6 +50,6 @@
 <Button class="mt-12 w-full" design='filled'>Add items</Button>
 <Button class="mt-4 mb-6 w-full">Edit items</Button>
 
-<DragList button="link" class="gap-4" data={itemList}></DragList>
+<DragList button="link" class="gap-4" items={itemList}></DragList>
 
 <Dialog button1={button1} button2={button2} text="This cannot be undone" title='Delete “{item1.title}”?'></Dialog>

@@ -15,4 +15,4 @@
 </script>
 
 <Button class="mt-8 mb-6" icon="faMagifyingGlass" width="full">Find item</Button>
-<DragList class="gap-4" data={allItem} type="edit"></DragList>
+<DragList class="gap-4" items={allItem} type="edit"></DragList>

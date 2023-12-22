@@ -10,7 +10,7 @@
 <PageTitle>Collections</PageTitle>
 
 <Button class="mt-16 mb-8" icon="faMagnifyingGlass" width="full">Search</Button>
-<DragList button="link" class="gap-4" data={allItem}></DragList>
+<DragList button="link" class="gap-4" items={allItem}></DragList>
 
 <FixedButton icon="faPlus"></FixedButton>
 

@@ -1,23 +1,29 @@
 <script lang="ts">
-	import DragList from '$lib/components/item/DragList.svelte';
-	import Button from '$lib/components/controls/Button.svelte';
-	import Headline from '$lib/components/typography/Headline.svelte';
-	import Divider from '$lib/components/layouts/Divider.svelte';
-	import { allItem } from '$lib/stores/data';
-	import { itemList2, itemList1 } from '$lib/stores/data';
-	import { modal } from '$lib/stores/modal';
+    import DragList from '$lib/components/item/DragList.svelte';
+    import Button from '$lib/components/controls/Button.svelte';
+    import Divider from '$lib/components/layouts/Divider.svelte';
+    import { itemList2, itemList1, item5 } from '$lib/stores/data';
+    import { modal } from '$lib/stores/modal';
 
-	modal.update(modalData => ({
-		...modalData,
-		modalPage: true,
-		href: '/account/setting',
-		title: 'Account setting',
-		button: 'Save'
-	}));
+    modal.update(modalData => ({
+        ...modalData,
+        modalPage: true,
+        href: '/account/setting',
+        title: 'Account setting',
+        button: 'Save'
+    }));
+
+    let list1 = itemList1;
+    let list2 = itemList2;
 </script>
-<DragList class="gap-4 my-8 w-full" data={itemList1} displayLimit={3} placeholder={3}></DragList>
 
-<Divider></Divider>
+<div class="gap-6 flex flex-col">
+    <DragList bind:items={list1} bind:output={list2} button="remove" itemLimit={3}
+              placeholder={3}></DragList>
 
-<Button class="my-6 w-full px-6" icon="faMagnifyingGlass">Find item to feature</Button>
-<DragList button="add" class="gap-4" data={allItem}></DragList>
+    <Divider></Divider>
+
+    <Button class="w-full px-6" icon="faMagnifyingGlass">Find item to feature</Button>
+
+    <DragList bind:items={list2} bind:output={list1} button="add" outLimit={3}></DragList>
+</div>

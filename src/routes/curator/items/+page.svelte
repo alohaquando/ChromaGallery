@@ -28,12 +28,12 @@
 		<BodyLarge>Featured</BodyLarge>
 		<Button icon="faPen">Manage</Button>
 	</div>
-	<DragList class="mt-6 gap-4" data={itemList2}></DragList>
+	<DragList class="mt-6 gap-4" items={itemList2}></DragList>
 
 	<div class="mt-16  flex justify-between items-center">
 		<BodyLarge>All items</BodyLarge>
 		<Body>{str}</Body>
 	</div>
-	<DragList class="gap-4 mt-8" data={allItem}></DragList>
+	<DragList class="gap-4 mt-8" items={allItem}></DragList>
 	<FixedButton icon="faPlus"></FixedButton>
 {/if}

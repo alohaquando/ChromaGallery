@@ -14,5 +14,5 @@
 		<TextField icon="faXmark" id="" name="" value="Text"></TextField>
 	</div>
 
-	<DragList class="gap-4" data={allItem} type="delete"></DragList>
+	<DragList class="gap-4" items={allItem} type="delete"></DragList>
 </Modal>
