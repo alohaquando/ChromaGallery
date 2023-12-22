@@ -27,12 +27,12 @@
         });
 </script>
 
-<div class=" flex flex-col justify-center gap-4">
+<div class=" flex flex-col justify-center gap-8">
     <TextField id="confirmPassword" label="Confirm old password" labelSize="lg" name="confirmPassword"
                placeholder="Confirm password"></TextField>
-</div>
-<Divider class="my-8"></Divider>
-<div class=" flex flex-col justify-center gap-6">
+
+    <Divider />
+
     <TextField bind:value={newPassword} id="newPassword" label="New password" labelSize="lg" name="newPassword"
                placeholder="New password"></TextField>
     <TextField id="confirmNewPassword" label="Confirm new password" labelSize="lg" name="confirmNewPassword"

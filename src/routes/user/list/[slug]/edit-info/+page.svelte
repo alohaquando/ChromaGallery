@@ -31,9 +31,10 @@
     };
 </script>
 
-<div class="gap-6 flex flex-col">
-    <TextField id="listName" label='Title' name="listName" placeholder="List title"></TextField>
-    <TextField id="listDesc" label="Description" name="listDesc" placeholder="List description"></TextField>
+<div class="gap-8 flex flex-col">
+    <TextField id="listName" label='Title' labelSize="lg" name="listName" placeholder="List title"></TextField>
+    <TextField id="listDesc" label="Description" labelSize="lg" name="listDesc"
+               placeholder="List description"></TextField>
 
     <Divider />
 

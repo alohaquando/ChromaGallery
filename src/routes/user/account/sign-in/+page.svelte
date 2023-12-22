@@ -73,9 +73,9 @@
         ></TextField>
 
         <!--        submit button-->
-        <Button design="filled" on:click={handleAuthenticate} type="submit" width="full">Sign in
-        </Button
-        >
+        <Button design="filled" on:click={handleAuthenticate} type="submit" width="full">Sign in</Button>
+
+        <!--        reset password button-->
         <Button design="outlined" href="reset">Reset my password</Button>
     </form>
 

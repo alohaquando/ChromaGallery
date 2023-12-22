@@ -49,24 +49,18 @@
 
 <form class="mt-16 gap-8 flex flex-col items-center w-full">
     <!--	Email field-->
-    <div class="w-full flex flex-col gap-4">
-        <TextField bind:value={email} disabled id="email" label="Email" name="email"
-                   placeholder="myemail@google.com"></TextField>
-    </div>
+    <TextField bind:value={email} disabled id="email" label="Email" name="email"
+               placeholder="myemail@google.com"></TextField>
 
     <Divider></Divider>
 
     <!--	FullName field-->
-    <div class="w-full flex flex-col gap-4">
-        <TextField bind:value={displayName} id="fullName" label="Full name" name="fullName"
-                   placeholder="Full name"></TextField>
-    </div>
+    <TextField bind:value={displayName} id="fullName" label="Full name" name="fullName"
+               placeholder="Full name"></TextField>
 
     <Divider></Divider>
 
-    <div>
-        <SwitchCurator bind:toggled={isCurator} />
-    </div>
+    <SwitchCurator bind:toggled={isCurator} />
 
     <!--	Submit button-->
     <Button design="filled" on:click={handleSignUpAuthenticate} type="button" width="full"

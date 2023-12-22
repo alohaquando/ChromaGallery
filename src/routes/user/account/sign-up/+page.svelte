@@ -21,32 +21,26 @@
 
     <form class="contents">
         <!--	Email field-->
-        <div class="w-full flex flex-col gap-4">
-            <TextField id="email" label="Email" name="email"
-                       placeholder="myemail@google.com"></TextField>
-        </div>
+        <TextField id="email" label="Email" name="email"
+                   placeholder="myemail@google.com"></TextField>
 
         <!--	Password field-->
-        <div class="w-full flex flex-col gap-4">
-            <TextField
-                    id="password"
-                    label="Password"
-                    name="password"
-                    placeholder="Password"
-                    type="password"
-            ></TextField>
-        </div>
+        <TextField
+                id="password"
+                label="Password"
+                name="password"
+                placeholder="Password"
+                type="password"
+        ></TextField>
 
         <!--	Confirm password field-->
-        <div class="w-full flex flex-col gap-4">
-            <TextField
-                    id="confirmPassword"
-                    label="Confirm Password:"
-                    name="confirmPassword"
-                    placeholder="Confirm password"
-                    type="password"
-            ></TextField>
-        </div>
+        <TextField
+                id="confirmPassword"
+                label="Confirm Password:"
+                name="confirmPassword"
+                placeholder="Confirm password"
+                type="password"
+        ></TextField>
 
         <!--		Submit button-->
         <Button design="filled" type="submit" width="full">Sign up</Button>
