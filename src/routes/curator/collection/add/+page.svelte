@@ -16,4 +16,4 @@
 
 <Button class="mt-8 mb-6" icon="faMagifyingGlass" width="full">Find item</Button>
 
-<CollectionList class="gap-4" data={allCollection} rowType></CollectionList>
+<CollectionList class="gap-4" collections={allCollection} rowType></CollectionList>

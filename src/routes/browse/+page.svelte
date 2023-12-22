@@ -2,7 +2,7 @@
 	import Button from '$lib/components/controls/Button.svelte';
 	import BodyLarge from '$lib/components/typography/BodyLarge.svelte';
 	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
-	import Grid from '$lib/components/item/GridItem.svelte';
+	import GridItem from '$lib/components/item/GridItem.svelte';
 	import CollectionList from '$lib/components/item/CollectionList.svelte';
 	import { allCollection } from '$lib/stores/data.js';
 	import { defaultLayout } from '$lib/stores/pageLayout';
@@ -49,12 +49,12 @@
 	<div class="h-full flex flex-col justify-center gap-8">
 		<BodyLarge>Collections</BodyLarge>
 		<!-- scrolling  -->
-		<CollectionList data={allCollection}></CollectionList>
+		<CollectionList collections={allCollection}></CollectionList>
 	</div>
 	<!-- All items -->
 	<div class="w-full flex flex-col justify-center gap-8">
 		<BodyLarge>All items</BodyLarge>
 
-		<Grid data={itemList}></Grid>
+		<GridItem items={itemList}></GridItem>
 	</div>
 </div>

@@ -82,7 +82,7 @@
 <div class="flex flex-col gap-10">
 	{#each itemList as item}
 		{#if item.id}
-			<HeroImage data={item} hideYear></HeroImage>
+			<HeroImage {item} hideYear></HeroImage>
 		{/if}
 	{/each}
 </div>

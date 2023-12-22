@@ -11,9 +11,9 @@
 	export let rowType: boolean = false;
 	export let placeholder: number | undefined;
 	export let displayLimit: number | undefined;
-	export let data: Collection[] | List[] | undefined;
-	if (!data) {
-		data = [];
+	export let collections: Collection[] | List[] | undefined;
+	if (!collections) {
+		collections = [];
 	}
 
 	let customClass = '';
@@ -32,37 +32,37 @@
 
 	export let width: 'fixed' | 'full' = 'fixed';
 
-	$: if (displayLimit && data) {
-		data = data.slice(0, displayLimit);
+	$: if (displayLimit && collections) {
+		collections = collections.slice(0, displayLimit);
 	}
 
 	const fillList = () => {
-		const currentLength = data.length;
+		const currentLength = collections.length;
 
 		if (currentLength < placeholder) {
 			const itemsToAdd = placeholder - currentLength;
-			data = [...data, ...Array(itemsToAdd).fill(createNewList())];
+			collections = [...collections, ...Array(itemsToAdd).fill(createNewList())];
 		}
 	};
 
-	$: if (placeholder && data) {
+	$: if (placeholder && collections) {
 		fillList();
 	}
 
-	$: fillList(), data;
+	$: fillList(), collections;
 </script>
 
 {#if rowType}
 	<div class="{customClass} flex flex-col">
-		{#each data as collection}
-			<RowCollection data={collection}></RowCollection>
+		{#each collections as collection}
+			<RowCollection {collection}></RowCollection>
 		{/each}
 	</div>
 {:else}
 	<div
 		class="{customClass} flex items-center overflow-y-clip overflow-x-scroll gap-x-4 gap-y-10 scrollbar-none {wrapClass}">
-		{#each data as collection}
-			<CollectionBlock {width} {hideSubtitle} class="shrink-0" data={collection} style={blockStyle}></CollectionBlock>
+		{#each collections as collection}
+			<CollectionBlock {width} {hideSubtitle} class="shrink-0" {collection} style={blockStyle}></CollectionBlock>
 		{/each}
 		{#if (width === 'fixed')}
 			<Fab class="mr-10 shrink-0 relative -mt-10" icon="" size="lg">View all</Fab>

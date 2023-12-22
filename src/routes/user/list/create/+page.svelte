@@ -1,11 +1,6 @@
 <script lang="ts">
-	import Grid from '$lib/components/item/GridItem.svelte';
 	import TextField from '$lib/components/inputs/TextField.svelte';
-	import Block from '$lib/components/item/Block.svelte';
 	import { modal } from '$lib/stores/modal';
-	import { onMount } from 'svelte';
-	import { itemStore } from '$lib/stores/itemStore';
-	import Button from '$lib/components/controls/Button.svelte';
 	import { authStore } from '$lib/stores/store';
 	import { auth, db } from '$lib/services/firebase/firebase';
 	import { addDoc, collection, doc, getDoc } from 'firebase/firestore';

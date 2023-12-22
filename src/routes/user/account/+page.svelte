@@ -83,7 +83,7 @@
 			<!-- <CollectionBlock ></CollectionBlock> -->
 		</div>
 
-		<GridCollection class="mt-10" data={allCollection}></GridCollection>
+		<GridCollection class="mt-10" collections={allCollection}></GridCollection>
 	</div>
 {:else}
 	<!-- Not Sign In -->

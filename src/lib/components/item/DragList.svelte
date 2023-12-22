@@ -74,7 +74,7 @@
 	{#each items as item (item.id)}
 		<div animate:flip="{{ duration: flipDurationMs }}">
 			<RowItem on:delete={() => onDelete(item)} {type} class="rounded-lg"
-							 data={item} {button} {icon}></RowItem>
+							 item={item} {button} {icon}></RowItem>
 		</div>
 	{/each}
 </div>

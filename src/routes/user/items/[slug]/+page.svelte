@@ -50,7 +50,7 @@
 </script>
 
 {#if $itemStore}
-	<HeroImage imageFull data={$itemStore}></HeroImage>
+	<HeroImage imageFull item={$itemStore}></HeroImage>
 
 	<div class="flex justify-between items-end mb-12">
 		<div class="flex space-x-2">

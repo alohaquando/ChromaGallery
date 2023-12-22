@@ -2,9 +2,9 @@
 	import type { Item } from '../../stores/model';
 
 	export let id: string | undefined;
-	export let data: Item | undefined;
-	if (data) {
-		id = data.id;
+	export let item: Item | undefined;
+	if (item) {
+		id = item.id;
 	}
 
 	export let name: string | undefined;

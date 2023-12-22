@@ -8,7 +8,7 @@
 	import { allItem } from '../../stores/data';
 	import { count } from '$lib/utils/countItem';
 
-	export let data: Collection | undefined;
+	export let collection: Collection | undefined;
 
 	let customClass = '';
 	export { customClass as class };
@@ -16,7 +16,7 @@
 	let blockStyle: 'grid' | 'single' = 'single';
 	export { blockStyle as style };
 
-	let str = count(data.items);
+	let str = count(collection.items);
 	export let title: boolean = true;
 	export let subtitle: boolean = true;
 	export let bookmark: boolean = false;
@@ -36,19 +36,19 @@
 
 <div
 	class="{customClass} {bookmark? 'w-full' : widthClass} flex-col justify-start items-start gap-6 inline-flex grow">
-	<a class="w-full h-52 rounded-lg gap-1 inline-flex overflow-hidden relative" href="../routes/item/{data.id}">
+	<a class="w-full h-52 rounded-lg gap-1 inline-flex overflow-hidden relative" href="../routes/item/{collection.id}">
 		{#if !bookmark}
-			<Block data={allItem.find((item) => item.id === data.items[0])}></Block>
+			<Block item={allItem.find((item) => item.id === collection.items[0])}></Block>
 		{:else}
-			<Block data={allItem.find((item) => item.id === data.items[0])} bookmark></Block>
+			<Block item={allItem.find((item) => item.id === collection.items[0])} bookmark></Block>
 		{/if}
-		{#if blockStyle === 'grid' && data.items[1]}
+		{#if blockStyle === 'grid' && collection.items[1]}
 			<div class="grow shrink basis-0 self-stretch flex-col gap-1 inline-flex">
-				{#if (data.items[1])}
-					<Block link={false} data={allItem.find((item) => item.id === data.items[1])}></Block>
+				{#if (collection.items[1])}
+					<Block link={false} item={allItem.find((item) => item.id === collection.items[1])}></Block>
 				{/if}
-				{#if (data.items[2])}
-					<Block link={false} data={allItem.find((item) => item.id === data.items[2])}></Block>
+				{#if (collection.items[2])}
+					<Block link={false} item={allItem.find((item) => item.id === collection.items[2])}></Block>
 				{/if}
 			</div>
 		{/if}
@@ -58,15 +58,15 @@
 	</a>
 	{#if title}
 		<div class="self-stretch flex-col flex gap-4">
-			<Link href="../routes/user/collection/{data.id}" type="body">
+			<Link href="../routes/user/collection/{collection.id}" type="body">
 				{#if !bookmark}
-					{data.name}
+					{collection.name}
 				{:else}
 					Bookmark
 				{/if}
 			</Link>
 			{#if subtitle && !bookmark && !hideSubtitle}
-				<Body class="text-white/50 line-clamp-2">{data.description}</Body>
+				<Body class="text-white/50 line-clamp-2">{collection.description}</Body>
 			{/if}
 		</div>
 	{/if}

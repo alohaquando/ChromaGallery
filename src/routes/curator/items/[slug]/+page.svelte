@@ -33,7 +33,7 @@
 	};
 </script>
 
-<HeroImage class="mb-8" data={item2}></HeroImage>
+<HeroImage class="mb-8" item={item2}></HeroImage>
 <BodyLarge>
 	{item2.description}
 </BodyLarge>

@@ -69,7 +69,7 @@
 	<Button class="w-full" icon="faSearch">Find list</Button>
 </div>
 {#if $listStore.length > 0}
-	<CollectionList class="gap-4 mt-6" data={$listStore} rowType></CollectionList>
+	<CollectionList class="gap-4 mt-6" collections={$listStore} rowType></CollectionList>
 {:else}
 	<h1>No List</h1>
 {/if}

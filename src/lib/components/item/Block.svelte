@@ -2,12 +2,12 @@
 	import Icon from '../iconography/Icon.svelte';
 	import type { Item } from '$lib/stores/model';
 
-	export let data: Item;
+	export let item: Item;
 	export let bookmark: boolean = false;
 	export let icon: boolean = false;
 
 	export let link: boolean = true;
-	if (!data) {
+	if (!item) {
 		link = false;
 	}
 
@@ -44,8 +44,8 @@
 <svelte:element
 	class="{!icon
 		? sizeClass
-		: 'h-14 w-14'} {typeClass} {customClass} relative overflow-hidden  {(data.image)? '' : 'bg-gradient-to-b from-neutral-600 to-neutral-800'}"
-	href="{data? '../user/items/'+data.id : null}"
+		: 'h-14 w-14'} {typeClass} {customClass} relative overflow-hidden  {(item.image)? '' : 'bg-gradient-to-b from-neutral-600 to-neutral-800'}"
+	href="{item? '../user/items/'+item.id : null}"
 	this={link ? 'a' : 'div'}
 >
 	{#if bookmark}
@@ -54,11 +54,11 @@
 			<div class="absolute h-16 w-16 blur-xl bg-white rounded-full"></div>
 		{/if}
 	{:else}
-		{#if data.image}
+		{#if item.image}
 			<img
-				alt={data.title}
+				alt={item.title}
 				class="{stretch ? 'w-full h-full' : 'h-auto w-full'} {icon ? 'absolute' : ''} object-cover"
-				src={data.image}
+				src={item.image}
 			/>
 		{:else}
 			<div></div>

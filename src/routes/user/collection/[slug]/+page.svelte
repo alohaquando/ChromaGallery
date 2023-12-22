@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Headline from '$lib/components/typography/Headline.svelte';
 	import BodyLarge from '$lib/components/typography/BodyLarge.svelte';
-	import Grid from '$lib/components/item/GridItem.svelte';
+	import GridItem from '$lib/components/item/GridItem.svelte';
 	import { count } from '$lib/utils/countItem';
 	import { collection1 } from '$lib/stores/data';
 	import { findItem } from '$lib/utils/filter';
@@ -19,4 +19,4 @@
 	{collection1.description}
 </BodyLarge>
 
-<Grid data={itemList}></Grid>
+<GridItem items={itemList}></GridItem>

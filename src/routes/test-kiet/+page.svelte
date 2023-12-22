@@ -8,7 +8,7 @@
 	import Button from '$lib/components/controls/Button.svelte';
 	import Socials from '$lib/components/socials/Socials.svelte';
 	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
-	import Grid from '$lib/components/item/GridItem.svelte';
+	import GridItem from '$lib/components/item/GridItem.svelte';
 	import RowItem from '$lib/components/item/RowItem.svelte';
 	import { item1, collection1 } from '$lib/stores/data';
 	import FileInput from '$lib/components/inputs/FileInput.svelte';

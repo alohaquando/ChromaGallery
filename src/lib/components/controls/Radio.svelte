@@ -10,9 +10,9 @@
 	let customClass = '';
 	export { customClass as class };
 
-	export let data: Item | undefined;
-	if (data) {
-		id = data.id;
+	export let item: Item | undefined;
+	if (item) {
+		id = item.id;
 	}
 </script>
 

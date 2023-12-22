@@ -9,7 +9,7 @@
 	import { createEventDispatcher } from 'svelte';
 	import { createNewItem } from '$lib/stores/model';
 
-	export let data: Item;
+	export let item: Item;
 
 	const dispatch = createEventDispatcher();
 
@@ -68,18 +68,18 @@
 		<Fab on:click={onDelete} icon="faMinus" size="mini" hover={false}
 				 class="{animationClass} shrink-0 text-red-500 !border-red-500"></Fab>
 	{/if}
-	<Block class="{animationClass} rounded-lg shrink-0 !h-16 !w-16" {data} icon
+	<Block class="{animationClass} rounded-lg shrink-0 !h-16 !w-16" icon {item}
 				 link={false}></Block>
 	<div class="{animationClass} w-full gap-y-3 flex flex-col">
-		<Body>{data.title}</Body>
-		<Body class="opacity-50 line-clamp-1">{data.author}</Body>
+		<Body>{item.title}</Body>
+		<Body class="opacity-50 line-clamp-1">{item.author}</Body>
 	</div>
-	{#if type === 'action' && data.id !== ''}
+	{#if type === 'action' && item.id !== ''}
 		{#if button}
-			<Fab {icon} href={button === 'link' ? data.id : undefined} class="{buttonStyle}" size="mini"
+			<Fab {icon} href={button === 'link' ? item.id : undefined} class="{buttonStyle}" size="mini"
 					 hover={false}></Fab>
 		{:else}
-			<Checkbox id={data.id} class="shrink-0" {data} name=""></Checkbox>
+			<Checkbox id={item.id} class="shrink-0" {item} name=""></Checkbox>
 		{/if}
 	{:else if type === 'edit'}
 		<Icon icon="faEquals" class="shrink-0 w-6 h-6" />
