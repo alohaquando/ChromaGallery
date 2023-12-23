@@ -4,6 +4,9 @@
 	import { resetDialog, toggleDialog } from '$lib/stores/dialog';
 	import Dialog from '$lib/components/pop-up/Dialog.svelte';
 	import { authHandlers } from '$lib/stores/store';
+	import Divider from '$lib/components/layouts/Divider.svelte';
+	import CuratorSwitch from '$lib/components/inputs/CuratorSwitch.svelte';
+	import SiteSwitcher from '$lib/components/navigation/SiteSwitcher.svelte';
 
 	modal.set({
 		modalPage: true,
@@ -61,6 +64,16 @@
 		text="Update password"
 		topDivider={false}
 	/>
+
+	<Divider />
+
+	<div class="flex flex-col gap-4 mb-6">
+		<CuratorSwitch />
+		<SiteSwitcher />
+	</div>
+
+	<Divider />
+
 	<ListItem
 		bottomDivider={false}
 		class="w-full"
