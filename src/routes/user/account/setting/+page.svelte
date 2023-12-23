@@ -34,6 +34,11 @@
 			window.location.href = '/';
 		}
 	};
+
+	let isCurator: boolean;
+
+	let showSiteSwitcherClass = '';
+	$: showSiteSwitcherClass = isCurator ? 'scale-y-full' : 'scale-y-0 duration-0 absolute';
 </script>
 
 <div class=" flex flex-col justify-center items-center">
@@ -67,9 +72,9 @@
 
 	<Divider />
 
-	<div class="flex flex-col gap-4 mb-6">
-		<CuratorSwitch />
-		<SiteSwitcher />
+	<div class="flex flex-col items-start gap-4 mb-6">
+		<CuratorSwitch bind:toggled={isCurator} />
+		<SiteSwitcher class="{showSiteSwitcherClass}" />
 	</div>
 
 	<Divider />

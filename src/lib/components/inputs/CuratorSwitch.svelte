@@ -2,7 +2,7 @@
 	import ToggleButton from '$lib/components/controls/ToggleButton.svelte';
 	import Body from '$lib/components/typography/Body.svelte';
 
-	export let toggled: boolean = false;
+	export let toggled: boolean;
 </script>
 
 <div class="w-full inline-flex gap-4 flex-col py-5">
@@ -10,7 +10,7 @@
 		<Body class="font-bold">Curator
 		account
 		</Body>
-		<ToggleButton {toggled} />
+		<ToggleButton bind:toggled />
 	</div>
 	<Body>A Curator account allows you to manage items and collections within Chroma Gallery using a separate site.
 	</Body>
