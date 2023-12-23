@@ -70,7 +70,7 @@ export default {
 						transform: 'translateX(0)'
 					}
 				},
-				pacman1: {
+				pacmanBottom: {
 					'0%': {},
 					'10%': {
 						transform: 'scale(1.7) translateX(-5px)'
@@ -100,7 +100,7 @@ export default {
 						transform: ''
 					}
 				},
-				pacman2: {
+				pacmanTop: {
 					'0%': {},
 					'10%': {
 						transform: 'scale(1.7) translateX(-5px)'
@@ -197,8 +197,8 @@ export default {
 				flyLeft: 'flyLeft 0.4s ease-out',
 				flyRight: 'flyRight 0.4s ease-out',
 				flyRight40: 'flyRight40 0.8s ease-out',
-				pacman1: 'pacman1 3s linear',
-				pacman2: 'pacman2 3s linear',
+				pacmanBottom: 'pacmanBottom 3s linear',
+				pacmanTop: 'pacmanTop 3s linear',
 				disappearRight: 'disappearRight 3s linear',
 				spinLeftCW: 'spinLeftCW 1s linear',
 				spinLeftACW: 'spinLeftACW 1s linear',

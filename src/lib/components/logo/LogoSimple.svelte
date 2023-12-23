@@ -1,46 +1,26 @@
 <!--suppress ALL -->
 <script lang="ts">
+	import LetterC from '$lib/assets/svgs/LetterC.svelte';
+
 	let customClasses = '';
 	export { customClasses as class };
 
 	export let animation: 'pacman' | 'spin' | undefined = undefined;
-	let animationClasses: string[] = ['', '', ''];
+	let animationClasses = '';
 	switch (animation) {
 		case 'pacman':
-			animationClasses = ['group-hover:animate-pacman2', 'group-hover:animate-pacman1', 'group-hover:animate-disappearRight'];
+			animationClasses = 'group-hover:animate-disappearRight';
 			break;
 		case 'spin':
-			animationClasses = ['group-hover:animate-spinLeftACW', 'group-hover:animate-spinLeftCW', ''];
+			animationClasses = '';
 			break;
 	}
 </script>
 <div class="flex relative group justify-end">
 	{#if animation}
-		<svg class="{customClasses} absolute left-0 {animationClasses[0]}" fill="none" viewBox="0 0 24 24"
-				 xmlns="http://www.w3.org/2000/svg">
-			<path
-				d="M19.743 21.168A11.952 11.952 0 0 1 12 24C5.373 24 0 18.627 0 12S5.373 0 12 0h.038l3.853 10.584 3.852 10.584Z"
-				fill="url(#a)" />
-			<defs>
-				<linearGradient gradientUnits="userSpaceOnUse" id="a" x1="9.871" x2="9.871" y1="24" y2="0">
-					<stop stop-color="#fff" stop-opacity=".37" />
-					<stop offset="1" stop-color="#fff" stop-opacity="0" />
-				</linearGradient>
-			</defs>
-		</svg>
-		<svg class="{customClasses} absolute left-0 {animationClasses[1]}" fill="none" viewBox="0 0 24 24"
-				 xmlns="http://www.w3.org/2000/svg">
-			<path d="M19.743 2.832A11.952 11.952 0 0 0 12 0C5.373 0 0 5.373 0 12s5.373 12 12 12h.038l7.705-21.168Z"
-						fill="url(#b)" />
-			<defs>
-				<linearGradient gradientUnits="userSpaceOnUse" id="b" x1="9.871" x2="9.871" y1="0" y2="24">
-					<stop offset=".109" stop-color="#fff" />
-					<stop offset="1" stop-color="#fff" stop-opacity=".28" />
-				</linearGradient>
-			</defs>
-		</svg>
+		<LetterC class="{customClasses}" {animation} />
 	{/if}
-	<div class="overflow-hidden flex justify-end {animationClasses[2]}">
+	<div class="overflow-hidden flex justify-end {animationClasses}">
 		<svg class="{customClasses} shrink-0 " fill="none" viewBox="0 0 114 24"
 				 xmlns="http://www.w3.org/2000/svg">
 			{#if !animation}
