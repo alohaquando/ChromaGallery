@@ -36,9 +36,6 @@
 	};
 
 	let isCurator: boolean;
-
-	let showSiteSwitcherClass = '';
-	$: showSiteSwitcherClass = isCurator ? 'scale-y-full' : 'scale-y-0 duration-0 absolute';
 </script>
 
 <div class=" flex flex-col justify-center items-center">
@@ -74,9 +71,9 @@
 
 	<div class="flex flex-col items-start gap-4 mb-6">
 		<CuratorSwitch bind:toggled={isCurator} />
-		<SiteSwitcher class="{showSiteSwitcherClass}" />
+		<SiteSwitcher bind:toggled={isCurator} />
 	</div>
-
+	
 	<Divider />
 
 	<ListItem
