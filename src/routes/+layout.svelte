@@ -84,7 +84,7 @@
 	{:else if $header.type === 'back'}
 		<HeaderBack href={$header.href} button={$header.button} destructive={$header.destructive}></HeaderBack>
 	{/if}
-	<div class="container mx-auto px-6">
+	<div class="container mx-auto px-6 max-w-3xl">
 		<slot />
 		<Footer></Footer>
 	</div>
