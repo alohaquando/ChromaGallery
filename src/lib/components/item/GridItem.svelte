@@ -3,17 +3,21 @@
 	import type { Item } from '$lib/stores/model';
 
 	export let items: Item[];
+
+
+	let containerClass = 'flex-col';
+	let contentClass = 'flex flex-col gap-4 sm:w-1/2';
 </script>
 
-<div class="flex gap-4">
-	<div class="flex flex-col w-1/2 gap-4">
+<div class="flex flex-col sm:flex-row gap-4">
+	<div class="{contentClass}">
 		{#each items as item, index}
 			{#if index % 2 === 0}
 				<Block item={item} class="rounded-lg" stretch={false} />
 			{/if}
 		{/each}
 	</div>
-	<div class="flex flex-col w-1/2 gap-4">
+	<div class="{contentClass}">
 		{#each items as item, index}
 			{#if index % 2 === 1}
 				<Block item={item} class="rounded-lg" stretch={false} />
