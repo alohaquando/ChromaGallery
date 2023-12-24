@@ -11,44 +11,28 @@
 	import { authStore } from '$lib/stores/store';
 	import { getAuth } from 'firebase/auth';
 	import { header } from '$lib/stores/header';
-
-	header.update(modalData => ({
-		...modalData,
-		type: 'back',
-		href: '/browse'
-	}));
+	import {handleBookmark} from '$lib/stores/dataLoad';
 
 	/** @type {import('../../../../../.svelte-kit/types/src/routes').PageLoad} */
 	export let data: any;
 
-	// onMount(async () => {
-	// 	itemStore.getItem(data.slug);
-	// 	const docRef = doc(db, 'users', userId, 'lists', 'bookmark');
-	// 	const docSnap = await getDoc(docRef);
-	// 	if (docSnap.exists()) {
-	// 		let preLoad = docSnap.data().item;
-	// 		console.log(preLoad);
-	// 	} else {
-	// 		console.log('No such document!');
-	// 	}
-	// });
-	//
-	// const handleBookmark = async () => {
-	// 	const authen = getAuth();
-	// 	const userId = authen.currentUser.uid;
-	// 	console.log(authen.currentUser.uid);
-	//
-	// 	await setDoc(
-	// 		doc(db, 'users', userId, 'lists', 'bookmark'),
-	// 		{
-	// 			items: arrayUnion(data.slug)
-	// 		},
-	// 		{ merge: true }
-	// 	);
-	// 	console.log('Bookmarked successfully');
-	// };
+	onMount(async () => {
+		const authen = getAuth();
+		const userId = authen.currentUser.uid;
+		console.log(authen.currentUser.uid);
+		itemStore.getItem(data.slug);
+		const docRef = doc(db, 'users', userId, 'lists', 'bookmark');
+		const docSnap = await getDoc(docRef);
+		if (docSnap.exists()) {
+			let preLoad = docSnap.data().item;
+			console.log(preLoad);
+		} else {
+			console.log('No such document!');
+		}
+	});
 </script>
 
+{#if data}
 	<HeroImage imageFull item={$itemStore}></HeroImage>
 
 	<div class="flex justify-between items-end mb-12">
@@ -56,7 +40,7 @@
 			<Button icon="faPlus" type="submit" href='/user/items/${data.slug}/add-to-list'>Add to list</Button>
 			<Button icon="faVolume" type="submit">Audio guide</Button>
 		</div>
-		<Fab icon="faStar" on:click={handleBookmark}></Fab>
+		<Fab icon="faStar" on:click={handleBookmark(data.params)}></Fab>
 	</div>
 
 	<BodyLarge>
@@ -76,3 +60,4 @@
 
 		<HeroImage item={$itemStore}></HeroImage>
 	</div>
+	{/if}

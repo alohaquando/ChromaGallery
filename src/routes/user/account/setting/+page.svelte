@@ -69,7 +69,7 @@
 
 	<Divider />
 
-	<div class="flex flex-col items-start gap-4 mb-6">
+	<div class="flex flex-col items-start gap-4 {isCurator? 'mb-6' : ''}">
 		<CuratorSwitch bind:toggled={isCurator} />
 		<SiteSwitcher bind:toggled={isCurator} />
 	</div>

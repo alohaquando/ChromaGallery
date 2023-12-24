@@ -16,44 +16,49 @@
 	import { modal } from '$lib/stores/modal';
 	import { background } from '$lib/stores/background';
 	import { afterNavigate, beforeNavigate, onNavigate } from '$app/navigation';
+	import { authStore } from '$lib/stores/store';
+	import { onMount } from 'svelte';
+	import { defaultLayout } from '$lib/stores/pageLayout';
 
 	/** @type {import('./$types').LayoutData} */
-	export let data;
+	// export let data;
 
 	let scrollY: number;
 
 	// ******Set Default Bookmark******
 
-	// onMount(() => {
-	// 	const bookmarkItem = auth.onAuthStateChanged(async (user) => {
-	// 		if (!user) {
-	// 			return;
-	// 		}
-	// 		let dataToSetToStore: any;
-	// 		const docRef = doc(db, 'users', user.uid, 'lists', 'bookmark');
-	// 		const docSnap = await getDoc(docRef);
-	// 		if (!docSnap.exists()) {
-	// 			const userRef = doc(db, 'users', user.uid, 'lists', 'bookmark');
-	// 			dataToSetToStore = {
-	// 				email: user?.email,
-	// 				title: 'Bookmarks',
-	// 				items: []
-	// 			};
-	// 			await setDoc(userRef, dataToSetToStore, { merge: true });
-	// 		} else {
-	// 			const userData = docSnap.data();
-	// 			dataToSetToStore = userData;
-	// 		}
-	// 		authStore.update((curr: any) => {
-	// 			return {
-	// 				...curr,
-	// 				user,
-	// 				data: dataToSetToStore,
-	// 				loading: false
-	// 			};
-	// 		});
-	// 	});
-	// });
+	onMount(() => {
+		const bookmarkItem = auth.onAuthStateChanged(async (user) => {
+			if (!user) {
+				return;
+			}
+			let dataToSetToStore: any;
+			const docRef = doc(db, 'users', user.uid, 'lists', 'bookmark');
+			const docSnap = await getDoc(docRef);
+			if (!docSnap.exists()) {
+				const userRef = doc(db, 'users', user.uid, 'lists', 'bookmark');
+				dataToSetToStore = {
+					email: user?.email,
+					title: 'Bookmarks',
+					items: []
+				};
+				await setDoc(userRef, dataToSetToStore, { merge: true });
+			} else {
+				const userData = docSnap.data();
+				dataToSetToStore = userData;
+			}
+			authStore.update((curr: any) => {
+				return {
+					...curr,
+					user,
+					data: dataToSetToStore,
+					loading: false
+				};
+			});
+		});
+	});
+
+	afterNavigate(() => {defaultLayout();});
 
 
 </script>
