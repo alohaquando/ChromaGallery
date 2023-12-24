@@ -21,70 +21,48 @@
 	import { background } from '$lib/stores/background';
 	import { afterNavigate, beforeNavigate, onNavigate } from '$app/navigation';
 
+	/** @type {import('./$types').LayoutData} */
+	export let data;
+
 	let scrollY: number;
 
 	// ******Set Default Bookmark******
 
-	onMount(() => {
-		const bookmarkItem = auth.onAuthStateChanged(async (user) => {
-			if (!user) {
-				return;
-			}
-			let dataToSetToStore: any;
-			const docRef = doc(db, 'users', user.uid, 'lists', 'bookmark');
-			const docSnap = await getDoc(docRef);
-			if (!docSnap.exists()) {
-				const userRef = doc(db, 'users', user.uid, 'lists', 'bookmark');
-				dataToSetToStore = {
-					email: user?.email,
-					title: 'Bookmarks',
-					items: []
-				};
-				await setDoc(userRef, dataToSetToStore, { merge: true });
-			} else {
-				const userData = docSnap.data();
-				dataToSetToStore = userData;
-			}
-			authStore.update((curr: any) => {
-				return {
-					...curr,
-					user,
-					data: dataToSetToStore,
-					loading: false
-				};
-			});
-		});
-	});
+	// onMount(() => {
+	// 	const bookmarkItem = auth.onAuthStateChanged(async (user) => {
+	// 		if (!user) {
+	// 			return;
+	// 		}
+	// 		let dataToSetToStore: any;
+	// 		const docRef = doc(db, 'users', user.uid, 'lists', 'bookmark');
+	// 		const docSnap = await getDoc(docRef);
+	// 		if (!docSnap.exists()) {
+	// 			const userRef = doc(db, 'users', user.uid, 'lists', 'bookmark');
+	// 			dataToSetToStore = {
+	// 				email: user?.email,
+	// 				title: 'Bookmarks',
+	// 				items: []
+	// 			};
+	// 			await setDoc(userRef, dataToSetToStore, { merge: true });
+	// 		} else {
+	// 			const userData = docSnap.data();
+	// 			dataToSetToStore = userData;
+	// 		}
+	// 		authStore.update((curr: any) => {
+	// 			return {
+	// 				...curr,
+	// 				user,
+	// 				data: dataToSetToStore,
+	// 				loading: false
+	// 			};
+	// 		});
+	// 	});
+	// });
 
-	const stateCheck = () => {
-		if (!$previousState && $modal.modalPage) {
-			previousState.set(true);
-			modal.update((modalData) => ({
-				...modalData,
-				animation: 'animate-flyUp'
-			}));
-		} else if ($previousState && $modal.modalPage) {
-			modal.update((modalData) => ({
-				...modalData,
-				animation: ''
-			}));
-		} else if ($previousState && !$modal.modalPage) {
-			previousState.set(false);
-			modal.update((modalData) => ({
-				...modalData,
-				animation: 'animate-flyUpOut'
-			}));
-		}
-	};
 
-	afterNavigate(() => {
-
-	});
-
-	onNavigate(() => {
-		defaultLayout();
-	});
 </script>
+
+<div>{data.item.name} abc</div>
 
 <svelte:head>
 	<meta title="Chroma Gallery" />
