@@ -21,7 +21,7 @@
 	import { defaultLayout } from '$lib/stores/pageLayout';
 
 	/** @type {import('./$types').LayoutData} */
-	// export let data;
+		// export let data;
 
 	let scrollY: number;
 
@@ -58,8 +58,9 @@
 		});
 	});
 
-	afterNavigate(() => {defaultLayout();});
-
+	afterNavigate(() => {
+		defaultLayout();
+	});
 
 </script>
 
@@ -73,7 +74,11 @@
 </svelte:head>
 <svelte:window bind:scrollY />
 
-<BG class="{$modal.modalPage === true? 'h-[90vh]' : ''}" color={$background.color} design={$background.design}
+
+
+
+
+<BG class="{$modal.modalPage === true? 'h-[90vh]' : ''}" design={$background.design}
 		randomized={$background.randomized} />
 
 {#if $modal.modalPage === true}

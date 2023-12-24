@@ -9,7 +9,7 @@ export const defaultLayout = () => {
 	resetHeader();
 	resetNavbar();
 	resetModal();
-	resetBackground();
+	// resetBackground();
 	resetDialog();
 	resetImageFullView();
 };
