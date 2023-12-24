@@ -3,8 +3,7 @@
 	import ListItem from '$lib/components/item/ListItem.svelte';
 </script>
 
-<!--<div class="w-screen h-screen backdrop-blur-sm fixed"></div>-->
-<TextField id="" name="" placeholder="Search"></TextField>
+<TextField id="" name="" placeholder="Text"></TextField>
 
 <div class="mt-6">
 	<ListItem bottomDivider={false} icon="faArrowUpLeft" text="Suggestion 1" topDivider={false} />

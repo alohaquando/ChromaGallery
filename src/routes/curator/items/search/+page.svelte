@@ -8,7 +8,7 @@
 <Bg randomized />
 
 <div class="mb-6 w-full h-full">
-	<TextField icon="faXmark" id="" name="" value="Text"></TextField>
+	<TextField id="" name="" placeholder="Text"></TextField>
 </div>
 
 <DragList class="gap-4" items={allItem} type="view"></DragList>

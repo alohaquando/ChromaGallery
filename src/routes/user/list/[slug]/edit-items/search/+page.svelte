@@ -13,7 +13,8 @@
 	}));
 </script>
 
-<div class="flex justify-center items-center flex-col gap-6">
-	<TextField id="1" name="1" placeholder="Find item"></TextField>
-	<DragList class="gap-4 w-full" items={allItem}></DragList>
+<div class="mt-8 mb-6 w-full h-full">
+	<TextField id="" name="" placeholder="Text"></TextField>
 </div>
+
+<DragList class="gap-4" items={allItem} type="delete"></DragList>
