@@ -9,7 +9,7 @@
 	<div class="flex flex-col justify-center gap-8">
 		<Title class="font-bold">Welcome to Chroma!</Title>
 		<BodyLarge>
-			These terms and conditions outline the rules and regulations for the use of Chroma's Website, located at abcd.com.
+			These terms and conditions outline the rules and regulations for the use of Chroma's Website, located at chromagallery.vercel.app.
 			By accessing this website we assume you accept these terms and conditions. Do not continue to use Chroma if you do
 			not agree to take all of the terms and conditions stated on this page.
 			The following terminology applies to these Terms and Conditions, Privacy Statement and Disclaimer Notice and all

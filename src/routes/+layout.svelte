@@ -9,15 +9,11 @@
 	import faviconIco from '$lib/assets/favicons/favicon.ico';
 	import faviconSvg from '$lib/assets/favicons/icon.svg';
 	import faviconApple from '$lib/assets/favicons/apple-touch-icon.png';
-	import { defaultLayout } from '$lib/stores/pageLayout';
-	import { onMount } from 'svelte';
 	import { auth, db } from '$lib/services/firebase/firebase';
 	import { doc, getDoc, setDoc } from 'firebase/firestore';
-	import { authStore } from '$lib/stores/store';
-	import { itemStore } from '$lib/stores/itemStore';
 	import { header } from '$lib/stores/header';
 	import { navbar } from '$lib/stores/navbar';
-	import { modal, previousState } from '$lib/stores/modal';
+	import { modal } from '$lib/stores/modal';
 	import { background } from '$lib/stores/background';
 	import { afterNavigate, beforeNavigate, onNavigate } from '$app/navigation';
 
@@ -61,8 +57,6 @@
 
 
 </script>
-
-<div>{data.item.name} abc</div>
 
 <svelte:head>
 	<meta title="Chroma Gallery" />

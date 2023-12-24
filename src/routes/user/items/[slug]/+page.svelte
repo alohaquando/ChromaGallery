@@ -21,35 +21,34 @@
 	/** @type {import('../../../../../.svelte-kit/types/src/routes').PageLoad} */
 	export let data: any;
 
-	onMount(async () => {
-		itemStore.getItem(data.slug);
-		const docRef = doc(db, 'users', userId, 'lists', 'bookmark');
-		const docSnap = await getDoc(docRef);
-		if (docSnap.exists()) {
-			let preLoad = docSnap.data().item;
-			console.log(preLoad);
-		} else {
-			console.log('No such document!');
-		}
-	});
-
-	const handleBookmark = async () => {
-		const authen = getAuth();
-		const userId = authen.currentUser.uid;
-		console.log(authen.currentUser.uid);
-
-		await setDoc(
-			doc(db, 'users', userId, 'lists', 'bookmark'),
-			{
-				items: arrayUnion(data.slug)
-			},
-			{ merge: true }
-		);
-		console.log('Bookmarked successfully');
-	};
+	// onMount(async () => {
+	// 	itemStore.getItem(data.slug);
+	// 	const docRef = doc(db, 'users', userId, 'lists', 'bookmark');
+	// 	const docSnap = await getDoc(docRef);
+	// 	if (docSnap.exists()) {
+	// 		let preLoad = docSnap.data().item;
+	// 		console.log(preLoad);
+	// 	} else {
+	// 		console.log('No such document!');
+	// 	}
+	// });
+	//
+	// const handleBookmark = async () => {
+	// 	const authen = getAuth();
+	// 	const userId = authen.currentUser.uid;
+	// 	console.log(authen.currentUser.uid);
+	//
+	// 	await setDoc(
+	// 		doc(db, 'users', userId, 'lists', 'bookmark'),
+	// 		{
+	// 			items: arrayUnion(data.slug)
+	// 		},
+	// 		{ merge: true }
+	// 	);
+	// 	console.log('Bookmarked successfully');
+	// };
 </script>
 
-{#if $itemStore}
 	<HeroImage imageFull item={$itemStore}></HeroImage>
 
 	<div class="flex justify-between items-end mb-12">
@@ -73,8 +72,7 @@
 	<div class="mt-12 gap-y-8 flex flex-col">
 		<BodyLarge class="mt-12">Related</BodyLarge>
 
-		<HeroImage data={$itemStore}></HeroImage>
+		<HeroImage item={$itemStore}></HeroImage>
 
-		<HeroImage data={$itemStore}></HeroImage>
+		<HeroImage item={$itemStore}></HeroImage>
 	</div>
-{/if}

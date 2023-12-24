@@ -9,7 +9,7 @@
 	<div class="flex flex-col justify-center gap-8">
 		<Title class="font-bold">Welcome to Chroma!</Title>
 		<BodyLarge>
-			Thank you for visiting Chroma Museum's website (abcd.com). This Privacy Policy outlines how we collect, use, and
+			Thank you for visiting Chroma Museum's website (chromagallery.vercel.app). This Privacy Policy outlines how we collect, use, and
 			protect information obtained from visitors to our website.
 		</BodyLarge>
 
@@ -64,7 +64,7 @@
 
 		<Title class="font-bold">Contact Information:</Title>
 		<BodyLarge>
-			If you have any questions or concerns regarding this Privacy Policy, please contact us at contact@abcd.com.
+			If you have any questions or concerns regarding this Privacy Policy, please contact us at contact@chroma.com.
 		</BodyLarge>
 
 		<BodyLarge>

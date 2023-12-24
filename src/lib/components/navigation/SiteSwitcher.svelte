@@ -37,7 +37,7 @@
 		case 'curator':
 			component = LogoCurator;
 			text = 'Curator';
-			href = '';
+			href = '/';
 			break;
 	}
 

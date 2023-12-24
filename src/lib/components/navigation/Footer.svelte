@@ -87,10 +87,10 @@
 	<!--	Privacy and Terms-->
 	<div class="w-full flex justify-between items-center">
 		<div class="flex">
-			<Link href="">Privacy</Link>
+			<Link href="/privacy-policy">Privacy</Link>
 			<Link class="ml-5" href="/terms">Terms</Link>
 		</div>
-		<span class="text-white/50 items-center flex"
+		<span class="text-white/50 items-center flex cursor-default"
 		><Icon icon="faCopyright"></Icon><Body class="text-white/50">2023 Chroma Gallery</Body></span
 		>
 	</div>
