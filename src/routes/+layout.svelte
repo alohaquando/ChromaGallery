@@ -14,12 +14,11 @@
 	import { auth, db } from '$lib/services/firebase/firebase';
 	import { doc, getDoc, setDoc } from 'firebase/firestore';
 	import { authStore } from '$lib/stores/store';
-	import { itemStore } from '$lib/stores/itemStore';
 	import { header } from '$lib/stores/header';
 	import { navbar } from '$lib/stores/navbar';
 	import { modal, previousState } from '$lib/stores/modal';
 	import { background } from '$lib/stores/background';
-	import { afterNavigate, beforeNavigate, onNavigate } from '$app/navigation';
+	import {  onNavigate } from '$app/navigation';
 
 	let scrollY: number;
 
@@ -77,10 +76,6 @@
 		}
 	};
 
-	afterNavigate(() => {
-
-	});
-
 	onNavigate(() => {
 		defaultLayout();
 	});
@@ -112,7 +107,7 @@
 	{:else if $header.type === 'back'}
 		<HeaderBack href={$header.href} button={$header.button} destructive={$header.destructive}></HeaderBack>
 	{/if}
-	<div class="container mx-auto px-6">
+	<div class="container mx-auto px-6 max-w-3xl">
 		<slot />
 		<Footer></Footer>
 	</div>
