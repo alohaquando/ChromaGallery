@@ -8,17 +8,6 @@
 	import CuratorSwitch from '$lib/components/inputs/CuratorSwitch.svelte';
 	import SiteSwitcher from '$lib/components/navigation/SiteSwitcher.svelte';
 
-	modal.set({
-		modalPage: true,
-		href: '/user/account',
-		title: 'Account setting',
-		exit: true,
-		button: undefined,
-		buttonFunction: function() {
-		},
-		animation: ''
-	});
-
 	let button1 = {
 		option: 'Cancel',
 		type: '',
@@ -73,7 +62,7 @@
 		<CuratorSwitch bind:toggled={isCurator} />
 		<SiteSwitcher bind:toggled={isCurator} />
 	</div>
-	
+
 	<Divider />
 
 	<ListItem

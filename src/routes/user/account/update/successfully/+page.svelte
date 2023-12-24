@@ -3,13 +3,6 @@
 	import BodyLarge from '$lib/components/typography/BodyLarge.svelte';
 	import Button from '$lib/components/controls/Button.svelte';
 	import { modal } from '$lib/stores/modal';
-
-	modal.update(modalData => ({
-		...modalData,
-		modalPage: true,
-		href: '/user/account/setting',
-		title: 'Account setting'
-	}));
 </script>
 
 <div class="">
