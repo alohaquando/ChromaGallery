@@ -5,8 +5,6 @@
 	import { allItem } from '$lib/stores/data';
 </script>
 
-<Bg randomized />
-
 <div class="mb-6 w-full h-full">
 	<TextField id="" name="" placeholder="Text"></TextField>
 </div>

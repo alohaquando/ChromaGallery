@@ -5,7 +5,7 @@ export const previousState = writable(false);
 
 export interface Modal {
 	toggled: boolean;
-	href: string;
+	href: string | undefined;
 	title: string;
 	exit: boolean;
 	button: string | undefined;
@@ -15,7 +15,7 @@ export interface Modal {
 
 export let modal = writable({
 	toggled: false,
-	href: '',
+	href: undefined,
 	title: '',
 	exit: false,
 	button: undefined,
@@ -26,7 +26,7 @@ export let modal = writable({
 export const getNewModal = (): Writable<Modal> => {
 	return writable({
 		toggled: false,
-		href: '',
+		href: undefined,
 		title: '',
 		exit: false,
 		button: undefined,
@@ -50,12 +50,6 @@ export function generateModal(pageData: any = {}) {
 	modal.subscribe((data) => (modalData = data));
 
 	let isToggled = modalData.toggled;
-
-	console.log(isToggled);
-	console.log(prevState);
-	console.log(!prevState && isToggled);
-	console.log(prevState && isToggled);
-	console.log(prevState && !isToggled);
 
 	if (!prevState && !isToggled) {
 		modal.update((data) => ({
@@ -81,12 +75,7 @@ export function generateModal(pageData: any = {}) {
 		previousState.set(false);
 	}
 
-	previousState.subscribe((previousState) => (prevState = previousState));
-	console.log(prevState);
-
 	modal.subscribe((data) => (modalData = data));
-	console.log(modalData);
-
 	return modalData;
 }
 

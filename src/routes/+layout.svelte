@@ -28,10 +28,6 @@
 		modal = $page.data.modal ? generateModal($page.data.modal) : generateModal();
 	});
 
-	beforeNavigate(() => {
-
-	});
-
 	let scrollY: number;
 
 	// ******Set Default Bookmark******

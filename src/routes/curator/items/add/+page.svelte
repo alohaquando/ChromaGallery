@@ -3,17 +3,7 @@
 	import TextArea from '$lib/components/inputs/TextArea.svelte';
 	import TextField from '$lib/components/inputs/TextField.svelte';
 	import Divider from '$lib/components/layouts/Divider.svelte';
-	import { item2 } from '$lib/stores/data';
-	import { modal } from '$lib/stores/modal';
 	import Datalist from '$lib/components/inputs/Datalist.svelte';
-
-	modal.update(modalData => ({
-		...modalData,
-		modalPage: true,
-		href: '/account/setting',
-		title: 'Edit',
-		button: 'Save'
-	}));
 
 	let options: string[];
 </script>

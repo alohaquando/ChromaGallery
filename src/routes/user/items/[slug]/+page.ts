@@ -4,9 +4,11 @@ import { arrayUnion, doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '$lib/services/firebase/firebase.js';
 import { getAuth } from 'firebase/auth';
 
+// @ts-ignore
 export const load = ({ params }) => {
 	return {
-		slug: params.slug
+		slug: params.slug,
+		item: itemStore.getItem(params.slug)
 	};
 };
 //
@@ -22,3 +24,17 @@ export const load = ({ params }) => {
 // 	}
 // });
 //
+// onMount(async () => {
+// 	const authen = getAuth();
+// 	const userId = authen.currentUser.uid;
+// 	console.log(authen.currentUser.uid);
+//
+// 	const docRef = doc(db, 'users', userId, 'lists', 'bookmark');
+// 	const docSnap = await getDoc(docRef);
+// 	if (docSnap.exists()) {
+// 		let preLoad = docSnap.data().item;
+// 		console.log(preLoad);
+// 	} else {
+// 		console.log('No such document!');
+// 	}
+// });

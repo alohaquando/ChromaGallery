@@ -53,6 +53,10 @@
 	let customClass = '';
 	export { customClass as class };
 
+	const handleReturn = !link ? () => {
+		window.history.back();
+	} : undefined;
+
 	$: scrollY, handleShowNav();
 </script>
 
@@ -63,7 +67,7 @@
 >
 	<div class="flex container mx-auto px-6 justify-between items-center">
 		<Fab class="{buttonClass} {responsive? '' : '!border-transparent'}" href={link} {icon}
-				 size="sm"></Fab>
+				 on:click={handleReturn} size="sm"></Fab>
 		<div class="inline-flex gap-2">
 			{#if button}
 				<Button on:click={buttonFunction} disabled={actionDisabled} design="filled">
