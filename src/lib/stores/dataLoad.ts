@@ -14,27 +14,30 @@ import { error } from '@sveltejs/kit';
 import type { Item } from '$lib/stores/model';
 import { getAuth } from 'firebase/auth';
 
-async function getItem(id: string) {
-	const docRef = doc(db, 'items', id);
-	let item: Item;
-	return await getDoc(docRef);
-}
+export const itemStore = {
+	getItem: async (id: string) => {
+		const docRef = doc(db, 'items', id);
+		const docSnap = await getDoc(docRef);
+		console.log(docSnap.data());
+		return docSnap.data();
+	},
 
-async function getAllItems() {
-	// Reference to the "items" collection
-	const itemsCollection = collection(db, 'items');
+	getAllItems: async () => {
+		// Reference to the "items" collection
+		const itemsCollection = collection(db, 'items');
 
-	// Fetch all documents in the "items" collection
-	const querySnapshot = await getDocs(itemsCollection);
+		// Fetch all documents in the "items" collection
+		const querySnapshot = await getDocs(itemsCollection);
 
-	// Extract data from query snapshot
-	const itemsData = querySnapshot.docs.map((doc) => ({
-		id: doc.id,
-		...doc.data()
-	}));
+		// Extract data from query snapshot
+		const itemsData = querySnapshot.docs.map((doc) => ({
+			id: doc.id,
+			...doc.data()
+		}));
 
-	return itemsData;
-}
+		return itemsData;
+	}
+};
 
 export async function handleBookmark(itemId: string) {
 	const authen = getAuth();
@@ -49,4 +52,6 @@ export async function handleBookmark(itemId: string) {
 		{ merge: true }
 	);
 	console.log('Bookmarked successfully');
+
+	return true;
 }

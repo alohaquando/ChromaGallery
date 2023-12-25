@@ -11,36 +11,39 @@
 	import { authStore } from '$lib/stores/store';
 	import { getAuth } from 'firebase/auth';
 	import { header } from '$lib/stores/header';
-	import {handleBookmark} from '$lib/stores/dataLoad';
+	import { handleBookmark } from '$lib/stores/dataLoad';
 
 	/** @type {import('../../../../../.svelte-kit/types/src/routes').PageLoad} */
 	export let data: any;
 
-	onMount(async () => {
-		const authen = getAuth();
-		const userId = authen.currentUser.uid;
-		console.log(authen.currentUser.uid);
-		itemStore.getItem(data.slug);
-		const docRef = doc(db, 'users', userId, 'lists', 'bookmark');
-		const docSnap = await getDoc(docRef);
-		if (docSnap.exists()) {
-			let preLoad = docSnap.data().item;
-			console.log(preLoad);
-		} else {
-			console.log('No such document!');
-		}
-	});
+	let item = data.item;
+	// console.log(item);
+
+	// onMount(async () => {
+	// 	const authen = getAuth();
+	// 	const userId = authen.currentUser.uid;
+	// 	console.log(authen.currentUser.uid);
+	// 	itemStore.getItem(data.slug);
+	// 	const docRef = doc(db, 'users', userId, 'lists', 'bookmark');
+	// 	const docSnap = await getDoc(docRef);
+	// 	if (docSnap.exists()) {
+	// 		let preLoad = docSnap.data().item;
+	// 		console.log(preLoad);
+	// 	} else {
+	// 		console.log('No such document!');
+	// 	}
+	// });
 </script>
 
 {#if data}
-	<HeroImage imageFull item={$itemStore}></HeroImage>
+	<HeroImage imageFull {item}></HeroImage>
 
 	<div class="flex justify-between items-end mb-12">
 		<div class="flex space-x-2">
 			<Button icon="faPlus" type="submit" href='/user/items/${data.slug}/add-to-list'>Add to list</Button>
 			<Button icon="faVolume" type="submit">Audio guide</Button>
 		</div>
-		<Fab icon="faStar" on:click={handleBookmark(data.params)}></Fab>
+		<Fab toggled icon="faStar" on:click={() => handleBookmark(data.params)}></Fab>
 	</div>
 
 	<BodyLarge>
@@ -49,15 +52,15 @@
 
 	<div class="mt-8">
 		<InfoRow href="#" leadingText="Object ID" trailingText={data.slug} />
-		<InfoRow href="#" leadingText="Place made" trailingText={$itemStore.location} />
+		<InfoRow href="#" leadingText="Place made" trailingText={item.location} />
 		<!--	<ListItem href="/" leadingText="Named collection" trailingText="Harold E. Edgerton Collection" />-->
 	</div>
 
 	<div class="mt-12 gap-y-8 flex flex-col">
 		<BodyLarge class="mt-12">Related</BodyLarge>
 
-		<HeroImage item={$itemStore}></HeroImage>
+		<HeroImage {item}></HeroImage>
 
-		<HeroImage item={$itemStore}></HeroImage>
+		<HeroImage {item}></HeroImage>
 	</div>
-	{/if}
+{/if}
