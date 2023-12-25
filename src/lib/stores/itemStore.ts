@@ -1,7 +1,17 @@
 import { writable } from 'svelte/store';
-import { collection, doc, getDoc, getDocs, query, where } from 'firebase/firestore';
+import {
+	arrayUnion,
+	collection,
+	doc,
+	getDoc,
+	getDocs,
+	query,
+	setDoc,
+	where
+} from 'firebase/firestore';
 import { db } from '$lib/services/firebase/firebase';
 import { error } from '@sveltejs/kit';
+import { getAuth } from 'firebase/auth';
 
 export interface ItemData {
 	id: string | undefined;
@@ -37,18 +47,23 @@ export const itemStore = {
 	getItem: async (id: string) => {
 		const docRef = doc(db, 'items', id);
 		const docSnap = await getDoc(docRef);
-		if (docSnap.exists()) {
-			set(docSnap.data());
-		} else {
-			set(null);
-		}
-		// if (docSnap.exists()) {
-		// 	const itemData = docSnap.data();
-		// 	return itemData
-		// } else {
-		// 	console.log(error)
-		// }
+		return docSnap.data();
 	},
+	// getItem: async (id: string) => {
+	// 	const docRef = doc(db, 'items', id);
+	// 	const docSnap = await getDoc(docRef);
+	// 	if (docSnap.exists()) {
+	// 		set(docSnap.data());
+	// 	} else {
+	// 		set(null);
+	// 	}
+	// 	// if (docSnap.exists()) {
+	// 	// 	const itemData = docSnap.data();
+	// 	// 	return itemData
+	// 	// } else {
+	// 	// 	console.log(error)
+	// 	// }
+	// },
 	getAllItems: async () => {
 		try {
 			// Reference to the "items" collection
@@ -133,4 +148,51 @@ export const itemStore = {
 			throw error;
 		}
 	}
+};
+
+export async function handleBookmark(itemId: string) {
+	const authen = getAuth();
+	const userId = authen.currentUser.uid;
+	console.log(authen.currentUser.uid);
+
+	await setDoc(
+		doc(db, 'users', userId, 'lists', 'bookmark'),
+		{
+			items: arrayUnion(itemId)
+		},
+		{ merge: true }
+	);
+	console.log('Bookmarked successfully');
+
+	return true;
+}
+
+function extractItemIdFromUrl(url: string) {
+	// Define a regex pattern to match the item ID in the URL
+	const regex = /\/user\/item\/\$([A-Za-z0-9]+)\/add-to-list/;
+
+	// Use the exec method to extract the match from the URL
+	const match = regex.exec(url);
+
+	// Check if there is a match and return the captured item ID
+	return match && match[1];
+}
+
+export const handleAddToList = async () => {
+	const url = window.location.href;
+
+	const itemId = extractItemIdFromUrl(url);
+
+	const authen = getAuth();
+	const userId = authen.currentUser.uid;
+	console.log(userId);
+
+	await setDoc(
+		doc(db, 'users', userId, 'lists', 'LgRY8ejhmwjI8Pp3Qai4'),
+		{
+			items: arrayUnion(itemId)
+		},
+		{ merge: true }
+	);
+	console.log('Bookmarked successfully');
 };

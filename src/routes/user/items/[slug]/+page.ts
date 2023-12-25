@@ -1,15 +1,15 @@
 import { onMount } from 'svelte';
 import { itemStore } from '$lib/stores/itemStore.js';
-import { itemStore as dataStore } from '$lib/stores/dataLoad';
 import { arrayUnion, doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '$lib/services/firebase/firebase.js';
 import { getAuth } from 'firebase/auth';
-import { handleBookmark } from '$lib/stores/dataLoad';
+import { handleBookmark } from '$lib/stores/itemStore';
 
+// @ts-ignore
 export const load = ({ params }) => {
 	return {
 		slug: params.slug,
-		item: dataStore.getItem(params.slug)
+		item: itemStore.getItem(params.slug)
 	};
 };
 //

@@ -11,10 +11,11 @@
 	import { authStore } from '$lib/stores/store';
 	import { getAuth } from 'firebase/auth';
 	import { header } from '$lib/stores/header';
-	import { handleBookmark } from '$lib/stores/dataLoad';
+	import { handleBookmark } from '$lib/stores/itemStore';
+	import type { PageData } from './$types';
 
 	/** @type {import('../../../../../.svelte-kit/types/src/routes').PageLoad} */
-	export let data: any;
+	export let data: PageData;
 
 	let item = data.item;
 	// console.log(item);
@@ -35,32 +36,30 @@
 	// });
 </script>
 
-{#if data}
-	<HeroImage imageFull {item}></HeroImage>
+<HeroImage imageFull {item}></HeroImage>
 
-	<div class="flex justify-between items-end mb-12">
-		<div class="flex space-x-2">
-			<Button icon="faPlus" type="submit" href='/user/items/${data.slug}/add-to-list'>Add to list</Button>
-			<Button icon="faVolume" type="submit">Audio guide</Button>
-		</div>
-		<Fab toggled icon="faStar" on:click={() => handleBookmark(data.params)}></Fab>
+<div class="flex justify-between items-end mb-12">
+	<div class="flex space-x-2">
+		<Button href='/user/items/${data.slug}/add-to-list' icon="faPlus" type="submit">Add to list</Button>
+		<Button icon="faVolume" type="submit">Audio guide</Button>
 	</div>
+	<Fab icon="faStar" on:click={() => handleBookmark(data.slug)} toggled></Fab>
+</div>
 
-	<BodyLarge>
-		{$itemStore.description}
-	</BodyLarge>
+<BodyLarge>
+	{item.description}
+</BodyLarge>
 
-	<div class="mt-8">
-		<InfoRow href="#" leadingText="Object ID" trailingText={data.slug} />
-		<InfoRow href="#" leadingText="Place made" trailingText={item.location} />
-		<!--	<ListItem href="/" leadingText="Named collection" trailingText="Harold E. Edgerton Collection" />-->
-	</div>
+<div class="mt-8">
+	<InfoRow href="#" leadingText="Object ID" trailingText={data.slug} />
+	<InfoRow href="#" leadingText="Place made" trailingText={item.location} />
+	<!--	<ListItem href="/" leadingText="Named collection" trailingText="Harold E. Edgerton Collection" />-->
+</div>
 
-	<div class="mt-12 gap-y-8 flex flex-col">
-		<BodyLarge class="mt-12">Related</BodyLarge>
+<div class="mt-12 gap-y-8 flex flex-col">
+	<BodyLarge class="mt-12">Related</BodyLarge>
 
-		<HeroImage {item}></HeroImage>
+	<HeroImage {item}></HeroImage>
 
-		<HeroImage {item}></HeroImage>
-	</div>
-{/if}
+	<HeroImage {item}></HeroImage>
+</div>

@@ -1,15 +1,13 @@
-import { writable } from "svelte/store";
-import type { ItemData } from "./itemStore";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "$lib/services/firebase/firebase";
+import { writable } from 'svelte/store';
+import type { ItemData } from './itemStore';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '$lib/services/firebase/firebase';
 
-interface ListData extends Array<ItemData>{}
-
+interface ListData extends Array<ItemData> {}
 
 const list: ListData[] = [];
 
 const { subscribe, set, update } = writable(list);
-
 
 export const listStore = {
 	subscribe,
@@ -37,7 +35,7 @@ export const listStore = {
 	getOneList: async (userId) => {
 		try {
 			// Reference to the "items" collection
-			const itemsCollection = collection(db, 'users', userId, 'lists', "KtvpR2Vu713wAIVIaIrw");
+			const itemsCollection = collection(db, 'users', userId, 'lists', 'KtvpR2Vu713wAIVIaIrw');
 
 			// Fetch all documents in the "items" collection
 			const querySnapshot = await getDocs(itemsCollection);
@@ -73,5 +71,5 @@ export const listStore = {
 			console.error('Error fetching all items: ', error.message);
 			throw error;
 		}
-	},
+	}
 };
