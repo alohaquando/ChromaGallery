@@ -5,46 +5,10 @@
 	import TextField from '$lib/components/inputs/TextField.svelte';
 	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
 	import BodySmall from '$lib/components/typography/BodySmall.svelte';
-	import { authHandlers } from '$lib/stores/store';
-	import { getAuth, onAuthStateChanged } from 'firebase/auth';
+	import { handleAuthenticate, handleAuthenticateGoogle } from '$lib/data/auth';
 
 	let email = '';
 	let password = '';
-	let error = false;
-	let authenticating = false;
-
-	async function handleAuthenticate() {
-		if (authenticating) {
-			return;
-		}
-		if (!email || !password) {
-			error = true;
-			return;
-		}
-
-		authenticating = true;
-
-		try {
-			await authHandlers.login(email, password);
-			window.location.href = '/';
-		} catch (err) {
-			console.log(' There was an auth error', err);
-			error = true;
-			authenticating = false;
-		}
-	}
-
-	$: console.log(password);
-
-	async function handleAuthenticateGoogle() {
-		try {
-			await authHandlers.loginWithGoogle();
-			console.log('Successfully logged in');
-			window.location.href = ('/');
-		} catch (err) {
-			console.log(' There was an auth error', err);
-		}
-	}
 </script>
 
 <PageTitle>Welcome back</PageTitle>
@@ -59,7 +23,11 @@
 
 	<form class="contents">
 		<!--        email field-->
-		<TextField bind:value={email} id="email" label="Email" name="email" placeholder="Email"
+		<TextField bind:value={email}
+							 id="email"
+							 label="Email"
+							 name="email"
+							 placeholder="Email"
 							 type="email"></TextField>
 
 		<!--        password field-->
@@ -73,7 +41,7 @@
 		></TextField>
 
 		<!--        submit button-->
-		<Button design="filled" on:click={handleAuthenticate} type="submit" width="full">Sign in</Button>
+		<Button design="filled" on:click={() => handleAuthenticate(email,password)} type="submit" width="full">Sign in</Button>
 
 		<!--        reset password button-->
 		<Button design="outlined" href="reset">Reset my password</Button>

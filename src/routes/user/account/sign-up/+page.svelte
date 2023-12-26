@@ -6,7 +6,7 @@
 	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
 	import BodySmall from '$lib/components/typography/BodySmall.svelte';
 	import Body from '$lib/components/typography/Body.svelte';
-	import { handleSignUpAuthenticate } from '$lib/stores/dataLoad.js';
+	import { handleSignUpAuthenticate } from '$lib/data/auth';
 
 	let email = '';
 	let password = '';

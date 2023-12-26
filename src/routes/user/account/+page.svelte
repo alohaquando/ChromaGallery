@@ -50,11 +50,11 @@
 				// Handle errors
 				console.error('Error:', error);
 			});
-		listStore
-			.getUserLists(userId);
-		$listStore.subscribe((lists) => {
-			console.log(lists);
-		});
+		// listStore
+		// 	.getUserLists(userId);
+		// $listStore.subscribe((lists) => {
+		// 	console.log(lists);
+		// });
 	});
 </script>
 
@@ -83,7 +83,7 @@
 			<!-- <CollectionBlock ></CollectionBlock> -->
 		</div>
 
-		<GridCollection class="mt-10" collections={allCollection}></GridCollection>
+<!--		<GridCollection class="mt-10" collections={allCollection}></GridCollection>-->
 	</div>
 {:else}
 	<!-- Not Sign In -->
