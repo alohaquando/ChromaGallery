@@ -2,7 +2,7 @@
 	import Icon from '../iconography/Icon.svelte';
 	import type { Item } from '$lib/stores/model';
 
-	export let item: Item | null;
+	export let item: Item | null | undefined;
 	export let bookmark: boolean = false;
 	export let icon: boolean = false;
 
@@ -44,7 +44,7 @@
 <svelte:element
 	class="{!icon
 		? sizeClass
-		: 'h-14 w-14'} {typeClass} {customClass} relative overflow-hidden  {item &&(item.image)? '' : 'bg-gradient-to-b from-neutral-600 to-neutral-800'}"
+		: 'h-14 w-14'} {typeClass} {customClass} relative overflow-hidden  {(item &&(item.image))? '' : 'bg-gradient-to-b from-neutral-600 to-neutral-800'}"
 	href="{item? '../user/items/'+item.id : null}"
 	this={link ? 'a' : 'div'}
 >

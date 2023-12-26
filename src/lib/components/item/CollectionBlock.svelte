@@ -41,7 +41,8 @@
 {#await itemList}
 	<div
 		class="{customClass} {bookmark? 'w-full' : widthClass} flex-col justify-start items-start gap-6 inline-flex grow-0">
-		<a class="w-full h-52 rounded-lg gap-1 inline-flex overflow-hidden relative" href="../routes/item/{collection.id}">
+		<a class="w-full h-52 rounded-lg gap-1 inline-flex overflow-hidden relative"
+			 href="/user/collection/{collection.id}">
 			{#if !bookmark}
 				<Block></Block>
 			{:else}
@@ -53,7 +54,7 @@
 		</a>
 		{#if title}
 			<div class="self-stretch flex-col flex gap-4">
-				<Link href="../routes/user/collection/{collection.id}" type="body">
+				<Link href="/user/collection/{collection.id}" type="body">
 					{#if !bookmark}
 						{collection.title}
 					{:else}
@@ -69,7 +70,8 @@
 {:then itemData}
 	<div
 		class="{customClass} {bookmark? 'w-full' : widthClass} flex-col justify-start items-start gap-6 inline-flex grow-0">
-		<a class="w-full h-52 rounded-lg gap-1 inline-flex overflow-hidden relative" href="../routes/item/{collection.id}">
+		<a class="w-full h-52 rounded-lg gap-1 inline-flex overflow-hidden relative"
+			 href="/user/collection/{collection.id}">
 			{#if !bookmark}
 				<Block item={itemData[0]}></Block>
 			{:else}

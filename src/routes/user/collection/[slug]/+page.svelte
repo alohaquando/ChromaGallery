@@ -6,17 +6,22 @@
 	import { collection1 } from '$lib/stores/data';
 	import { findItem } from '$lib/utils/filter';
 	import { defaultLayout } from '$lib/stores/pageLayout';
+	import type { PageData } from './$types';
+	import { extractItems } from '$lib/stores/dataLoad';
 
-	let itemList = findItem(collection1.items);
-	let str = count(collection1.items);
+	export let data: PageData;
+
+	let collection = data.collection;
+	let str = count(collection.items);
+	let itemList = extractItems(collection);
 </script>
 
 <Headline class="text-decoration-line: underline  underline-offset-8 pt-8 pb-6">
-	{collection1.title}
+	{collection.title}
 </Headline>
 <Headline class="text-white  text-opacity-50">{str}</Headline>
 <BodyLarge class="pt-6 pb-12">
-	{collection1.description}
+	{collection.description}
 </BodyLarge>
 
 <GridItem items={itemList}></GridItem>

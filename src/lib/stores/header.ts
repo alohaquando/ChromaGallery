@@ -34,15 +34,15 @@ export const getNewHeader = (): Writable<Header> => {
 };
 
 export function generateModal(pageData: any = {}) {
-	let modal = getNewHeader();
+	let header = getNewHeader();
 
-	modal.update((data) => ({
+	header.update((data) => ({
 		...data,
 		...pageData
 	}));
 
 	let headerData;
 
-	modal.subscribe((data) => (headerData = data));
+	header.subscribe((data) => (headerData = data));
 	return headerData;
 }
