@@ -11,8 +11,9 @@ import {
 } from 'firebase/firestore';
 import { db, auth } from '$lib/services/firebase/firebase';
 import { error } from '@sveltejs/kit';
-import type { Item } from '$lib/stores/model';
+import type { Collection, Item, List } from '$lib/stores/model';
 import { getAuth } from 'firebase/auth';
+import { authHandlers } from '$lib/stores/store';
 
 export const itemStore = {
 	getItem: async (id: string) => {
@@ -40,24 +41,24 @@ export const itemStore = {
 
 export const listStore = {
 	getAllCollection: async () => {
-		try {
-			// Reference to the "items" collection
-			const collectionItems = collection(db, 'collections');
+		// try {
+		// Reference to the "items" collection
+		const collectionItems = collection(db, 'collections');
 
-			// Fetch all documents in the "items" collection
-			const querySnapshot = await getDocs(collectionItems);
+		// Fetch all documents in the "items" collection
+		const querySnapshot = await getDocs(collectionItems);
 
-			// Extract data from query snapshot
-			const itemsData = querySnapshot.docs.map((doc) => ({
-				id: doc.id,
-				...doc.data()
-			}));
+		// Extract data from query snapshot
+		const itemsData = querySnapshot.docs.map((doc) => ({
+			id: doc.id,
+			...doc.data()
+		}));
 
-			return itemsData;
-		} catch (error) {
-			console.error('Error fetching all items: ', error.message);
-			throw error;
-		}
+		return itemsData;
+		// 	} catch (error) {
+		// 		console.error('Error fetching all items: ', error.message);
+		// 		throw error;
+		// 	}
 	},
 	getOneList: async (userId: string) => {
 		try {
@@ -147,3 +148,64 @@ export const handleAddToList = async () => {
 	);
 	console.log('Bookmarked successfully');
 };
+
+export const extractItems = async (collection: Collection | List | undefined) => {
+	if (collection == undefined) {
+		return null;
+	}
+
+	const idList = collection.items;
+	let itemList = await getItemFromIdList(idList);
+
+	return itemList;
+};
+
+export const getItemFromIdList = async (idList: string[]) => {
+	let itemList: any[] = [];
+
+	const itemPromises = idList.map(async (itemId) => {
+		console.log(itemId);
+		const item = await itemStore.getItem(itemId);
+		itemList = [...itemList, item];
+	});
+
+	await Promise.all(itemPromises);
+
+	console.log(itemList);
+	return itemList;
+};
+
+export async function handleSignUpAuthenticate(
+	email: string,
+	password: string,
+	confirmPassword: string
+) {
+	try {
+		if (password !== confirmPassword) {
+			console.log('Password does not match');
+			console.log(password);
+			console.log(confirmPassword);
+			return;
+		}
+
+		// if (displayName.length < 3) {
+		// 	console.log('Display name is null');
+		// 	return;
+		// }
+
+		await authHandlers.signup(email, password);
+
+		let error = false;
+
+		// await authHandlers.updateUserName(displayName);
+
+		console.log('Successfully signed up');
+
+		await authHandlers.login(email, password);
+
+		window.location.href = '/';
+	} catch (err) {
+		let error = true;
+		console.log(' There was an auth error', err);
+	}
+}

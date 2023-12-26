@@ -7,6 +7,7 @@
 	import type { Collection } from '../../stores/model';
 	import { allItem } from '../../stores/data';
 	import { count } from '$lib/utils/countItem';
+	import { extractItems } from '$lib/stores/dataLoad';
 
 	export let collection: Collection | undefined;
 
@@ -32,23 +33,25 @@
 		case 'full':
 			widthClass = 'w-72';
 	}
+
+	let itemList: [] | null = extractItems(collection);
 </script>
 
 <div
 	class="{customClass} {bookmark? 'w-full' : widthClass} flex-col justify-start items-start gap-6 inline-flex grow">
 	<a class="w-full h-52 rounded-lg gap-1 inline-flex overflow-hidden relative" href="../routes/item/{collection.id}">
 		{#if !bookmark}
-			<Block item={allItem.find((item) => item.id === collection.items[0])}></Block>
+			<Block item={itemList[0]}></Block>
 		{:else}
-			<Block item={allItem.find((item) => item.id === collection.items[0])} bookmark></Block>
+			<Block item={itemList[0]} bookmark></Block>
 		{/if}
-		{#if blockStyle === 'grid' && collection.items[1]}
+		{#if blockStyle === 'grid' && itemList[1]}
 			<div class="grow shrink basis-0 self-stretch flex-col gap-1 inline-flex">
-				{#if (collection.items[1])}
-					<Block link={false} item={allItem.find((item) => item.id === collection.items[1])}></Block>
+				{#if (itemList[1])}
+					<Block link={false} item={itemList[1]}></Block>
 				{/if}
-				{#if (collection.items[2])}
-					<Block link={false} item={allItem.find((item) => item.id === collection.items[2])}></Block>
+				{#if (itemList[2])}
+					<Block link={false} item={itemList[2]}></Block>
 				{/if}
 			</div>
 		{/if}

@@ -6,10 +6,10 @@ import { getAuth } from 'firebase/auth';
 import { handleBookmark } from '$lib/stores/itemStore';
 
 // @ts-ignore
-export const load = ({ params }) => {
+export const load = async ({ params }) => {
 	return {
 		slug: params.slug,
-		item: itemStore.getItem(params.slug)
+		item: await itemStore.getItem(params.slug)
 	};
 };
 //

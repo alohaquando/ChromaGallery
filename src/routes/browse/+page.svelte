@@ -9,36 +9,42 @@
 	import { itemStore } from '$lib/stores/itemStore';
 	import { listStore } from '$lib/stores/listStore.js';
 	import { background } from '$lib/stores/background';
+	import type { PageData } from './$types';
 
 	$background.design = 'top';
 
-	let itemList = [];
-	onMount(async () => {
-		itemStore
-			.getAllItems()
-			.then((itemsData) => {
-				itemList = itemsData;
-				console.log(itemList);
+	/** @type {import('../../../../../.svelte-kit/types/src/routes').PageLoad} */
+	export let data: PageData;
 
-				// Do something with the items data
-			})
-			.catch((error) => {
-				// Handle errors
-				console.error('Error:', error);
-			});
+	let itemList = data.allItem;
+	let collectionList = data.allCollection;
 
-		// Get All Collections
-		listStore
-			.getAllCollection()
-			.then((itemsData) => {
-				let collectionsss = itemsData;
-				console.log(collectionsss);
-			})
-			.catch((error) => {
-				// Handle errors
-				console.error('Error:', error);
-			});
-	});
+	// onMount(async () => {
+	// 	itemStore
+	// 		.getAllItems()
+	// 		.then((itemsData) => {
+	// 			itemList = itemsData;
+	// 			console.log(itemList);
+	//
+	// 			// Do something with the items data
+	// 		})
+	// 		.catch((error) => {
+	// 			// Handle errors
+	// 			console.error('Error:', error);
+	// 		});
+	//
+	// 	// Get All Collections
+	// 	listStore
+	// 		.getAllCollection()
+	// 		.then((itemsData) => {
+	// 			let collectionsss = itemsData;
+	// 			console.log(collectionsss);
+	// 		})
+	// 		.catch((error) => {
+	// 			// Handle errors
+	// 			console.error('Error:', error);
+	// 		});
+	// });
 </script>
 
 <PageTitle>Browse</PageTitle>
@@ -49,7 +55,7 @@
 	<div class="h-full flex flex-col justify-center gap-8">
 		<BodyLarge>Collections</BodyLarge>
 		<!-- scrolling  -->
-		<CollectionList collections={allCollection}></CollectionList>
+		<CollectionList collections={collectionList}></CollectionList>
 	</div>
 	<!-- All items -->
 	<div class="w-full flex flex-col justify-center gap-8">
