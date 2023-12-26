@@ -23,7 +23,7 @@
 
 <div class="gap-8 flex flex-col">
 	<div class="w-full">
-		<TextField id="edit" label="Name" labelSize="lg" name="name" value={collection1.name}></TextField>
+		<TextField id="edit" label="Name" labelSize="lg" name="name" value={collection1.title}></TextField>
 	</div>
 
 	<div class="w-full">

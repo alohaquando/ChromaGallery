@@ -17,7 +17,7 @@
 	let blockStyle: 'grid' | 'single' = 'single';
 	export { blockStyle as style };
 
-	let str = count(collection.items);
+	let str = collection ? count(collection.items) : '';
 	export let title: boolean = true;
 	export let subtitle: boolean = true;
 	export let bookmark: boolean = false;
@@ -34,43 +34,74 @@
 			widthClass = 'w-72';
 	}
 
-	let itemList: [] | null = extractItems(collection);
+	let itemList = extractItems(collection);
+	console.log(itemList);
 </script>
 
-<div
-	class="{customClass} {bookmark? 'w-full' : widthClass} flex-col justify-start items-start gap-6 inline-flex grow">
-	<a class="w-full h-52 rounded-lg gap-1 inline-flex overflow-hidden relative" href="../routes/item/{collection.id}">
-		{#if !bookmark}
-			<Block item={itemList[0]}></Block>
-		{:else}
-			<Block item={itemList[0]} bookmark></Block>
-		{/if}
-		{#if blockStyle === 'grid' && itemList[1]}
-			<div class="grow shrink basis-0 self-stretch flex-col gap-1 inline-flex">
-				{#if (itemList[1])}
-					<Block link={false} item={itemList[1]}></Block>
-				{/if}
-				{#if (itemList[2])}
-					<Block link={false} item={itemList[2]}></Block>
+{#await itemList}
+	<div
+		class="{customClass} {bookmark? 'w-full' : widthClass} flex-col justify-start items-start gap-6 inline-flex grow-0">
+		<a class="w-full h-52 rounded-lg gap-1 inline-flex overflow-hidden relative" href="../routes/item/{collection.id}">
+			{#if !bookmark}
+				<Block></Block>
+			{:else}
+				<Block bookmark></Block>
+			{/if}
+			<InfoChip class="absolute bottom-2 right-2 !rounded-2xl !bg-opacity-40 py-4">
+				<Body>{str}</Body>
+			</InfoChip>
+		</a>
+		{#if title}
+			<div class="self-stretch flex-col flex gap-4">
+				<Link href="../routes/user/collection/{collection.id}" type="body">
+					{#if !bookmark}
+						{collection.title}
+					{:else}
+						Bookmark
+					{/if}
+				</Link>
+				{#if subtitle && !bookmark && !hideSubtitle}
+					<Body class="text-white/50 line-clamp-2">{collection.description}</Body>
 				{/if}
 			</div>
 		{/if}
-		<InfoChip class="absolute bottom-2 right-2 !rounded-2xl !bg-opacity-40 py-4">
-			<Body>{str}</Body>
-		</InfoChip>
-	</a>
-	{#if title}
-		<div class="self-stretch flex-col flex gap-4">
-			<Link href="../routes/user/collection/{collection.id}" type="body">
-				{#if !bookmark}
-					{collection.name}
-				{:else}
-					Bookmark
-				{/if}
-			</Link>
-			{#if subtitle && !bookmark && !hideSubtitle}
-				<Body class="text-white/50 line-clamp-2">{collection.description}</Body>
+	</div>
+{:then itemData}
+	<div
+		class="{customClass} {bookmark? 'w-full' : widthClass} flex-col justify-start items-start gap-6 inline-flex grow-0">
+		<a class="w-full h-52 rounded-lg gap-1 inline-flex overflow-hidden relative" href="../routes/item/{collection.id}">
+			{#if !bookmark}
+				<Block item={itemData[0]}></Block>
+			{:else}
+				<Block item={itemData[0]} bookmark></Block>
 			{/if}
-		</div>
-	{/if}
-</div>
+			{#if blockStyle === 'grid' && itemData[1]}
+				<div class="grow shrink basis-0 self-stretch flex-col gap-1 inline-flex">
+					{#if (itemData[1])}
+						<Block link={false} item={itemData[1]}></Block>
+					{/if}
+					{#if (itemData[2])}
+						<Block link={false} item={itemData[2]}></Block>
+					{/if}
+				</div>
+			{/if}
+			<InfoChip class="absolute bottom-2 right-2 !rounded-2xl !bg-opacity-40 py-4">
+				<Body>{str}</Body>
+			</InfoChip>
+		</a>
+		{#if title}
+			<div class="self-stretch flex-col flex gap-4">
+				<Link href="../routes/user/collection/{collection.id}" type="body">
+					{#if !bookmark}
+						{collection.title}
+					{:else}
+						Bookmark
+					{/if}
+				</Link>
+				{#if subtitle && !bookmark && !hideSubtitle}
+					<Body class="text-white/50 line-clamp-2">{collection.description}</Body>
+				{/if}
+			</div>
+		{/if}
+	</div>
+{/await}

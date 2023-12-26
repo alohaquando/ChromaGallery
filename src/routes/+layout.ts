@@ -11,10 +11,6 @@ export async function load() {
 	return {};
 }
 
-// page.subscribe((data) => {
-// 	modal = data;
-// });
-
 // onMount(() => {
 // 	defaultLayout();
 // 	const bookmarkItem = auth.onAuthStateChanged(async (user) => {

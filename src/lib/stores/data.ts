@@ -60,21 +60,21 @@ export let allItem: Item[] = [item1, item2, item3, item4, item5];
 // Sample Collections
 export const collection1: Collection = {
 	id: 'c1',
-	name: 'Impressionist Wonders',
+	title: 'Impressionist Wonders',
 	description: 'A collection of masterpieces from the Impressionist era.',
 	items: ['i1', 'i2', 'i3']
 };
 
 export const collection2: Collection = {
 	id: 'c2',
-	name: 'Modern Art Marvels',
+	title: 'Modern Art Marvels',
 	description: 'Exploring the boundaries of art in the 20th century.',
 	items: ['i4', 'i5']
 };
 
 export const collection3: Collection = {
 	id: 'c3',
-	name: 'Timeless Classics',
+	title: 'Timeless Classics',
 	description: 'Artworks that have stood the test of time.',
 	items: ['i1', 'i3', 'i5']
 };
@@ -109,21 +109,21 @@ export const user3: User = {
 // Sample Lists
 export const list1: List = {
 	id: 'l1',
-	name: 'Favorites',
+	title: 'Favorites',
 	items: ['i1', 'i4'],
 	description: 'Personal favorites from different art movements.'
 };
 
 export const list2: List = {
 	id: 'l2',
-	name: 'Must-See',
+	title: 'Must-See',
 	items: ['i2', 'i3', 'i5'],
 	description: 'Artworks that everyone should experience.'
 };
 
 export const list3: List = {
 	id: 'l3',
-	name: 'Time Travel',
+	title: 'Time Travel',
 	items: ['i1', 'i4', 'i5'],
 	description: 'Journey through different time periods in art history.'
 };

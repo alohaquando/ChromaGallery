@@ -28,7 +28,7 @@
 </script>
 
 <Headline class="text-decoration-line: underline  underline-offset-8 pt-8 pb-6">
-	{collection1.name}
+	{collection1.title}
 </Headline>
 <Headline class="text-white  text-opacity-50">{str}</Headline>
 <BodyLarge class="pt-6">

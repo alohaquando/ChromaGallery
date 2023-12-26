@@ -20,14 +20,14 @@ export const createNewItem = () => ({
 
 export interface Collection {
 	id: string;
-	name: string;
+	title: string;
 	description: string;
 	items: string[];
 }
 
 export const createNewCollection = () => ({
 	id: '',
-	name: '',
+	title: '',
 	description: '',
 	items: []
 });
@@ -50,14 +50,14 @@ export const createNewUser = () => ({
 
 export interface List {
 	id: string;
-	name: string;
+	title: string;
 	items: string[];
 	description: string;
 }
 
 export const createNewList = () => ({
 	id: '',
-	name: '',
+	title: '',
 	description: '',
 	items: []
 });

@@ -13,16 +13,6 @@ export interface Modal {
 	animation: string | undefined;
 }
 
-export let modal = writable({
-	toggled: false,
-	href: undefined,
-	title: '',
-	exit: false,
-	button: undefined,
-	buttonFunction: function (): any {},
-	animation: ''
-});
-
 export const getNewModal = (): Writable<Modal> => {
 	return writable({
 		toggled: false,

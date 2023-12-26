@@ -41,14 +41,14 @@
 	export { customClass as class };
 </script>
 
-{#if item !== null}
-	<svelte:element
-		class="{!icon
+<svelte:element
+	class="{!icon
 		? sizeClass
-		: 'h-14 w-14'} {typeClass} {customClass} relative overflow-hidden  {(item.image)? '' : 'bg-gradient-to-b from-neutral-600 to-neutral-800'}"
-		href="{item? '../user/items/'+item.id : null}"
-		this={link ? 'a' : 'div'}
-	>
+		: 'h-14 w-14'} {typeClass} {customClass} relative overflow-hidden  {item &&(item.image)? '' : 'bg-gradient-to-b from-neutral-600 to-neutral-800'}"
+	href="{item? '../user/items/'+item.id : null}"
+	this={link ? 'a' : 'div'}
+>
+	{#if item}
 		{#if bookmark}
 			<Icon icon="faStar" type="solid" class="absolute" size={iconSize}></Icon>
 			{#if !icon}
@@ -65,5 +65,5 @@
 				<div></div>
 			{/if}
 		{/if}
-	</svelte:element>
-{/if}
+	{/if}
+</svelte:element>

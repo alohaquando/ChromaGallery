@@ -19,9 +19,10 @@
 	import { page } from '$app/stores';
 	import { generateModal } from '$lib/stores/modal';
 	import { beforeNavigate } from '$app/navigation';
+	import type { PageData } from '../../.svelte-kit/types/src/routes/$types';
 
 	/** @type {import('./$types').LayoutData} */
-		// export let data;
+	export let data: PageData;
 
 	$: modal = $page.data.modal ? generateModal($page.data.modal) : generateModal();
 	onMount(() => {

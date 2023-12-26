@@ -14,17 +14,53 @@ import { error } from '@sveltejs/kit';
 import type { Collection, Item, List } from '$lib/stores/model';
 import { getAuth } from 'firebase/auth';
 import { authHandlers } from '$lib/stores/store';
+//
+export const getItem = async (id: string) => {
+	const docRef = doc(db, 'items', id);
+	const docSnap = await getDoc(docRef);
+	return docSnap.data();
+};
 
-export const itemStore = {
-	getItem: async (id: string) => {
-		const docRef = doc(db, 'items', id);
-		const docSnap = await getDoc(docRef);
-		return docSnap.data();
-	},
+export const getAllItems = async () => {
+	// Reference to the "items" collection
+	const itemsCollection = collection(db, 'items');
 
-	getAllItems: async () => {
+	// Fetch all documents in the "items" collection
+	const querySnapshot = await getDocs(itemsCollection);
+
+	// Extract data from query snapshot
+	const itemsData = querySnapshot.docs.map((doc) => ({
+		id: doc.id,
+		...doc.data()
+	}));
+
+	return itemsData;
+};
+
+export const getAllCollection = async () => {
+	// try {
+	// Reference to the "items" collection
+	const collectionItems = collection(db, 'collections');
+
+	// Fetch all documents in the "items" collection
+	const querySnapshot = await getDocs(collectionItems);
+
+	// Extract data from query snapshot
+	const itemsData = querySnapshot.docs.map((doc) => ({
+		id: doc.id,
+		...doc.data()
+	}));
+
+	return itemsData;
+	// 	} catch (error) {
+	// 		console.error('Error fetching all items: ', error.message);
+	// 		throw error;
+	// 	}
+};
+export const getOneList = async (userId: string) => {
+	try {
 		// Reference to the "items" collection
-		const itemsCollection = collection(db, 'items');
+		const itemsCollection = collection(db, 'users', userId, 'lists', 'KtvpR2Vu713wAIVIaIrw');
 
 		// Fetch all documents in the "items" collection
 		const querySnapshot = await getDocs(itemsCollection);
@@ -36,72 +72,33 @@ export const itemStore = {
 		}));
 
 		return itemsData;
+	} catch (error) {
+		console.error('Error fetching all items: ', error.message);
+		throw error;
 	}
 };
+export const getUserLists = async (userId: string) => {
+	// try {
+	// Reference to the "items" collection
+	const itemsCollection = collection(db, 'users', userId, 'lists');
 
-export const listStore = {
-	getAllCollection: async () => {
-		// try {
-		// Reference to the "items" collection
-		const collectionItems = collection(db, 'collections');
+	// Fetch all documents in the "items" collection
+	const querySnapshot = await getDocs(itemsCollection);
 
-		// Fetch all documents in the "items" collection
-		const querySnapshot = await getDocs(collectionItems);
+	// Extract data from query snapshot
+	const itemsData = querySnapshot.docs.map((doc) => ({
+		id: doc.id,
+		...doc.data()
+	}));
+	console.log(itemsData);
 
-		// Extract data from query snapshot
-		const itemsData = querySnapshot.docs.map((doc) => ({
-			id: doc.id,
-			...doc.data()
-		}));
-
-		return itemsData;
-		// 	} catch (error) {
-		// 		console.error('Error fetching all items: ', error.message);
-		// 		throw error;
-		// 	}
-	},
-	getOneList: async (userId: string) => {
-		try {
-			// Reference to the "items" collection
-			const itemsCollection = collection(db, 'users', userId, 'lists', 'KtvpR2Vu713wAIVIaIrw');
-
-			// Fetch all documents in the "items" collection
-			const querySnapshot = await getDocs(itemsCollection);
-
-			// Extract data from query snapshot
-			const itemsData = querySnapshot.docs.map((doc) => ({
-				id: doc.id,
-				...doc.data()
-			}));
-
-			return itemsData;
-		} catch (error) {
-			console.error('Error fetching all items: ', error.message);
-			throw error;
-		}
-	},
-	getUserLists: async (userId: string) => {
-		// try {
-		// Reference to the "items" collection
-		const itemsCollection = collection(db, 'users', userId, 'lists');
-
-		// Fetch all documents in the "items" collection
-		const querySnapshot = await getDocs(itemsCollection);
-
-		// Extract data from query snapshot
-		const itemsData = querySnapshot.docs.map((doc) => ({
-			id: doc.id,
-			...doc.data()
-		}));
-		console.log(itemsData);
-
-		return itemsData;
-		// 	} catch (error) {
-		// 		console.error('Error fetching all items: ', error.message);
-		// 		throw error;
-	}
-	// }
+	return itemsData;
+	// 	} catch (error) {
+	// 		console.error('Error fetching all items: ', error.message);
+	// 		throw error;
 };
+
+// }
 
 export async function handleBookmark(itemId: string) {
 	const authen = getAuth();
@@ -155,7 +152,7 @@ export const extractItems = async (collection: Collection | List | undefined) =>
 	}
 
 	const idList = collection.items;
-	let itemList = await getItemFromIdList(idList);
+	let [itemList] = await Promise.all([getItemFromIdList(idList)]);
 
 	return itemList;
 };
@@ -165,13 +162,12 @@ export const getItemFromIdList = async (idList: string[]) => {
 
 	const itemPromises = idList.map(async (itemId) => {
 		console.log(itemId);
-		const item = await itemStore.getItem(itemId);
+		const item = await getItem(itemId);
 		itemList = [...itemList, item];
 	});
 
 	await Promise.all(itemPromises);
 
-	console.log(itemList);
 	return itemList;
 };
 
