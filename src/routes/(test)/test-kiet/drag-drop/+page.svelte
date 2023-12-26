@@ -1,9 +1,7 @@
 <script lang="ts">
 	import DragList from '$lib/components/item/DragList.svelte';
 	import Button from '$lib/components/controls/Button.svelte';
-	import {
-		allItem
-	} from '$lib/stores/data';
+	import { allItem } from '$lib/data/exampleData';
 
 	// data
 	let items: Item[] = allItem;

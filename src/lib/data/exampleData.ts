@@ -1,4 +1,4 @@
-import type { Item, Collection, User, List } from '$lib/stores/model';
+import type { Item, Collection, User, List } from '$lib/data/dataModels';
 
 export const item1: Item = {
 	id: 'i1',

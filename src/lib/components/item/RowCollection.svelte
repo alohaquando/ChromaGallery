@@ -4,11 +4,11 @@
 	import Body from '$lib/components/typography/Body.svelte';
 	import Icon from '$lib/components/iconography/Icon.svelte';
 	import Checkbox from '$lib/components/controls/Checkbox.svelte';
-	import type { List, Collection } from '$lib/stores/model';
+	import type { List, Collection } from '$lib/data/dataModels';
 	import { createEventDispatcher } from 'svelte';
 	import { count } from '$lib/utils/countItem.js';
 	import { findItem } from '$lib/utils/filter';
-	import { item1 } from '../../stores/data';
+	import { item1 } from '../../data/exampleData';
 
 	export let collection: List | Collection;
 
@@ -44,8 +44,13 @@
 		<Body class="opacity-50 line-clamp-1">{str}</Body>
 	</div>
 	{#if button}
-		<Fab {icon} href={button === 'link' ? collection.id : undefined} class="{buttonStyle}" size="mini"
-				 hover={false}></Fab>
+		<Fab
+			{icon}
+			href={button === 'link' ? collection.id : undefined}
+			class={buttonStyle}
+			size="mini"
+			hover={false}
+		></Fab>
 	{:else}
 		<Checkbox id={collection.id} class="shrink-0" name=""></Checkbox>
 	{/if}

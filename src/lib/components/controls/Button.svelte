@@ -6,7 +6,8 @@
 	export let hover: boolean = true;
 	let hoverEffect = '';
 	if (hover) {
-		hoverEffect = 'hover:bg-white/20 hover:text-gray-900 hover:before:opacity-100 hover:after:opacity-100';
+		hoverEffect =
+			'hover:bg-white/20 hover:text-gray-900 hover:before:opacity-100 hover:after:opacity-100';
 	}
 	export let destructive: boolean = false;
 	if (destructive) {
@@ -47,6 +48,7 @@
 </script>
 
 <svelte:element
+	this={href ? 'a' : 'button'}
 	class="px-5 rounded-full inline-flex items-center backdrop-blur-sm justify-center gap-2 overflow-visible ease-out duration-300 h-10 line-clamp-1 relative
 
 disabled:text-white/50 disabled:hover:before:opacity-0 disabled:hover:after:opacity-0
@@ -64,13 +66,12 @@ active:opacity-70 active:duration-0
 	on:keydown
 	role="button"
 	tabindex="0"
-	this={href ? 'a' : 'button'}
 	{type}
 >
 	<Icon {icon} size={iconSize} type={iconType} />
 	{#if $$slots.default}
 		<Body class="inline-flex items-center">
-		<slot />
+			<slot />
 		</Body>
 	{/if}
 </svelte:element>

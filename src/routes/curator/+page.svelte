@@ -10,7 +10,6 @@
 
 <Display class="flex flex-col items-center justify-center">Sheen Hahn</Display>
 
-
 <div class="flex flex-col items-center justify-center">
 	<Button class="mt-8 mb-12 mx-auto" icon="faCog">Account settings</Button>
 </div>

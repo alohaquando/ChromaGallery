@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Button from '$lib/components/controls/Button.svelte';
 	import DragList from '$lib/components/item/DragList.svelte';
-	import { allItem } from '$lib/stores/data';
+	import { allItem } from '$lib/data/exampleData';
 </script>
 
 <div class="flex justify-center items-center flex-col gap-6">

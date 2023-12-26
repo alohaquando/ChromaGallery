@@ -28,10 +28,12 @@
 	on:click
 	tabindex="0"
 >
-	<div
-		class="grow flex-1 flex items-center hyphens-auto {textClasses}">
-		<svelte:component {href} linkColor="{design === 'destructive' ? 'from-red-500 to-red-300' : undefined}"
-											this={href || design === 'destructive' ? Link : Body}>
+	<div class="grow flex-1 flex items-center hyphens-auto {textClasses}">
+		<svelte:component
+			this={href || design === 'destructive' ? Link : Body}
+			{href}
+			linkColor={design === 'destructive' ? 'from-red-500 to-red-300' : undefined}
+		>
 			{text}
 		</svelte:component>
 	</div>

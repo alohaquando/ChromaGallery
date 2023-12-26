@@ -26,30 +26,41 @@
 
 	<form class="contents">
 		<!--	Email field-->
-		<TextField bind:value={email} id="email" label="Email"
-							 name="email" placeholder="myemail@google.com"></TextField>
+		<TextField
+			bind:value={email}
+			id="email"
+			label="Email"
+			name="email"
+			placeholder="myemail@google.com"
+		></TextField>
 
 		<!--	Password field-->
-		<TextField bind:value={password}
-							 id="password"
-							 label="Password"
-							 name="password"
-							 placeholder="Password"
-							 type="password"
+		<TextField
+			bind:value={password}
+			id="password"
+			label="Password"
+			name="password"
+			placeholder="Password"
+			type="password"
 		></TextField>
 
 		<!--	Confirm password field-->
-		<TextField bind:value={confirmPassword}
-							 id="confirmPassword"
-							 label="Confirm Password"
-							 name="confirmPassword"
-							 placeholder="Confirm password"
-							 type="password"
+		<TextField
+			bind:value={confirmPassword}
+			id="confirmPassword"
+			label="Confirm Password"
+			name="confirmPassword"
+			placeholder="Confirm password"
+			type="password"
 		></TextField>
 
 		<!--		Submit button-->
-		<Button design="filled" on:click={() => handleSignUpAuthenticate(email, password, confirmPassword)} type="submit"
-						width="full">Sign up
+		<Button
+			design="filled"
+			on:click={() => handleSignUpAuthenticate(email, password, confirmPassword)}
+			type="submit"
+			width="full"
+			>Sign up
 		</Button>
 	</form>
 

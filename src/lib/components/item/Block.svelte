@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Icon from '../iconography/Icon.svelte';
-	import type { Item } from '$lib/stores/model';
+	import type { Item } from '$lib/data/dataModels';
 
 	export let item: Item | null | undefined;
 	export let bookmark: boolean = false;
@@ -42,11 +42,13 @@
 </script>
 
 <svelte:element
+	this={link ? 'a' : 'div'}
 	class="{!icon
 		? sizeClass
-		: 'h-14 w-14'} {typeClass} {customClass} relative overflow-hidden  {(item &&(item.image))? '' : 'bg-gradient-to-b from-neutral-600 to-neutral-800'}"
-	href="{item? '../user/items/'+item.id : null}"
-	this={link ? 'a' : 'div'}
+		: 'h-14 w-14'} {typeClass} {customClass} relative overflow-hidden {item && item.image
+		? ''
+		: 'bg-gradient-to-b from-neutral-600 to-neutral-800'}"
+	href={item ? '../user/items/' + item.id : null}
 >
 	{#if item}
 		{#if bookmark}
@@ -54,16 +56,14 @@
 			{#if !icon}
 				<div class="absolute h-16 w-16 blur-xl bg-white rounded-full"></div>
 			{/if}
+		{:else if item.image}
+			<img
+				alt={item.title}
+				class="{stretch ? 'w-full h-full' : 'h-auto w-full'} {icon ? 'absolute' : ''} object-cover"
+				src={item.image}
+			/>
 		{:else}
-			{#if item.image}
-				<img
-					alt={item.title}
-					class="{stretch ? 'w-full h-full' : 'h-auto w-full'} {icon ? 'absolute' : ''} object-cover"
-					src={item.image}
-				/>
-			{:else}
-				<div></div>
-			{/if}
+			<div></div>
 		{/if}
 	{/if}
 </svelte:element>

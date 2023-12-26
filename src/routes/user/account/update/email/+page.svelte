@@ -17,13 +17,29 @@
 </script>
 
 <div class=" flex flex-col gap-8">
-	<TextField id="confirmOldPassword" label="Confirm old password" labelSize="lg" name="confirmOldPassword"
-						 placeholder="Confirm password"></TextField>
+	<TextField
+		id="confirmOldPassword"
+		label="Confirm old password"
+		labelSize="lg"
+		name="confirmOldPassword"
+		placeholder="Confirm password"
+	></TextField>
 
 	<Divider></Divider>
 
-	<TextField bind:value={newEmail} id="newEmail" label="New email" labelSize="lg"
-						 name="newEmail" placeholder="New email"></TextField>
-	<TextField id="confirmNewEmail" label="Confirm new email" labelSize="lg" name="confirmNewEmail"
-						 placeholder="Confirm new email"></TextField>
+	<TextField
+		bind:value={newEmail}
+		id="newEmail"
+		label="New email"
+		labelSize="lg"
+		name="newEmail"
+		placeholder="New email"
+	></TextField>
+	<TextField
+		id="confirmNewEmail"
+		label="Confirm new email"
+		labelSize="lg"
+		name="confirmNewEmail"
+		placeholder="Confirm new email"
+	></TextField>
 </div>

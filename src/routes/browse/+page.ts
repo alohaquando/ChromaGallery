@@ -1,4 +1,5 @@
-import { getAllItems, getAllCollection } from '$lib/stores/dataLoad';
+import { getAllItems } from '$lib/data/item';
+import { getAllCollection } from '$lib/data/collection';
 
 // @ts-ignore
 export const load = async ({ params }) => {

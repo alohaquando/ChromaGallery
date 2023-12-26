@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Item } from '../../stores/model';
+	import type { Item } from '../../data/dataModels';
 
 	export let id: string | undefined;
 	export let item: Item | undefined;
@@ -17,8 +17,11 @@
 </script>
 
 <div class="{customClass} inline-flex items-center group justify-center">
-	<label class="absolute p-5" for="{id}"></label>
-	<label class="relative flex items-center justify-center rounded-full cursor-pointer group-hover:bg-white/30" for={id}>
+	<label class="absolute p-5" for={id}></label>
+	<label
+		class="relative flex items-center justify-center rounded-full cursor-pointer group-hover:bg-white/30"
+		for={id}
+	>
 		<input
 			{checked}
 			class="peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border-2 border-white/50 transition-all checked:bg-white"

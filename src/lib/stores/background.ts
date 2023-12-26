@@ -13,5 +13,3 @@ export const resetBackground = () => {
 		randomized: true
 	});
 };
-
-export const test = writable(1);

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Collection } from '$lib/stores/model';
+	import type { Collection } from '$lib/data/dataModels';
 	import CollectionBlock from '$lib/components/item/CollectionBlock.svelte';
 
 	export let collections: Collection[] | undefined;
@@ -10,7 +10,7 @@
 {#if collections}
 	<div class="{customClass} w-full flex gap-8 flex-wrap justify-start">
 		{#each collections as collection}
-			<CollectionBlock collection={collection}></CollectionBlock>
+			<CollectionBlock {collection}></CollectionBlock>
 		{/each}
 	</div>
 {/if}

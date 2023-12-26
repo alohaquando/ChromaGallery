@@ -1,7 +1,33 @@
-import { authHandlers } from '$lib/stores/store';
-import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from '$lib/services/firebase/firebase';
-import type { User } from '$lib/stores/model';
+import {
+	createUserWithEmailAndPassword,
+	GoogleAuthProvider,
+	onAuthStateChanged,
+	signInWithEmailAndPassword,
+	signInWithPopup,
+	signOut,
+	updateProfile
+} from 'firebase/auth';
+import { auth, db } from '$lib/services/firebase/firebase';
+import type { User } from '$lib/data/dataModels';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
+
+const authHandlers = {
+	signup: async (email, pass) => {
+		await createUserWithEmailAndPassword(auth, email, pass);
+	},
+	login: async (email, pass) => {
+		await signInWithEmailAndPassword(auth, email, pass);
+	},
+	loginWithGoogle: async () => {
+		await signInWithPopup(auth, new GoogleAuthProvider());
+	},
+	logout: async () => {
+		await signOut(auth);
+	},
+	updateUserName: async (name) => {
+		await updateProfile(auth.currentUser, { displayName: name });
+	}
+};
 
 export async function handleSignUpAuthenticate(
 	email: string,
@@ -11,8 +37,6 @@ export async function handleSignUpAuthenticate(
 	try {
 		if (password !== confirmPassword) {
 			console.log('Password does not match');
-			console.log(password);
-			console.log(confirmPassword);
 			return;
 		}
 
@@ -29,6 +53,33 @@ export async function handleSignUpAuthenticate(
 
 		console.log('Successfully signed up');
 
+		// onAuthStateChanged(async (user) => {
+		// 	if (!user) {
+		// 		return;
+		// 	}
+		//
+		// 	let dataToSetToStore: any;
+		// 	const docRef = doc(db, 'users', user.uid, 'lists', 'bookmark');
+		// 	const docSnap = await getDoc(docRef);
+		//
+		// 	if (!docSnap.exists()) {
+		// 		const userRef = doc(db, 'users', user.uid, 'lists', 'bookmark');
+		// 		dataToSetToStore = {
+		// 			email: user?.email,
+		// 			title: 'Bookmarks',
+		// 			items: []
+		// 		};
+		// 		await setDoc(userRef, dataToSetToStore, { merge: true });
+		// 		// Set Default Account as notCurrator
+		// 		await setDoc(doc(db, 'users', user.uid),
+		// 			{
+		// 				isCurrator: false
+		// 			}
+		// 			, { merge: true });
+		// 	} else {
+		// 		const userData = docSnap.data();
+		// 		dataToSetToStore = userData;
+		// 	}
 		await authHandlers.login(email, password);
 
 		window.location.href = '/user/account/register';
@@ -56,7 +107,7 @@ export async function handleUpdateDisplayName(displayName: string) {
 	}
 }
 
-export async function handleAuthenticate(email, password) {
+export async function handleAuthenticate(email: string, password: string) {
 	// if (authenticating) {
 	// 	return;
 	// }
@@ -76,6 +127,7 @@ export async function handleAuthenticate(email, password) {
 		// authenticating = false;
 	}
 }
+
 export async function handleAuthenticateGoogle() {
 	try {
 		await authHandlers.loginWithGoogle();
@@ -94,12 +146,24 @@ export const getSessionUser: () => Promise<User | null> = async () => {
 					uid: user.uid,
 					email: user.email ? user.email : 'No email registered',
 					displayName: user.displayName ? user.displayName : 'No full name added',
-					// isCurator: await getIsCurator(user.uid)
-					isCurator: false
+					isCurator: await getIsCurator(user.uid)
 				});
 			} else {
 				resolve(null);
 			}
 		});
 	});
+};
+
+export const getIsCurator = async (userId: string) => {
+	const docRef = doc(db, 'users', userId);
+	const docSnap = await getDoc(docRef);
+
+	if (docSnap.exists()) {
+		return docSnap.data().isCurator;
+	} else {
+		// docSnap.data() will be undefined in this case
+		console.log('No such document!');
+		return false;
+	}
 };

@@ -47,22 +47,11 @@
 	<!--	Social media-->
 	<Title>Get in contact</Title>
 	<div class="inline-flex justify-between w-full">
-		<Fab href="https://facebook.com" icon="faFacebook" iconType="brands" target="_blank"
+		<Fab href="https://facebook.com" icon="faFacebook" iconType="brands" target="_blank"></Fab>
+		<Fab href="https://www.instagram.com/" icon="faInstagram" iconType="brands" target="_blank"
 		></Fab>
-		<Fab
-			href="https://www.instagram.com/"
-			icon="faInstagram"
-			iconType="brands"
-			target="_blank"
-		></Fab>
-		<Fab href="https://twitter.com" icon="faXTwitter" iconType="brands" target="_blank"
-		></Fab>
-		<Fab
-			href="https://www.youtube.com"
-			icon="faYoutube"
-			iconType="brands"
-			target="_blank"
-		></Fab>
+		<Fab href="https://twitter.com" icon="faXTwitter" iconType="brands" target="_blank"></Fab>
+		<Fab href="https://www.youtube.com" icon="faYoutube" iconType="brands" target="_blank"></Fab>
 	</div>
 
 	<Divider />
@@ -70,8 +59,8 @@
 	<!--	Account-->
 	<Title>Account</Title>
 	<Body
-	>Manage your bookmarks and lists of your favourite piece of art with an that online museum
-	account
+		>Manage your bookmarks and lists of your favourite piece of art with an that online museum
+		account
 	</Body>
 	<Button href="/user/account/sign-up">Become a member</Button>
 
@@ -79,9 +68,7 @@
 
 	<!--	Curator site-->
 	<Title>Chroma Curator</Title>
-	<Body
-	>Manage items and collections on Chroma Gallery using a Curator account
-	</Body>
+	<Body>Manage items and collections on Chroma Gallery using a Curator account</Body>
 	<Button href="">Go to Chroma Curator</Button>
 
 	<Divider />
@@ -93,7 +80,7 @@
 			<Link class="ml-5" href="/terms">Terms</Link>
 		</div>
 		<span class="text-white/50 items-center flex cursor-default"
-		><Icon icon="faCopyright"></Icon><Body class="text-white/50">2023 Chroma Gallery</Body></span
+			><Icon icon="faCopyright"></Icon><Body class="text-white/50">2023 Chroma Gallery</Body></span
 		>
 	</div>
 </div>

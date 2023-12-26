@@ -10,7 +10,7 @@
 	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
 	import GridItem from '$lib/components/item/GridItem.svelte';
 	import RowItem from '$lib/components/item/RowItem.svelte';
-	import { item1, collection1 } from '$lib/stores/data';
+	import { item1, collection1 } from '$lib/data/exampleData';
 	import FileInput from '$lib/components/inputs/FileInput.svelte';
 	import TextField from '$lib/components/inputs/TextField.svelte';
 	import { header } from '$lib/stores/header';
@@ -19,7 +19,6 @@
 	import ImageView from '$lib/components/item/ImageView.svelte';
 	import ToggleButton from '$lib/components/controls/ToggleButton.svelte';
 	import SwitchCurator from '$lib/components/inputs/CuratorSwitch.svelte';
-
 </script>
 
 <!--<ToggleButton />-->

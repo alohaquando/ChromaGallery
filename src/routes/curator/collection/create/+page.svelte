@@ -6,11 +6,18 @@
 
 <div class="gap-8 flex flex-col">
 	<div class="w-full">
-		<TextField id="create" label="Name" labelSize="lg" name="name" placeholder="Collection name"></TextField>
+		<TextField id="create" label="Name" labelSize="lg" name="name" placeholder="Collection name"
+		></TextField>
 	</div>
 
 	<div class="w-full">
-		<TextArea id="create" label="Description" labelSize="lg" name="description" placeholder="Collection description"
-							rows={2}></TextArea>
+		<TextArea
+			id="create"
+			label="Description"
+			labelSize="lg"
+			name="description"
+			placeholder="Collection description"
+			rows={2}
+		></TextArea>
 	</div>
 </div>

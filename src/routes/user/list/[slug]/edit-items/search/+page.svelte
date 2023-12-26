@@ -1,7 +1,7 @@
 <script lang="ts">
 	import TextField from '$lib/components/inputs/TextField.svelte';
 	import DragList from '$lib/components/item/DragList.svelte';
-	import { allItem } from '$lib/stores/data.js';
+	import { allItem } from '$lib/data/exampleData.js';
 </script>
 
 <div class="mt-8 mb-6 w-full h-full">

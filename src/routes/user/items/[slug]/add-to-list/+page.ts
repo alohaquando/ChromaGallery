@@ -1,12 +1,12 @@
 import { onMount } from 'svelte';
 import { getAuth } from 'firebase/auth';
-import { getUserLists } from '$lib/stores/dataLoad';
+import { getUsersAllLists } from '$lib/data/list';
 
 // @ts-ignore
 export const load = async ({ params }) => {
 	return {
 		slug: params.slug,
-		list: await getUserLists(params.slug),
+		list: await getUsersAllLists(params.slug),
 		modal: {
 			toggled: true,
 			title: 'Add to list',
@@ -20,7 +20,7 @@ export const load = async ({ params }) => {
 // onMount(async () => {
 // 	const authen = getAuth();
 // 	const userId = authen.currentUser?.uid;
-// 	await listStore.getUserLists(userId);
+// 	await listStore.getUsersAllLists(userId);
 // 	listStore.subscribe((lists) => {
 // 		console.log(lists);
 // 	});

@@ -4,10 +4,11 @@
 	import Link from '$lib/components/links/Link.svelte';
 	import InfoChip from '$lib/components/controls/InfoChip.svelte';
 	import Block from '$lib/components/item/Block.svelte';
-	import type { Collection } from '../../stores/model';
-	import { allItem } from '../../stores/data';
+	import type { Collection } from '../../data/dataModels';
+	import { allItem } from '../../data/exampleData';
 	import { count } from '$lib/utils/countItem';
-	import { extractItems } from '$lib/stores/dataLoad';
+
+	import { extractItems } from '$lib/data/item';
 
 	export let collection: Collection | undefined;
 
@@ -40,9 +41,14 @@
 
 {#await itemList}
 	<div
-		class="{customClass} {bookmark? 'w-full' : widthClass} flex-col justify-start items-start gap-6 inline-flex grow-0">
-		<a class="w-full h-52 rounded-lg gap-1 inline-flex overflow-hidden relative"
-			 href="/user/collection/{collection.id}">
+		class="{customClass} {bookmark
+			? 'w-full'
+			: widthClass} flex-col justify-start items-start gap-6 inline-flex grow-0"
+	>
+		<a
+			class="w-full h-52 rounded-lg gap-1 inline-flex overflow-hidden relative"
+			href="/user/collection/{collection.id}"
+		>
 			{#if !bookmark}
 				<Block></Block>
 			{:else}
@@ -69,9 +75,14 @@
 	</div>
 {:then itemData}
 	<div
-		class="{customClass} {bookmark? 'w-full' : widthClass} flex-col justify-start items-start gap-6 inline-flex grow-0">
-		<a class="w-full h-52 rounded-lg gap-1 inline-flex overflow-hidden relative"
-			 href="/user/collection/{collection.id}">
+		class="{customClass} {bookmark
+			? 'w-full'
+			: widthClass} flex-col justify-start items-start gap-6 inline-flex grow-0"
+	>
+		<a
+			class="w-full h-52 rounded-lg gap-1 inline-flex overflow-hidden relative"
+			href="/user/collection/{collection.id}"
+		>
 			{#if !bookmark}
 				<Block item={itemData[0]}></Block>
 			{:else}
@@ -79,10 +90,10 @@
 			{/if}
 			{#if blockStyle === 'grid' && itemData[1]}
 				<div class="grow shrink basis-0 self-stretch flex-col gap-1 inline-flex">
-					{#if (itemData[1])}
+					{#if itemData[1]}
 						<Block link={false} item={itemData[1]}></Block>
 					{/if}
-					{#if (itemData[2])}
+					{#if itemData[2]}
 						<Block link={false} item={itemData[2]}></Block>
 					{/if}
 				</div>

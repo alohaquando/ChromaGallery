@@ -32,15 +32,17 @@
 	{#if leadingText}
 		<div class="grow flex-1 flex items-center {textClasses}">
 			<Body>
-			{leadingText}
+				{leadingText}
 			</Body>
 		</div>
 	{/if}
 	{#if trailingText}
-		<div
-			class="grow flex-1 flex items-center hyphens-auto {textClasses}">
-			<svelte:component {href} this={href ? Link : Body}
-												linkColor="{design === 'destructive' ? 'from-red-500 to-red-300' : undefined}">
+		<div class="grow flex-1 flex items-center hyphens-auto {textClasses}">
+			<svelte:component
+				this={href ? Link : Body}
+				{href}
+				linkColor={design === 'destructive' ? 'from-red-500 to-red-300' : undefined}
+			>
 				{trailingText}
 			</svelte:component>
 		</div>

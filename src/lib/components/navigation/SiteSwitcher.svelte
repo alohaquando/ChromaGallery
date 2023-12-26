@@ -50,7 +50,8 @@
 </script>
 
 <div
-	class="{customClass} {animationClass} w-full px-6 py-10 bg-neutral-700 bg-opacity-50 rounded-2xl backdrop-blur-lg flex-col justify-center items-center gap-6 inline-flex duration-500 ease-out origin-top">
-	<svelte:component class="h-16" this={component} />
+	class="{customClass} {animationClass} w-full px-6 py-10 bg-neutral-700 bg-opacity-50 rounded-2xl backdrop-blur-lg flex-col justify-center items-center gap-6 inline-flex duration-500 ease-out origin-top"
+>
+	<svelte:component this={component} class="h-16" />
 	<Button design="filled" {href} width="full">Go to Chroma&nbsp<b>{text}</b></Button>
 </div>

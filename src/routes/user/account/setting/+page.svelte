@@ -18,7 +18,7 @@
 	let button2 = {
 		option: 'Log out',
 		type: 'filled',
-		function: function() {
+		function: function () {
 			authHandlers.logout();
 			window.location.href = '/';
 		}
@@ -58,7 +58,7 @@
 
 	<Divider />
 
-	<div class="flex flex-col items-start gap-4 {isCurator? 'mb-6' : ''}">
+	<div class="flex flex-col items-start gap-4 {isCurator ? 'mb-6' : ''}">
 		<CuratorSwitch bind:toggled={isCurator} />
 		<SiteSwitcher bind:toggled={isCurator} />
 	</div>
@@ -75,4 +75,4 @@
 		topDivider={false}
 	/>
 </div>
-<Dialog button1={button1} button2={button2} text="Are you sure you want to log out?" title="Log out"></Dialog>
+<Dialog {button1} {button2} text="Are you sure you want to log out?" title="Log out"></Dialog>

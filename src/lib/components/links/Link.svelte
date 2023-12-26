@@ -38,10 +38,7 @@
 </script>
 
 <a class="{customClasses} relative max-w-fit cursor-pointer trim-both" {href}>
-	<svelte:component
-		class="{typeClass} inline bg-gradient-to-r {linkColor}"
-		this={component}
-	>
+	<svelte:component this={component} class="{typeClass} inline bg-gradient-to-r {linkColor}">
 		<slot />
 	</svelte:component>
 </a>

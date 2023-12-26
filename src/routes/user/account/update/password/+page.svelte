@@ -20,13 +20,29 @@
 </script>
 
 <div class=" flex flex-col justify-center gap-8">
-	<TextField id="confirmPassword" label="Confirm old password" labelSize="lg" name="confirmPassword"
-						 placeholder="Confirm password"></TextField>
+	<TextField
+		id="confirmPassword"
+		label="Confirm old password"
+		labelSize="lg"
+		name="confirmPassword"
+		placeholder="Confirm password"
+	></TextField>
 
 	<Divider />
 
-	<TextField bind:value={newPassword} id="newPassword" label="New password" labelSize="lg" name="newPassword"
-						 placeholder="New password"></TextField>
-	<TextField id="confirmNewPassword" label="Confirm new password" labelSize="lg" name="confirmNewPassword"
-						 placeholder="Confirm new password"></TextField>
+	<TextField
+		bind:value={newPassword}
+		id="newPassword"
+		label="New password"
+		labelSize="lg"
+		name="newPassword"
+		placeholder="New password"
+	></TextField>
+	<TextField
+		id="confirmNewPassword"
+		label="Confirm new password"
+		labelSize="lg"
+		name="confirmNewPassword"
+		placeholder="Confirm new password"
+	></TextField>
 </div>

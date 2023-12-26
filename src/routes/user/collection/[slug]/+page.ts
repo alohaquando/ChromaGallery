@@ -1,4 +1,4 @@
-import { getCollection } from '$lib/stores/dataLoad';
+import { getCollection } from '$lib/data/collection';
 
 export async function load({ params }) {
 	return {

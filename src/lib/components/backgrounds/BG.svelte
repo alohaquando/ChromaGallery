@@ -10,7 +10,7 @@
 	export let randomized: boolean = false;
 
 	if (randomized) {
-		setInterval(function() {
+		setInterval(function () {
 			hue = Math.floor(Math.random() * 360);
 			saturation = Math.floor(Math.random() * (101 - 60) + 60);
 			lightness = Math.floor(Math.random() * (91 - 60) + 60);
@@ -46,12 +46,10 @@
 				'w-[80%] h-auto aspect-square top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  translate-z-0 bg-gradient-to-t from-transparent via-black/20 to-black/30  ';
 			break;
 		}
-		case 'hidden' : {
+		case 'hidden': {
 			designClassesCirclePositioning = 'opacity-0';
-			designClassesCirclePrimary =
-				'opacity-0';
-			designClassesCircleSecondary =
-				'opacity-0';
+			designClassesCirclePrimary = 'opacity-0';
+			designClassesCircleSecondary = 'opacity-0';
 		}
 	}
 
@@ -59,14 +57,10 @@
 	export { customClass as class };
 </script>
 
-
-
-
 <!--<editor-fold desc="Background">-->
 <div
 	class="{customClass} absolute top-0 left-0 w-screen h-[150vh] overflow-hidden select-none pointer-events-none"
 >
-
 	<!--<editor-fold desc="Full linear gradient">-->
 	<div
 		class="absolute top-0 bottom-0 left-0 right-0 w-full h-full bg-gradient-to-b from-white/50 -z-30"
@@ -74,12 +68,16 @@
 	<!--</editor-fold>-->
 
 	<!--<editor-fold desc="Positioning for circles">-->
-	<div class="container max-w-2xl mx-auto relative -z-30 transition duration-500 {designClassesCirclePositioning}">
+	<div
+		class="container max-w-2xl mx-auto relative -z-30 transition duration-500 {designClassesCirclePositioning}"
+	>
 		<!--<editor-fold desc="Main circle, below color overlay">-->
-		<div class="absolute rounded-full blur-2xl blur-fix transition duration-500 {designClassesCirclePrimary}" />
+		<div
+			class="absolute rounded-full blur-2xl blur-fix transition duration-500 {designClassesCirclePrimary}"
+		/>
 		<!--</editor-fold>-->
 		<!--<editor-fold desc="Secondary circle, above color overlay">-->
-				<div class="absolute rounded-full blur-2xl {designClassesCircleSecondary}" />
+		<div class="absolute rounded-full blur-2xl {designClassesCircleSecondary}" />
 		<!--</editor-fold>-->
 	</div>
 	<!--</editor-fold>-->

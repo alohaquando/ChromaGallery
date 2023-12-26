@@ -4,7 +4,8 @@
 	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
 
 	enum CuratorOnlyCases {
-		NOT_CURATOR, NOT_SIGNED_IN
+		NOT_CURATOR,
+		NOT_SIGNED_IN
 	}
 
 	export let blockingCase: CuratorOnlyCases;

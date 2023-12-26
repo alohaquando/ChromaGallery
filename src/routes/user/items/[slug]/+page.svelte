@@ -4,13 +4,8 @@
 	import Fab from '$lib/components/controls/Fab.svelte';
 	import Button from '$lib/components/controls/Button.svelte';
 	import BodyLarge from '$lib/components/typography/BodyLarge.svelte';
-	import { itemStore } from '$lib/stores/itemStore';
-	import { onMount } from 'svelte';
 	import { auth, db } from '$lib/services/firebase/firebase';
 	import { arrayUnion, collection, doc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
-	import { authStore } from '$lib/stores/store';
-	import { getAuth } from 'firebase/auth';
-	import { header } from '$lib/stores/header';
 	import { handleBookmark } from '$lib/stores/itemStore';
 	import type { PageData } from './$types';
 
@@ -40,7 +35,9 @@
 
 <div class="flex justify-between items-end mb-12">
 	<div class="flex space-x-2">
-		<Button href='/user/items/${data.slug}/add-to-list' icon="faPlus" type="submit">Add to list</Button>
+		<Button href="/user/items/${data.slug}/add-to-list" icon="faPlus" type="submit"
+			>Add to list</Button
+		>
 		<Button icon="faVolume" type="submit">Audio guide</Button>
 	</div>
 	<Fab icon="faStar" on:click={() => handleBookmark(data.slug)} toggled></Fab>

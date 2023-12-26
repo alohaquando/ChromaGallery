@@ -9,14 +9,12 @@
 	export let button1 = {
 		option: '',
 		type: '',
-		function: function() {
-		}
+		function: function () {}
 	};
 	export let button2 = {
 		option: '',
 		type: 'filled',
-		function: function() {
-		}
+		function: function () {}
 	};
 
 	const goBack = () => {
@@ -35,9 +33,7 @@
 				<Headline>{title}</Headline>
 				<Body class="max-w-full break-all">{text}</Body>
 			</div>
-			<div
-				class="flex flex-col justify-center gap-4 items-center"
-			>
+			<div class="flex flex-col justify-center gap-4 items-center">
 				<Button design={button1.type} on:click={button1.function} width="full">
 					{button1.option}
 				</Button>

@@ -1,7 +1,7 @@
-import { collection, getDocs } from 'firebase/firestore';
+import { arrayUnion, collection, doc, getDocs, setDoc } from 'firebase/firestore';
 import { db } from '$lib/services/firebase/firebase';
 
-export const getUserLists = async (userId: string) => {
+export const getUsersAllLists = async (userId: string) => {
 	if (userId) {
 		try {
 			// Reference to the "items" collection
@@ -17,14 +17,14 @@ export const getUserLists = async (userId: string) => {
 			}));
 			console.log(listsData);
 			return listsData;
-		} catch (error) {
+		} catch (error: any) {
 			console.error('Error fetching all lists: ', error.message);
 			throw error;
 		}
 	}
 };
 
-export const getUserList = async (userId: string, listId: string) => {
+export const getUserOneList = async (userId: string, listId: string) => {
 	if (userId) {
 		try {
 			// Reference to the "items" collection
@@ -39,9 +39,19 @@ export const getUserList = async (userId: string, listId: string) => {
 				...doc.data()
 			}));
 			return listData;
-		} catch (error) {
+		} catch (error: any) {
 			console.error('Error fetching all items: ', error.message);
 			throw error;
 		}
 	}
+};
+export const handleAddToList = async (userId: string, listId: string, itemId: string) => {
+	await setDoc(
+		doc(db, 'users', userId, 'lists', listId),
+		{
+			items: arrayUnion(itemId)
+		},
+		{ merge: true }
+	);
+	console.log('Bookmarked successfully');
 };

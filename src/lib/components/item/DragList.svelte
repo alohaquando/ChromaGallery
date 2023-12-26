@@ -1,12 +1,12 @@
 <script lang="ts">
 	import RowItem from '$lib/components/item/RowItem.svelte';
-	import type { Item } from '$lib/stores/model';
+	import type { Item } from '$lib/data/dataModels';
 	import { flip } from 'svelte/animate';
 	import type { DndEvent } from 'svelte-dnd-action';
 	import { dndzone } from 'svelte-dnd-action';
 	import { data } from 'autoprefixer';
-	import { createNewItem } from '$lib/stores/model';
-	import { item5 } from '$lib/stores/data';
+	import { createNewItem } from '$lib/data/dataModels';
+	import { item5 } from '$lib/data/exampleData';
 	import Button from '$lib/components/controls/Button.svelte';
 
 	export let type: 'action' | 'edit' | 'delete' | 'view' = 'action';
@@ -28,7 +28,7 @@
 		dragDisabled = type !== 'edit';
 	}
 
-	$:type, typeCheck();
+	$: type, typeCheck();
 
 	//animation on dragging
 	const flipDurationMs = 100;
@@ -54,7 +54,6 @@
 	};
 
 	let outputIsFull: boolean;
-  
 
 	// add function
 	const onTransfer = (item: Item) => {
@@ -88,25 +87,33 @@
 		fillItems();
 	};
 	$: items, placeholderCheck();
-
 </script>
-<div class="{customClass} flex flex-col gap-4">
 
+<div class="{customClass} flex flex-col gap-4">
 	{#if items.length !== 0}
-		<div class="flex flex-col gap-4"
-				 on:consider="{handleConsider}"
-				 on:finalize="{handleFinalize}" use:dndzone="{{items, dragDisabled, flipDurationMs}}">
+		<div
+			class="flex flex-col gap-4"
+			on:consider={handleConsider}
+			on:finalize={handleFinalize}
+			use:dndzone={{ items, dragDisabled, flipDurationMs }}
+		>
 			{#each items as item (item.id)}
-				<div animate:flip="{{ duration: flipDurationMs }}">
-					<RowItem on:transfer={() => onTransfer(item)} on:delete={() => onDelete(item)} {type}
-									 class="rounded-lg"
-									 {item} {button} {icon}></RowItem>
+				<div animate:flip={{ duration: flipDurationMs }}>
+					<RowItem
+						on:transfer={() => onTransfer(item)}
+						on:delete={() => onDelete(item)}
+						{type}
+						class="rounded-lg"
+						{item}
+						{button}
+						{icon}
+					></RowItem>
 				</div>
 			{/each}
 		</div>
 	{/if}
 
-	{#if (placeholderItems && placeholderItems.length !== 0)}
+	{#if placeholderItems && placeholderItems.length !== 0}
 		<div class="flex flex-col gap-4">
 			{#each placeholderItems as item}
 				<div>
@@ -120,5 +127,3 @@
 		</div>
 	{/if}
 </div>
-
-

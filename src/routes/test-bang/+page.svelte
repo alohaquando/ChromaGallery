@@ -10,7 +10,7 @@
 
 	authStore.subscribe((curr) => {
 		itemList = curr.data.items;
-		console.log(curr.data.items[3])
+		console.log(curr.data.items[3]);
 	});
 
 	function addItem() {

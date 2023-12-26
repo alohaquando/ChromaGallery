@@ -3,7 +3,7 @@
 	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
 	import Fab from '$lib/components/controls/Fab.svelte';
 	import DragList from '$lib/components/item/DragList.svelte';
-	import { allItem } from '$lib/stores/data';
+	import { allItem } from '$lib/data/exampleData';
 	import FixedButton from '$lib/components/controls/FixedButton.svelte';
 </script>
 
@@ -13,4 +13,3 @@
 <DragList button="link" class="gap-4" items={allItem}></DragList>
 
 <FixedButton icon="faPlus"></FixedButton>
-

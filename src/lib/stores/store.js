@@ -5,32 +5,12 @@ import {
 	signInWithEmailAndPassword,
 	signInWithPopup,
 	signOut,
-	updateProfile,
+	updateProfile
 } from 'firebase/auth';
 import { auth } from '$lib/services/firebase/firebase.js';
 
-export const authStore = writable({
+writable({
 	user: null,
 	loading: true,
 	data: {}
 });
-
-export const authHandlers = {
-	signup: async (email, pass) => {
-		await createUserWithEmailAndPassword(auth, email, pass);
-	},
-	login: async (email, pass) => {
-		await signInWithEmailAndPassword(auth, email, pass);
-	},
-	loginWithGoogle: async () => {
-		await signInWithPopup(auth, new GoogleAuthProvider());
-	},
-	logout: async () => {
-		await signOut(auth);
-	},
-	updateUserName: async (name) => {
-		await updateProfile ( auth.currentUser, { displayName : name })
-	}
-};
-
-

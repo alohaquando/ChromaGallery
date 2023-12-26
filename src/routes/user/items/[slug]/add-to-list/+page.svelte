@@ -15,7 +15,6 @@
 
 	let itemList = data.list;
 	onMount(async () => {
-
 		const authen = getAuth();
 		const userId = authen.currentUser?.uid;
 
@@ -59,7 +58,7 @@
 	};
 </script>
 
-<div class="flex flex-col justify-center items-center gap-8 ">
+<div class="flex flex-col justify-center items-center gap-8">
 	<Button icon="faPlus">New list</Button>
 	<Button class="w-full" href="add-to-list/search" icon="faSearch">Find list</Button>
 </div>

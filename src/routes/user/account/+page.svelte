@@ -6,7 +6,6 @@
 
 	import Fab from '$lib/components/controls/Fab.svelte';
 	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
-	import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 	import SiteSwitcher from '$lib/components/navigation/SiteSwitcher.svelte';
 	import Divider from '$lib/components/layouts/Divider.svelte';
@@ -41,7 +40,6 @@
 		</div>
 
 		<GridCollection class="mt-10" collections={data.lists}></GridCollection>
-
 	</div>
 {:else}
 	<!-- Not Sign In -->
@@ -55,11 +53,10 @@
 		</div>
 		<div class="pt-14 flex justify-center w-screen">
 			<Fab class="relative -left-[10%]" icon="faCircleUser" size="lg" href="account/sign-in"
-			>Sign me<br />in
-			</Fab
-			>
+				>Sign me<br />in
+			</Fab>
 			<Fab class="mt-20 relative -right-[5%]" icon="faSparkles" size="lg" href="account/register"
-			>Become a<br />member
+				>Become a<br />member
 			</Fab>
 		</div>
 	</div>

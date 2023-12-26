@@ -67,7 +67,8 @@
 		</label>
 	{/if}
 	<div
-		class="flex {stateClasses} bg-black/30 rounded-xl w-full p-2.5 transition trim-both border border-white border-opacity-30">
+		class="flex {stateClasses} bg-black/30 rounded-xl w-full p-2.5 transition trim-both border border-white border-opacity-30"
+	>
 		<input
 			{...{ type }}
 			{autocomplete}
@@ -87,7 +88,6 @@
 			{readonly}
 			{required}
 			{size}
-
 		/>
 		{#if value && !disabled}
 			<Fab on:click={clearValue} size="mini" noOutline icon="faXmark" class="" />
@@ -99,13 +99,10 @@
 			<label class="block mb-2 text-sm font-sans trim-both" for={id}>{errorMessage}</label>
 		</div>
 	{/if}
-
-
 </div>
 
-
 <style>
-    ::-webkit-calendar-picker-indicator {
-        filter: invert(1);
-    }
+	::-webkit-calendar-picker-indicator {
+		filter: invert(1);
+	}
 </style>

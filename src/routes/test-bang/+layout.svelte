@@ -15,13 +15,13 @@
 				return;
 			}
 			let dataToSetToStore;
-			const docRef = doc(db, 'users', user.uid, "lists", "bookmark");
+			const docRef = doc(db, 'users', user.uid, 'lists', 'bookmark');
 			const docSnap = await getDoc(docRef);
 			if (!docSnap.exists()) {
-				const userRef = doc(db, 'users', user.uid, "lists", "bookmark");
+				const userRef = doc(db, 'users', user.uid, 'lists', 'bookmark');
 				dataToSetToStore = {
 					email: user?.email,
-					items: [],
+					items: []
 				};
 				await setDoc(userRef, dataToSetToStore, { merge: true });
 			} else {
@@ -72,7 +72,7 @@
 	// 	});
 	// });
 
-			// ******Create Item******
+	// ******Create Item******
 	// 	onMount(() => {
 	// 	const createNewItem = auth.onAuthStateChanged(async (user) => {
 	// 		if (!user) {
@@ -106,11 +106,11 @@
 	// 	});
 	// });
 
-	// Get All of the User Lists		
+	// Get All of the User Lists
 	// let itemList = [];
 	// onMount(async () => {
 	// 	itemStore
-	// 		.getUserLists(authen.currentUser?.uid)
+	// 		.getUsersAllLists(authen.currentUser?.uid)
 	// 		.then((itemsData) => {
 	// 			itemList = itemsData;
 	// 			console.log(itemList);
@@ -143,5 +143,5 @@
 	<h1>{userEmail}</h1>
 </nav>
 
-<slot/>
+<slot />
 <!-- <CreateList /> -->

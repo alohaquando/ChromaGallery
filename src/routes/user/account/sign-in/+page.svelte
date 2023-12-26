@@ -23,12 +23,14 @@
 
 	<form class="contents">
 		<!--        email field-->
-		<TextField bind:value={email}
-							 id="email"
-							 label="Email"
-							 name="email"
-							 placeholder="Email"
-							 type="email"></TextField>
+		<TextField
+			bind:value={email}
+			id="email"
+			label="Email"
+			name="email"
+			placeholder="Email"
+			type="email"
+		></TextField>
 
 		<!--        password field-->
 		<TextField
@@ -41,7 +43,12 @@
 		></TextField>
 
 		<!--        submit button-->
-		<Button design="filled" on:click={() => handleAuthenticate(email,password)} type="submit" width="full">Sign in</Button>
+		<Button
+			design="filled"
+			on:click={() => handleAuthenticate(email, password)}
+			type="submit"
+			width="full">Sign in</Button
+		>
 
 		<!--        reset password button-->
 		<Button design="outlined" href="reset">Reset my password</Button>

@@ -2,11 +2,11 @@
 
 <script lang="ts">
 	import type { Comment } from 'postcss';
-	import type { Collection, List } from '../../stores/model';
+	import type { Collection, List } from '../../data/dataModels';
 	import CollectionBlock from '$lib/components/item/CollectionBlock.svelte';
 	import Fab from '$lib/components/controls/Fab.svelte';
 	import RowCollection from '$lib/components/item/RowCollection.svelte';
-	import { createNewList } from '../../stores/model';
+	import { createNewList } from '../../data/dataModels';
 
 	export let rowType: boolean = false;
 	export let placeholder: number | undefined;
@@ -54,7 +54,7 @@
 	// $: fillList(), collections;
 </script>
 
-<div class="{customClass}">
+<div class={customClass}>
 	{#if collections}
 		{#if rowType}
 			<div class="flex flex-col">
@@ -64,13 +64,16 @@
 			</div>
 		{:else}
 			<div
-				class="{customClass} flex items-center overflow-y-clip overflow-x-scroll gap-x-4 gap-y-10 scrollbar-none {wrapClass}">
+				class="{customClass} flex items-center overflow-y-clip overflow-x-scroll gap-x-4 gap-y-10 scrollbar-none {wrapClass}"
+			>
 				{#each collections as collection}
-					<CollectionBlock {width} {hideSubtitle} class="shrink-0" {collection}
-													 style={blockStyle}></CollectionBlock>
+					<CollectionBlock {width} {hideSubtitle} class="shrink-0" {collection} style={blockStyle}
+					></CollectionBlock>
 				{/each}
-				{#if (width === 'fixed')}
-					<Fab class="mr-10 shrink-0 relative -mt-10" icon="" size="lg" href="/user/collection">View all</Fab>
+				{#if width === 'fixed'}
+					<Fab class="mr-10 shrink-0 relative -mt-10" icon="" size="lg" href="/user/collection"
+						>View all</Fab
+					>
 				{/if}
 			</div>
 		{/if}

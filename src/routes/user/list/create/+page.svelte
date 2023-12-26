@@ -1,18 +1,8 @@
 <script lang="ts">
 	import TextField from '$lib/components/inputs/TextField.svelte';
-	import { authStore } from '$lib/stores/store';
 	import { auth, db } from '$lib/services/firebase/firebase';
 	import { addDoc, collection, doc, getDoc } from 'firebase/firestore';
 	import { getAuth, onAuthStateChanged } from 'firebase/auth';
-
-	modal.update((modalData) => ({
-		...modalData,
-		modalPage: true,
-		exit: true,
-		href: '/user/account',
-		title: 'Create new list',
-		transition: true
-	}));
 
 	let listName = '';
 	let listDescriptions = '';
@@ -26,43 +16,48 @@
 	// 	}
 	// });
 	// console.log(user)
-	const handleCreateList = async (user) => {
-		if (!user) {
-			return;
-		}
-		let dataToSetToStore;
-		const docRef = doc(collection(db, 'users', user.uid, 'lists'));
-		const docSnap = await getDoc(docRef);
-		if (!docSnap.exists()) {
-			dataToSetToStore = {
-				title: listName,
-				description: listDescriptions,
-				image: 'https://png.pngtree.com/png-vector/20190830/ourmid/pngtree-simple-mountain-png-png-image_1711446.jpg',
-				items: []
-			};
-			const docRef = await addDoc(collection(db, 'users', user.uid, 'lists'), dataToSetToStore);
-			console.log(docRef.id);
-		} else {
-			const userData = docSnap.data();
-			dataToSetToStore = userData;
-		}
-		authStore.update((curr) => {
-			return {
-				...curr,
-				user,
-				data: dataToSetToStore,
-				loading: false
-			};
-		});
-		listName = '';
-		listDescriptions = '';
-	};
-
+	// const handleCreateList = async (user) => {
+	// 	if (!user) {
+	// 		return;
+	// 	}
+	// 	let dataToSetToStore;
+	// 	const docRef = doc(collection(db, 'users', user.uid, 'lists'));
+	// 	const docSnap = await getDoc(docRef);
+	// 	if (!docSnap.exists()) {
+	// 		dataToSetToStore = {
+	// 			title: listName,
+	// 			description: listDescriptions,
+	// 			image: 'https://png.pngtree.com/png-vector/20190830/ourmid/pngtree-simple-mountain-png-png-image_1711446.jpg',
+	// 			items: []
+	// 		};
+	// 		const docRef = await addDoc(collection(db, 'users', user.uid, 'lists'), dataToSetToStore);
+	// 		console.log(docRef.id);
+	// 	} else {
+	// 		const userData = docSnap.data();
+	// 		dataToSetToStore = userData;
+	// 	}
+	// 	authStore.update((curr) => {
+	// 		return {
+	// 			...curr,
+	// 			user,
+	// 			data: dataToSetToStore,
+	// 			loading: false
+	// 		};
+	// 	});
+	// 	listName = '';
+	// 	listDescriptions = '';
+	// };
 </script>
 
 <div class="gap-6 flex flex-col">
-	<TextField bind:value={listName} id="name" label="Title" labelSize="lg" name="name"
-						 placeholder="List title"></TextField>
+	<TextField
+		bind:value={listName}
+		id="name"
+		label="Title"
+		labelSize="lg"
+		name="name"
+		placeholder="List title"
+	></TextField>
 	<TextField
 		bind:value={listDescriptions}
 		id="description"

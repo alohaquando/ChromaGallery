@@ -4,10 +4,6 @@
 	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
 	import GridItem from '$lib/components/item/GridItem.svelte';
 	import CollectionList from '$lib/components/item/CollectionList.svelte';
-	import { allCollection } from '$lib/stores/data.js';
-	import { onMount } from 'svelte';
-	import { itemStore } from '$lib/stores/itemStore';
-	import { listStore } from '$lib/stores/listStore.js';
 	import { background } from '$lib/stores/background';
 	import type { PageData } from './$types';
 

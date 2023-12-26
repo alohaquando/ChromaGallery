@@ -9,16 +9,12 @@
 	import faviconIco from '$lib/assets/favicons/favicon.ico';
 	import faviconSvg from '$lib/assets/favicons/icon.svg';
 	import faviconApple from '$lib/assets/favicons/apple-touch-icon.png';
-	import { auth, db } from '$lib/services/firebase/firebase';
-	import { doc, getDoc, setDoc } from 'firebase/firestore';
 	import { header } from '$lib/stores/header';
 	import { navbar } from '$lib/stores/navbar';
 	import { background } from '$lib/stores/background';
-	import { authStore } from '$lib/stores/store';
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
 	import { generateModal } from '$lib/stores/modal';
-	import { beforeNavigate } from '$app/navigation';
 	import type { PageData } from '../../.svelte-kit/types/src/routes/$types';
 
 	/** @type {import('./$types').LayoutData} */
@@ -33,45 +29,44 @@
 
 	// ******Set Default Account with Bookmark list ******
 
-	onMount(() => {
-		const bookmarkItem = auth.onAuthStateChanged(async (user) => {
-			if (!user) {
-				return;
-			}
-
-			let dataToSetToStore: any;
-			const docRef = doc(db, 'users', user.uid, 'lists', 'bookmark');
-			const docSnap = await getDoc(docRef);
-
-			if (!docSnap.exists()) {
-				const userRef = doc(db, 'users', user.uid, 'lists', 'bookmark');
-				dataToSetToStore = {
-					email: user?.email,
-					title: 'Bookmarks',
-					items: []
-				};
-				await setDoc(userRef, dataToSetToStore, { merge: true });
-				// Set Default Account as notCurrator
-				await setDoc(doc(db, 'users', user.uid),
-					{
-						isCurrator:false,
-					}
-					, { merge: true });
-			} else {
-				const userData = docSnap.data();
-				dataToSetToStore = userData;
-			}
-			authStore.update((curr: any) => {
-				return {
-					...curr,
-					user,
-					data: dataToSetToStore,
-					loading: false
-				};
-			});
-		});
-	});
-
+	// onMount(() => {
+	// 	const bookmarkItem = auth.onAuthStateChanged(async (user) => {
+	// 		if (!user) {
+	// 			return;
+	// 		}
+	//
+	// 		let dataToSetToStore: any;
+	// 		const docRef = doc(db, 'users', user.uid, 'lists', 'bookmark');
+	// 		const docSnap = await getDoc(docRef);
+	//
+	// 		if (!docSnap.exists()) {
+	// 			const userRef = doc(db, 'users', user.uid, 'lists', 'bookmark');
+	// 			dataToSetToStore = {
+	// 				email: user?.email,
+	// 				title: 'Bookmarks',
+	// 				items: []
+	// 			};
+	// 			await setDoc(userRef, dataToSetToStore, { merge: true });
+	// 			// Set Default Account as notCurrator
+	// 			await setDoc(doc(db, 'users', user.uid),
+	// 				{
+	// 					isCurrator:false,
+	// 				}
+	// 				, { merge: true });
+	// 		} else {
+	// 			const userData = docSnap.data();
+	// 			dataToSetToStore = userData;
+	// 		}
+	// 		authStore.update((curr: any) => {
+	// 			return {
+	// 				...curr,
+	// 				user,
+	// 				data: dataToSetToStore,
+	// 				loading: false
+	// 			};
+	// 		});
+	// 	});
+	// });
 </script>
 
 <svelte:head>
@@ -84,14 +79,21 @@
 </svelte:head>
 <svelte:window bind:scrollY />
 
-<BG class="{modal.toggled === true? 'h-[90vh]' : ''}" color={$background.color} design={$background.design}
-		randomized={$background.randomized} />
+<BG
+	class={modal.toggled === true ? 'h-[90vh]' : ''}
+	color={$background.color}
+	design={$background.design}
+	randomized={$background.randomized}
+/>
 
 {#if modal.toggled}
-	<Modal button={modal.button} buttonFunction={modal.buttonFunction} exit={modal.exit}
-				 href={modal.href}
-				 title={modal.title}
-				 animation={modal.animation}
+	<Modal
+		button={modal.button}
+		buttonFunction={modal.buttonFunction}
+		exit={modal.exit}
+		href={modal.href}
+		title={modal.title}
+		animation={modal.animation}
 	>
 		<slot />
 	</Modal>
@@ -99,7 +101,8 @@
 	{#if $header.type === 'main'}
 		<HeaderMain {scrollY}></HeaderMain>
 	{:else if $header.type === 'back'}
-		<HeaderBack href={$header.href} button={$header.button} destructive={$header.destructive}></HeaderBack>
+		<HeaderBack href={$header.href} button={$header.button} destructive={$header.destructive}
+		></HeaderBack>
 	{/if}
 	<div class="container mx-auto px-6 max-w-3xl">
 		<slot />
