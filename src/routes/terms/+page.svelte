@@ -80,10 +80,10 @@
 			falsely imply sponsorship, endorsement or approval of the linking party and its products or services; and (c) fits
 			within the context of the linking party's site.
 			If you are one of the organizations listed in paragraph 2 above and are interested in linking to our website, you
-			must inform us by sending an e-mail to Chroma. Please include your name, your organization name, contact
+			must inform us by sending an e-mail to Chroma. Please include your displayName, your organization displayName, contact
 			information as well as the URL of your site, a list of any URLs from which you intend to link to our Website, and
 			a list of the URLs on our site to which you would like to link. Wait 2-3 weeks for a response.
-			Approved organizations may hyperlink to our Website as follows: By use of our corporate name; or by use of the
+			Approved organizations may hyperlink to our Website as follows: By use of our corporate displayName; or by use of the
 			uniform resource locator being linked to; or by use of any other description of our Website being linked to that
 			makes sense within the context and format of content on the linking party's site.
 			No use of Chroma's logo or other artwork will be allowed for linking absent a trademark license agreement.

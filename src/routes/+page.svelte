@@ -6,42 +6,11 @@
 	import HeroImage from '$lib/components/item/HeroImage.svelte';
 	import { onMount } from 'svelte';
 	import { getAuth, onAuthStateChanged } from 'firebase/auth';
-	import { background, test } from '$lib/stores/background';
-	import Logo from '$lib/components/logo/Logo.svelte';
-	import LogoSimple from '$lib/components/logo/LogoSimple.svelte';
-
-	let itemList = [];
-
-	onMount(async () => {
-		itemStore
-			.getFeaturedItems()
-			.then((itemsData) => {
-				itemList = itemsData;
-				console.log(itemList);
-
-				// Do something with the items data
-			})
-			.catch((error) => {
-				// Handle errors
-				console.error('Error:', error);
-			});
-	});
-
-	// Check if Logged-in
-	let userEmail;
-	let userName;
-	const authen = getAuth();
-	onAuthStateChanged(authen, (user) => {
-		if (user) {
-			console.log(user);
-			userName = user.displayName;
-			userEmail = user.email;
-		} else {
-			console.log('Not signed in');
-		}
-	});
+	import { background } from '$lib/stores/background';
 
 	$background.design = 'hidden';
+
+	export let data;
 
 	// Scroll to featured items
 	let root: HTMLElement;
@@ -56,6 +25,7 @@
 		});
 	};
 
+	// Switch images and text
 	let visibleSlideshowClass = 'opacity-100 blur-none';
 	let hiddenSlideshowClass = 'opacity-0 blur-xl';
 
@@ -117,13 +87,21 @@
 		}
 	};
 
-	let imageToUse: number = 0;
 	setInterval(function() {
-		imageToUse = Math.floor(Math.random() * 3);
 		nextImage();
 	}, 3000);
 
 </script>
+
+<!--<div class="fixed z-50 top-0 left-0 flex flex-col space-y-6">-->
+<!--	<br />-->
+<!--	{data.session}-->
+<!--	{data.session?.uid}-->
+<!--	{data.session?.email}-->
+<!--	{data.session?.displayName}-->
+<!--	{data.session?.isCurator}-->
+
+<!--</div>-->
 
 <!-- Background image -->
 <div class="h-[110vh] w-screen absolute top-0 left-0">
@@ -163,20 +141,20 @@
 		</DisplayLarge>
 
 		<!--		Buttons-->
-		<div
-			class="flex absolute -bottom-12 px-5 left-1/2 transform -translate-x-1/2 justify-between w-screen max-w-lg h-fit items-end">
-			<Fab class="bg-black/5 backdrop-blur sm:mb-16 mb-8" href="/" icon="faPlay" size="lg">Relax me</Fab>
+<!--		<div-->
+<!--			class="flex absolute -bottom-12 px-5 left-1/2 transform -translate-x-1/2 justify-between w-screen max-w-lg h-fit items-end">-->
+<!--			<Fab class="bg-black/5 backdrop-blur sm:mb-16 mb-8" href="/" icon="faPlay" size="lg">Relax me</Fab>-->
 
-			<Fab class="bg-black/5 backdrop-blur" href="/browse" icon="faSearch" size="lg">Show me<br />more
-			</Fab>
+<!--			<Fab class="bg-black/5 backdrop-blur" href="/browse" icon="faSearch" size="lg">Show me<br />more-->
+<!--			</Fab>-->
 
 
-			<Fab class="bg-black/5 backdrop-blur sm:mb-16 mb-8 "
-					 href="{userEmail ? '/user/account/' : '/user/account/sign-in'}" icon="faUser" size="lg">
-				{userEmail ? 'My account' : 'Sign me in'}
-			</Fab>
+<!--			<Fab class="bg-black/5 backdrop-blur sm:mb-16 mb-8 "-->
+<!--					 href="{userEmail ? '/user/account/' : '/user/account/sign-in'}" icon="faUser" size="lg">-->
+<!--				{userEmail ? 'My account' : 'Sign me in'}-->
+<!--			</Fab>-->
 
-		</div>
+<!--		</div>-->
 	</div>
 </div>
 
@@ -191,11 +169,11 @@
 <div class="flex flex-col mt-32 gap-32">
 	<DisplayLarge class="text-center">Featured artworks</DisplayLarge>
 	<div bind:this={featuredItemsElement} class="contents">
-		{#each itemList as item}
-			{#if item.id}
-				<HeroImage {item} hideYear imageFull></HeroImage>
-			{/if}
-		{/each}
+		<!--{#each itemList as item}-->
+		<!--	{#if item.id}-->
+		<!--		<HeroImage {item} hideYear imageFull></HeroImage>-->
+		<!--	{/if}-->
+		<!--{/each}-->
 	</div>
 </div>
 <!-- {#if itemList.length > 0}
@@ -205,7 +183,7 @@
 			author={item.artist}
 			class="mt-12"
 			year={item.year}
-			name={item.title}
+			displayName={item.title}
 			src={item.src}
 		></HeroImage>
 	{/each}

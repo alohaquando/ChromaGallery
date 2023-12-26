@@ -85,25 +85,25 @@ export let allCollection: Collection[] = [collection1, collection2, collection3]
 export const user1: User = {
 	uid: 'u1',
 	email: 'user1@example.com',
-	name: 'John Smith',
+	displayName: 'John Smith',
 	lists: ['l1', 'l2'],
-	isAdmin: false
+	isCurator: false
 };
 
 export const user2: User = {
 	uid: 'u2',
 	email: 'user2@example.com',
-	name: 'Alice Johnson',
+	displayName: 'Alice Johnson',
 	lists: ['l3'],
-	isAdmin: true
+	isCurator: true
 };
 
 export const user3: User = {
 	uid: 'u3',
 	email: 'user3@example.com',
-	name: 'Robert Williams',
+	displayName: 'Robert Williams',
 	lists: ['l2', 'l3'],
-	isAdmin: false
+	isCurator: false
 };
 
 // Sample Lists

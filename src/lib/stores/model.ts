@@ -33,20 +33,11 @@ export const createNewCollection = () => ({
 });
 
 export interface User {
-	uid: string;
-	email: string;
-	name: string;
-	lists: string[];
-	isAdmin: boolean;
+	uid: string | undefined;
+	email: string | undefined;
+	displayName: string | undefined;
+	isCurator: boolean | undefined;
 }
-
-export const createNewUser = () => ({
-	uid: '',
-	email: '',
-	name: '',
-	lists: [],
-	isAdmin: false
-});
 
 export interface List {
 	id: string;

@@ -3,72 +3,29 @@
 	import Button from '$lib/components/controls/Button.svelte';
 	import BodyLarge from '$lib/components/typography/BodyLarge.svelte';
 	import BodySmall from '$lib/components/typography/BodySmall.svelte';
-	import CollectionBlock from '$lib/components/item/CollectionBlock.svelte';
+
 	import Fab from '$lib/components/controls/Fab.svelte';
 	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
-	import GridCollection from '$lib/components/item/GridCollection.svelte';
 	import { getAuth, onAuthStateChanged } from 'firebase/auth';
-	import { defaultLayout } from '$lib/stores/pageLayout';
-	import { modal, previousState } from '$lib/stores/modal';
-	import { onMount } from 'svelte';
-	import { itemStore } from '$lib/stores/itemStore';
-	import { allCollection } from '$lib/stores/data';
-	import { listStore } from '$lib/stores/listStore';
+
 	import SiteSwitcher from '$lib/components/navigation/SiteSwitcher.svelte';
 	import Divider from '$lib/components/layouts/Divider.svelte';
+	import GridCollection from '$lib/components/item/GridCollection.svelte';
 
-
-	// account name
-	let userEmail;
-	let userName;
-
-	const authen = getAuth();
-	let itemList = [];
-	let userId = authen.currentUser?.uid;
-	onAuthStateChanged(authen, (user) => {
-		if (user) {
-			console.log(user);
-			userName = user.displayName;
-			userEmail = user.email;
-		} else {
-			console.log('Not sign in');
-		}
-	});
-
-	let isUserCurator: boolean = false;
-
-	onMount(async () => {
-		itemStore
-			.getUserLists(userId)
-			.then((itemsData) => {
-				itemList = itemsData;
-				console.log(itemList);
-
-				// Do something with the items data
-			})
-			.catch((error) => {
-				// Handle errors
-				console.error('Error:', error);
-			});
-		// listStore
-		// 	.getUserLists(userId);
-		// $listStore.subscribe((lists) => {
-		// 	console.log(lists);
-		// });
-	});
+	export let data;
 </script>
 
-{#if userEmail != null}
+{#if data.session}
 	<!-- Sign In -->
 	<div class="w-full h-full flex flex-col justify-center items-center">
 		<div class="w-full h-full flex flex-col justify-center items-center gap-8 mb-20">
-			<PageTitle>{userName}</PageTitle>
+			<PageTitle>{data.session.displayName}</PageTitle>
 			<Button href="account/setting" icon="faGear">Account settings</Button>
 		</div>
 
-		{#if isUserCurator}
+		{#if data.session.isCurator}
 			<!--Curator Site-->
-			<SiteSwitcher class=""></SiteSwitcher>
+			<SiteSwitcher toggled={data.session.isCurator} class=""></SiteSwitcher>
 			<Divider class="my-10"></Divider>
 		{/if}
 
@@ -80,10 +37,11 @@
 
 		<!--	Bookmark -->
 		<div class="w-full flex">
-			<!-- <CollectionBlock ></CollectionBlock> -->
+			<!-- <CollectionBlock></CollectionBlock> -->
 		</div>
 
-<!--		<GridCollection class="mt-10" collections={allCollection}></GridCollection>-->
+		<GridCollection class="mt-10" collections={data.lists}></GridCollection>
+
 	</div>
 {:else}
 	<!-- Not Sign In -->

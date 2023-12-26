@@ -32,9 +32,9 @@
 		bottomDivider={false}
 		class="w-full"
 		clickable={true}
-		href="update/name"
+		href="update/displayName"
 		icon="faChevronRight"
-		text="Update name"
+		text="Update displayName"
 		topDivider={false}
 	/>
 	<ListItem

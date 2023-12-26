@@ -88,4 +88,4 @@
 </style>
 
 <!--Example-->
-<!--<Datalist label="Label" id="" name="" placeholder="Select an option or enter your own value" options={['Choice A', "Choice B", "Choice C"]}></Datalist>-->
+<!--<Datalist label="Label" id="" displayName="" placeholder="Select an option or enter your own value" options={['Choice A', "Choice B", "Choice C"]}></Datalist>-->

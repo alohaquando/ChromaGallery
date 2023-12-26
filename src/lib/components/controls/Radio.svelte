@@ -37,6 +37,6 @@
 		</span>
 	</label>
 </div>
-<!-- use this format below for multiple radios btn. *note using same "name" different "id" -->
-<!-- <Radio id="1" name="1"></Radio>
-    <Radio id="2" name="1"></Radio> -->
+<!-- use this format below for multiple radios btn. *note using same "displayName" different "id" -->
+<!-- <Radio id="1" displayName="1"></Radio>
+    <Radio id="2" displayName="1"></Radio> -->

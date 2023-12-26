@@ -1,6 +1,5 @@
 <script lang="ts">
 	import TextField from '$lib/components/inputs/TextField.svelte';
-	import { modal } from '$lib/stores/modal';
 	import { authStore } from '$lib/stores/store';
 	import { auth, db } from '$lib/services/firebase/firebase';
 	import { addDoc, collection, doc, getDoc } from 'firebase/firestore';

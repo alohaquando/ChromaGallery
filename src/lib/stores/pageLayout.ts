@@ -1,6 +1,5 @@
-import { resetHeader } from '$lib/stores/header';
 import { resetNavbar } from '$lib/stores/navbar';
-import { modal, previousState } from '$lib/stores/modal';
+import { previousState } from '$lib/stores/modal';
 import { resetBackground } from '$lib/stores/background';
 import { resetDialog } from '$lib/stores/dialog';
 import { resetImageFullView } from '$lib/stores/imageFullView';

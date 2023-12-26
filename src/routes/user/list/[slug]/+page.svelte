@@ -7,7 +7,7 @@
 </script>
 
 <Headline class="text-decoration-line: underline  underline-offset-8 pt-8 pb-6"
->My list with a lovingly long name
+>My list with a lovingly long displayName
 </Headline
 >
 

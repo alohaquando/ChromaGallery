@@ -1,4 +1,7 @@
 import { authHandlers } from '$lib/stores/store';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from '$lib/services/firebase/firebase';
+import type { User } from '$lib/stores/model';
 
 export async function handleSignUpAuthenticate(
 	email: string,
@@ -82,3 +85,21 @@ export async function handleAuthenticateGoogle() {
 		console.log(' There was an auth error', err);
 	}
 }
+
+export const getSessionUser: () => Promise<User | null> = async () => {
+	return new Promise((resolve) => {
+		onAuthStateChanged(auth, async (user) => {
+			if (user) {
+				resolve({
+					uid: user.uid,
+					email: user.email ? user.email : 'No email registered',
+					displayName: user.displayName ? user.displayName : 'No full name added',
+					// isCurator: await getIsCurator(user.uid)
+					isCurator: false
+				});
+			} else {
+				resolve(null);
+			}
+		});
+	});
+};
