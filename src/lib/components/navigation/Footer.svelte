@@ -47,16 +47,18 @@
 	<!--	Social media-->
 	<Title>Get in contact</Title>
 	<div class="inline-flex justify-between w-full">
-		<Fab href="" icon="faFacebook" iconType="brands"></Fab>
+		<Fab href="https://facebook.com" icon="faFacebook" iconType="brands" target="_blank"
+		></Fab>
 		<Fab
-			href="https://www.instagram.com/jenaissante/"
+			href="https://www.instagram.com/"
 			icon="faInstagram"
 			iconType="brands"
 			target="_blank"
 		></Fab>
-		<Fab href="" icon="faXTwitter" iconType="brands"></Fab>
+		<Fab href="https://twitter.com" icon="faXTwitter" iconType="brands" target="_blank"
+		></Fab>
 		<Fab
-			href="https://www.youtube.com/channel/UCs-QBT4qkj_YiQw1ZntDO3g"
+			href="https://www.youtube.com"
 			icon="faYoutube"
 			iconType="brands"
 			target="_blank"
