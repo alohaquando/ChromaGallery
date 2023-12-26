@@ -1,7 +1,6 @@
 <script lang="ts">
 	import Button from '$lib/components/controls/Button.svelte';
 	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
-	import Fab from '$lib/components/controls/Fab.svelte';
 	import BodyLarge from '$lib/components/typography/BodyLarge.svelte';
 	import DragList from '$lib/components/item/DragList.svelte';
 	import Body from '$lib/components/typography/Body.svelte';
@@ -13,7 +12,6 @@
 
 	let str = count(allItem);
 	let data: undefined;
-
 </script>
 
 {#if data}
@@ -23,7 +21,7 @@
 	</div>
 {:else}
 	<PageTitle>Items</PageTitle>
-	<Button class="mb-10 mt-20" icon="faMagnifyingGlass" width="full">Search</Button>
+	<Button class="mb-10 mt-20" icon="faMagnifyingGlass" width="full" href="items/search">Search</Button>
 	<div class="flex  justify-between items-center">
 		<BodyLarge>Featured</BodyLarge>
 		<Button icon="faPen">Manage</Button>

@@ -6,23 +6,11 @@
 	import { count } from '$lib/utils/countItem';
 	import { collection1, item1 } from '$lib/stores/data';
 	import { findItem } from '$lib/utils/filter';
-	import { modal } from '$lib/stores/modal';
 	import { resetDialog } from '$lib/stores/dialog';
 	import Dialog from '$lib/components/pop-up/Dialog.svelte';
 
 	let itemList = findItem(collection1.items);
 	let str = count(collection1.items);
-
-	modal.set({
-		modalPage: true,
-		href: '/account/me',
-		title: 'Account setting',
-		exit: true,
-		button: undefined,
-		buttonFunction: function() {
-		},
-		animation: ''
-	});
 
 	let button1 = {
 		option: 'Cancel',

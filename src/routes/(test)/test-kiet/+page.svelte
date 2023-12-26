@@ -19,6 +19,7 @@
 	import ImageView from '$lib/components/item/ImageView.svelte';
 	import ToggleButton from '$lib/components/controls/ToggleButton.svelte';
 	import SwitchCurator from '$lib/components/inputs/CuratorSwitch.svelte';
+
 </script>
 
 <!--<ToggleButton />-->

@@ -5,6 +5,7 @@
 	import Button from '$lib/components/controls/Button.svelte';
 
 	export let type: 'default' | 'curator' = 'default';
+	export let toggled: boolean | undefined;
 	// let options = [
 	// 	{
 	// 		type: 'default',
@@ -44,9 +45,8 @@
 	let customClass = '';
 	export { customClass as class };
 
-	export let toggled: boolean | undefined;
-	let animationClass = 'scale-y-0 absolute';
-	$: animationClass = toggled? 'scale-y-100' : 'duration-0 scale-y-0 absolute'
+	let animationClass = 'scale-y-0 absolute duration-0';
+	$: animationClass = toggled ? 'scale-y-100' : 'duration-0 scale-y-0 absolute';
 </script>
 
 <div

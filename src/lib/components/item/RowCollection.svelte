@@ -34,11 +34,11 @@
 	}
 
 	let str = count(collection.items);
-	// let listItems = findItem(data.items);
+	// let listItems = findItem(collection.items);
 </script>
 
 <div class="{customClass} w-full h-auto flex items-center gap-4 overflow-hidden">
-	<!-- <Block class="rounded-lg shrink-0 !h-16 !w-16" item={listItems[0]} icon link={false}></Block> -->
+	<!--	<Block class="rounded-lg shrink-0 !h-16 !w-16" icon item={listItems[0]} link={false}></Block>-->
 	<div class="w-full gap-y-3 flex flex-col">
 		<Body>{collection.name}</Body>
 		<Body class="opacity-50 line-clamp-1">{str}</Body>

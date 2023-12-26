@@ -3,17 +3,17 @@ import { auth, db } from '$lib/services/firebase/firebase';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { authStore } from '$lib/stores/store';
 import { defaultLayout } from '$lib/stores/pageLayout';
-import { modal, previousState } from '$lib/stores/modal';
+import { generateModal, previousState } from '$lib/stores/modal';
+import { page } from '$app/stores';
 
 /** @type {import('./$types').LayoutServerLoad} */
 export async function load() {
-	return {
-		item: {
-			name: 'abc',
-			id: ''
-		}
-	};
+	return {};
 }
+
+// page.subscribe((data) => {
+// 	modal = data;
+// });
 
 // onMount(() => {
 // 	defaultLayout();

@@ -13,15 +13,20 @@
 	import { doc, getDoc, setDoc } from 'firebase/firestore';
 	import { header } from '$lib/stores/header';
 	import { navbar } from '$lib/stores/navbar';
-	import { modal } from '$lib/stores/modal';
 	import { background } from '$lib/stores/background';
-	import { afterNavigate, beforeNavigate, onNavigate } from '$app/navigation';
 	import { authStore } from '$lib/stores/store';
 	import { onMount } from 'svelte';
-	import { defaultLayout } from '$lib/stores/pageLayout';
+	import { page } from '$app/stores';
+	import { generateModal } from '$lib/stores/modal';
+	import { beforeNavigate } from '$app/navigation';
 
 	/** @type {import('./$types').LayoutData} */
 		// export let data;
+
+	$: modal = $page.data.modal ? generateModal($page.data.modal) : generateModal();
+	onMount(() => {
+		modal = $page.data.modal ? generateModal($page.data.modal) : generateModal();
+	});
 
 	let scrollY: number;
 
@@ -57,11 +62,6 @@
 			});
 		});
 	});
-
-	afterNavigate(() => {
-		defaultLayout();
-	});
-
 </script>
 
 <svelte:head>
@@ -74,17 +74,14 @@
 </svelte:head>
 <svelte:window bind:scrollY />
 
-
-
-
-
-<BG class="{$modal.modalPage === true? 'h-[90vh]' : ''}" design={$background.design}
+<BG class="{modal.toggled === true? 'h-[90vh]' : ''}" color={$background.color} design={$background.design}
 		randomized={$background.randomized} />
 
-{#if $modal.modalPage === true}
-	<Modal title={$modal.title} href={$modal.href} exit={$modal.exit}
-				 button={$modal.button}
-				 buttonFunction={$modal.buttonFunction}
+{#if modal.toggled}
+	<Modal button={modal.button} buttonFunction={modal.buttonFunction} exit={modal.exit}
+				 href={modal.href}
+				 title={modal.title}
+				 animation={modal.animation}
 	>
 		<slot />
 	</Modal>

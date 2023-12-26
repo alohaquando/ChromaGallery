@@ -59,11 +59,13 @@
 
 <div class="flex flex-col justify-center items-center gap-8 ">
 	<Button icon="faPlus">New list</Button>
-	<Button class="w-full" icon="faSearch">Find list</Button>
+	<Button class="w-full" href="add-to-list/search" icon="faSearch">Find list</Button>
 </div>
-{#if itemList.length > 0}
-	<CollectionList class="gap-4 mt-6" collections={itemList} rowType></CollectionList>
-{:else}
-	<h1>No List</h1>
-{/if}
+<div class="mt-6">
+	{#if $listStore.length > 0}
+		<CollectionList class="gap-4" collections={$listStore} rowType></CollectionList>
+	{:else}
+		<h1>No List</h1>
+	{/if}
+</div>
 <button class="text-center outline-double mt-5" on:click={handleAddToList}>Add To List</button>

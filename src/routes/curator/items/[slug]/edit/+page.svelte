@@ -1,36 +1,13 @@
 <script lang="ts">
 	import FileInput from '$lib/components/inputs/FileInput.svelte';
-	import HeroImage from '$lib/components/item/HeroImage.svelte';
 	import TextField from '$lib/components/inputs/TextField.svelte';
 	import Divider from '$lib/components/layouts/Divider.svelte';
 	import TextArea from '$lib/components/inputs/TextArea.svelte';
-	import { item2 } from '$lib/stores/data';
-	import { modal } from '$lib/stores/modal';
 	import Datalist from '$lib/components/inputs/Datalist.svelte';
 	import { resetDialog } from '$lib/stores/dialog';
 	import Dialog from '$lib/components/pop-up/Dialog.svelte';
 
-	modal.update(modalData => ({
-		...modalData,
-		modalPage: true,
-		href: '/account/setting',
-		title: 'Edit item',
-		button: 'Save'
-	}));
-
 	let options: string[];
-
-	modal.set({
-		modalPage: true,
-		href: '/account/me',
-		title: 'Account setting',
-		exit: true,
-		button: undefined,
-		buttonFunction: function() {
-		},
-		animation: ''
-	});
-
 	let button1 = {
 		option: 'Cancel',
 		type: '',
