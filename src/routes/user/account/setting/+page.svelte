@@ -8,17 +8,6 @@
 	import CuratorSwitch from '$lib/components/inputs/CuratorSwitch.svelte';
 	import SiteSwitcher from '$lib/components/navigation/SiteSwitcher.svelte';
 
-	modal.set({
-		modalPage: true,
-		href: '/user/account',
-		title: 'Account setting',
-		exit: true,
-		button: undefined,
-		buttonFunction: function() {
-		},
-		animation: ''
-	});
-
 	let button1 = {
 		option: 'Cancel',
 		type: '',
@@ -29,7 +18,7 @@
 	let button2 = {
 		option: 'Log out',
 		type: 'filled',
-		function: function() {
+		function: function () {
 			authHandlers.logout();
 			window.location.href = '/';
 		}
@@ -43,9 +32,9 @@
 		bottomDivider={false}
 		class="w-full"
 		clickable={true}
-		href="update/name"
+		href="update/displayName"
 		icon="faChevronRight"
-		text="Update name"
+		text="Update displayName"
 		topDivider={false}
 	/>
 	<ListItem
@@ -69,11 +58,11 @@
 
 	<Divider />
 
-	<div class="flex flex-col items-start gap-4 mb-6">
+	<div class="flex flex-col items-start gap-4 {isCurator ? 'mb-6' : ''}">
 		<CuratorSwitch bind:toggled={isCurator} />
 		<SiteSwitcher bind:toggled={isCurator} />
 	</div>
-	
+
 	<Divider />
 
 	<ListItem
@@ -86,4 +75,4 @@
 		topDivider={false}
 	/>
 </div>
-<Dialog button1={button1} button2={button2} text="Are you sure you want to log out?" title="Log out"></Dialog>
+<Dialog {button1} {button2} text="Are you sure you want to log out?" title="Log out"></Dialog>

@@ -1,87 +1,62 @@
 <script lang="ts">
-    import Button from '$lib/components/controls/Button.svelte';
-    import Socials from '$lib/components/socials/Socials.svelte';
-    import Divider from '$lib/components/layouts/Divider.svelte';
-    import TextField from '$lib/components/inputs/TextField.svelte';
-    import PageTitle from '$lib/components/layouts/PageTitle.svelte';
-    import BodySmall from '$lib/components/typography/BodySmall.svelte';
-    import { authHandlers } from '$lib/stores/store';
-    import { getAuth, onAuthStateChanged } from 'firebase/auth';
+	import Button from '$lib/components/controls/Button.svelte';
+	import Socials from '$lib/components/socials/Socials.svelte';
+	import Divider from '$lib/components/layouts/Divider.svelte';
+	import TextField from '$lib/components/inputs/TextField.svelte';
+	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
+	import BodySmall from '$lib/components/typography/BodySmall.svelte';
+	import { handleAuthenticate, handleAuthenticateGoogle } from '$lib/data/auth';
 
-    let email = '';
-    let password = '';
-    let error = false;
-    let authenticating = false;
-
-    async function handleAuthenticate() {
-        if (authenticating) {
-            return;
-        }
-        if (!email || !password) {
-            error = true;
-            return;
-        }
-
-        authenticating = true;
-
-        try {
-            await authHandlers.login(email, password);
-            window.location.href = '/';
-        } catch (err) {
-            console.log(' There was an auth error', err);
-            error = true;
-            authenticating = false;
-        }
-    }
-
-    $: console.log(password);
-
-    async function handleAuthenticateGoogle() {
-        try {
-            await authHandlers.loginWithGoogle();
-            console.log('Successfully logged in');
-            window.location.href = ('/');
-        } catch (err) {
-            console.log(' There was an auth error', err);
-        }
-    }
+	let email = '';
+	let password = '';
 </script>
 
 <PageTitle>Welcome back</PageTitle>
 <div class="mt-16 gap-8 flex flex-col items-center w-full">
-    <div class="mb-4 items-center gap-4 flex flex-col w-full">
-        <Socials design="facebook" href="/" signup={false}></Socials>
-        <Socials design="google" on:click={handleAuthenticateGoogle}>Continue With Google</Socials>
-        <Socials design="apple" href="/" signup={false}></Socials>
-    </div>
+	<div class="mb-4 items-center gap-4 flex flex-col w-full">
+		<Socials design="facebook" href="/" signup={false}></Socials>
+		<Socials design="google" on:click={handleAuthenticateGoogle}>Continue With Google</Socials>
+		<Socials design="apple" href="/" signup={false}></Socials>
+	</div>
 
-    <Divider />
+	<Divider />
 
-    <form class="contents">
-        <!--        email field-->
-        <TextField bind:value={email} id="email" label="Email" name="email" placeholder="Email"
-                   type="email"></TextField>
+	<form class="contents">
+		<!--        email field-->
+		<TextField
+			bind:value={email}
+			id="email"
+			label="Email"
+			name="email"
+			placeholder="Email"
+			type="email"
+		></TextField>
 
-        <!--        password field-->
-        <TextField
-                bind:value={password}
-                id="password"
-                label="Password"
-                name="password"
-                placeholder="Password"
-                type="password"
-        ></TextField>
+		<!--        password field-->
+		<TextField
+			bind:value={password}
+			id="password"
+			label="Password"
+			name="password"
+			placeholder="Password"
+			type="password"
+		></TextField>
 
-        <!--        submit button-->
-        <Button design="filled" on:click={handleAuthenticate} type="submit" width="full">Sign in</Button>
+		<!--        submit button-->
+		<Button
+			design="filled"
+			on:click={() => handleAuthenticate(email, password)}
+			type="submit"
+			width="full">Sign in</Button
+		>
 
-        <!--        reset password button-->
-        <Button design="outlined" href="reset">Reset my password</Button>
-    </form>
+		<!--        reset password button-->
+		<Button design="outlined" href="reset">Reset my password</Button>
+	</form>
 
-    <Divider />
-    <div>
-        <BodySmall>Are you new here?</BodySmall>
-    </div>
-    <Button design="outlined" href="register">Become a member</Button>
+	<Divider />
+	<div>
+		<BodySmall>Are you new here?</BodySmall>
+	</div>
+	<Button design="outlined" href="sign-up">Become a member</Button>
 </div>

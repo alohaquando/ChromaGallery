@@ -4,7 +4,8 @@
 	let bgClass = '';
 
 	$: if (toggled) {
-		bgClass = 'bg-gradient-to-r from-neutral-100 to-neutral-400 border-none before:opacity-100 after:opacity-100';
+		bgClass =
+			'bg-gradient-to-r from-neutral-100 to-neutral-400 border-none before:opacity-100 after:opacity-100';
 		buttonClass = 'translate-x-1/2 bg-gradient-to-r from-neutral-500 to-neutral-800 border-none ';
 	} else {
 		bgClass = 'bg-transparent border-white';
@@ -27,7 +28,8 @@
 "
 >
 	<div
-		class="{buttonClass} h-3 w-3 border-2 rounded-full transition duration-500 ease-out z-10 shrink-0 grow-0">
-	</div>
-	<button class="h-10 w-12 rounded-full z-10 absolute" on:click={handleToggle} type="button"></button>
+		class="{buttonClass} h-3 w-3 border-2 rounded-full transition duration-500 ease-out z-10 shrink-0 grow-0"
+	></div>
+	<button class="h-10 w-12 rounded-full z-10 absolute" on:click={handleToggle} type="button"
+	></button>
 </div>

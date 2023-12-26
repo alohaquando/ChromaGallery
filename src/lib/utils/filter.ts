@@ -1,5 +1,5 @@
-import type { Item, Collection, List } from '../stores/model';
-import { allCollection, allItem, allList } from '../stores/data';
+import type { Item, Collection, List } from '../data/dataModels';
+import { allCollection, allItem, allList } from '../data/exampleData';
 
 export function findItem(idList: string[]): Item[] {
 	return allItem.filter((item) => idList.includes(item.id));

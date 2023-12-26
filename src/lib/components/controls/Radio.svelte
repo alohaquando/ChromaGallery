@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Item } from '../../stores/model';
+	import type { Item } from '../../data/dataModels';
 
 	export let id: string;
 	export let name: string;
@@ -17,13 +17,15 @@
 </script>
 
 <div class="{customClass} inline-flex items-center group justify-center">
-	<label class="absolute p-5" for="{id}"></label>
-	<label class="relative flex items-center justify-center rounded-full cursor-pointer group-hover:bg-white/30"
-				 for={id}>
+	<label class="absolute p-5" for={id}></label>
+	<label
+		class="relative flex items-center justify-center rounded-full cursor-pointer group-hover:bg-white/30"
+		for={id}
+	>
 		<input
 			{checked}
 			class="peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border-2 border-white/50 transition-all checked:bg-white"
-			id={id}
+			{id}
 			{name}
 			type="radio"
 			{value}
@@ -37,6 +39,6 @@
 		</span>
 	</label>
 </div>
-<!-- use this format below for multiple radios btn. *note using same "name" different "id" -->
-<!-- <Radio id="1" name="1"></Radio>
-    <Radio id="2" name="1"></Radio> -->
+<!-- use this format below for multiple radios btn. *note using same "displayName" different "id" -->
+<!-- <Radio id="1" displayName="1"></Radio>
+    <Radio id="2" displayName="1"></Radio> -->

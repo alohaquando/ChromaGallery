@@ -7,11 +7,11 @@
 
 <div class="w-full inline-flex gap-4 flex-col py-5">
 	<div class="justify-between items-center inline-flex relative">
-		<Body class="font-bold">Curator
-		account
-		</Body>
+		<Body class="font-bold">Curator account</Body>
 		<ToggleButton bind:toggled />
 	</div>
-	<Body>A Curator account allows you to manage items and collections within Chroma Gallery using a separate site.
+	<Body
+		>A Curator account allows you to manage items and collections within Chroma Gallery using a
+		separate site.
 	</Body>
 </div>

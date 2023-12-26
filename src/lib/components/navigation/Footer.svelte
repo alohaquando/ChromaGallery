@@ -47,20 +47,11 @@
 	<!--	Social media-->
 	<Title>Get in contact</Title>
 	<div class="inline-flex justify-between w-full">
-		<Fab href="" icon="faFacebook" iconType="brands"></Fab>
-		<Fab
-			href="https://www.instagram.com/jenaissante/"
-			icon="faInstagram"
-			iconType="brands"
-			target="_blank"
+		<Fab href="https://facebook.com" icon="faFacebook" iconType="brands" target="_blank"></Fab>
+		<Fab href="https://www.instagram.com/" icon="faInstagram" iconType="brands" target="_blank"
 		></Fab>
-		<Fab href="" icon="faXTwitter" iconType="brands"></Fab>
-		<Fab
-			href="https://www.youtube.com/channel/UCs-QBT4qkj_YiQw1ZntDO3g"
-			icon="faYoutube"
-			iconType="brands"
-			target="_blank"
-		></Fab>
+		<Fab href="https://twitter.com" icon="faXTwitter" iconType="brands" target="_blank"></Fab>
+		<Fab href="https://www.youtube.com" icon="faYoutube" iconType="brands" target="_blank"></Fab>
 	</div>
 
 	<Divider />
@@ -68,8 +59,8 @@
 	<!--	Account-->
 	<Title>Account</Title>
 	<Body
-	>Manage your bookmarks and lists of your favourite piece of art with an that online museum
-	account
+		>Manage your bookmarks and lists of your favourite piece of art with an that online museum
+		account
 	</Body>
 	<Button href="/user/account/sign-up">Become a member</Button>
 
@@ -77,9 +68,7 @@
 
 	<!--	Curator site-->
 	<Title>Chroma Curator</Title>
-	<Body
-	>Manage items and collections on Chroma Gallery using a Curator account
-	</Body>
+	<Body>Manage items and collections on Chroma Gallery using a Curator account</Body>
 	<Button href="">Go to Chroma Curator</Button>
 
 	<Divider />
@@ -87,11 +76,11 @@
 	<!--	Privacy and Terms-->
 	<div class="w-full flex justify-between items-center">
 		<div class="flex">
-			<Link href="">Privacy</Link>
+			<Link href="/privacy-policy">Privacy</Link>
 			<Link class="ml-5" href="/terms">Terms</Link>
 		</div>
-		<span class="text-white/50 items-center flex"
-		><Icon icon="faCopyright"></Icon><Body class="text-white/50">2023 Chroma Gallery</Body></span
+		<span class="text-white/50 items-center flex cursor-default"
+			><Icon icon="faCopyright"></Icon><Body class="text-white/50">2023 Chroma Gallery</Body></span
 		>
 	</div>
 </div>
