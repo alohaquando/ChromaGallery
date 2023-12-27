@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { background } from '$lib/stores/background';
+	import { currentBg } from '$lib/stores/background';
 
 	export let hue: number = 0;
 	export let saturation: number = 0;
@@ -10,10 +10,16 @@
 	export let randomized: boolean = false;
 
 	if (randomized) {
-		setInterval(function () {
+		setInterval(() => {
 			hue = Math.floor(Math.random() * 360);
 			saturation = Math.floor(Math.random() * (101 - 60) + 60);
 			lightness = Math.floor(Math.random() * (91 - 60) + 60);
+			currentBg.update(data => ({
+				...data,
+				hue,
+				saturation,
+				lightness
+			}));
 		}, 5000);
 	}
 

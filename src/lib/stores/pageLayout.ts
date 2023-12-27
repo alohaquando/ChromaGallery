@@ -1,5 +1,7 @@
 import { getNewModal, previousState } from './modal';
 import { getNewHeader } from './header';
+import { getNewNavbar } from '$lib/stores/navbar';
+import { currentBg, getNewBackground } from '$lib/stores/background';
 
 export function generateModal(pageData: any = {}) {
 	let modal = getNewModal();
@@ -57,4 +59,32 @@ export const generateHeader = (pageData: any = {}) => {
 
 	header.subscribe((data: any) => (headerData = data));
 	return headerData;
+};
+
+export const generateNavbar = (pageData: any = {}) => {
+	let navbar = getNewNavbar();
+
+	navbar.update((data: any) => ({
+		...data,
+		...pageData
+	}));
+
+	let headerData;
+
+	navbar.subscribe((data: any) => (headerData = data));
+	return headerData;
+};
+
+export const generateBackground = (pageData: any = {}) => {
+	let bg = getNewBackground();
+
+	bg.update((data: any) => ({
+		...data,
+		...pageData
+	}));
+
+	let backgroundData;
+
+	bg.subscribe((data: any) => (backgroundData = data));
+	return backgroundData;
 };
