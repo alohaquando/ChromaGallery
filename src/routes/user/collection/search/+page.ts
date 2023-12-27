@@ -1,11 +1,11 @@
-import { getCollection } from '$lib/data/collection';
+import { getItem } from '$lib/data/item';
 
 // @ts-ignore
 export const load = async ({ params }) => {
 	return {
 		header: {
 			type: 'back',
-			href: './'
+			href: '/browse'
 		}
 	};
 };

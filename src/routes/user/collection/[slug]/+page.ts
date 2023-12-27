@@ -1,7 +1,12 @@
 import { getCollection } from '$lib/data/collection';
 
-export async function load({ params }) {
+// @ts-ignore
+export const load = async ({ params }) => {
 	return {
-		collection: getCollection(params.slug)
+		header: {
+			type: 'back',
+			href: '/browse'
+		},
+		collection: await getCollection(params.slug)
 	};
-}
+};

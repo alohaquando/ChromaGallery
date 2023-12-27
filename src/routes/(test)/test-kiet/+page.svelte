@@ -13,7 +13,6 @@
 	import { item1, collection1 } from '$lib/data/exampleData';
 	import FileInput from '$lib/components/inputs/FileInput.svelte';
 	import TextField from '$lib/components/inputs/TextField.svelte';
-	import { header } from '$lib/stores/header';
 	import SiteSwitcher from '$lib/components/navigation/SiteSwitcher.svelte';
 	import LogoCurator from '$lib/components/logo/LogoCurator.svelte';
 	import ImageView from '$lib/components/item/ImageView.svelte';

@@ -9,18 +9,19 @@
 	import faviconIco from '$lib/assets/favicons/favicon.ico';
 	import faviconSvg from '$lib/assets/favicons/icon.svg';
 	import faviconApple from '$lib/assets/favicons/apple-touch-icon.png';
-	import { header } from '$lib/stores/header';
 	import { navbar } from '$lib/stores/navbar';
 	import { background } from '$lib/stores/background';
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
-	import { generateModal } from '$lib/stores/modal';
 	import type { PageData } from '../../.svelte-kit/types/src/routes/$types';
+	import {} from '$lib/stores/header';
+	import { generateHeader, generateModal } from '$lib/stores/pageLayout';
 
 	/** @type {import('./$types').LayoutData} */
 	export let data: PageData;
 
 	$: modal = $page.data.modal ? generateModal($page.data.modal) : generateModal();
+	$: header = $page.data.header ? generateHeader($page.data.header) : generateHeader();
 	onMount(() => {
 		modal = $page.data.modal ? generateModal($page.data.modal) : generateModal();
 	});
@@ -98,10 +99,10 @@
 		<slot />
 	</Modal>
 {:else}
-	{#if $header.type === 'main'}
+	{#if header.type === 'main'}
 		<HeaderMain {scrollY}></HeaderMain>
-	{:else if $header.type === 'back'}
-		<HeaderBack href={$header.href} button={$header.button} destructive={$header.destructive}
+	{:else if header.type === 'back'}
+		<HeaderBack {scrollY} href={header.href} button={header.button} destructive={header.destructive}
 		></HeaderBack>
 	{/if}
 	<div class="container mx-auto px-6 max-w-3xl">

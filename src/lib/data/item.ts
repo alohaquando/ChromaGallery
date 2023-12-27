@@ -36,9 +36,14 @@ export const getFeaturedItems = async () => {
 	}
 };
 export const getItem = async (id: string) => {
-	const docRef = doc(db, 'items', id);
-	const docSnap = await getDoc(docRef);
-	return docSnap.data();
+	try {
+		const docRef = doc(db, 'items', id);
+		const docSnap = await getDoc(docRef);
+		return docSnap.data();
+	} catch (error) {
+		console.error('Error fetching all items: ', error.message);
+		throw error;
+	}
 };
 export const getAllItems = async () => {
 	// Reference to the "items" collection
@@ -76,7 +81,6 @@ export const getItemFromIdList = async (idList: string[]) => {
 	let itemList: any[] = [];
 
 	const itemPromises = idList.map(async (itemId) => {
-		console.log(itemId);
 		const item = await getItem(itemId);
 		itemList = [...itemList, item];
 	});
@@ -85,13 +89,12 @@ export const getItemFromIdList = async (idList: string[]) => {
 
 	return itemList;
 };
+
 export const extractItems = async (collection: Collection | List | undefined) => {
 	if (collection == undefined) {
 		return null;
 	}
-
 	const idList = collection.items;
 	let [itemList] = await Promise.all([getItemFromIdList(idList)]);
-
 	return itemList;
 };
