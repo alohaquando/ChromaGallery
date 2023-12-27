@@ -25,7 +25,6 @@
 	let isHovered = false;
 	const handleHover = () => {
 		isHovered = !isHovered;
-		console.log(isHovered);
 	};
 </script>
 

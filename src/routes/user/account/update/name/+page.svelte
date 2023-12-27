@@ -6,9 +6,9 @@
 	let userEmail;
 	let userName;
 
-	const authen = getAuth();
-	let displayName = authen.currentUser.displayName;
-	console.log();
+	export let data;
+	let displayName = data.auth.currentUser ? data.auth.currentUser.displayName : 'Your account does not have a name yet.';
+
 	// let itemList = [];
 	// let userId = authen.currentUser?.uid;
 	// onAuthStateChanged(authen, (user) => {
@@ -29,6 +29,7 @@
 		label="Current name"
 		labelSize="lg"
 		name="currentName"
+		placeholder=""
 		value={displayName}
 	></TextField>
 	<TextField id="newName" label="New name" labelSize="lg" name="newName" placeholder="New name"
