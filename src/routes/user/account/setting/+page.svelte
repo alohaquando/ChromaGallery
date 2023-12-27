@@ -1,9 +1,8 @@
 <script lang="ts">
 	import ListItem from '$lib/components/item/ListItem.svelte';
-	import { modal, previousState } from '$lib/stores/modal';
 	import { resetDialog, toggleDialog } from '$lib/stores/dialog';
 	import Dialog from '$lib/components/pop-up/Dialog.svelte';
-	import { authHandlers } from '$lib/stores/store';
+	import { authHandlers } from '$lib/data/auth';
 	import Divider from '$lib/components/layouts/Divider.svelte';
 	import CuratorSwitch from '$lib/components/inputs/CuratorSwitch.svelte';
 	import SiteSwitcher from '$lib/components/navigation/SiteSwitcher.svelte';
@@ -18,7 +17,7 @@
 	let button2 = {
 		option: 'Log out',
 		type: 'filled',
-		function: function () {
+		function: function() {
 			authHandlers.logout();
 			window.location.href = '/';
 		}
@@ -31,16 +30,14 @@
 	<ListItem
 		bottomDivider={false}
 		class="w-full"
-		clickable={true}
-		href="update/displayName"
+		href="update/name"
 		icon="faChevronRight"
-		text="Update displayName"
+		text="Update name"
 		topDivider={false}
 	/>
 	<ListItem
 		bottomDivider={false}
 		class="w-full"
-		clickable={true}
 		href="update/email"
 		icon="faChevronRight"
 		text="Update email"
@@ -49,7 +46,6 @@
 	<ListItem
 		bottomDivider={false}
 		class="w-full"
-		clickable={true}
 		href="update/password"
 		icon="faChevronRight"
 		text="Update password"
@@ -68,7 +64,6 @@
 	<ListItem
 		bottomDivider={false}
 		class="w-full"
-		clickable={true}
 		design="destructive"
 		on:click={toggleDialog}
 		text="Log out"

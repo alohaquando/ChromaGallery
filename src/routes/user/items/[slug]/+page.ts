@@ -1,15 +1,10 @@
-import { onMount } from 'svelte';
-import { itemStore } from '$lib/stores/itemStore.js';
-import { arrayUnion, doc, getDoc, setDoc } from 'firebase/firestore';
-import { db } from '$lib/services/firebase/firebase.js';
-import { getAuth } from 'firebase/auth';
-import { handleBookmark } from '$lib/stores/itemStore';
+import { getItem } from '$lib/data/item';
 
 // @ts-ignore
 export const load = async ({ params }) => {
 	return {
 		slug: params.slug,
-		item: await itemStore.getItem(params.slug)
+		item: await getItem(params.slug)
 	};
 };
 //

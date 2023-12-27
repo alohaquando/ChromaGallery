@@ -1,7 +1,6 @@
 <script lang="ts">
 	import TextField from '$lib/components/inputs/TextField.svelte';
 	import BodyLarge from '$lib/components/typography/BodyLarge.svelte';
-	import { modal } from '$lib/stores/modal';
 	import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 	let userEmail;

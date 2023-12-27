@@ -11,7 +11,7 @@ import { auth, db } from '$lib/services/firebase/firebase';
 import type { User } from '$lib/data/dataModels';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 
-const authHandlers = {
+export const authHandlers = {
 	signup: async (email, pass) => {
 		await createUserWithEmailAndPassword(auth, email, pass);
 	},

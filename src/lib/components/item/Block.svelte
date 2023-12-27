@@ -27,13 +27,13 @@
 	}
 
 	let typeClass = '';
-	switch (bookmark) {
+	$: switch (bookmark) {
 		case false:
-			typeClass = '';
+			typeClass = 'bg-gradient-to-b from-neutral-600 to-neutral-800';
 			break;
 		case true:
 			typeClass =
-				'bg-gradient-to-b from-indigo-600 to-fuchsia-700  rounded-lg inline-flex justify-center items-center';
+				'bg-gradient-to-b from-indigo-600 to-fuchsia-700 rounded-lg inline-flex justify-center items-center';
 			break;
 	}
 
@@ -42,28 +42,26 @@
 </script>
 
 <svelte:element
-	this={link ? 'a' : 'div'}
 	class="{!icon
 		? sizeClass
-		: 'h-14 w-14'} {typeClass} {customClass} relative overflow-hidden {item && item.image
-		? ''
-		: 'bg-gradient-to-b from-neutral-600 to-neutral-800'}"
+		: 'h-14 w-14'} {typeClass} {customClass} relative overflow-hidden"
 	href={item ? '../user/items/' + item.id : null}
+	this={link ? 'a' : 'div'}
 >
-	{#if item}
-		{#if bookmark}
-			<Icon icon="faStar" type="solid" class="absolute" size={iconSize}></Icon>
-			{#if !icon}
-				<div class="absolute h-16 w-16 blur-xl bg-white rounded-full"></div>
-			{/if}
-		{:else if item.image}
-			<img
-				alt={item.title}
-				class="{stretch ? 'w-full h-full' : 'h-auto w-full'} {icon ? 'absolute' : ''} object-cover"
-				src={item.image}
-			/>
-		{:else}
-			<div></div>
+
+	{#if bookmark}
+		<Icon icon="faStar" type="solid" class="absolute" size={iconSize}></Icon>
+		{#if !icon}
+			<div class="absolute h-16 w-16 blur-xl bg-white rounded-full"></div>
 		{/if}
 	{/if}
+	{#if item}
+		<img
+			alt={item.title}
+			class="{stretch ? 'w-full h-full' : 'h-auto w-full'} {icon ? 'absolute' : ''} object-cover"
+			src={item.image}
+		/>
+	{/if}
+
+
 </svelte:element>

@@ -10,7 +10,7 @@
 {#if collections}
 	<div class="{customClass} w-full flex gap-8 flex-wrap justify-start">
 		{#each collections as collection}
-			<CollectionBlock {collection}></CollectionBlock>
+			<CollectionBlock {collection} class=""></CollectionBlock>
 		{/each}
 	</div>
 {/if}

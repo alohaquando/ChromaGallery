@@ -15,7 +15,6 @@ export const getUsersAllLists = async (userId: string) => {
 				id: doc.id,
 				...doc.data()
 			}));
-			console.log(listsData);
 			return listsData;
 		} catch (error: any) {
 			console.error('Error fetching all lists: ', error.message);

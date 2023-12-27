@@ -2,7 +2,6 @@
 	import Divider from '$lib/components/layouts/Divider.svelte';
 	import TextField from '$lib/components/inputs/TextField.svelte';
 	import BodyLarge from '$lib/components/typography/BodyLarge.svelte';
-	import { modal } from '$lib/stores/modal';
 	import { getAuth, updatePassword } from 'firebase/auth';
 
 	const auth = getAuth();

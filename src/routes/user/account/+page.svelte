@@ -3,16 +3,21 @@
 	import Button from '$lib/components/controls/Button.svelte';
 	import BodyLarge from '$lib/components/typography/BodyLarge.svelte';
 	import BodySmall from '$lib/components/typography/BodySmall.svelte';
-
+	import CollectionBlock from '$lib/components/item/CollectionBlock.svelte';
 	import Fab from '$lib/components/controls/Fab.svelte';
 	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
-
 	import SiteSwitcher from '$lib/components/navigation/SiteSwitcher.svelte';
 	import Divider from '$lib/components/layouts/Divider.svelte';
 	import GridCollection from '$lib/components/item/GridCollection.svelte';
+	import type { PageData } from './$types';
 
-	export let data;
+	/** @type {import('../../../../../.svelte-kit/types/src/routes').PageLoad} */
+	export let data: PageData;
+	let lists = data.lists ? data.lists.filter((list) => list.id !== 'bookmark') : undefined;
+	console.log(lists);
+	let bookmark = data.lists ? data.lists.find((list) => list.id === 'bookmark') : undefined;
 </script>
+
 
 {#if data.session}
 	<!-- Sign In -->
@@ -36,10 +41,10 @@
 
 		<!--	Bookmark -->
 		<div class="w-full flex">
-			<!-- <CollectionBlock></CollectionBlock> -->
+			<CollectionBlock collection={bookmark} bookmark></CollectionBlock>
 		</div>
 
-		<GridCollection class="mt-10" collections={data.lists}></GridCollection>
+		<GridCollection class="mt-10" collections={lists}></GridCollection>
 	</div>
 {:else}
 	<!-- Not Sign In -->
@@ -53,10 +58,10 @@
 		</div>
 		<div class="pt-14 flex justify-center w-screen">
 			<Fab class="relative -left-[10%]" icon="faCircleUser" size="lg" href="account/sign-in"
-				>Sign me<br />in
+			>Sign me<br />in
 			</Fab>
 			<Fab class="mt-20 relative -right-[5%]" icon="faSparkles" size="lg" href="account/register"
-				>Become a<br />member
+			>Become a<br />member
 			</Fab>
 		</div>
 	</div>

@@ -22,6 +22,10 @@
 	export let title: boolean = true;
 	export let subtitle: boolean = true;
 	export let bookmark: boolean = false;
+	if (collection) {
+		bookmark = collection.id === 'bookmark' ? true : false;
+	}
+
 	if (bookmark) {
 		blockStyle = 'single';
 	}
@@ -49,11 +53,7 @@
 			class="w-full h-52 rounded-lg gap-1 inline-flex overflow-hidden relative"
 			href="/user/collection/{collection.id}"
 		>
-			{#if !bookmark}
-				<Block></Block>
-			{:else}
-				<Block bookmark></Block>
-			{/if}
+			<Block></Block>
 			<InfoChip class="absolute bottom-2 right-2 !rounded-2xl !bg-opacity-40 py-4">
 				<Body>{str}</Body>
 			</InfoChip>
@@ -83,11 +83,7 @@
 			class="w-full h-52 rounded-lg gap-1 inline-flex overflow-hidden relative"
 			href="/user/collection/{collection.id}"
 		>
-			{#if !bookmark}
-				<Block item={itemData[0]}></Block>
-			{:else}
-				<Block item={itemData[0]} bookmark></Block>
-			{/if}
+			<Block item={itemData[0]} link={false} {bookmark}></Block>
 			{#if blockStyle === 'grid' && itemData[1]}
 				<div class="grow shrink basis-0 self-stretch flex-col gap-1 inline-flex">
 					{#if itemData[1]}
