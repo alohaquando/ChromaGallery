@@ -2,6 +2,7 @@
 	import Icon from '$lib/components/iconography/Icon.svelte';
 	import Body from '$lib/components/typography/Body.svelte';
 	import BodyLarge from '$lib/components/typography/BodyLarge.svelte';
+	import Fab from '$lib/components/controls/Fab.svelte';
 
 	export let id: string;
 	export let placeholder: string;
@@ -34,32 +35,51 @@
 		stateClasses = '!border-red-300';
 	}
 
-	let inputClass =
-		'bg-black/30 border border-white/30 rounded-xl placeholder-white/50 block w-full p-2.5 transition outline-none text-white font-sans trim-both focus:ring-white focus:ring-2 disabled:placeholder-white/30 disabled:text-white/70 read-only:focus:ring-0 read-only:text-white/70';
+	const clearValue = () => {
+		value = '';
+	};
+
+	let isFocused: boolean = false;
+	const handleInputFocus = () => {
+		isFocused = !isFocused;
+		console.log(isFocused);
+	};
+
+	let focusedClass = '';
+	$: isFocused, focusedClass = isFocused ? 'border-2 border-opacity-100' : 'border border-opacity-30';
 </script>
 
 <div class="flex flex-col w-full relative">
 	{#if label}
-		<label class="block mb-2 trim-both pb-7" for={name}>
+		<label class="block mb-2 trim-both pb-7" for={id}>
 			<svelte:component this={labelComponent}>{label}</svelte:component>
 		</label>
 	{/if}
+	<div
+		class="{stateClasses} {focusedClass} flex bg-black/30 rounded-xl w-full p-2.5 transition trim-both border-white"
+	>
 	<textarea
 		{autocomplete}
 		bind:value
-		class="{stateClasses} {inputClass} min-h-[8.875rem] resize-y"
+		class="bg-transparent placeholder-white/50 w-full text-white font-sans disabled:placeholder-white/30 disabled:text-white/70 read-only:text-white/70 min-h-[8.875rem] resize-y outline-none"
 		{disabled}
 		{form}
 		{id}
 		{maxlength}
 		{minlength}
 		{name}
+		on:blur={handleInputFocus}
 		on:change
+		on:focus={handleInputFocus}
 		{placeholder}
 		{readonly}
 		{required}
 		{rows}
 	/>
+		{#if value && !disabled}
+			<Fab on:click={clearValue} size="mini" noOutline icon="faXmark" class="" />
+		{/if}
+	</div>
 	{#if error}
 		<div class="flex space-x-2 items-center text-red-300 pt-4">
 			<Icon icon="faExclamationCircle" />
@@ -69,7 +89,7 @@
 </div>
 
 <style>
-	::-webkit-calendar-picker-indicator {
-		filter: invert(1);
-	}
+    ::-webkit-calendar-picker-indicator {
+        filter: invert(1);
+    }
 </style>
