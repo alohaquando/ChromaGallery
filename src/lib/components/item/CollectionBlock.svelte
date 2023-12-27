@@ -22,9 +22,6 @@
     export let title: boolean = true;
     export let subtitle: boolean = true;
     export let bookmark: boolean = false;
-    if (collection) {
-        bookmark = collection.id === 'bookmark' ? true : false;
-    }
     if (bookmark) {
         blockStyle = 'single';
     }
@@ -84,7 +81,7 @@
                 href="{path}"
         >
             <Block item={itemData[0]} link={false} {bookmark}></Block>
-            {#if blockStyle === 'grid' && itemData[1]}
+            {#if !bookmark && blockStyle === 'grid' && itemData[1]}
                 <div class="grow shrink basis-0 self-stretch flex-col gap-1 inline-flex">
                     {#if itemData[1]}
                         <Block link={false} item={itemData[1]}></Block>

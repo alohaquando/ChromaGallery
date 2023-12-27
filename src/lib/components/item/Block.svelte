@@ -55,14 +55,13 @@
         {#if !icon}
             <div class="absolute h-16 w-16 blur-xl bg-white rounded-full"></div>
         {/if}
+    {:else }
+        {#if item}
+            <img
+                    alt={item.title}
+                    class="{stretch ? 'w-full h-full' : 'h-auto w-full'} {icon ? 'absolute' : ''} object-cover"
+                    src={item.image}
+            />
+        {/if}
     {/if}
-    {#if item}
-        <img
-                alt={item.title}
-                class="{stretch ? 'w-full h-full' : 'h-auto w-full'} {icon ? 'absolute' : ''} object-cover"
-                src={item.image}
-        />
-    {/if}
-
-
 </svelte:element>

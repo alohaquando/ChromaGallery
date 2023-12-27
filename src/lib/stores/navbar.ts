@@ -1,11 +1,10 @@
 import { writable } from 'svelte/store';
+import type { Writable } from 'svelte/store';
 
-export const navbar = writable({
-	type: 'user'
-});
+export interface Navbar {
+	type: 'user' | 'curator';
+}
 
-export const resetNavbar = () => {
-	navbar.set({
-		type: 'user'
-	});
+export const getNewNavbar = (): Writable<Navbar> => {
+	return writable({ type: 'user' });
 };
