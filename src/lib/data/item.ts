@@ -77,6 +77,23 @@ export async function handleBookmark(itemId: string) {
 	return true;
 }
 
+export async function checkIfBookmarked(itemId: string) {
+	const authen = getAuth();
+	const userId = authen.currentUser.uid;
+
+	// const q = query(collection(db,'users', userId, 'lists'), where("bookmark", "==", itemId));
+
+	const docRef = doc(db, 'users', userId, 'lists', 'bookmark');
+	const docSnap = await getDoc(docRef);
+
+	if (docSnap.data().items.includes(itemId)) {
+		console.log('true') ;
+		return true;
+	}
+	console.log(false);
+	return false;
+}
+
 export const getItemFromIdList = async (idList: string[]) => {
 	let itemList: any[] = [];
 

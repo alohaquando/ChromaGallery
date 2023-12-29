@@ -2,20 +2,25 @@ import {
 	createUserWithEmailAndPassword,
 	GoogleAuthProvider,
 	onAuthStateChanged,
+	reauthenticateWithCredential,
 	signInWithEmailAndPassword,
 	signInWithPopup,
 	signOut,
-	updateProfile
+	updateEmail,
+	updatePassword,
+	updateProfile,
+	verifyBeforeUpdateEmail
 } from 'firebase/auth';
 import { auth, db } from '$lib/services/firebase/firebase';
 import type { User } from '$lib/data/dataModels';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { EmailAuthProvider } from 'firebase/auth';
 
 export const authHandlers = {
-	signup: async (email, pass) => {
+	signup: async (email: string, pass: string) => {
 		await createUserWithEmailAndPassword(auth, email, pass);
 	},
-	login: async (email, pass) => {
+	login: async (email: string, pass: string) => {
 		await signInWithEmailAndPassword(auth, email, pass);
 	},
 	loginWithGoogle: async () => {
@@ -24,8 +29,14 @@ export const authHandlers = {
 	logout: async () => {
 		await signOut(auth);
 	},
-	updateUserName: async (name) => {
+	updateUserName: async (name: string) => {
 		await updateProfile(auth.currentUser, { displayName: name });
+	},
+	updateEmail: async (email: string) => {
+		await verifyBeforeUpdateEmail(auth.currentUser, email);
+	},
+	updatePassword: async (newPassword: string) => {
+		await updatePassword(auth.currentUser, newPassword);
 	}
 };
 
@@ -39,47 +50,41 @@ export async function handleSignUpAuthenticate(
 			console.log('Password does not match');
 			return;
 		}
-
-		// if (displayName.length < 3) {
-		// 	console.log('Display name is null');
-		// 	return;
-		// }
-
 		await authHandlers.signup(email, password);
-
-		let error = false;
-
-		// await authHandlers.updateUserName(displayName);
 
 		console.log('Successfully signed up');
 
-		// onAuthStateChanged(async (user) => {
-		// 	if (!user) {
-		// 		return;
-		// 	}
-		//
-		// 	let dataToSetToStore: any;
-		// 	const docRef = doc(db, 'users', user.uid, 'lists', 'bookmark');
-		// 	const docSnap = await getDoc(docRef);
-		//
-		// 	if (!docSnap.exists()) {
-		// 		const userRef = doc(db, 'users', user.uid, 'lists', 'bookmark');
-		// 		dataToSetToStore = {
-		// 			email: user?.email,
-		// 			title: 'Bookmarks',
-		// 			items: []
-		// 		};
-		// 		await setDoc(userRef, dataToSetToStore, { merge: true });
-		// 		// Set Default Account as notCurrator
-		// 		await setDoc(doc(db, 'users', user.uid),
-		// 			{
-		// 				isCurrator: false
-		// 			}
-		// 			, { merge: true });
-		// 	} else {
-		// 		const userData = docSnap.data();
-		// 		dataToSetToStore = userData;
-		// 	}
+		const defaultAccountSetUp = auth.onAuthStateChanged(async (user) => {
+			if (!user) {
+				return;
+			}
+
+			let dataToSetToStore: any;
+			const docRef = doc(db, 'users', user.uid, 'lists', 'bookmark');
+			const docSnap = await getDoc(docRef);
+
+			if (!docSnap.exists()) {
+				const userRef = doc(db, 'users', user.uid, 'lists', 'bookmark');
+				dataToSetToStore = {
+					email: user?.email,
+					title: 'Bookmarks',
+					items: []
+				};
+				await setDoc(userRef, dataToSetToStore, { merge: true });
+				// Set Default Account as notCurrator
+				await setDoc(
+					doc(db, 'users', user.uid),
+					{
+						isCurrator: false
+					},
+					{ merge: true }
+				);
+			} else {
+				const userData = docSnap.data();
+				dataToSetToStore = userData;
+			}
+		});
+
 		await authHandlers.login(email, password);
 
 		window.location.href = '/user/account/register';
@@ -89,10 +94,67 @@ export async function handleSignUpAuthenticate(
 	}
 }
 
-export async function handleUpdateDisplayName(displayName: string) {
+export async function handleAuthenticate(email: string, password: string) {
+	if (!email || !password) {
+		return;
+	}
+
+	try {
+		await authHandlers.login(email, password);
+		window.location.href = '/';
+	} catch (err) {
+		console.log(' There was an auth error', err);
+	}
+}
+
+export async function handleAuthenticateGoogle() {
+	try {
+		await authHandlers.loginWithGoogle();
+		const defaultAccountSetUp = auth.onAuthStateChanged(async (user) => {
+			if (!user) {
+				return;
+			}
+
+			let dataToSetToStore: any;
+			const docRef = doc(db, 'users', user.uid, 'lists', 'bookmark');
+			const docSnap = await getDoc(docRef);
+
+			if (docSnap.exists()) {
+				const userRef = doc(db, 'users', user.uid, 'lists', 'bookmark');
+				dataToSetToStore = {
+					email: user?.email,
+					title: 'Bookmarks',
+					items: []
+				};
+				await setDoc(userRef, dataToSetToStore, { merge: true });
+				// Set Default Account as notCurrator
+				await setDoc(
+					doc(db, 'users', user.uid),
+					{
+						isCurrator: false
+					},
+					{ merge: true }
+				);
+			} else {
+				const userData = docSnap.data();
+				dataToSetToStore = userData;
+			}
+		});
+
+		window.location.href = '/';
+
+		console.log('Successfully logged in');
+	} catch (err) {
+		console.log(' There was an auth error', err);
+	}
+}
+
+
+  
+export async function handleSetDisplayName(displayName: string) {
 	try {
 		if (displayName.length < 3) {
-			console.log('Display name is null');
+			console.log('Display name is invalid');
 			return;
 		}
 
@@ -107,37 +169,103 @@ export async function handleUpdateDisplayName(displayName: string) {
 	}
 }
 
-export async function handleAuthenticate(email: string, password: string) {
-	// if (authenticating) {
-	// 	return;
-	// }
-	if (!email || !password) {
-		// error = true;
-		return;
-	}
-
-	// authenticating = true;
-
+export async function handleUpdateDisplayName(
+	displayName: string,
+	currEmail: string,
+	currPassword: string
+) {
+	const user = auth.currentUser;
 	try {
-		await authHandlers.login(email, password);
+		try {
+			const credential = EmailAuthProvider.credential(currEmail, currPassword);
+			await reauthenticateWithCredential(user, credential);
+		} catch (error) {
+			console.log('error', 'The email or password is incorret', error);
+			return;
+		}
+
+		if (displayName.length < 3) {
+			console.log('Display name is invalid');
+			return;
+		}
+
+		await authHandlers.updateUserName(displayName);
+
+		console.log('Successfully Update display name');
+
 		window.location.href = '/';
 	} catch (err) {
+		let error = true;
 		console.log(' There was an auth error', err);
-		// error = true;
-		// authenticating = false;
 	}
 }
 
-export async function handleAuthenticateGoogle() {
+export async function handleUpdateEmail(
+	newEmail: string,
+	confirmNewEmail: string,
+	currEmail: string,
+	currPassword: string
+) {
+	const user = auth.currentUser;
 	try {
-		await authHandlers.loginWithGoogle();
-		console.log('Successfully logged in');
+		try {
+			const credential = EmailAuthProvider.credential(currEmail, currPassword);
+			await reauthenticateWithCredential(user, credential);
+		} catch (error) {
+			console.log('error', 'The email or password is incorret', error);
+			return;
+		}
+
+		if (newEmail != confirmNewEmail) {
+			console.log('Please confirm your email');
+			return;
+		}
+		await authHandlers.updateEmail(newEmail);
+
+		console.log('Successfully Update email');
+
 		window.location.href = '/';
 	} catch (err) {
+		let error = true;
 		console.log(' There was an auth error', err);
 	}
 }
 
+export async function handleUpdatePassword(
+	newPassword: string,
+	confirmNewPassword: string,
+	currEmail: string,
+	currPassword: string
+) {
+	const user = auth.currentUser;
+	try {
+		try {
+			const credential = EmailAuthProvider.credential(currEmail, currPassword);
+			await reauthenticateWithCredential(user, credential);
+		} catch (error) {
+			console.log('error', 'The email or password is incorret', error);
+			return;
+		}
+
+		if (newPassword.length < 5) {
+			console.log('Password length must be longer than 5');
+			return;
+		}
+
+		if (newPassword != confirmNewPassword) {
+			console.log('Please confirm your password');
+			return;
+		}
+		await authHandlers.updatePassword(newPassword);
+
+		console.log('Successfully Update password');
+
+		window.location.href = '/';
+	} catch (err) {
+		let error = true;
+		console.log(' There was an auth error', err);
+	}
+}
 export const getSessionUser: () => Promise<User | null> = async () => {
 	return new Promise((resolve) => {
 		onAuthStateChanged(auth, async (user) => {

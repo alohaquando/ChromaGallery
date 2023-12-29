@@ -6,29 +6,18 @@
     import BodyLarge from '$lib/components/typography/BodyLarge.svelte';
     import { auth, db } from '$lib/services/firebase/firebase';
     import { arrayUnion, collection, doc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
-    import { handleBookmark } from '$lib/data/item';
+    import { checkIfBookmarked, handleBookmark } from '$lib/data/item';
     import type { PageData } from './$types';
+	import { onMount } from 'svelte';
 
     /** @type {import('../../../../../.svelte-kit/types/src/routes').PageLoad} */
     export let data: PageData;
 
     let item = data.item;
-    // console.log(item);
-
-    // onMount(async () => {
-    // 	const authen = getAuth();
-    // 	const userId = authen.currentUser.uid;
-    // 	console.log(authen.currentUser.uid);
-    // 	itemStore.getItem(data.slug);
-    // 	const docRef = doc(db, 'users', userId, 'lists', 'bookmark');
-    // 	const docSnap = await getDoc(docRef);
-    // 	if (docSnap.exists()) {
-    // 		let preLoad = docSnap.data().item;
-    // 		console.log(preLoad);
-    // 	} else {
-    // 		console.log('No such document!');
-    // 	}
-    // });
+    console.log(data.slug)
+    onMount(async () => {
+        checkIfBookmarked(data.slug)
+    })
 </script>
 
 <HeroImage imageFull {item}></HeroImage>

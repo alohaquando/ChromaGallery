@@ -2,24 +2,27 @@
 	import Divider from '$lib/components/layouts/Divider.svelte';
 	import TextField from '$lib/components/inputs/TextField.svelte';
 	import BodyLarge from '$lib/components/typography/BodyLarge.svelte';
-	import { getAuth, updatePassword } from 'firebase/auth';
+	import { handleUpdatePassword } from '$lib/data/auth.js';
+	export let data;
 
-	const auth = getAuth();
-
-	let user = auth.currentUser;
-	let newPassword = '';
-
-	updatePassword(user, newPassword)
-		.then(() => {
-			console.log('Update successful');
-		})
-		.catch((error) => {
-			console.log(error);
-		});
+	let currEmail = data.session?.email;
+	let currPassword: string;
+	let newPassword: string='';
+	let confirmNewPassword: string ='';
 </script>
 
 <div class=" flex flex-col justify-center gap-8">
 	<TextField
+		bind:value={currEmail}
+		disabled
+		id="confirmEmail"
+		label="Confirm old Email"
+		labelSize="lg"
+		name="confirmEmail"
+		placeholder="Confirm Email"
+	></TextField>
+	<TextField
+		bind:value={currPassword}
 		id="confirmPassword"
 		label="Confirm old password"
 		labelSize="lg"
@@ -38,6 +41,7 @@
 		placeholder="New password"
 	></TextField>
 	<TextField
+		bind:value={confirmNewPassword}
 		id="confirmNewPassword"
 		label="Confirm new password"
 		labelSize="lg"
@@ -45,3 +49,7 @@
 		placeholder="Confirm new password"
 	></TextField>
 </div>
+<button
+	on:click={() => handleUpdatePassword(newPassword, confirmNewPassword, currEmail, currPassword)}
+	>Save</button
+>

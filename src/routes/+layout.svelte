@@ -28,46 +28,6 @@
     
     let scrollY: number;
 
-    // ******Set Default Account with Bookmark list ******
-
-    // onMount(() => {
-    // 	const bookmarkItem = auth.onAuthStateChanged(async (user) => {
-    // 		if (!user) {
-    // 			return;
-    // 		}
-    //
-    // 		let dataToSetToStore: any;
-    // 		const docRef = doc(db, 'users', user.uid, 'lists', 'bookmark');
-    // 		const docSnap = await getDoc(docRef);
-    //
-    // 		if (!docSnap.exists()) {
-    // 			const userRef = doc(db, 'users', user.uid, 'lists', 'bookmark');
-    // 			dataToSetToStore = {
-    // 				email: user?.email,
-    // 				title: 'Bookmarks',
-    // 				items: []
-    // 			};
-    // 			await setDoc(userRef, dataToSetToStore, { merge: true });
-    // 			// Set Default Account as notCurrator
-    // 			await setDoc(doc(db, 'users', user.uid),
-    // 				{
-    // 					isCurrator:false,
-    // 				}
-    // 				, { merge: true });
-    // 		} else {
-    // 			const userData = docSnap.data();
-    // 			dataToSetToStore = userData;
-    // 		}
-    // 		authStore.update((curr: any) => {
-    // 			return {
-    // 				...curr,
-    // 				user,
-    // 				data: dataToSetToStore,
-    // 				loading: false
-    // 			};
-    // 		});
-    // 	});
-    // });
 </script>
 
 <svelte:head>

@@ -126,15 +126,15 @@
     }, 3000);
 </script>
 
-<!--<div class="fixed z-50 top-0 left-0 flex flex-col space-y-6">-->
-<!--	<br />-->
-<!--	{data.session}-->
-<!--	{data.session?.uid}-->
-<!--	{data.session?.email}-->
-<!--	{data.session?.displayName}-->
-<!--	{data.session?.isCurator}-->
+<!-- <div class="fixed z-50 top-0 left-0 flex flex-col space-y-6">
+	<br />
+	{data.session}
+	{data.session?.uid}
+	{data.session?.email}
+	{data.session?.displayName}
+	{data.session?.isCurator}
 
-<!--</div>-->
+</div> -->
 
 <!-- Background image -->
 <div class="h-[110vh] w-screen absolute top-0 left-0">
