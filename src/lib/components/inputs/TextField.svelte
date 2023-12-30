@@ -58,16 +58,25 @@
 	const clearValue = () => {
 		value = '';
 	};
+
+	let isFocused: boolean = false;
+	const handleInputFocus = () => {
+		isFocused = !isFocused;
+		console.log(isFocused);
+	};
+
+	let focusedClass = '';
+	$: isFocused, focusedClass = isFocused ? 'border-2 border-opacity-100' : 'border border-opacity-30';
 </script>
 
 <div class="flex flex-col w-full relative">
 	{#if label}
-		<label class="block mb-2 trim-both pb-6" for={name}>
+		<label class="block mb-2 trim-both pb-6" for={id}>
 			<svelte:component this={labelComponent}>{label}</svelte:component>
 		</label>
 	{/if}
 	<div
-		class="flex {stateClasses} bg-black/30 rounded-xl w-full p-2.5 transition trim-both border border-white border-opacity-30"
+		class="{stateClasses} {focusedClass} flex bg-black/30 rounded-xl w-full p-2.5 trim-both border-white transition"
 	>
 		<input
 			{...{ type }}
@@ -82,7 +91,9 @@
 			{min}
 			{minlength}
 			{name}
+			on:blur={handleInputFocus}
 			on:change
+			on:focus={handleInputFocus}
 			{pattern}
 			{placeholder}
 			{readonly}
@@ -102,7 +113,7 @@
 </div>
 
 <style>
-	::-webkit-calendar-picker-indicator {
-		filter: invert(1);
-	}
+    ::-webkit-calendar-picker-indicator {
+        filter: invert(1);
+    }
 </style>

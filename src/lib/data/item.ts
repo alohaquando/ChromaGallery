@@ -36,9 +36,14 @@ export const getFeaturedItems = async () => {
 	}
 };
 export const getItem = async (id: string) => {
-	const docRef = doc(db, 'items', id);
-	const docSnap = await getDoc(docRef);
-	return docSnap.data();
+	try {
+		const docRef = doc(db, 'items', id);
+		const docSnap = await getDoc(docRef);
+		return docSnap.data();
+	} catch (error) {
+		console.error('Error fetching all items: ', error.message);
+		throw error;
+	}
 };
 export const getAllItems = async () => {
 	// Reference to the "items" collection
@@ -72,11 +77,27 @@ export async function handleBookmark(itemId: string) {
 	return true;
 }
 
+export async function checkIfBookmarked(itemId: string) {
+	const authen = getAuth();
+	const userId = authen.currentUser.uid;
+
+	// const q = query(collection(db,'users', userId, 'lists'), where("bookmark", "==", itemId));
+
+	const docRef = doc(db, 'users', userId, 'lists', 'bookmark');
+	const docSnap = await getDoc(docRef);
+
+	if (docSnap.data().items.includes(itemId)) {
+		console.log('true') ;
+		return true;
+	}
+	console.log(false);
+	return false;
+}
+
 export const getItemFromIdList = async (idList: string[]) => {
 	let itemList: any[] = [];
 
 	const itemPromises = idList.map(async (itemId) => {
-		console.log(itemId);
 		const item = await getItem(itemId);
 		itemList = [...itemList, item];
 	});
@@ -85,13 +106,12 @@ export const getItemFromIdList = async (idList: string[]) => {
 
 	return itemList;
 };
+
 export const extractItems = async (collection: Collection | List | undefined) => {
 	if (collection == undefined) {
 		return null;
 	}
-
 	const idList = collection.items;
 	let [itemList] = await Promise.all([getItemFromIdList(idList)]);
-
 	return itemList;
 };

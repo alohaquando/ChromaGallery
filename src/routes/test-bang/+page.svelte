@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 	import { getDoc, doc, setDoc } from 'firebase/firestore';
 	import { authHandlers, authStore } from '../../lib/stores/store';
 	import { db } from '$lib/services/firebase/firebase';
@@ -94,4 +94,4 @@
 	.errorBorder {
 		border-color: coral !important;
 	}
-</style>
+</style> -->

@@ -1,4 +1,3 @@
-import { authHandlers } from '$lib/stores/store';
 
 export async function load() {
 	return {};

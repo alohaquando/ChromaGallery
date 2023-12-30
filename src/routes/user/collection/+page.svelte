@@ -7,7 +7,7 @@
 
 <PageTitle>All collections</PageTitle>
 
-<Button icon="faMagnifyingGlass" class="mt-16" width="full">Search</Button>
+<Button icon="faMagnifyingGlass" class="mt-16" width="full" href="collection/search">Search</Button>
 
 <CollectionList
 	width="full"

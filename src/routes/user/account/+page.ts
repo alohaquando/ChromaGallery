@@ -1,10 +1,12 @@
 import { getSessionUser } from '$lib/data/auth';
 import { getUsersAllLists } from '$lib/data/list';
 
+// @ts-ignore
 export const load = async ({ parent }) => {
 	const { session } = await parent();
-	let lists = getUsersAllLists(session?.uid);
+	const lists = getUsersAllLists(session?.uid);
+	console.log(lists);
 	return {
-		lists: lists
+		lists: await lists
 	};
 };

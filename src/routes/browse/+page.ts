@@ -6,6 +6,9 @@ export const load = async ({ params }) => {
 	return {
 		slug: params.slug,
 		allItem: await getAllItems(),
-		allCollection: await getAllCollection()
+		allCollection: await getAllCollection(),
+		background: {
+			design: 'top'
+		}
 	};
 };

@@ -2,7 +2,6 @@
 	import Icon from '$lib/components/iconography/Icon.svelte';
 	import BodyLarge from '$lib/components/typography/BodyLarge.svelte';
 	import Button from '$lib/components/controls/Button.svelte';
-	import { modal } from '$lib/stores/modal';
 </script>
 
 <div class="">

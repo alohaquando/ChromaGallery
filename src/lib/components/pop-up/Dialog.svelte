@@ -4,21 +4,20 @@
 	import Body from '$lib/components/typography/Body.svelte';
 	import { dialog } from '$lib/stores/dialog';
 
+	export let toggled: boolean = false;
 	export let title = '';
 	export let text = '';
 	export let button1 = {
 		option: '',
 		type: '',
-		function: function () {}
+		function: function() {
+		}
 	};
 	export let button2 = {
 		option: '',
 		type: 'filled',
-		function: function () {}
-	};
-
-	const goBack = () => {
-		window.history.back();
+		function: function() {
+		}
 	};
 </script>
 

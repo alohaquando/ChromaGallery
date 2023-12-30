@@ -16,19 +16,20 @@
 	let button2 = {
 		option: 'Log out',
 		type: 'filled',
-		function: function () {}
+		function: function() {
+		}
 	};
 </script>
 
 <div class="gap-8 flex flex-col">
 	<div class="w-full">
-		<TextField id="edit" label="Name" labelSize="lg" name="name" value={collection1.title}
+		<TextField id="name" label="Name" labelSize="lg" name="name" value={collection1.title}
 		></TextField>
 	</div>
 
 	<div class="w-full">
 		<TextArea
-			id="edit"
+			id="description"
 			label="Description"
 			labelSize="lg"
 			name="description"

@@ -5,6 +5,10 @@ import plugin from 'tailwindcss/plugin';
 export default {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 	theme: {
+		backgroundSize: {
+			'sm': ''
+
+		},
 		fontFamily: {
 			sans: ['Atkinson Hyperlegible', 'system-ui'],
 			display: ['Outfit', 'system-ui']
@@ -212,7 +216,7 @@ export default {
 	},
 	plugins: [
 		require('tailwindcss-leading-trim'),
-		plugin(function ({ matchUtilities, theme }) {
+		plugin(function({ matchUtilities, theme }) {
 			matchUtilities(
 				{
 					'translate-z': (value) => ({

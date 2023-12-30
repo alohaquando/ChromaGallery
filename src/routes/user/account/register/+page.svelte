@@ -4,17 +4,19 @@
 	import TextField from '$lib/components/inputs/TextField.svelte';
 	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
 	import SwitchCurator from '$lib/components/inputs/CuratorSwitch.svelte';
-	import { handleUpdateDisplayName } from '$lib/data/auth';
+	import { handleSetDisplayName } from '$lib/data/auth';
 
+	export let data;
 	let displayName = '';
 	let isCurator: boolean;
+	let currentEmail = data.session?.email
 </script>
 
 <PageTitle>Let's get you ready</PageTitle>
 
 <form class="mt-16 gap-8 flex flex-col items-center w-full">
 	<!--	Email field-->
-	<TextField disabled id="email" label="Email" name="email" placeholder="myemail@google.com"
+	<TextField disabled id="email" label="Email" name="email" placeholder={currentEmail}
 	></TextField>
 
 	<Divider></Divider>
@@ -35,7 +37,7 @@
 	<!--	Submit button-->
 	<Button
 		design="filled"
-		on:click={() => handleUpdateDisplayName(displayName)}
+		on:click={() => handleSetDisplayName(displayName)}
 		type="button"
 		width="full"
 		>Complete sign up

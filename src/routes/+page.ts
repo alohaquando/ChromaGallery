@@ -2,6 +2,9 @@ import { getFeaturedItems } from '$lib/data/item';
 
 export const load = async () => {
 	return {
-		featuredItems: await getFeaturedItems()
+		featuredItems: await getFeaturedItems(),
+		background: {
+			toggled: false
+		}
 	};
 };
