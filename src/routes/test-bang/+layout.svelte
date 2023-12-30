@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 	import CreateList from './createList.svelte';
 	import { onMount } from 'svelte';
 	import { auth, db } from '$lib/services/firebase/firebase.js';
@@ -144,4 +144,4 @@
 </nav>
 
 <slot />
-<!-- <CreateList /> -->
+<CreateList /> -->

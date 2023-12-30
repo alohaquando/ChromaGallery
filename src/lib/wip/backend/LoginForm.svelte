@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 	import { authHandlers } from '$lib/stores/store.js';
 
 	let email = '';
@@ -113,4 +113,4 @@
 			>SignOut
 		</button>
 	</div>
-</div>
+</div> -->

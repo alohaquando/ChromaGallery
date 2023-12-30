@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 	import { db } from '$lib/services/firebase/firebase';
 	import { itemStore } from '$lib/stores/itemStore';
 	import Item from '$lib/wip/backend/Item.svelte';
@@ -38,4 +38,4 @@
 	});
 </script>
 
-<h1>List</h1>
+<h1>List</h1> -->

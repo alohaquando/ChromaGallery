@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 	import { db } from '$lib/services/firebase/firebase.js';
 	import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
 	import { onMount } from 'svelte';
@@ -29,4 +29,4 @@
 		});
 	};
 	getAllItems();
-</script>
+</script> -->
