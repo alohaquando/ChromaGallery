@@ -14,7 +14,6 @@
 	/** @type {import('../../../../../.svelte-kit/types/src/routes').PageLoad} */
 	export let data: PageData;
 	let lists = data.lists ? data.lists.filter((list) => list.id !== 'bookmark') : undefined;
-	console.log(lists);
 	let bookmark = data.lists ? data.lists.find((list) => list.id === 'bookmark') : undefined;
 </script>
 
