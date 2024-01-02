@@ -19,8 +19,9 @@
 	let isBookmarked: Promise<boolean> = checkIfBookmarked(data.slug);
 	$: isBookmarked;
 
-	const checkBookmark = async () => {
-		isBookmarked = checkIfBookmarked(data.slug);
+	const checkBookmark = async (id: string) => {
+		handleBookmark(id);
+		isBookmarked = checkIfBookmarked(id);
 	};
 
 	onMount(async () => {
@@ -36,13 +37,13 @@
 		>Add to list
 		</Button
 		>
-		<Button icon="faVolume" type="submit">Audio guide</Button>
+		<!--		<Button icon="faVolume" type="submit">Audio guide</Button>-->
 	</div>
 
 	{#await isBookmarked}
-		...loading
+		<Fab icon="faStar"></Fab>
 	{:then isBookmarked}
-		<Fab icon="faStar" on:click={() => {handleBookmark(data.slug); checkBookmark}} toggled={isBookmarked}></Fab>
+		<Fab icon="faStar" on:click={() => {checkBookmark(data.slug)}} toggled={isBookmarked}></Fab>
 	{/await}
 </div>
 
