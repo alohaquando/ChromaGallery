@@ -61,6 +61,7 @@ export const getAllItems = async () => {
 	return itemsData;
 };
 
+<<<<<<< HEAD
 // export async function handleBookmark(itemId: string) {
 // 	const authen = getAuth();
 // 	const userId = authen.currentUser.uid;
@@ -76,6 +77,25 @@ export const getAllItems = async () => {
 
 // 	return true;
 // }
+=======
+export const getItemFromIdList = async (idList: string[]) => {
+	const itemPromises = idList.map(async (itemId) => {
+		const item = await getItem(itemId);
+		return { id: itemId, ...item }; // Include the id in the returned item
+	});
+
+	return await Promise.all(itemPromises);
+};
+
+export const extractItems = async (collection: Collection | List | undefined) => {
+	if (collection == undefined) {
+		return null;
+	}
+	const idList = collection.items;
+	return await getItemFromIdList(idList);
+};
+
+>>>>>>> d7f7c8087f6fc614a89ae207788d51950d6b98b9
 export async function handleBookmark(itemId: string) {
 	const authen = getAuth();
 	const userId = authen.currentUser.uid;
@@ -117,31 +137,9 @@ export async function checkIfBookmarked(itemId: string) {
 	const docSnap = await getDoc(docRef);
 
 	if (docSnap.data().items.includes(itemId)) {
-		console.log('true') ;
+		console.log('true');
 		return true;
 	}
 	console.log(false);
 	return false;
 }
-
-export const getItemFromIdList = async (idList: string[]) => {
-	let itemList: any[] = [];
-
-	const itemPromises = idList.map(async (itemId) => {
-		const item = await getItem(itemId);
-		itemList = [...itemList, item];
-	});
-
-	await Promise.all(itemPromises);
-
-	return itemList;
-};
-
-export const extractItems = async (collection: Collection | List | undefined) => {
-	if (collection == undefined) {
-		return null;
-	}
-	const idList = collection.items;
-	let [itemList] = await Promise.all([getItemFromIdList(idList)]);
-	return itemList;
-};
