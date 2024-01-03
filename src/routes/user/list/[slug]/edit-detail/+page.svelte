@@ -6,6 +6,7 @@
 	import { resetDialog } from '$lib/stores/dialog';
 	import { toggleDialog } from '$lib/stores/dialog';
 	import Divider from '$lib/components/layouts/Divider.svelte';
+	import Button from '$lib/components/controls/Button.svelte';
 
 	let button1 = {
 		option: 'Cancel',
@@ -17,7 +18,8 @@
 	let button2 = {
 		option: 'Log out',
 		type: 'filled',
-		function: function () {}
+		function: function() {
+		}
 	};
 </script>
 
@@ -33,6 +35,8 @@
 	></TextField>
 
 	<Divider />
+
+	<Button design="filled" width="full">Save</Button>
 
 	<ListItem
 		bottomDivider={false}

@@ -3,9 +3,7 @@ export async function load() {
 		modal: {
 			toggled: true,
 			title: 'Edit list',
-			button: 'Save',
-			exit: true,
-			buttonFunction: function () {}
+			exit: true
 		}
 	};
 }
