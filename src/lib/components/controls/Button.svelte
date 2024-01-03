@@ -42,13 +42,12 @@
 			break;
 		}
 		case 'filled': {
-			designClasses = 'bg-white text-gray-900 active:bg-white/80 hover:bg-white/70';
+			designClasses = 'bg-gradient-to-b from-white/70 to-white/90 text-gray-900 active:bg-white/80 hover:bg-white/70';
 		}
 	}
 </script>
 
 <svelte:element
-	this={href ? 'a' : 'button'}
 	class="px-5 rounded-full inline-flex items-center backdrop-blur-sm justify-center gap-2 overflow-visible ease-out duration-300 h-10 line-clamp-1 relative
 
 disabled:text-white/50 disabled:hover:before:opacity-0 disabled:hover:after:opacity-0
@@ -66,12 +65,13 @@ active:opacity-70 active:duration-0
 	on:keydown
 	role="button"
 	tabindex="0"
+	this={href ? 'a' : 'button'}
 	{type}
 >
 	<Icon {icon} size={iconSize} type={iconType} />
 	{#if $$slots.default}
 		<Body class="inline-flex items-center">
-			<slot />
+		<slot />
 		</Body>
 	{/if}
 </svelte:element>
