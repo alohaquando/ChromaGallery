@@ -1,3 +1,5 @@
+import { getAllItems } from '$lib/data/item';
+
 export async function load() {
 	return {
 		modal: {
@@ -6,6 +8,7 @@ export async function load() {
 			button: 'Add',
 			exit: true,
 			buttonFunction: function () {}
-		}
+		},
+		items: await getAllItems()
 	};
 }

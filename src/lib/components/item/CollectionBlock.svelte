@@ -14,8 +14,7 @@
 	let customClass = '';
 	export { customClass as class };
 
-	let blockStyle: 'grid' | 'single' = 'single';
-	export { blockStyle as style };
+	export let design: 'grid' | 'single' = 'single';
 
 	let str = collection ? count(collection.items) : '';
 	export let title: boolean = true;
@@ -26,7 +25,7 @@
 	let path: string;
 	if (bookmark) {
 		path = '/user/list/bookmark';
-		blockStyle = 'single';
+		design = 'single';
 	} else {
 		path = (curator ? '/curator' : '/user') + (isCollection ? '/collection/' : '/list/') + collection?.id;
 	}
@@ -83,7 +82,7 @@
 			href="{path}"
 		>
 			<Block item={itemData? itemData[0] : null} link={false} {bookmark}></Block>
-			{#if !bookmark && blockStyle === 'grid' && itemData && itemData[1]}
+			{#if !bookmark && design === 'grid' && itemData && itemData[1]}
 				<div class="grow shrink basis-0 self-stretch flex-col gap-1 inline-flex">
 					<Block link={false} item={itemData[1]}></Block>
 					{#if itemData && itemData[2]}

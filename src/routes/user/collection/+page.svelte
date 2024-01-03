@@ -3,17 +3,20 @@
 	import Button from '$lib/components/controls/Button.svelte';
 	import CollectionList from '$lib/components/item/CollectionList.svelte';
 	import { allCollection } from '$lib/data/exampleData';
+
+	export let data;
+	let collections = data.collections;
 </script>
 
 <PageTitle>All collections</PageTitle>
 
-<Button icon="faMagnifyingGlass" class="mt-16" width="full" href="collection/search">Search</Button>
+<Button class="mt-16" href="collection/search" icon="faMagnifyingGlass" width="full">Search</Button>
 
 <CollectionList
-	width="full"
 	class="mt-12 gap-10"
+	collections={collections}
+	design="single"
 	hideSubtitle
-	style="single"
+	width="full"
 	wrap
-	collections={allCollection}
 ></CollectionList>

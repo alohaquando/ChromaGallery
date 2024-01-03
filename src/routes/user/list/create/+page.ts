@@ -5,6 +5,8 @@ export async function load() {
 		modal: {
 			toggled: true,
 			title: 'Create new list',
+			button: 'Create',
+			buttonFunction: () => {},
 			exit: true
 		}
 	};

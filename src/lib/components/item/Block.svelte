@@ -56,7 +56,12 @@
 >
 
 	{#if bookmark}
-		<Icon icon="faStar" type="solid" class="absolute" size={iconSize}></Icon>
+		<div class="absolute h-96 w-96 bg-black/10 rounded-full blur-2xl"></div>
+		<div
+			class="absolute opacity-40 h-60 w-60 bg-gradient-to-b from-zinc-400 to-fuchsia-600 rounded-full blur-xl"></div>
+		<div
+			class="absolute h-60 w-60 bg-gradient-to-b from-white/20 via-white/60 to-white/30 rounded-full blur-2xl"></div>
+		<Icon icon="faStar" type="solid" class="absolute z-20" size={iconSize}></Icon>
 		{#if !icon}
 			<div class="absolute h-16 w-16 blur-xl bg-white rounded-full"></div>
 		{/if}

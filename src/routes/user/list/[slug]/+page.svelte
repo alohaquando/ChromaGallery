@@ -11,6 +11,7 @@
 	/** @type {import('../../../../../.svelte-kit/types/src/routes').PageLoad} */
 	export let data: PageData;
 	let list: List = data.list;
+	let listId = data.param;
 </script>
 
 {#if list}
@@ -18,14 +19,14 @@
 	>{list.title}
 	</Headline>
 
-	<Headline class="text-white  text-opacity-50">{count(list.items)}</Headline>
+	<Headline class="text-white text-opacity-50">{count(list.items)}</Headline>
 	<BodyLarge class="pt-6">{list.description}</BodyLarge>
 
 
 	<div class="mt-10">
-		<Button icon="faPen">Edit detail</Button>
-		<Button icon="faPlus">Add item</Button>
-		<Button icon="faImage">Edit items</Button>
+		<Button icon="faPen" href="{listId}/edit-detail">Edit detail</Button>
+		<Button icon="faPlus" href="{listId}/add-items">Add item</Button>
+		<Button icon="faImage" href="{listId}/edit-items">Edit items</Button>
 	</div>
 
 	<div class="mt-6">

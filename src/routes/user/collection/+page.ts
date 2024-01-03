@@ -1,4 +1,5 @@
 import { getItem } from '$lib/data/item';
+import { getAllCollection } from '$lib/data/collection';
 
 // @ts-ignore
 export const load = async ({ params }) => {
@@ -6,6 +7,7 @@ export const load = async ({ params }) => {
 		header: {
 			type: 'back',
 			href: '/browse'
-		}
+		},
+		collections: await getAllCollection()
 	};
 };

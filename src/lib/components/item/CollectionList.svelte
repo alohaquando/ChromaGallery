@@ -18,8 +18,7 @@
 	let customClass = '';
 	export { customClass as class };
 	export let hideSubtitle: boolean = false;
-	let blockStyle: 'grid' | 'single' = 'grid';
-	export { blockStyle as style };
+	export let design: 'grid' | 'single' = 'grid';
 	export let wrap: boolean = false;
 	let wrapClass = '';
 	if (wrap) {
@@ -44,7 +43,7 @@
 			>
 				{#each collections as collection}
 					<CollectionBlock {isCollection} {curator} {width} {hideSubtitle} class="shrink-0" {collection}
-													 style={blockStyle}
+													 {design}
 					></CollectionBlock>
 				{/each}
 				{#if width === 'fixed'}
