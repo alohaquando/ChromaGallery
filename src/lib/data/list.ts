@@ -57,7 +57,7 @@ export const handleAddToList = async (userId: string, listId: string, itemId: st
 export const handleCreateList = async (
 	userId: string,
 	title: string = 'My Title',
-	subtitle: string = 'My Subtitle'
+	description: string = 'My Subtitle'
 ) => {
 	if (!userId) {
 		return;
@@ -68,11 +68,12 @@ export const handleCreateList = async (
 	if (!docSnap.exists()) {
 		dataToSetToStore = {
 			title: title,
-			subtitle: subtitle,
+			description: description,
 			items: []
 		};
 		const docRef = await addDoc(collection(db, 'users', userId, 'lists'), dataToSetToStore);
 		console.log(docRef.id);
+
 	} else {
 		const userData = docSnap.data();
 		dataToSetToStore = userData;
