@@ -6,8 +6,10 @@
 	import { handleCreateList } from '$lib/data/list';
 
 	export let data;
-	let userId = data.session?.uid	
-	
+	let userId = data.session?.uid;
+	let listName: string;
+	let listDescription: string;
+
 	// handleCreateList(userId, 'Title1', 'Subtite')
 </script>
 
@@ -21,11 +23,11 @@
 		placeholder="List title"
 	></TextField>
 	<TextField
-		bind:value={listDescriptions}
+		bind:value={listDescription}
 		id="description"
 		label="Description"
 		name="description"
 		placeholder="List description"
 	></TextField>
-	<button on:click={() => handleCreateList(user)}>Create List</button>
+	<button on:click={() => handleCreateList(userId, listName, listDescription)}>Create List</button>
 </div>
