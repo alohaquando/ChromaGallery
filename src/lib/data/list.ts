@@ -73,7 +73,7 @@ export const handleCreateList = async (
 		};
 		const docRef = await addDoc(collection(db, 'users', userId, 'lists'), dataToSetToStore);
 		console.log(docRef.id);
-
+		window.location.href = '/user/account'
 	} else {
 		const userData = docSnap.data();
 		dataToSetToStore = userData;

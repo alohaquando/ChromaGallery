@@ -97,7 +97,9 @@ export const extractItems = async (collection: Collection | List | undefined) =>
 export async function handleBookmark(itemId: string) {
 	const authen = getAuth();
 	const userId = authen.currentUser.uid;
-  
+	if(userId == null) {
+		window.alert('Please Logged In First')
+	}
 	const userDocRef = doc(db, 'users', userId, 'lists', 'bookmark');
 	const userDocSnap = await getDoc(userDocRef);
   
