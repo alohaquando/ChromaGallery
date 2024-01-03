@@ -27,17 +27,17 @@ export const getUserOneList = async (userId: string, listId: string) => {
 	if (userId) {
 		try {
 			// Reference to the "items" collection
-			const listCollection = collection(db, 'users', userId, 'lists', listId);
-
+			const listCollection = doc(db, 'users', userId, 'lists', listId);
+			const docSnap = await getDoc(listCollection);
 			// Fetch all documents in the "items" collection
-			const querySnapshot = await getDocs(listCollection);
+			// const querySnapshot = await getDocs(listCollection);
 
 			// Extract data from query snapshot
-			const listData = querySnapshot.docs.map((doc) => ({
-				id: doc.id,
-				...doc.data()
-			}));
-			return listData;
+			// const listData = querySnapshot.docs.map((doc) => ({
+			// 	id: doc.id,
+			// 	...doc.data()
+			// }));
+			return docSnap.data();
 		} catch (error: any) {
 			console.error('Error fetching all items: ', error.message);
 			throw error;
@@ -73,7 +73,7 @@ export const handleCreateList = async (
 		};
 		const docRef = await addDoc(collection(db, 'users', userId, 'lists'), dataToSetToStore);
 		console.log(docRef.id);
-		window.location.href = '/user/account'
+		window.location.href = '/user/account';
 	} else {
 		const userData = docSnap.data();
 		dataToSetToStore = userData;

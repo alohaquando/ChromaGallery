@@ -14,7 +14,7 @@
 	export let data: PageData;
 
 	let item = data.item;
-	console.log(data.slug);
+	console.log(data);
 
 	let isBookmarked: Promise<boolean> = checkIfBookmarked(data.slug);
 	$: isBookmarked;
@@ -33,7 +33,7 @@
 
 <div class="flex justify-between items-end my-6 mb-12">
 	<div class="flex space-x-2">
-		<Button href="/user/items/${item.id}/add-to-list" icon="faPlus" type="submit"
+		<Button href="/user/items/${data.slug}/add-to-list" icon="faPlus" type="submit"
 		>Add to list
 		</Button
 		>

@@ -3,10 +3,11 @@ import { getAuth } from 'firebase/auth';
 import { getUsersAllLists } from '$lib/data/list';
 
 // @ts-ignore
-export const load = async ({ params }) => {
+export const load = async ({ params, parent }) => {
+	const { session } = await parent();
 	return {
 		slug: params.slug,
-		list: await getUsersAllLists(params.slug),
+		lists: await getUsersAllLists(session?.uid),
 		modal: {
 			toggled: true,
 			title: 'Add to list',

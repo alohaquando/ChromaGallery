@@ -97,35 +97,35 @@ export const extractItems = async (collection: Collection | List | undefined) =>
 export async function handleBookmark(itemId: string) {
 	const authen = getAuth();
 	const userId = authen.currentUser.uid;
-	if(userId == null) {
-		window.alert('Please Logged In First')
+	if (userId == null) {
+		window.alert('Please Logged In First');
 	}
 	const userDocRef = doc(db, 'users', userId, 'lists', 'bookmark');
 	const userDocSnap = await getDoc(userDocRef);
-  
+
 	if (userDocSnap.exists()) {
-	  const currentItems = userDocSnap.data().items || [];
-  
-	  // Check if the item already exists in the list
-	  const itemIndex = currentItems.indexOf(itemId);
-  
-	  if (itemIndex !== -1) {
-		// If the item exists, remove it from the list
-		currentItems.splice(itemIndex, 1);
-	  } else {
-		// If the item doesn't exist, add it to the list
-		currentItems.push(itemId);
-	  }
-  
-	  // Update the 'items' field in the document
-	  await setDoc(userDocRef, { items: currentItems });
-	  console.log('Bookmarked successfully');
-	  return true;
+		const currentItems = userDocSnap.data().items || [];
+
+		// Check if the item already exists in the list
+		const itemIndex = currentItems.indexOf(itemId);
+
+		if (itemIndex !== -1) {
+			// If the item exists, remove it from the list
+			currentItems.splice(itemIndex, 1);
+		} else {
+			// If the item doesn't exist, add it to the list
+			currentItems.push(itemId);
+		}
+
+		// Update the 'items' field in the document
+		await setDoc(userDocRef, { items: currentItems });
+		console.log('Bookmarked successfully');
+		return true;
 	} else {
-	  console.error('Bookmarked failed');
-	  return false;
+		console.error('Bookmarked failed');
+		return false;
 	}
-  }
+}
 
 export async function checkIfBookmarked(itemId: string) {
 	const authen = getAuth();

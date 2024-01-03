@@ -1,4 +1,7 @@
 export function count(arr: any[]) {
+	if (!arr) {
+		return false;
+	}
 	const itemCount = arr.length;
 	if (itemCount === 0) {
 		return 'No items.';
