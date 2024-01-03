@@ -1,16 +1,17 @@
 <script lang="ts">
 	import TextField from '$lib/components/inputs/TextField.svelte';
-	import { auth, db } from '$lib/services/firebase/firebase';
-	import { addDoc, collection, doc, getDoc } from 'firebase/firestore';
-	import { getAuth, onAuthStateChanged } from 'firebase/auth';
+	// import { auth, db } from '$lib/services/firebase/firebase';
+	// import { addDoc, collection, doc, getDoc } from 'firebase/firestore';
+	// import { getAuth, onAuthStateChanged } from 'firebase/auth';
 	import { handleCreateList } from '$lib/data/list';
+	import Button from '$lib/components/controls/Button.svelte';
+
+	export const contextKey = {};
 
 	export let data;
-	let userId = data.session?.uid;
-	let listName: string;
-	let listDescription: string;
-
-	// handleCreateList(userId, 'Title1', 'Subtite')
+	export let userId = data.session?.uid;
+	export let listName: string;
+	export let listDescription: string;
 </script>
 
 <div class="gap-6 flex flex-col">
@@ -29,5 +30,5 @@
 		name="description"
 		placeholder="List description"
 	></TextField>
-	<button on:click={() => handleCreateList(userId, listName, listDescription)}>Create List</button>
+	<Button on:click={() => handleCreateList(userId, listName, listDescription)} width="full">Craete list</Button>
 </div>

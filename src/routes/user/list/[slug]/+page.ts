@@ -1,11 +1,11 @@
-import { getUsersAllLists } from '$lib/data/list';
+import { getUserOneList } from '$lib/data/list';
 
 // @ts-ignore
 export const load = async ({ parent, params }) => {
 	const { session } = await parent();
-	const lists = getUsersAllLists(session?.uid);
+	const list = getUserOneList(session?.uid, params.slug);
 	return {
-		lists: await lists,
+		list: await list,
 		param: params.slug
 	};
 };

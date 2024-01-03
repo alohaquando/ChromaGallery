@@ -25,37 +25,40 @@
 		{
 			type: 'body',
 			component: Body,
-			class: 'bg-[length:0_1.5px]'
+			class: 'bg-[length:0_1.5px]',
+			display: 'bg-[length:100%_1.5px]'
 		},
 		{
 			type: 'title',
 			component: Title,
-			class: 'bg-[length:0_1.5px]'
+			class: 'bg-[length:0_1.5px]',
+			display: 'bg-[length:100%_1.5px]'
 		},
 		{
 			type: 'headline',
 			component: Headline,
-			class: 'bg-[length:0_3px]'
+			class: 'bg-[length:0_3px]',
+			display: 'bg-[length:100%_3px]'
 		},
 		{
 			type: 'display',
 			component: Display,
-			class: 'bg-[length:0_4px]'
+			class: 'bg-[length:0_4px]',
+			display: 'bg-[length:100%_4px]'
 		}
 	];
 
-	let hoverClass: 'hover:bg-[length:_100%_1.5px] bg-no-repeat ';
-	let staticClass: ' bg-[length:100%_1.5px] bg-no-repeat ';
-
 	let component = componentOptions.find((option) => option.type == type)?.component;
 	let underlineClass = componentOptions.find((option) => option.type == type)?.class;
+	let display = componentOptions.find((option) => option.type == type)?.display;
 
 	export let isHovered: boolean | undefined;
+	let displayClass = isHovered ? display : 'hover:' + display;
 </script>
 
 <a class="{customClasses} {disableClass} relative max-w-fit cursor-pointer trim-both" {href}>
 	<svelte:component
-		class="{staticClass} bg-left-bottom duration-500 inline bg-gradient-to-r {linkColor}"
+		class="{underlineClass} {displayClass} bg-no-repeat bg-left-bottom duration-500 inline bg-gradient-to-r {linkColor}"
 		this={component}>
 		<slot />
 	</svelte:component>

@@ -7,7 +7,6 @@
 	import type { Collection } from '../../data/dataModels';
 	import { allItem } from '../../data/exampleData';
 	import { count } from '$lib/utils/countItem';
-
 	import { extractItems } from '$lib/data/item';
 
 	export let collection: Collection | undefined;
@@ -23,12 +22,13 @@
 	export let subtitle: boolean = true;
 	export let bookmark: boolean = false;
 	export let curator: boolean = false;
+	export let isCollection: boolean = false;
 	let path: string;
 	if (bookmark) {
 		path = '/user/list/bookmark';
 		blockStyle = 'single';
 	} else {
-		path = (curator ? '/curator' : '/user') + '/collection/' + collection?.id;
+		path = (curator ? '/curator' : '/user') + (isCollection ? '/collection/' : '/list/') + collection?.id;
 	}
 	export let hideSubtitle: boolean = false;
 	export let width: 'fixed' | 'full' = 'fixed';
