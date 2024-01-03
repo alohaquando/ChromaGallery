@@ -61,23 +61,6 @@ export const getAllItems = async () => {
 	return itemsData;
 };
 
-<<<<<<< HEAD
-// export async function handleBookmark(itemId: string) {
-// 	const authen = getAuth();
-// 	const userId = authen.currentUser.uid;
-
-// 	await setDoc(
-// 		doc(db, 'users', userId, 'lists', 'bookmark'),
-// 		{
-// 			items: arrayUnion(itemId)
-// 		},
-// 		{ merge: true }
-// 	);
-// 	console.log('Bookmarked successfully');
-
-// 	return true;
-// }
-=======
 export const getItemFromIdList = async (idList: string[]) => {
 	const itemPromises = idList.map(async (itemId) => {
 		const item = await getItem(itemId);
@@ -95,7 +78,22 @@ export const extractItems = async (collection: Collection | List | undefined) =>
 	return await getItemFromIdList(idList);
 };
 
->>>>>>> d7f7c8087f6fc614a89ae207788d51950d6b98b9
+// export async function handleBookmark(itemId: string) {
+// 	const authen = getAuth();
+// 	const userId = authen.currentUser.uid;
+
+// 	await setDoc(
+// 		doc(db, 'users', userId, 'lists', 'bookmark'),
+// 		{
+// 			items: arrayUnion(itemId)
+// 		},
+// 		{ merge: true }
+// 	);
+// 	console.log('Bookmarked successfully');
+
+// 	return true;
+// }
+
 export async function handleBookmark(itemId: string) {
 	const authen = getAuth();
 	const userId = authen.currentUser.uid;

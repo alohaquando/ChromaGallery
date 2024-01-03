@@ -54,7 +54,11 @@ export const handleAddToList = async (userId: string, listId: string, itemId: st
 	);
 	console.log('Bookmarked successfully');
 };
-export const handleCreateList = async (userId: string, title: string = 'My Title', subtitle: string  = 'My Subtitle') => {
+export const handleCreateList = async (
+	userId: string,
+	title: string = 'My Title',
+	subtitle: string = 'My Subtitle'
+) => {
 	if (!userId) {
 		return;
 	}
