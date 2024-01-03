@@ -1,4 +1,4 @@
-import { arrayUnion, collection, doc, getDocs, setDoc } from 'firebase/firestore';
+import { addDoc, arrayUnion, collection, doc, getDoc, getDocs, setDoc } from 'firebase/firestore';
 import { db } from '$lib/services/firebase/firebase';
 
 export const getUsersAllLists = async (userId: string) => {
@@ -53,4 +53,24 @@ export const handleAddToList = async (userId: string, listId: string, itemId: st
 		{ merge: true }
 	);
 	console.log('Bookmarked successfully');
+};
+export const handleCreateList = async (userId: string, title: string = 'My Title', subtitle: string  = 'My Subtitle') => {
+	if (!userId) {
+		return;
+	}
+	let dataToSetToStore: any;
+	const docRef = doc(collection(db, 'users', userId, 'lists'));
+	const docSnap = await getDoc(docRef);
+	if (!docSnap.exists()) {
+		dataToSetToStore = {
+			title: title,
+			subtitle: subtitle,
+			items: []
+		};
+		const docRef = await addDoc(collection(db, 'users', userId, 'lists'), dataToSetToStore);
+		console.log(docRef.id);
+	} else {
+		const userData = docSnap.data();
+		dataToSetToStore = userData;
+	}
 };

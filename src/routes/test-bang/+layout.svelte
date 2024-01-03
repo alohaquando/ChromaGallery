@@ -72,39 +72,6 @@
 	// 	});
 	// });
 
-	// ******Create Item******
-	// 	onMount(() => {
-	// 	const createNewItem = auth.onAuthStateChanged(async (user) => {
-	// 		if (!user) {
-	// 			return;
-	// 		}
-	// 		let dataToSetToStore;
-	// 		const docRef = doc(collection(db, 'items'));
-	// 		const docSnap = await getDoc(docRef);
-	// 		if (!docSnap.exists()) {
-	// 			dataToSetToStore = {
-	// 				author: "Jean Auguste Dominique Ingres",
-	// 				description: "The new item",
-	// 				image: "http://12345.com",
-	// 				location: "Paris",
-	// 				title: "LaLamove",
-	// 				year: "1814"
-	// 			}
-	// 			await setDoc(docRef, dataToSetToStore, { merge: true });
-	// 		} else {
-	// 			const userData = docSnap.data();
-	// 			dataToSetToStore = userData;
-	// 		}
-	// 		authStore.update((curr) => {
-	// 			return {
-	// 				...curr,
-	// 				user,
-	// 				data: dataToSetToStore,
-	// 				loading: false
-	// 			};
-	// 		});
-	// 	});
-	// });
 
 	// Get All of the User Lists
 	// let itemList = [];
@@ -143,5 +110,40 @@
 	<h1>{userEmail}</h1>
 </nav>
 
-<slot />
 <CreateList /> -->
+<script>
+	import { onMount } from 'svelte';
+	import { auth, db } from '$lib/services/firebase/firebase.js';
+	import { addDoc, collection, doc, getDoc, setDoc } from 'firebase/firestore';
+	import { getAuth, onAuthStateChanged } from 'firebase/auth';
+	import { handleCreateList } from '$lib/data/list';
+	export let data;
+	// console.log(data.session.uid);
+	// const userId = data.session.uid;
+	// onMount(() => {
+		// const handleCreateList = auth.onAuthStateChanged(async (user) => {
+		// 	if (!user) {
+		// 		return;
+		// 	}
+		// 	let dataToSetToStore;
+		// 	const docRef = doc(collection(db, 'users', user.uid, 'lists'));
+		// 	const docSnap = await getDoc(docRef);
+		// 	if (!docSnap.exists()) {
+		// 		dataToSetToStore = {
+		// 			title: 'My List ',
+		// 			subtitle: 'My list subtitle',
+		// 			items: []
+		// 		};
+		// 		const docRef = await addDoc(collection(db, 'users', user.uid, 'lists'), dataToSetToStore);
+		// 		console.log(docRef.id);
+		// 	} else {
+		// 		const userData = docSnap.data();
+		// 		dataToSetToStore = userData;
+		// 	}
+		// });
+	// handleCreateList(userId, "Title2", "Subtitle2")
+	// });
+
+</script>
+
+<slot />
