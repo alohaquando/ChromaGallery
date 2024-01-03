@@ -25,27 +25,27 @@
 		{
 			type: 'body',
 			component: Body,
-			class: 'bg-[length:_0_1.5px]'
+			class: 'bg-[length:0_1.5px]'
 		},
 		{
 			type: 'title',
 			component: Title,
-			class: 'bg-[length:_0_1.5px]'
+			class: 'bg-[length:0_1.5px]'
 		},
 		{
 			type: 'headline',
 			component: Headline,
-			class: 'bg-[length:_0_3px]'
+			class: 'bg-[length:0_3px]'
 		},
 		{
 			type: 'display',
 			component: Display,
-			class: 'bg-[length:_0_4px]'
+			class: 'bg-[length:0_4px]'
 		}
 	];
 
-	let hoverClass: 'hover:bg-[length:_100%_1.5px]';
-	let staticClass: 'bg-[length:_100%_1.5px]';
+	let hoverClass: 'hover:bg-[length:_100%_1.5px] bg-no-repeat ';
+	let staticClass: ' bg-[length:100%_1.5px] bg-no-repeat ';
 
 	let component = componentOptions.find((option) => option.type == type)?.component;
 	let underlineClass = componentOptions.find((option) => option.type == type)?.class;
@@ -55,7 +55,7 @@
 
 <a class="{customClasses} {disableClass} relative max-w-fit cursor-pointer trim-both" {href}>
 	<svelte:component
-		class="{underlineClass} {staticClass} bg-no-repeat bg-left-bottom duration-500 inline bg-gradient-to-r {linkColor}"
+		class="{staticClass} bg-left-bottom duration-500 inline bg-gradient-to-r {linkColor}"
 		this={component}>
 		<slot />
 	</svelte:component>

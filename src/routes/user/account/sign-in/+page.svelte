@@ -15,7 +15,7 @@
 <div class="mt-16 gap-8 flex flex-col items-center w-full">
 	<div class="mb-4 items-center gap-4 flex flex-col w-full">
 		<Socials design="facebook" href="/" signup={false}></Socials>
-		<Socials design="google" on:click={handleAuthenticateGoogle}>Continue With Google</Socials>
+		<Socials design="google" on:click={handleAuthenticateGoogle} signup={false}></Socials>
 		<Socials design="apple" href="/" signup={false}></Socials>
 	</div>
 
@@ -47,7 +47,8 @@
 			design="filled"
 			on:click={() => handleAuthenticate(email, password)}
 			type="submit"
-			width="full">Sign in</Button
+			width="full">Sign in
+		</Button
 		>
 
 		<!--        reset password button-->
