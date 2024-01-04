@@ -4,13 +4,14 @@
 	import Body from '$lib/components/typography/Body.svelte';
 	import Checkbox from '$lib/components/controls/Checkbox.svelte';
 	import type { List, Collection } from '$lib/data/dataModels';
+	import Icon from '$lib/components/iconography/Icon.svelte';
 	import { count } from '$lib/utils/countItem.js';
 	import { extractItems } from '$lib/data/item';
 
 	export let collection: List | Collection;
 	let customClass = '';
 	export { customClass as class };
-	export let type: 'checkbox' | 'action' = 'action';
+	export let type: 'checkbox' | 'action' | 'view' = 'action';
 	export let curator: boolean = false;
 	export let isCollection: boolean = false;
 	let path = (curator ? '/curator' : '/user') + (isCollection ? '/collections/' : '/list/') + collection?.id;
@@ -61,5 +62,7 @@
 		{:else}
 			<Checkbox id={collection.id} class="shrink-0" name=""></Checkbox>
 		{/if}
+	{:else if type === 'action'}
+		<Icon icon="faChevronRight" class="shrink-0 w-6 h-6" />
 	{/if}
 </svelte:element>

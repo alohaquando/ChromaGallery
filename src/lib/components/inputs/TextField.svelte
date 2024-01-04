@@ -21,7 +21,7 @@
 	}
 	export let error: boolean = false;
 	export let errorMessage: string | undefined = 'Please check this input again';
-	export let icon: string | undefined = undefined;
+	// export let icon: string | undefined = undefined;
 	export let type:
 		| 'date'
 		| 'datetime-local'
@@ -93,6 +93,7 @@
 			on:blur={handleInputFocus}
 			on:change
 			on:focus={handleInputFocus}
+			on:input
 			{pattern}
 			{placeholder}
 			{readonly}

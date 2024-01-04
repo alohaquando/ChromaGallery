@@ -15,15 +15,6 @@
 	export let listDescription: string = '';
 
 	let errorMessage: string;
-	const validateInput = () => {
-		if (listName.length == 0) {
-			errorMessage = '*List title is empty.';
-		} else if (listDescription.length == 0) {
-			errorMessage = '*List description is empty.';
-		} else {
-			errorMessage = '';
-		}
-	};
 
 	$: errorMessage;
 </script>
@@ -35,16 +26,16 @@
 		label="Title"
 		labelSize="lg"
 		name="name"
-		on:change={validateInput}
 		placeholder="List title"
+		required
 	></TextField>
 	<TextField
 		bind:value={listDescription}
 		id="description"
 		label="Description"
 		name="description"
-		on:change={validateInput}
 		placeholder="List description"
+		required
 	></TextField>
 	{#if errorMessage}
 		<Body class="text-red-400"><i>{errorMessage}</i></Body>

@@ -4,7 +4,6 @@
 
 	export let items: Item[] | undefined;
 	let contentClass = 'flex flex-col gap-4 sm:w-1/2';
-	console.log(items);
 </script>
 
 <div class="flex flex-col sm:flex-row gap-4">
