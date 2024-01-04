@@ -34,7 +34,7 @@
 
 <div class="flex justify-between items-end my-6 mb-12">
 	<div class="flex space-x-2">
-		<Button href="/user/items/${data.slug}/add-to-list" icon="faPlus" type="submit"
+		<Button href="/user/items/{data.slug}/add-to-list" icon="faPlus" type="submit"
 		>Add to list
 		</Button
 		>

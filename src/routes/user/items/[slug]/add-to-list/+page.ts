@@ -11,9 +11,7 @@ export const load = async ({ params, parent }) => {
 		modal: {
 			toggled: true,
 			title: 'Add to list',
-			button: 'Save',
-			exit: true,
-			buttonFunction: function () {}
+			exit: true
 		}
 	};
 };

@@ -12,6 +12,7 @@
 	export let data: PageData;
 	let list: List = data.list;
 	let listId = data.param;
+	console.log(list);
 </script>
 
 {#if list}

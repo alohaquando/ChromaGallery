@@ -7,6 +7,7 @@
 	import Icon from '$lib/components/iconography/Icon.svelte';
 	import { count } from '$lib/utils/countItem.js';
 	import { extractItems } from '$lib/data/item';
+	import { createEventDispatcher } from 'svelte';
 
 	export let collection: List | Collection;
 	let customClass = '';
@@ -33,14 +34,25 @@
 			buttonStyle = '!border-none';
 			break;
 	}
+	export let id: string = '';
+	export let checked: boolean = false;
+
+	const dispatch = createEventDispatcher();
+
+	const onSelect = () => {
+		dispatch('select', { currentTarget: { id } });
+	};
 
 	let str = count(collection.items);
 	let listItems = extractItems(collection);
 </script>
 
-<svelte:element class="{customClass} w-full h-auto flex items-center gap-4 overflow-hidden"
-								href="{path}"
-								this={(type === 'action' && hasLink) ? 'a' : 'div'}>
+<svelte:element class="{customClass} text-left w-full h-auto flex items-center gap-4 overflow-hidden" href="{path}"
+								{id}
+								on:click={()=>{checked = !checked; onSelect()}}
+								role="button"
+								tabindex="0"
+								this={(type === 'action' && hasLink) ? 'a' : 'button'}>
 	{#await listItems}
 		<Block class="rounded-lg shrink-0 !h-16 !w-16" icon link={false}></Block>
 	{:then items}
@@ -60,7 +72,7 @@
 				hover={false}
 			></Fab>
 		{:else}
-			<Checkbox id={collection.id} class="shrink-0" name=""></Checkbox>
+			<Checkbox id={collection.id} class="shrink-0" name="" {checked}></Checkbox>
 		{/if}
 	{:else if type === 'action'}
 		<Icon icon="faChevronRight" class="shrink-0 w-6 h-6" />

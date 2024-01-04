@@ -52,7 +52,23 @@ export const handleAddToList = async (userId: string, listId: string, itemId: st
 		},
 		{ merge: true }
 	);
-	console.log('Bookmarked successfully');
+	console.log('Added successfully');
+};
+export const handleAddToMultipleList = async (
+	userId: string,
+	listIds: string[],
+	itemId: string
+) => {
+	listIds.forEach((listId) => {
+		setDoc(
+			doc(db, 'users', userId, 'lists', listId),
+			{
+				items: arrayUnion(itemId)
+			},
+			{ merge: true }
+		);
+	});
+	console.log('Added successfully');
 };
 export const handleCreateList = async (
 	userId: string,

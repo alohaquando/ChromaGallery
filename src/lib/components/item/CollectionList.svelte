@@ -27,6 +27,18 @@
 	export let width: 'fixed' | 'full' = 'fixed';
 	export let isCollection: boolean = false;
 	export let hasLink: boolean = true;
+	export let selected: string[] = [];
+	const handleSelectList = (event: any) => {
+		let itemId = event.detail.currentTarget.id;
+		let listCheckbox = document.getElementById(itemId);
+		if (selected.includes(itemId)) {
+			selected = selected.filter((id) => id !== itemId);
+		} else {
+			selected = [...selected, itemId];
+		}
+
+		console.log(selected);
+	};
 </script>
 
 <div class={customClass}>
@@ -34,7 +46,8 @@
 		{#if rowType}
 			<div class="flex flex-col gap-2">
 				{#each collections as collection}
-					<RowCollection {hasLink} {icon} {button} {curator} {type} {collection}></RowCollection>
+					<RowCollection on:select={handleSelectList} id="{collection.id}" {hasLink} {icon} {button} {curator} {type}
+												 {collection}></RowCollection>
 				{/each}
 			</div>
 		{:else}

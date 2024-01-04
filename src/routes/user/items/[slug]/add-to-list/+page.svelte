@@ -6,8 +6,9 @@
 	// import { listStore } from '$lib/stores/listStore.js';
 	// import { itemStore } from '$lib/stores/itemStore.js';
 	import { db } from '$lib/services/firebase/firebase.js';
-	import { handleAddToList } from '$lib/data/list';
+	import { handleAddToMultipleList } from '$lib/data/list';
 	import type { PageData } from './$types';
+	import type { List } from '$lib/data/dataModels';
 
 	/** @type {import('../../../../../.svelte-kit/types/src/routes').PageLoad} */
 	export let data: PageData;
@@ -56,6 +57,9 @@
 	// 	console.log('Bookmarked successfully');
 	// };
 	console.log(lists);
+
+	let selected: string[] = [];
+
 </script>
 
 <div class="flex flex-col justify-center items-center gap-8">
@@ -63,10 +67,10 @@
 	<Button class="w-full" href="add-to-list/search" icon="faSearch">Find list</Button>
 </div>
 <div class="mt-6">
-	<!--{#if $listStore.length > 0}-->
-	<CollectionList class="gap-4" collections={lists} rowType type="checkbox"></CollectionList>
-	<!--{:else}-->
-	<!--	<h1>No List</h1>-->
-	<!--{/if}-->
+	<CollectionList bind:selected={selected} class="gap-4" collections={lists} rowType type="checkbox"></CollectionList>
 </div>
-<!--<button class="text-center outline-double mt-5" on:click={handleAddToList}>Add To List</button>-->
+<div class="sticky bottom-6 py-4">
+	<Button design="filled" on:click={()=>handleAddToMultipleList(data.session.uid, selected, data.slug)} width="full">Add
+		To List
+	</Button>
+</div>
