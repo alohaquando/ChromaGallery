@@ -10,7 +10,8 @@
 
 	/** @type {import('../../../../../.svelte-kit/types/src/routes').PageLoad} */
 	export let data: PageData;
-	let bookmark: List = data.lists ? data.lists.find((list) => list.id === 'bookmark') : undefined;
+	// @ts-ignore
+	let bookmark: List | undefined = data.lists ? data.lists.find((list) => list.id === 'bookmark') : undefined;
 </script>
 
 <Icon

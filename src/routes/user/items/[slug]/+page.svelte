@@ -16,16 +16,17 @@
 	let item = data.item;
 	console.log(data);
 
-	let isBookmarked: Promise<boolean> = checkIfBookmarked(data.slug);
-	$: isBookmarked;
+	let isBookmarked: boolean = false;
 
 	const checkBookmark = async (id: string) => {
-		handleBookmark(id);
-		isBookmarked = checkIfBookmarked(id);
+		await handleBookmark(id);
+		isBookmarked = await checkIfBookmarked(id);
+		console.log(isBookmarked);
 	};
 
 	onMount(async () => {
-		checkIfBookmarked(data.slug);
+		isBookmarked = await checkIfBookmarked(data.slug);
+		console.log(isBookmarked);
 	});
 </script>
 
@@ -40,11 +41,7 @@
 		<!--		<Button icon="faVolume" type="submit">Audio guide</Button>-->
 	</div>
 
-	{#await isBookmarked}
-		<Fab icon="faStar"></Fab>
-	{:then isBookmarked}
-		<Fab icon="faStar" on:click={() => {checkBookmark(data.slug)}} toggled={isBookmarked}></Fab>
-	{/await}
+	<Fab icon="faStar" on:click={() => {checkBookmark(data.slug)}} toggled={isBookmarked}></Fab>
 </div>
 
 <BodyLarge>

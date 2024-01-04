@@ -120,10 +120,8 @@ export async function handleBookmark(itemId: string) {
 		// Update the 'items' field in the document
 		await setDoc(userDocRef, { items: currentItems });
 		console.log('Bookmarked successfully');
-		return true;
 	} else {
 		console.error('Bookmarked failed');
-		return false;
 	}
 }
 
@@ -137,9 +135,7 @@ export async function checkIfBookmarked(itemId: string) {
 	const docSnap = await getDoc(docRef);
 
 	if (docSnap.data().items.includes(itemId)) {
-		console.log('true');
 		return true;
 	}
-	console.log(false);
 	return false;
 }
