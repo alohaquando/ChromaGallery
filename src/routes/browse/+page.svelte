@@ -48,10 +48,10 @@
 
 <div class="h-full flex flex-col justify-center gap-16">
 	<!-- Collections -->
-	<div class="h-full flex flex-col justify-center gap-8">
-		<div class="w-full flex items-center gap-5">
-			<Icon icon="faChartTreeMap" size="3xl" />
-			<Link class="shrink-0" href="/collection" isHovered type="headline">Collections</Link>
+	<div class="h-full flex flex-col justify-center gap-12">
+		<div class="w-full flex items-center gap-2">
+			<Icon icon="faChartTreeMap" size="2xl" />
+			<Link class="shrink-0" href="/collection" type="title-lg">Collections</Link>
 			<Divider />
 		</div>
 
@@ -61,10 +61,10 @@
 	</div>
 
 	<!-- All items -->
-	<div class="w-full flex flex-col justify-center gap-8">
-		<div class="w-full flex items-center gap-5">
-			<Icon icon="faPalette" size="3xl" />
-			<Link class="shrink-0" href="items" isHovered type="headline">All Artworks</Link>
+	<div class="w-full flex flex-col justify-center gap-12">
+		<div class="w-full flex items-center gap-2">
+			<Icon icon="faPalette" size="2xl" />
+			<Link class="shrink-0" href="items" type="title-lg">All Artworks</Link>
 			<Divider />
 		</div>
 

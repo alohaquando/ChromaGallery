@@ -56,7 +56,7 @@
 >
 
 	{#if bookmark}
-		<div class="absolute h-96 w-96 bg-black/10 rounded-full blur-2xl"></div>
+		<div class="absolute h-auto w-full bg-black/10 rounded-full blur-2xl"></div>
 		<div
 			class="absolute opacity-40 h-60 w-60 bg-gradient-to-b from-zinc-400 to-fuchsia-600 rounded-full blur-xl"></div>
 		<div

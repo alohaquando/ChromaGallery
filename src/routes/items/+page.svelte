@@ -13,7 +13,7 @@
 	let itemList = data.allItem;
 </script>
 
-<PageTitle>Artistic Creations</PageTitle>
+<PageTitle>All artworks</PageTitle>
 <Button class="mb-12 mt-20" href="browse/search" icon="faMagnifyingGlass" width="full">Search</Button>
 
 <div class="h-full flex flex-col justify-center gap-14">

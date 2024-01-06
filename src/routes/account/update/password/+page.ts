@@ -3,8 +3,7 @@ export async function load() {
 		modal: {
 			toggled: true,
 			href: '/account/setting',
-			title: 'Account',
-			buttonFunction: function () {}
+			title: 'Account'
 		}
 	};
 }

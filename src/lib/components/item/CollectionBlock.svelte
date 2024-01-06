@@ -5,7 +5,6 @@
 	import InfoChip from '$lib/components/controls/InfoChip.svelte';
 	import Block from '$lib/components/item/Block.svelte';
 	import type { Collection } from '../../data/dataModels';
-	import { allItem } from '../../data/exampleData';
 	import { count } from '$lib/utils/countItem';
 	import { extractItems } from '$lib/data/item';
 
@@ -16,7 +15,7 @@
 
 	export let design: 'grid' | 'single' = 'single';
 
-	let str = collection ? count(collection.items) : '';
+	let str = collection ? count(collection.items) : 'Loading...';
 	export let title: boolean = true;
 	export let subtitle: boolean = true;
 	export let bookmark: boolean = false;
@@ -34,9 +33,11 @@
 	let widthClass = '';
 	switch (width) {
 		case 'fixed':
-			widthClass = 'sm:w-72 w-full';
-		case 'full':
 			widthClass = 'w-72';
+			break;
+		case 'full':
+			widthClass = 'sm:w-[45%] w-full';
+			break;
 	}
 
 	let itemList = extractItems(collection);
@@ -54,19 +55,17 @@
 			: widthClass} flex-col justify-start items-start gap-6 inline-flex grow-0"
 	>
 		<div
-			class="w-full {bookmark? 'h-64' : 'h-52'} rounded-lg gap-1 inline-flex overflow-hidden relative"
+			class="w-full h-52 rounded-lg gap-1 inline-flex overflow-hidden relative"
 		>
-			<Block item={null}></Block>
+			<Block item={null} bookmark></Block>
 			<InfoChip class="absolute bottom-2 right-2 !rounded-2xl !bg-opacity-40 py-4">
 				<Body>{str}</Body>
 			</InfoChip>
 		</div>
-		{#if title}
+		{#if title && !bookmark}
 			<div class="self-stretch flex-col flex gap-4">
 				<Body>
-				{#if !bookmark}
-					Title
-				{/if}
+				Title
 				</Body>
 				{#if subtitle && !bookmark && !hideSubtitle}
 					<Body class="text-white/50 line-clamp-2">Description</Body>
@@ -83,9 +82,8 @@
 		<a
 			class="w-full h-52 rounded-lg gap-1 inline-flex overflow-hidden relative"
 			href="{path}"
-			on:focus
-			on:mouseover={toggleHover}
 			on:mouseleave={toggleHover}
+			on:mouseenter={toggleHover}
 			role="button"
 			tabindex="0"
 		>
@@ -104,12 +102,10 @@
 				</InfoChip>
 			{/if}
 		</a>
-		{#if title}
+		{#if title && !bookmark}
 			<div class="self-stretch flex-col flex gap-4">
 				<Link {isHovered} href="{path}" type="body">
-					{#if !bookmark}
-						{collection?.title}
-					{/if}
+					{collection?.title}
 				</Link>
 				{#if subtitle && !bookmark && !hideSubtitle}
 					<Body class="text-white/50 line-clamp-2">{collection?.description}</Body>
