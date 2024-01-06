@@ -1,14 +1,11 @@
-import { getAuth } from 'firebase/auth';
-
 export async function load() {
 	return {
 		modal: {
 			toggled: true,
-			href: '/user/account/setting',
+			href: '/account',
 			title: 'Account',
-			button: 'Save',
+			exit: true,
 			buttonFunction: function () {}
-		},
-		auth: getAuth()
+		}
 	};
 }

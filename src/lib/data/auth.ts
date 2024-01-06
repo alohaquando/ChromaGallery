@@ -87,7 +87,7 @@ export async function handleSignUpAuthenticate(
 
 		await authHandlers.login(email, password);
 
-		window.location.href = '/user/account/register';
+		window.location.href = '/account/register';
 	} catch (err) {
 		let error = true;
 		console.log(' There was an auth error', err);
@@ -149,8 +149,6 @@ export async function handleAuthenticateGoogle() {
 	}
 }
 
-
-  
 export async function handleSetDisplayName(displayName: string) {
 	try {
 		if (displayName.length < 3) {
@@ -266,6 +264,7 @@ export async function handleUpdatePassword(
 		console.log(' There was an auth error', err);
 	}
 }
+
 export const getSessionUser: () => Promise<User | null> = async () => {
 	return new Promise((resolve) => {
 		onAuthStateChanged(auth, async (user) => {

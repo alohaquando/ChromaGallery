@@ -60,7 +60,7 @@
 					></CollectionBlock>
 				{/each}
 				{#if width === 'fixed'}
-					<Fab class="mr-10 shrink-0 relative -mt-10" icon="" size="lg" href="/user/collection"
+					<Fab class="mr-10 shrink-0 relative -mt-10" icon="" size="lg" href="/collection"
 					>View all
 					</Fab
 					>

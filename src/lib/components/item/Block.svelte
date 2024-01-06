@@ -12,9 +12,9 @@
 	export let curator: boolean = false;
 	let path: string;
 	if (bookmark) {
-		path = '/user/list/bookmark';
+		path = '/list/bookmark';
 	} else {
-		path = (curator ? '/curator' : '/user') + '/items/' + item?.id;
+		path = (curator ? '/curator' : '') + '/items/' + item?.id;
 	}
 
 	let iconSize = '';

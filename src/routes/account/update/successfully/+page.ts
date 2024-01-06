@@ -2,9 +2,8 @@ export async function load() {
 	return {
 		modal: {
 			toggled: true,
-			href: '/user/account',
+			href: '/account/setting',
 			title: 'Account',
-			exit: true,
 			buttonFunction: function () {}
 		}
 	};

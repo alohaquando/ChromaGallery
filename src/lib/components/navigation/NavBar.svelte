@@ -15,13 +15,13 @@
 		<div class="container mx-auto px-6 space-x-6 flex justify-center">
 			<NavItem icon="faHome" href="/">Home</NavItem>
 			<NavItem icon="faSearch" href="/browse">Browse</NavItem>
-			<NavItem icon="faUserCircle" href="/user/account">Me</NavItem>
+			<NavItem icon="faUserCircle" href="/account">Me</NavItem>
 		</div>
 	{:else if type === 'curator'}
 		<div class="container mx-auto px-6 space-x-6 flex justify-center">
 			<NavItem icon="faImage" href="/">Items</NavItem>
 			<NavItem icon="faRectangleHistory" href="/">Collections</NavItem>
-			<NavItem icon="faUserCircle" href="/user/account">Me</NavItem>
+			<NavItem icon="faUserCircle" href="/account">Me</NavItem>
 		</div>
 	{/if}
 	<div

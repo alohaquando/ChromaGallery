@@ -11,7 +11,7 @@
 	import faviconApple from '$lib/assets/favicons/apple-touch-icon.png';
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
-	import type { PageData } from '../../.svelte-kit/types/src/routes/$types';
+	import type { PageData } from './$types';
 	import {} from '$lib/stores/header';
 	import { generateHeader, generateModal, generateNavbar, generateBackground } from '$lib/stores/pageLayout';
 	import HeaderCurator from '$lib/components/navigation/HeaderCurator.svelte';

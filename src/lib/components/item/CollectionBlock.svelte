@@ -24,10 +24,10 @@
 	export let isCollection: boolean = false;
 	let path: string;
 	if (bookmark) {
-		path = '/user/list/bookmark';
+		path = '/list/bookmark';
 		design = 'single';
 	} else {
-		path = (curator ? '/curator' : '/user') + (isCollection ? '/collection/' : '/list/') + collection?.id;
+		path = (curator ? '/curator' : '') + (isCollection ? '/collection/' : '/list/') + collection?.id;
 	}
 	export let hideSubtitle: boolean = false;
 	export let width: 'fixed' | 'full' = 'fixed';
