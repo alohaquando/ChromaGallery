@@ -41,7 +41,7 @@
 		}
 		case 'lg': {
 			sizeClasses =
-				'w-28 h-28 after:w-24 after:h-24 before:w-28 before:h-28 after:!blur-lg before:!blur-md hover:bg-white/10';
+				'w-28 h-28 after:w-28 after:h-28 before:w-28 before:h-28 after:!blur-lg before:!blur-md hover:bg-white/10';
 			break;
 		}
 	}

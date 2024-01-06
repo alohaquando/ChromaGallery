@@ -139,3 +139,8 @@ export async function checkIfBookmarked(itemId: string) {
 	}
 	return false;
 }
+
+export const filterItem = async (idList: string[] | undefined) => {
+	const allItems = await getAllItems();
+	return allItems.filter((item) => !idList?.includes(item.id));
+};

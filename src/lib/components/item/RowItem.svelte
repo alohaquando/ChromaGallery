@@ -65,10 +65,21 @@
 
 	let buttonFunction: (() => void) | undefined;
 	$: button, (buttonFunction = functionList.find((option) => option.type === button)?.function);
+
+	export let id: string = '';
+	export let checked: boolean = false;
+
+	const onSelect = () => {
+		dispatch('select', { currentTarget: { id } });
+	};
 </script>
 
 <svelte:element class="{customClass} w-full h-auto flex items-center gap-4 overflow-hidden"
 								href="{path}"
+								{id}
+								on:click={()=>{checked = !checked; onSelect()}}
+								role="button"
+								tabindex="0"
 								this={type === 'action' ? 'a' : 'div'}>
 	{#if type === 'edit' || type === 'delete'}
 		<Fab
@@ -95,7 +106,7 @@
 				hover={false}
 			></Fab>
 		{:else}
-			<Checkbox id={item.id} class="shrink-0" {item} name=""></Checkbox>
+			<Checkbox id={item.id} class="shrink-0" {item} name="" {checked}></Checkbox>
 		{/if}
 	{:else if (type === 'edit' || type === 'action')}
 		<Icon icon="{type === 'edit' ? 'faEquals' : 'faChevronRight'}" class="shrink-0 w-6 h-6" />

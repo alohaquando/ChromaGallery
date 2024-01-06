@@ -117,13 +117,15 @@
 		<div class="flex flex-col gap-4">
 			{#each placeholderItems as item}
 				<div>
-					<RowItem type="view" class="rounded-lg" {item}></RowItem>
+					<RowItem {type} class="rounded-lg" {item}></RowItem>
 				</div>
 			{/each}
 		</div>
 
-		<div class="opacity-50 cursor-default flex">
-			<span>Add an item with the list below</span>
-		</div>
+		{#if (type === 'edit')}
+			<div class="opacity-50 cursor-default flex">
+				<span>Add an item with the list below</span>
+			</div>
+		{/if}
 	{/if}
 </div>
