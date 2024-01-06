@@ -5,6 +5,9 @@
 	import GridItem from '$lib/components/item/GridItem.svelte';
 	import CollectionList from '$lib/components/item/CollectionList.svelte';
 	import type { PageData } from './$types';
+	import Link from '$lib/components/links/Link.svelte';
+	import Divider from '$lib/components/layouts/Divider.svelte';
+	import Icon from '$lib/components/iconography/Icon.svelte';
 
 	/** @type {import('../../../../../.svelte-kit/types/src/routes').PageLoad} */
 	export let data: PageData;
@@ -43,17 +46,36 @@
 <PageTitle>Browse</PageTitle>
 <Button class="mb-12 mt-20" href="browse/search" icon="faMagnifyingGlass" width="full">Search</Button>
 
-<div class="h-full flex flex-col justify-center gap-14">
+<div class="h-full flex flex-col justify-center gap-16">
 	<!-- Collections -->
 	<div class="h-full flex flex-col justify-center gap-8">
-		<BodyLarge>Collections</BodyLarge>
+		<div class="w-full flex items-center gap-5">
+			<Icon icon="faChartTreeMap" size="3xl" />
+			<Link class="shrink-0" href="/collection" isHovered type="headline">Collections</Link>
+			<Divider />
+		</div>
+
+
 		<!-- scrolling  -->
 		<CollectionList collections={collectionList} isCollection></CollectionList>
 	</div>
+
 	<!-- All items -->
 	<div class="w-full flex flex-col justify-center gap-8">
-		<BodyLarge>All items</BodyLarge>
+		<div class="w-full flex items-center gap-5">
+			<Icon icon="faPalette" size="3xl" />
+			<Link class="shrink-0" href="items" isHovered type="headline">All Artworks</Link>
+			<Divider />
+		</div>
 
-		<GridItem items={itemList}></GridItem>
+
+		<!-- items display  -->
+		<GridItem itemLimit={10} items={itemList}></GridItem>
+	</div>
+
+	<div class="w-full flex justify-center items-center gap-10">
+		<Divider />
+		<Link class="shrink-0" href="/items" type="title">See more . . .</Link>
+		<Divider />
 	</div>
 </div>

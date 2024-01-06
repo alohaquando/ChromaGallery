@@ -52,7 +52,7 @@
 			</div>
 		{:else}
 			<div
-				class="{customClass} flex items-center overflow-y-clip overflow-x-scroll gap-x-4 gap-y-10 {wrapClass} pb-4"
+				class="{customClass} flex items-center overflow-y-clip overflow-x-auto gap-x-4 gap-y-10 {wrapClass} pb-8"
 			>
 				{#each collections as collection}
 					<CollectionBlock {isCollection} {curator} {width} {hideSubtitle} class="shrink-0" {collection}

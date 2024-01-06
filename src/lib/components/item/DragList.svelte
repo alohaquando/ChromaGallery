@@ -38,6 +38,8 @@
 	let currentLength: number;
 	let isNotFull: boolean = false;
 	let placeholderItems: undefined | Item[];
+	let cursorClass = '';
+	$: type, cursorClass = type === 'edit' ? 'cursor-grab' : '';
 
 	// drag and drop function
 	const handleConsider = (e: CustomEvent<DndEvent<Item>>) => {
@@ -90,7 +92,7 @@
 </script>
 
 <div class="{customClass} flex flex-col gap-4">
-	{#if items.length !== 0}
+	{#if items && items?.length !== 0}
 		<div
 			class="flex flex-col gap-4"
 			on:consider={handleConsider}
@@ -100,10 +102,11 @@
 			{#each items as item (item.id)}
 				<div animate:flip={{ duration: flipDurationMs }}>
 					<RowItem
+						id="{item.id}"
 						on:transfer={() => onTransfer(item)}
 						on:delete={() => onDelete(item)}
 						{type}
-						class="rounded-lg"
+						class="rounded-lg {cursorClass}"
 						{item}
 						{button}
 						{icon}
@@ -117,7 +120,7 @@
 		<div class="flex flex-col gap-4">
 			{#each placeholderItems as item}
 				<div>
-					<RowItem {type} class="rounded-lg" {item}></RowItem>
+					<RowItem id="{item.id}" {type} class="rounded-lg" {item}></RowItem>
 				</div>
 			{/each}
 		</div>

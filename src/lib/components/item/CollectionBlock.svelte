@@ -40,6 +40,11 @@
 	}
 
 	let itemList = extractItems(collection);
+
+	let isHovered: boolean = false;
+	const toggleHover = () => {
+		isHovered = !isHovered;
+	};
 </script>
 
 {#await itemList}
@@ -49,7 +54,7 @@
 			: widthClass} flex-col justify-start items-start gap-6 inline-flex grow-0"
 	>
 		<div
-			class="w-full h-52 rounded-lg gap-1 inline-flex overflow-hidden relative"
+			class="w-full {bookmark? 'h-64' : 'h-52'} rounded-lg gap-1 inline-flex overflow-hidden relative"
 		>
 			<Block item={null}></Block>
 			<InfoChip class="absolute bottom-2 right-2 !rounded-2xl !bg-opacity-40 py-4">
@@ -61,8 +66,6 @@
 				<Body>
 				{#if !bookmark}
 					Title
-				{:else}
-					Bookmark
 				{/if}
 				</Body>
 				{#if subtitle && !bookmark && !hideSubtitle}
@@ -80,6 +83,11 @@
 		<a
 			class="w-full h-52 rounded-lg gap-1 inline-flex overflow-hidden relative"
 			href="{path}"
+			on:focus
+			on:mouseover={toggleHover}
+			on:mouseleave={toggleHover}
+			role="button"
+			tabindex="0"
 		>
 			<Block item={itemData? itemData[0] : null} link={false} {bookmark}></Block>
 			{#if !bookmark && design === 'grid' && itemData && itemData[1]}
@@ -98,11 +106,9 @@
 		</a>
 		{#if title}
 			<div class="self-stretch flex-col flex gap-4">
-				<Link isHovered={false} href="{path}" type="body">
+				<Link {isHovered} href="{path}" type="body">
 					{#if !bookmark}
 						{collection?.title}
-					{:else}
-						Bookmark
 					{/if}
 				</Link>
 				{#if subtitle && !bookmark && !hideSubtitle}

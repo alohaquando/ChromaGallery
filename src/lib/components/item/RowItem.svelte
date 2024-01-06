@@ -66,7 +66,7 @@
 	let buttonFunction: (() => void) | undefined;
 	$: button, (buttonFunction = functionList.find((option) => option.type === button)?.function);
 
-	export let id: string = '';
+	export let id: string;
 	export let checked: boolean = false;
 
 	const onSelect = () => {
@@ -83,10 +83,11 @@
 								this={type === 'action' ? 'a' : 'div'}>
 	{#if type === 'edit' || type === 'delete'}
 		<Fab
+			{id}
 			on:click={onDelete}
 			icon="faMinus"
 			size="mini"
-			hover={false}
+			destructive
 			class="{animationClass} shrink-0 text-red-500 !border-red-500"
 		></Fab>
 	{/if}

@@ -10,6 +10,8 @@
 	import Divider from '$lib/components/layouts/Divider.svelte';
 	import GridCollection from '$lib/components/item/GridCollection.svelte';
 	import type { PageData } from './$types';
+	import Headline from '$lib/components/typography/Headline.svelte';
+	import Icon from '$lib/components/iconography/Icon.svelte';
 
 	/** @type {import('../../../../../.svelte-kit/types/src/routes').PageLoad} */
 	export let data: PageData;
@@ -33,9 +35,10 @@
 		{/if}
 
 		<!-- My Lists -->
-		<div class="w-full flex justify-between items-center mb-4">
-			<BodyLarge>My lists</BodyLarge>
-			<Button href="/list/create" icon="faPlus">New lists</Button>
+		<div class="w-full flex items-center mb-6 gap-6">
+			<Icon icon="faBookmark" size="3xl" />
+			<Headline class="shrink-0 cursor-default">Bookmark</Headline>
+			<Divider />
 		</div>
 
 		<!--	Bookmark -->
@@ -43,6 +46,13 @@
 			<CollectionBlock collection={bookmark} bookmark></CollectionBlock>
 		</div>
 
+		<!--	List-->
+		<div class="w-full flex items-center mt-6 mb-4 gap-6">
+			<Icon icon="faList" size="3xl" />
+			<Headline class="shrink-0 cursor-default">My lists</Headline>
+			<Divider />
+			<Button class="shrink-0" href="/list/create" icon="faPlus">New lists</Button>
+		</div>
 		<GridCollection class="mt-10" collections={lists}></GridCollection>
 	</div>
 {:else}

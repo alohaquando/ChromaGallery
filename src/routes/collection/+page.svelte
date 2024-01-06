@@ -2,7 +2,6 @@
 	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
 	import Button from '$lib/components/controls/Button.svelte';
 	import CollectionList from '$lib/components/item/CollectionList.svelte';
-	import { allCollection } from '$lib/data/exampleData';
 
 	export let data;
 	let collections = data.collections;
