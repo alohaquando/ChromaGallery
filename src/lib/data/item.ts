@@ -1,11 +1,14 @@
 import {
+	addDoc,
 	arrayUnion,
 	collection,
+	deleteDoc,
 	doc,
 	getDoc,
 	getDocs,
 	query,
 	setDoc,
+	updateDoc,
 	where
 } from 'firebase/firestore';
 import { db } from '$lib/services/firebase/firebase';
@@ -138,4 +141,47 @@ export async function checkIfBookmarked(itemId: string) {
 		return true;
 	}
 	return false;
+}
+
+export async function handleCreateItem(
+	author: string,
+	description: string,
+	image: string,
+	isFeatured: boolean,
+	location: string,
+	title: string,
+	year: string
+) {
+	const docRef = await addDoc(collection(db, 'items'), {
+		author,
+		description,
+		image,
+		isFeatured,
+		location,
+		title,
+		year
+	});
+	console.log('Document written with ID: ', docRef.id);
+}
+
+export async function handleDeleteItem(itemId: string) {
+	const itemRef = doc(db, 'items', itemId);
+	const itemDoc = await getDoc(itemRef);
+	if (itemDoc.exists()) {
+		try {
+			await deleteDoc(itemRef);
+			console.log('Item successfully deleted!');
+		} catch (error) {
+			console.error('Error deleting item: ', error);
+		}
+	} else {
+		// Document does not exist, handle accordingly
+		console.log('Item does not exist.');
+	}
+}
+
+export async function handleUpdateItem(itemId: string, listToUpdate: object) {
+	const itemRef = doc(db, 'items', itemId);
+
+	await updateDoc(itemRef, listToUpdate);
 }

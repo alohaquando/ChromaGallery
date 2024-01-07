@@ -3,6 +3,7 @@ import {
 	GoogleAuthProvider,
 	onAuthStateChanged,
 	reauthenticateWithCredential,
+	sendPasswordResetEmail,
 	signInWithEmailAndPassword,
 	signInWithPopup,
 	signOut,
@@ -37,6 +38,9 @@ export const authHandlers = {
 	},
 	updatePassword: async (newPassword: string) => {
 		await updatePassword(auth.currentUser, newPassword);
+	},
+	sendResetPassword: async (email: string) => {
+		await sendPasswordResetEmail(auth, email);
 	}
 };
 
@@ -149,8 +153,6 @@ export async function handleAuthenticateGoogle() {
 	}
 }
 
-
-  
 export async function handleSetDisplayName(displayName: string) {
 	try {
 		if (displayName.length < 3) {
@@ -266,6 +268,18 @@ export async function handleUpdatePassword(
 		console.log(' There was an auth error', err);
 	}
 }
+
+export const handleResetPassword = async (email: string) => {
+	try {
+		await authHandlers.sendResetPassword(email);
+		console.log('Successfully Send Reset Password Email');
+
+		window.location.href = '/'
+	} catch (err) {
+		console.log(err);
+	}
+};
+
 export const getSessionUser: () => Promise<User | null> = async () => {
 	return new Promise((resolve) => {
 		onAuthStateChanged(auth, async (user) => {

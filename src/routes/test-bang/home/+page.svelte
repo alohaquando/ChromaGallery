@@ -30,3 +30,47 @@
 	};
 	getAllItems();
 </script> -->
+
+<script>
+	import TextField from '$lib/components/inputs/TextField.svelte';
+
+	let author;
+	let title;
+	let subtitle;
+	let location;
+	let year;
+	let description;
+</script>
+
+<form method="post">
+	<TextField id="author" label="author" name="author" placeholder="author" bind:value={author}
+	></TextField>
+	<TextField
+		id="description"
+		label="description"
+		name="description"
+		placeholder="description"
+		bind:value={description}
+	></TextField>
+	<TextField id="title" label="title" name="title" placeholder="title" bind:value={title}
+	></TextField>
+	<TextField
+		id="subtitle"
+
+		label="subtitle"
+		name="subtitle"
+		placeholder="subtitle"
+		bind:value={subtitle}
+	></TextField>
+	<TextField
+		id="location"
+		label="location"
+		name="location"
+		placeholder="location"
+		bind:value={location}
+	></TextField>
+
+	<TextField id="year" label="year" name="year" placeholder="year" bind:value={year}></TextField>
+	<input type="file" />
+	<button type="submit" class="bg-white text-black">Create</button>
+</form>

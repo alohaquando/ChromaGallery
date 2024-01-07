@@ -1,4 +1,4 @@
-import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
+import { collection, deleteDoc, doc, getDoc, getDocs } from 'firebase/firestore';
 import { db } from '$lib/services/firebase/firebase';
 
 export const getCollection = async (collectionId: string) => {
@@ -31,3 +31,19 @@ export const getAllCollection = async () => {
 		throw error;
 	}
 };
+
+export async function handleDeleteCollection(itemId: string) {
+	const itemRef = doc(db, 'collections', itemId);
+	const itemDoc = await getDoc(itemRef);
+	if (itemDoc.exists()) {
+		try {
+			await deleteDoc(itemRef);
+			console.log('Item successfully deleted!');
+		} catch (error) {
+			console.error('Error deleting item: ', error);
+		}
+	} else {
+		// Document does not exist, handle accordingly
+		console.log('Item does not exist.');
+	}
+}

@@ -1,4 +1,13 @@
-import { addDoc, arrayUnion, collection, doc, getDoc, getDocs, setDoc } from 'firebase/firestore';
+import {
+	addDoc,
+	arrayUnion,
+	collection,
+	deleteDoc,
+	doc,
+	getDoc,
+	getDocs,
+	setDoc
+} from 'firebase/firestore';
 import { db } from '$lib/services/firebase/firebase';
 
 export const getUsersAllLists = async (userId: string) => {
@@ -70,6 +79,7 @@ export const handleAddToMultipleList = async (
 	});
 	console.log('Added successfully');
 };
+
 export const handleCreateList = async (
 	userId: string,
 	title: string = 'My Title',
@@ -95,3 +105,19 @@ export const handleCreateList = async (
 		dataToSetToStore = userData;
 	}
 };
+
+export async function handleDeleteList(userId: string, listId: string) {
+	const itemRef = doc(db, 'users', userId, 'lists', listId);
+	const itemDoc = await getDoc(itemRef);
+	if (itemDoc.exists()) {
+		try {
+			await deleteDoc(itemRef);
+			console.log('Item successfully deleted!');
+		} catch (error) {
+			console.error('Error deleting item: ', error);
+		}
+	} else {
+		// Document does not exist, handle accordingly
+		console.log('Item does not exist.');
+	}
+}

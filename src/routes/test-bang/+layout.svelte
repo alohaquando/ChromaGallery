@@ -1,4 +1,5 @@
 <!-- <script>
+	import { ref } from 'firebase/storage';
 	import CreateList from './createList.svelte';
 	import { onMount } from 'svelte';
 	import { auth, db } from '$lib/services/firebase/firebase.js';
@@ -112,38 +113,54 @@
 
 <CreateList /> -->
 <script>
+	import { handleDeleteCollection } from '$lib/data/collection';
+	import { handleCreateItem, handleDeleteItem, handleUpdateItem } from '$lib/data/item';
+	import { handleDeleteList } from '$lib/data/list';
+	import { db, storage } from '$lib/services/firebase/firebase';
+	import {
+		addDoc,
+		collection,
+		deleteDoc,
+		doc,
+		getDoc,
+		getDocs,
+		setDoc,
+		updateDoc
+	} from 'firebase/firestore';
+	import { ref, uploadBytes } from 'firebase/storage';
 	import { onMount } from 'svelte';
-	import { auth, db } from '$lib/services/firebase/firebase.js';
-	import { addDoc, collection, doc, getDoc, setDoc } from 'firebase/firestore';
-	import { getAuth, onAuthStateChanged } from 'firebase/auth';
-	import { handleCreateList } from '$lib/data/list';
-	export let data;
-	// console.log(data.session.uid);
-	// const userId = data.session.uid;
-	// onMount(() => {
-		// const handleCreateList = auth.onAuthStateChanged(async (user) => {
-		// 	if (!user) {
-		// 		return;
-		// 	}
-		// 	let dataToSetToStore;
-		// 	const docRef = doc(collection(db, 'users', user.uid, 'lists'));
-		// 	const docSnap = await getDoc(docRef);
-		// 	if (!docSnap.exists()) {
-		// 		dataToSetToStore = {
-		// 			title: 'My List ',
-		// 			subtitle: 'My list subtitle',
-		// 			items: []
-		// 		};
-		// 		const docRef = await addDoc(collection(db, 'users', user.uid, 'lists'), dataToSetToStore);
-		// 		console.log(docRef.id);
-		// 	} else {
-		// 		const userData = docSnap.data();
-		// 		dataToSetToStore = userData;
-		// 	}
-		// });
-	// handleCreateList(userId, "Title2", "Subtitle2")
+
+	const storageRef = ref(storage);
+
+	const imagesRef = ref(storage, 'images/');
+	// 'file' comes from the Blob or File API
+	// uploadBytes(storageRef, 'file').then((snapshot) => {
+	// 	console.log('Uploaded a blob or file!');
 	// });
 
+	// console.log(data.session.uid);
+	// const userId = data.session.uid;
+
+	onMount(async () => {
+		// Create Item
+		// handleCreateItem('au', 'des', 'ima', false, 'loca', 'title', 'year');
+
+		// Delete Item
+		// handleDeleteItem('6BMUulm3NHDDpaSoejUW');
+
+		// UpdateItem
+		// let toUpdate = {
+		// 	isFeatured: false,
+		// 	location: 'Paris'
+		// };
+		// handleUpdateItem('IKDg9uCvRd0yTYmKImMM', toUpdate);
+
+		// Delete Collection
+		// handleDeleteCollection('0W7lHHgjpK4NboDOZNHZ');
+
+		// Delete List
+		handleDeleteList('RiJm5slrH6Qi1QHdCkOYwlEVoud2',"tZ82jQ9RHOQhY0SZE3A3")
+	});
 </script>
 
 <slot />
