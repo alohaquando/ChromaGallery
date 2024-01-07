@@ -185,3 +185,7 @@ export async function handleUpdateItem(itemId: string, listToUpdate: object) {
 
 	await updateDoc(itemRef, listToUpdate);
 }
+export const filterItem = async (idList: string[] | undefined) => {
+	const allItems = await getAllItems();
+	return allItems.filter((item) => !idList?.includes(item.id));
+};

@@ -15,7 +15,14 @@
 	}
 	export let icon: string | undefined = undefined;
 	export let width: 'fit' | 'full' = 'fit';
+	export let sticky: boolean = false;
+	let stickyClass = '';
 	export let design: 'filled' | 'outlined' = 'outlined';
+	if (sticky) {
+		design = 'filled';
+		width = 'full';
+		stickyClass = 'sticky mt-6 bottom-6';
+	}
 	export let type: 'button' | 'submit' | 'reset' | undefined = 'button';
 	export let disabled: boolean = false;
 	export let href: string | undefined = undefined;
@@ -48,7 +55,7 @@
 </script>
 
 <svelte:element
-	class="px-5 rounded-full inline-flex items-center backdrop-blur-sm justify-center gap-2 overflow-visible ease-out duration-300 h-10 line-clamp-1 relative
+	class="{stickyClass} px-5 rounded-full inline-flex items-center backdrop-blur-sm justify-center gap-2 overflow-visible ease-out duration-300 h-10 line-clamp-1 relative
 
 disabled:text-white/50 disabled:hover:before:opacity-0 disabled:hover:after:opacity-0
 disabled:hover:bg-transparent

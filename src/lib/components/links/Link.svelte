@@ -4,13 +4,14 @@
 	import Title from '$lib/components/typography/Title.svelte';
 	import Headline from '$lib/components/typography/Headline.svelte';
 	import Display from '$lib/components/typography/Display.svelte';
+	import TitleLarge from '$lib/components/typography/TitleLarge.svelte';
 
 	let customClasses = '';
 	export { customClasses as class };
 	export let href: string | undefined = undefined;
 	export let disabled: boolean = !href;
 	let disableClass = disabled ? 'cursor-pointer' : 'cursor-default';
-	export let type: 'body' | 'title' | 'headline' | 'display' = 'body';
+	export let type: 'body' | 'title' | 'headline' | 'title-lg' | 'display' = 'body';
 	export let linkColor = 'from-white to-white';
 	export let design: 'default' | 'destructive' = 'default';
 	$: switch (design) {
@@ -35,6 +36,13 @@
 			class: 'bg-[length:0_1.5px]',
 			static: 'bg-[length:100%_1.5px]',
 			hover: 'hover:bg-[length:100%_1.5px]'
+		},
+		{
+			type: 'title-lg',
+			component: TitleLarge,
+			class: 'bg-[length:0_2px]',
+			static: 'bg-[length:100%_2px]',
+			hover: 'hover:bg-[length:100%_2px]'
 		},
 		{
 			type: 'headline',

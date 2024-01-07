@@ -52,7 +52,7 @@
 			</div>
 		{:else}
 			<div
-				class="{customClass} flex items-center overflow-y-clip overflow-x-scroll gap-x-4 gap-y-10 scrollbar-none {wrapClass}"
+				class="{customClass} flex items-center overflow-y-clip overflow-x-auto gap-x-4 gap-y-10 {wrapClass} pb-8"
 			>
 				{#each collections as collection}
 					<CollectionBlock {isCollection} {curator} {width} {hideSubtitle} class="shrink-0" {collection}
@@ -60,7 +60,7 @@
 					></CollectionBlock>
 				{/each}
 				{#if width === 'fixed'}
-					<Fab class="mr-10 shrink-0 relative -mt-10" icon="" size="lg" href="/user/collection"
+					<Fab class="mr-10 shrink-0 relative -mt-10" icon="" size="lg" href="/collection"
 					>View all
 					</Fab
 					>

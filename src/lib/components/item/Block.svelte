@@ -12,9 +12,9 @@
 	export let curator: boolean = false;
 	let path: string;
 	if (bookmark) {
-		path = '/user/list/bookmark';
+		path = '/list/bookmark';
 	} else {
-		path = (curator ? '/curator' : '/user') + '/items/' + item?.id;
+		path = (curator ? '/curator' : '') + '/items/' + item?.id;
 	}
 
 	let iconSize = '';
@@ -56,7 +56,7 @@
 >
 
 	{#if bookmark}
-		<div class="absolute h-96 w-96 bg-black/10 rounded-full blur-2xl"></div>
+		<div class="absolute h-auto w-full bg-black/10 rounded-full blur-2xl"></div>
 		<div
 			class="absolute opacity-40 h-60 w-60 bg-gradient-to-b from-zinc-400 to-fuchsia-600 rounded-full blur-xl"></div>
 		<div
@@ -66,12 +66,15 @@
 			<div class="absolute h-16 w-16 blur-xl bg-white rounded-full"></div>
 		{/if}
 	{:else }
-		{#if item}
-			<img
-				alt={item.title}
-				class="{stretch ? 'w-full h-full' : 'h-auto w-full'} {icon ? 'absolute' : ''} object-cover"
-				src={item.image}
-			/>
+		{#if (item?.image)}
+			<div
+				class="{stretch ? 'w-full h-full' : 'h-auto w-full'} {icon ? 'absolute' : ''}">
+				<img
+					alt='{item.title}'
+					class="w-full h-full object-cover"
+					src='{item.image}'
+				/>
+			</div>
 		{/if}
 	{/if}
 </svelte:element>

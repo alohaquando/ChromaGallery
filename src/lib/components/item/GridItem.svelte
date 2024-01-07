@@ -3,6 +3,11 @@
 	import type { Item } from '$lib/data/dataModels';
 
 	export let items: Item[] | undefined | null;
+	export let itemLimit: number | undefined;
+	if (itemLimit) {
+		items = items?.slice(0, itemLimit);
+	}
+
 	let contentClass = 'flex flex-col gap-4 sm:w-1/2';
 </script>
 

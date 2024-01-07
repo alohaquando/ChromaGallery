@@ -48,6 +48,52 @@
 }
 
 @layer utilities {
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 12px;
+    }
+
+    /* Vertical track */
+    ::-webkit-scrollbar-track:vertical {
+      border-radius: 12px;
+      background-color: rgba(220,220,220,1);
+      overflow: show;
+    }
+
+    /* Horizontal track */
+    ::-webkit-scrollbar-track:horizontal {
+      border-radius: 12px;
+      -webkit-box-shadow: inset 0 0 5px rgba(150,150,150,0.4);
+      background-color: rgba(200,200,200,0.2);
+      overflow: show;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      border-radius: 12px;
+      -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.6);
+      background-color: rgba(200,200,200,1);
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.7);
+      background: rgba(120,120,120,1);
+    }
+
+    /* Vertical handle */
+        ::-webkit-scrollbar-thumb:vertical {
+        border-radius: 12px;
+        -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.6);
+        background-color: rgba(90,90,90,1);
+    }
+
+    /* Vertical handle on hover */
+        ::-webkit-scrollbar-thumb:vertical:hover {
+        -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.7);
+        background: rgba(60,60,60,1);
+    }
+
 	.scrollbar-none::-webkit-scrollbar {
 		display: none;
 	}

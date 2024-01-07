@@ -91,7 +91,7 @@ export async function handleSignUpAuthenticate(
 
 		await authHandlers.login(email, password);
 
-		window.location.href = '/user/account/register';
+		window.location.href = '/account/register';
 	} catch (err) {
 		let error = true;
 		console.log(' There was an auth error', err);

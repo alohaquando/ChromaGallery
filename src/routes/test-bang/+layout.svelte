@@ -159,7 +159,9 @@
 		// handleDeleteCollection('0W7lHHgjpK4NboDOZNHZ');
 
 		// Delete List
-		handleDeleteList('RiJm5slrH6Qi1QHdCkOYwlEVoud2',"tZ82jQ9RHOQhY0SZE3A3")
+		// handleDeleteList('RiJm5slrH6Qi1QHdCkOYwlEVoud2',"tZ82jQ9RHOQhY0SZE3A3")
+
+		
 	});
 </script>
 

@@ -16,7 +16,7 @@
 		></TextField>
 		<TextField
 			id="confirm-password"
-			label="Confirm new password"s
+			label="Confirm new password"
 			name="confirm-password"
 			placeholder="Confirm new password"
 		></TextField> -->

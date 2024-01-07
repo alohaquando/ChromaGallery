@@ -3,17 +3,19 @@
 	import Icon from '../iconography/Icon.svelte';
 	import Body from '../typography/Body.svelte';
 
+	export let id: string;
+	export let destructive: boolean = false;
 	export let toggled: boolean | undefined = false;
 	export let noOutline: boolean = false;
 	export let hover: boolean = true;
 	export let disabled: boolean = false;
 
-	hover = disabled ? false : hover;
+	hover = disabled && destructive ? false : hover;
 
 	let hoverEffect =
-		'hover:bg-white/10' + hover
-			? ' ' + 'hover:before:opacity-100 hover:after:opacity-100 hover:text-gray-900'
-			: '';
+		destructive ? 'hover:bg-red-500 hover:text-white duration-500' : 'hover:bg-white/10' + (hover
+			? (' ' + 'hover:before:opacity-100 hover:after:opacity-100 hover:text-gray-900')
+			: ' ');
 	let toggleClass: string = '';
 	$: toggled, toggleClass = toggled ? 'before:opacity-70 after:opacity-20 text-gray-900 bg-white/20' : '';
 
@@ -41,7 +43,7 @@
 		}
 		case 'lg': {
 			sizeClasses =
-				'w-28 h-28 after:w-24 after:h-24 before:w-28 before:h-28 after:!blur-lg before:!blur-md hover:bg-white/10';
+				'w-28 h-28 after:w-28 after:h-28 before:w-28 before:h-28 after:!blur-lg before:!blur-md hover:bg-white/10';
 			break;
 		}
 	}
@@ -57,6 +59,7 @@
 "
 	{disabled}
 	{href}
+	{id}
 	on:click
 	on:keydown
 	role="button"
@@ -64,6 +67,9 @@
 	{target}
 	this={href ? 'a' : 'button'}
 >
+	{#if size === 'mini' || size === 'sm'}
+		<label for={id} class="w-12 h-12 absolute rounded-full z-10"></label>
+	{/if}
 	<Icon {icon} size={size === 'mini' ? 'sm' : '2xl'} type={iconType}></Icon>
 	{#if $$slots.default}
 		<Body class="pt-1 leading-tight">

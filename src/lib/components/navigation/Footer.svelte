@@ -59,10 +59,10 @@
 	<!--	Account-->
 	<Title>Account</Title>
 	<Body
-		>Manage your bookmarks and lists of your favourite piece of art with an that online museum
-		account
+	>Manage your bookmarks and lists of your favourite piece of art with an that online museum
+	account
 	</Body>
-	<Button href="/user/account/sign-up">Become a member</Button>
+	<Button href="/account/sign-up">Become a member</Button>
 
 	<Divider />
 
@@ -80,7 +80,7 @@
 			<Link class="ml-5" href="/terms">Terms</Link>
 		</div>
 		<span class="text-white/50 items-center flex cursor-default"
-			><Icon icon="faCopyright"></Icon><Body class="text-white/50">2023 Chroma Gallery</Body></span
+		><Icon icon="faCopyright"></Icon><Body class="text-white/50">2023 Chroma Gallery</Body></span
 		>
 	</div>
 </div>
