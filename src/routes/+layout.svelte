@@ -114,7 +114,7 @@
 	{/if}
 	<div class="container mx-auto px-6 max-w-3xl">
 		<slot />
-		<Footer></Footer>
+		<Footer loggedIn={!data.session}></Footer>
 	</div>
 	<div class="h-32" />
 	<NavBar class="fixed bottom-0 left-0 z-40" type={navbar.type} />

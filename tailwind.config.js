@@ -195,9 +195,18 @@ export default {
 					'100%': {
 						transform: 'rotate(-360deg) translate(0px) rotate(-360deg)'
 					}
+				},
+				fadeIn: {
+					'0%': {
+						opacity: '0%'
+					},
+					'100%': {
+						opacity: '100%'
+					}
 				}
 			},
 			animation: {
+				fadeIn: 'fadeIn 0.5s ease-out',
 				flyUp: 'flyUp 0.4s ease-out',
 				flyUpOut: 'flyUpOut 0.4s ease-out',
 				flyDown: 'flyDown 0.4s ease-out',

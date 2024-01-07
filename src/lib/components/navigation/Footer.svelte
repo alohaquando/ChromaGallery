@@ -35,6 +35,8 @@
 	// 	}
 	// 	console.log(userEmail)
 	// });
+
+	export let loggedIn: boolean = false;
 </script>
 
 <div class="pb-16 pt-32 w-full justify-start items-start gap-8 inline-flex flex-col">
@@ -56,15 +58,17 @@
 
 	<Divider />
 
-	<!--	Account-->
-	<Title>Account</Title>
-	<Body
-	>Manage your bookmarks and lists of your favourite piece of art with an that online museum
-	account
-	</Body>
-	<Button href="/account/sign-up">Become a member</Button>
+	{#if loggedIn}
+		<!--	Account-->
+		<Title>Account</Title>
+		<Body
+		>Manage your bookmarks and lists of your favourite piece of art with an that online museum
+		account
+		</Body>
+		<Button href="/account/sign-up">Become a member</Button>
 
-	<Divider />
+		<Divider />
+	{/if}
 
 	<!--	Curator site-->
 	<Title>Chroma Curator</Title>
