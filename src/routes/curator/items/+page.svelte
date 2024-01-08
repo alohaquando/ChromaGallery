@@ -23,7 +23,8 @@
 {:else}
 	<PageTitle>Items</PageTitle>
 	<Button class="mb-10 mt-20" icon="faMagnifyingGlass" width="full" href="items/search"
-		>Search</Button
+	>Search
+	</Button
 	>
 	<div class="flex justify-between items-center">
 		<BodyLarge>Featured</BodyLarge>
@@ -36,5 +37,5 @@
 		<Body>{str}</Body>
 	</div>
 	<DragList class="gap-4 mt-8" items={allItem}></DragList>
-	<FixedButton icon="faPlus"></FixedButton>
+	<FixedButton icon="faPlus" href="/curator/items/add"></FixedButton>
 {/if}

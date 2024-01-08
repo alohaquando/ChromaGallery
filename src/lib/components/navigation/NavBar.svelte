@@ -19,9 +19,9 @@
 		</div>
 	{:else if type === 'curator'}
 		<div class="container mx-auto px-6 space-x-6 flex justify-center">
-			<NavItem icon="faImage" href="/">Items</NavItem>
-			<NavItem icon="faRectangleHistory" href="/">Collections</NavItem>
-			<NavItem icon="faUserCircle" href="/account">Me</NavItem>
+			<NavItem icon="faImage" href="/curator/items">Items</NavItem>
+			<NavItem icon="faRectangleHistory" href="/curator/collection">Collections</NavItem>
+			<NavItem icon="faUserCircle" href="/curator">Me</NavItem>
 		</div>
 	{/if}
 	<div

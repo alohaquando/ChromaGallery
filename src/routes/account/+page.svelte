@@ -19,8 +19,7 @@
 
 	/** @type {import('../../../../../.svelte-kit/types/src/routes').PageLoad} */
 	export let data: PageData;
-	let lists = data.lists ? data.lists.filter((list) => list.id !== 'bookmark') : undefined;
-	let bookmark = data.lists ? data.lists.find((list) => list.id === 'bookmark') : undefined;
+	let lists = data.lists;
 
 	const randomGreeting = (): string => {
 		const greetings = ['Hi!', 'Hi there!', 'Hello!', 'Greetings!', 'Salutations!', 'Hey!', 'What\'s up!'];
@@ -77,26 +76,12 @@
 		{/if}
 
 		<!-- My Lists -->
-		<div class="w-full flex items-center mb-6 gap-2">
-			<Icon icon="faBookmark" size="xl" />
-			<TitleLarge class="shrink-0 cursor-default">Bookmark</TitleLarge>
-		</div>
-
-		<!--	Bookmark -->
-		<div class="w-full flex">
-			<CollectionBlock collection={bookmark} bookmark></CollectionBlock>
-		</div>
-
-		<!--	List-->
-		<div class="w-full flex justify-between items-center mt-6 mb-4">
-			<div class="flex items-center gap-2">
-				<Icon icon="faList" size="2xl" />
-				<TitleLarge class="shrink-0 cursor-default">My lists</TitleLarge>
-			</div>
-
+		<div class="w-full flex items-center justify-between mb-6 gap-2">
+			<TitleLarge class="shrink-0 cursor-default">My lists</TitleLarge>
 			<Button class="shrink-0" href="/list/create" icon="faPlus">New lists</Button>
 		</div>
-		<GridCollection class="mt-2" collections={lists}></GridCollection>
+
+		<GridCollection bookmark class="mt-2" collections={lists}></GridCollection>
 	</div>
 {:else}
 	<!-- Not Sign In -->

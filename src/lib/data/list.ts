@@ -119,7 +119,7 @@ export async function handleDeleteList(userId: string, listId: string) {
 			console.error('Error deleting item: ', error);
 		}
 
-		throw redirect(303, '/account');
+		window.location.href = '/account';
 	} else {
 		// Document does not exist, handle accordingly
 		console.log('Item does not exist.');

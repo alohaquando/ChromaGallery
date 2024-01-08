@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { currentBg } from '$lib/stores/background';
 
-	export let hue: number = 0;
-	export let saturation: number = 0;
-	export let lightness: number = 0;
+	export let hue: number = 30;
+	export let saturation: number = 60;
+	export let lightness: number = 60;
 
 	export let design: 'top' | 'top-large' | 'center' | 'hidden' | string = 'top';
 

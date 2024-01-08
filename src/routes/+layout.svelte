@@ -71,6 +71,7 @@
 	// });
 </script>
 
+
 <svelte:head>
 	<meta title="Chroma Gallery" />
 	<meta content="#000000" name="theme-color" />
@@ -110,7 +111,7 @@
 		<HeaderBack {scrollY} href={header.href} button={header.button} destructive={header.destructive}
 		></HeaderBack>
 	{:else if header.type === 'curator'}
-		<HeaderCurator />
+		<HeaderCurator {scrollY} />
 	{/if}
 	<div class="container mx-auto px-6 max-w-3xl">
 		<slot />
