@@ -11,9 +11,10 @@ import {
 	updateDoc,
 	where
 } from 'firebase/firestore';
-import { db } from '$lib/services/firebase/firebase';
+import { db, storage } from '$lib/services/firebase/firebase';
 import { getAuth } from 'firebase/auth';
 import type { Collection, List } from '$lib/data/dataModels';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 
 export const getFeaturedItems = async () => {
 	try {
@@ -161,22 +162,39 @@ export async function checkIfBookmarked(itemId: string) {
 export async function handleCreateItem(
 	author: string,
 	description: string,
-	image: string,
+	image: any,
 	isFeatured: boolean,
 	location: string,
 	title: string,
 	year: string
 ) {
-	const docRef = await addDoc(collection(db, 'items'), {
-		author,
-		description,
-		image,
-		isFeatured,
-		location,
-		title,
-		year
-	});
-	console.log('Document written with ID: ', docRef.id);
+
+	try {
+		const imageRef = ref(storage, `images/${image.name}`);
+		// 'file' comes from the Blob or File API
+		uploadBytes(imageRef, image)
+			.then((snapshot) => {
+				console.log('Uploaded a blob or file!');
+				console.log(snapshot);
+				return getDownloadURL(snapshot.ref);
+			})
+			.then(async (downloadURL) => {
+				console.log('Download URL is ', downloadURL);
+				const docRef = await addDoc(collection(db, 'items'), {
+					author,
+					description,
+					image: downloadURL,
+					isFeatured,
+					location,
+					title,
+					year
+				});
+				console.log('Document written with ID: ', docRef.id);
+			});
+	} catch (err) {
+		console.log(err);
+	}
+
 }
 
 export async function handleDeleteItem(itemId: string) {
