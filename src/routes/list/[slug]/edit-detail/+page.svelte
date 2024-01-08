@@ -7,6 +7,10 @@
 	import { toggleDialog } from '$lib/stores/dialog';
 	import Divider from '$lib/components/layouts/Divider.svelte';
 	import Button from '$lib/components/controls/Button.svelte';
+	import { handleDeleteList } from '$lib/data/list';
+	import type { PageData } from './$types';
+
+	export let data: PageData;
 
 	let button1 = {
 		option: 'Cancel',
@@ -15,10 +19,14 @@
 			resetDialog();
 		}
 	};
+	let b2func = () => {
+	};
+
 	let button2 = {
 		option: 'Log out',
 		type: 'filled',
-		function: function() {
+		function: () => {
+			handleDeleteList(data.session.uid, data.param);
 		}
 	};
 </script>

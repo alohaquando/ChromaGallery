@@ -16,23 +16,24 @@
 		></TextField>
 		<TextField
 			id="confirm-password"
-			label="Confirm new password"
+			label="Confirm new password"s
 			name="confirm-password"
 			placeholder="Confirm new password"
 		></TextField> -->
 		<TextField
+			bind:value={emailToResetPassword}
 			id="emailToResetPassword"
 			label="Email"
 			name="emailToResetPassword"
 			placeholder="abc@gmail.com"
-			bind:value={emailToResetPassword}
 		></TextField>
 		<Button
 			class="mt-8"
 			design="filled"
+			on:click={() => handleResetPassword(emailToResetPassword)}
 			type="submit"
-			width="full"
-			on:click={() => handleResetPassword(emailToResetPassword)}>Reset password</Button
+			width="full">Reset password
+		</Button
 		>
 	</form>
 </div>

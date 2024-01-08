@@ -5,146 +5,125 @@
 
 /* Your custom styles go here */
 @layer base {
-	/* Font - Atkinson Hyperlegible */
-	@font-face {
-		font-family: 'Atkinson Hyperlegible';
-		font-weight: 700;
-		font-display: swap;
-		src: url('$lib/assets/fonts/Atkinson-Hyperlegible-Bold.woff2') format('woff2');
-	}
+    /* Font - Atkinson Hyperlegible */
+    @font-face {
+        font-family: 'Atkinson Hyperlegible';
+        font-weight: 700;
+        font-display: swap;
+        src: url('$lib/assets/fonts/Atkinson-Hyperlegible-Bold.woff2') format('woff2');
+    }
 
-	@font-face {
-		font-family: 'Atkinson Hyperlegible';
-		font-weight: 400;
-		font-display: swap;
-		src: url('$lib/assets/fonts/Atkinson-Hyperlegible-Regular.woff2') format('woff2');
-	}
+    @font-face {
+        font-family: 'Atkinson Hyperlegible';
+        font-weight: 400;
+        font-display: swap;
+        src: url('$lib/assets/fonts/Atkinson-Hyperlegible-Regular.woff2') format('woff2');
+    }
 
-	/* Font - Outfit */
-	@font-face {
-		font-family: 'Outfit';
-		font-weight: 400;
-		font-display: swap;
-		src: url('$lib/assets/fonts/Outfit-Regular.woff2') format('woff2');
-	}
+    /* Font - Outfit */
+    @font-face {
+        font-family: 'Outfit';
+        font-weight: 400;
+        font-display: swap;
+        src: url('$lib/assets/fonts/Outfit-Regular.woff2') format('woff2');
+    }
 
-	:root {
-		@apply overflow-x-clip bg-black text-white;
-		touch-action: manipulation;
-		-webkit-tap-highlight-color: transparent;
-		-webkit-font-smoothing: antialiased;
-		-moz-osx-font-smoothing: grayscale;
-	}
+    :root {
+        @apply overflow-x-clip bg-black text-white;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
 
-	body {
-		overflow: clip;
-		--date-picker-foreground: #dbdbdb;
-		--date-picker-bg: #292929;
-		--date-picker-highlight-border: hsl(var(--deg), 98%, 49%);
-		--date-picker-highlight-shadow: hsla(var(--deg), 98%, 49%, 50%);
-		--date-picker-selected-color: hsl(var(--deg), 100%, 85%);
-		--date-picker-selected-bg: hsla(var(--deg), 98%, 49%, 20%);
-	}
+    body {
+        overflow: clip;
+        --date-picker-foreground: #dbdbdb;
+        --date-picker-bg: #292929;
+        --date-picker-highlight-border: hsl(var(--deg), 98%, 49%);
+        --date-picker-highlight-shadow: hsla(var(--deg), 98%, 49%, 50%);
+        --date-picker-selected-color: hsl(var(--deg), 100%, 85%);
+        --date-picker-selected-bg: hsla(var(--deg), 98%, 49%, 20%);
+    }
 }
 
 @layer utilities {
     ::-webkit-scrollbar {
-      width: 5px;
-      height: 12px;
-    }
-
-    /* Vertical track */
-    ::-webkit-scrollbar-track:vertical {
-      border-radius: 12px;
-      background-color: rgba(220,220,220,1);
-      overflow: show;
+        width: 5px;
+        height: 12px;
     }
 
     /* Horizontal track */
     ::-webkit-scrollbar-track:horizontal {
-      border-radius: 12px;
-      -webkit-box-shadow: inset 0 0 5px rgba(150,150,150,0.4);
-      background-color: rgba(200,200,200,0.2);
-      overflow: show;
+        border-radius: 12px;
+        background-color: rgba(255, 255, 255, 0.2);
+        overflow: show;
     }
 
     /* Handle */
-    ::-webkit-scrollbar-thumb {
-      border-radius: 12px;
-      -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.6);
-      background-color: rgba(200,200,200,1);
+    ::-webkit-scrollbar-thumb:horizontal {
+        border-radius: 12px;
+        background-color: rgba(255, 255, 255, 0.5);
+        @apply transition;
     }
 
     /* Handle on hover */
-    ::-webkit-scrollbar-thumb:hover {
-      -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.7);
-      background: rgba(120,120,120,1);
+    ::-webkit-scrollbar-thumb:horizontal:hover {
+        background: rgba(255, 255, 255, 0.9);
+        @apply transition;
     }
 
-    /* Vertical handle */
-        ::-webkit-scrollbar-thumb:vertical {
-        border-radius: 12px;
-        -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.6);
-        background-color: rgba(90,90,90,1);
+    .scrollbar-none::-webkit-scrollbar {
+        display: none;
     }
 
-    /* Vertical handle on hover */
-        ::-webkit-scrollbar-thumb:vertical:hover {
-        -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.7);
-        background: rgba(60,60,60,1);
+    .scrollbar-none {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
     }
 
-	.scrollbar-none::-webkit-scrollbar {
-		display: none;
-	}
+    .min-h-screen-safe {
+        min-height: calc(100vh - env(safe-area-inset-bottom, 0) - env(safe-area-inset-top, 0));
+    }
 
-	.scrollbar-none {
-		-ms-overflow-style: none; /* IE and Edge */
-		scrollbar-width: none; /* Firefox */
-	}
+    .min-h-sm-screen-safe {
+        min-height: calc(80vh - env(safe-area-inset-bottom, 0) - env(safe-area-inset-top, 0));
+    }
 
-	.min-h-screen-safe {
-		min-height: calc(100vh - env(safe-area-inset-bottom, 0) - env(safe-area-inset-top, 0));
-	}
+    .min-h-md-screen-safe {
+        min-height: calc(80vh - env(safe-area-inset-bottom, 0) - env(safe-area-inset-top, 0));
+    }
 
-	.min-h-sm-screen-safe {
-		min-height: calc(80vh - env(safe-area-inset-bottom, 0) - env(safe-area-inset-top, 0));
-	}
+    .pb-safe {
+        padding-bottom: max(env(safe-area-inset-bottom) + 12px, 12px);
+    }
 
-	.min-h-md-screen-safe {
-		min-height: calc(80vh - env(safe-area-inset-bottom, 0) - env(safe-area-inset-top, 0));
-	}
+    @supports (-webkit-touch-callout: none) {
+        /*noinspection CssInvalidPropertyValue*/
+        .min-h-screen-safe {
+            min-height: -webkit-fill-available;
+        }
 
-	.pb-safe {
-		padding-bottom: max(env(safe-area-inset-bottom) + 12px, 12px);
-	}
+        .min-h-sm-screen-safe {
+            min-height: calc(70vh - env(safe-area-inset-bottom, 0) - env(safe-area-inset-top, 0));
+        }
 
-	@supports (-webkit-touch-callout: none) {
-		/*noinspection CssInvalidPropertyValue*/
-		.min-h-screen-safe {
-			min-height: -webkit-fill-available;
-		}
+        .min-h-md-screen-safe {
+            min-height: calc(82vh - env(safe-area-inset-bottom, 0) - env(safe-area-inset-top, 0));
+        }
+    }
 
-		.min-h-sm-screen-safe {
-			min-height: calc(70vh - env(safe-area-inset-bottom, 0) - env(safe-area-inset-top, 0));
-		}
+    .blur-fix {
+        -webkit-backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+    //will-change: transform;
+    }
 
-		.min-h-md-screen-safe {
-			min-height: calc(82vh - env(safe-area-inset-bottom, 0) - env(safe-area-inset-top, 0));
-		}
-	}
+    .h-xl {
+        height: 125%;
+    }
 
-	.blur-fix {
-		-webkit-backface-visibility: hidden;
-		-moz-backface-visibility: hidden;
-		//will-change: transform;
-	}
-
-	.h-xl {
-		height: 125%;
-	}
-
-	.max-h-1\/2 {
-		max-height: 50%;
-	}
+    .max-h-1\/2 {
+        max-height: 50%;
+    }
 }

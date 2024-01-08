@@ -9,6 +9,7 @@ import {
 	setDoc
 } from 'firebase/firestore';
 import { db } from '$lib/services/firebase/firebase';
+import { redirect } from '@sveltejs/kit';
 
 export const getUsersAllLists = async (userId: string) => {
 	if (userId) {
@@ -117,6 +118,8 @@ export async function handleDeleteList(userId: string, listId: string) {
 		} catch (error) {
 			console.error('Error deleting item: ', error);
 		}
+
+		throw redirect(303, '/account');
 	} else {
 		// Document does not exist, handle accordingly
 		console.log('Item does not exist.');

@@ -57,9 +57,9 @@
 		<div
 			class="w-full h-52 rounded-lg gap-1 inline-flex overflow-hidden relative"
 		>
-			<Block item={null} bookmark></Block>
+			<Block item={null} {bookmark}></Block>
 			<InfoChip class="absolute bottom-2 right-2 !rounded-2xl !bg-opacity-40 py-4">
-				<Body>{str}</Body>
+				<Body>Loading...</Body>
 			</InfoChip>
 		</div>
 		{#if title && !bookmark}
