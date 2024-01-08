@@ -8,17 +8,13 @@ export const actions = {
 
 		const author = formData.get('artist') as string;
 		const description = formData.get('desc') as string;
-		const image: any = formData.get('image') as File;
+		const image: any = formData.get('image') as string;
 		const isFeatured = false;
 		const location = formData.get('location') as string;
 		const title = formData.get('name') as string;
 		const year = formData.get('time') as string;
 
-		// if (image.size === 0) {
-		// 	return fail(400, {
-		// 		message: 'Please include an image'
-		// 	});
-		// }
+		console.log(image);
 
 		let result;
 

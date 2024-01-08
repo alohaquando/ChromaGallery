@@ -158,6 +158,21 @@ export async function checkIfBookmarked(itemId: string) {
 	return false;
 }
 
+export async function uploadFileGetUrl(image: File) {
+	return new Promise<string>((resolve, reject) => {
+		const imageRef = ref(storage, `images/${image.name}`);
+		(async () => {
+			try {
+				let snapshot = await uploadBytes(imageRef, image);
+				let downloadURL = await getDownloadURL(snapshot.ref);
+				resolve(downloadURL);
+			} catch (err) {
+				reject(err);
+			}
+		})();
+	});
+}
+
 export async function handleCreateItem(
 	author: string,
 	description: string,
@@ -175,11 +190,11 @@ export async function handleCreateItem(
 				// let snapshot = await uploadBytes(imageRef, image);
 				// console.log(snapshot);
 				// let downloadURL = await getDownloadURL(snapshot.ref);
-				//
+
 				let docRef = await addDoc(collection(db, 'items'), {
 					author,
 					description,
-					image: 'testURL',
+					image,
 					isFeatured,
 					location,
 					title,

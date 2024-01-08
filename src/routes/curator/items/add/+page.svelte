@@ -8,10 +8,27 @@
 	import { enhance } from '$app/forms';
 	import Body from '$lib/components/typography/Body.svelte';
 	import FormError from '$lib/components/inputs/FormError.svelte';
+	import type { SubmitFunction } from '@sveltejs/kit';
+	import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+	import { storage } from '$lib/services/firebase/firebase';
+	import { handleCreateItem, uploadFileGetUrl } from '$lib/data/item';
 
 	let options: string[];
 
 	export let form;
+	const handleSubmit: SubmitFunction = async ({ formData }) => {
+		const image: any = formData.get('image') as File;
+
+
+
+		const imageURL: string = await uploadFileGetUrl(image);
+
+		formData.set("image", imageURL)
+
+		return async ({ update }) => {
+			await update();
+		};
+	};
 </script>
 
 <form
@@ -19,7 +36,7 @@
 	class="w-full flex-col flex justify-center gap-10 mt-6"
 	enctype="multipart/form-data"
 	method="POST"
-	use:enhance>
+	use:enhance={handleSubmit}>
 
 	<FileInput id="image" name="image" state="add"></FileInput>
 
@@ -35,7 +52,7 @@
 		placeholder="Artist"
 	></Datalist>
 
-	<TextField id="time" label="Time" name="time" placeholder="" type="date"></TextField>
+	<TextField id="time" label="Time" name="time" placeholder="time" type="date"></TextField>
 
 	<TextField id="location" label="Location" name="location" placeholder="Location"></TextField>
 
