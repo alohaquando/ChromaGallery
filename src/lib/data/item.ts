@@ -57,9 +57,14 @@ export const getItem = async (id: string) => {
 	try {
 		const docRef = doc(db, 'items', id);
 		const docSnap = await getDoc(docRef);
-		return docSnap.data();
+
+		if (docSnap.data() === undefined) {
+			throw new Error('Item not found');
+		} else {
+			return docSnap.data();
+		}
 	} catch (error) {
-		console.error('Error fetching all items: ', error.message);
+		console.error('Error fetching items: ', error.message);
 		throw error;
 	}
 };

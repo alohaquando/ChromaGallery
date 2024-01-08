@@ -34,7 +34,7 @@ export const actions = {
 			);
 		} catch (error) {
 			return fail(400, {
-				message: error.message
+				message: error
 			});
 		}
 
