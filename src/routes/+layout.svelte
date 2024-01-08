@@ -113,7 +113,7 @@
 	{:else if header.type === 'curator'}
 		<HeaderCurator {scrollY} />
 	{/if}
-	<div class="container mx-auto px-6 max-w-3xl">
+	<div class="container mx-auto px-6 lg:max-w-5xl">
 		<slot />
 		<Footer loggedIn={!data.session}></Footer>
 	</div>

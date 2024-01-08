@@ -7,7 +7,7 @@
 	export let fileInput: any | undefined;
 
 	let selectedImage: Blob | MediaSource | null = null;
-	let imageUrl: string | null = null;
+	export let imageUrl: string | null = null;
 
 	const handleGetImage = () => {
 		fileInput = document.getElementById(id);

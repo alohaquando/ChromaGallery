@@ -5,7 +5,11 @@
 	import TextArea from '$lib/components/inputs/TextArea.svelte';
 	import Datalist from '$lib/components/inputs/Datalist.svelte';
 	import { resetDialog } from '$lib/stores/dialog';
-	import Dialog from '$lib/components/pop-up/Dialog.svelte';
+	import type { PageData } from './$types';
+
+	export let data: PageData;
+
+	let item = data.item;
 
 	let options: string[];
 	let button1 = {
@@ -18,12 +22,13 @@
 	let button2 = {
 		option: 'Log out',
 		type: 'filled',
-		function: function () {}
+		function: function() {
+		}
 	};
 </script>
 
 <!--Image input-->
-<FileInput state="edit"></FileInput>
+<FileInput imageUrl="{data.item.image}" state="edit"></FileInput>
 
 <Divider class="my-8" />
 
@@ -55,11 +60,3 @@
 	<TextField id="" label="Extra field 1" name="" placeholder=""></TextField>
 	<TextField id="" label="Extra field 2" name="" placeholder=""></TextField>
 </div>
-
-<!--Dialog-->
-<Dialog
-	{button1}
-	{button2}
-	text="Any changes you've made won't be saved"
-	title="Leave without saving"
-></Dialog>

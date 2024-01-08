@@ -1,14 +1,13 @@
 import { getItem } from '$lib/data/item';
 
 // @ts-ignore
-export async function load({ params }) {
+export const load = async ({ params }) => {
 	return {
-		modal: {
-			toggled: true,
-			title: 'Edit item',
-			exit: true
-		},
 		slug: params.slug,
+		header: {
+			type: 'back',
+			href: '/curator/items'
+		},
 		item: await getItem(params.slug)
 	};
-}
+};

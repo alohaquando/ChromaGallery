@@ -16,6 +16,7 @@
 	export let itemLimit: number | undefined;
 	export let outLimit: number | undefined;
 	export let output: Item[] | undefined;
+	export let curator: boolean = false;
 
 	// custom classes
 	let customClass = '';
@@ -89,6 +90,9 @@
 		fillItems();
 	};
 	$: items, placeholderCheck();
+	$: if (output) {
+		type = (output?.length >= outLimit ? 'view' : 'checkbox');
+	}
 </script>
 
 <div class="{customClass} flex flex-col gap-4">
@@ -102,6 +106,7 @@
 			{#each items as item (item.id)}
 				<div animate:flip={{ duration: flipDurationMs }}>
 					<RowItem
+						{curator}
 						id="{item.id}"
 						on:transfer={() => onTransfer(item)}
 						on:delete={() => onDelete(item)}

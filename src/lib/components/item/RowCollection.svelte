@@ -15,7 +15,7 @@
 	export let type: 'checkbox' | 'action' | 'view' = 'action';
 	export let curator: boolean = false;
 	export let isCollection: boolean = false;
-	let path = (curator ? '/curator' : '') + (isCollection ? '/collections/' : '/list/') + collection?.id;
+	let path = (curator ? '/curator' : '') + (isCollection ? '/collection/' : '/list/') + collection?.id;
 	export let button: 'add' | 'destructive' | 'link' | undefined;
 	export let icon: string | undefined;
 	export let hasLink: boolean = true;

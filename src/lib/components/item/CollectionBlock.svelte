@@ -36,7 +36,7 @@
 			widthClass = 'w-72';
 			break;
 		case 'full':
-			widthClass = 'sm:w-[45%] w-full';
+			widthClass = 'w-full';
 			break;
 	}
 
@@ -62,10 +62,14 @@
 				<Body>Loading...</Body>
 			</InfoChip>
 		</div>
-		{#if title && !bookmark}
+		{#if title}
 			<div class="self-stretch flex-col flex gap-4">
 				<Body>
-				Title
+				{#if bookmark}
+					Bookmark
+				{:else}
+					Title
+				{/if}
 				</Body>
 				{#if subtitle && !bookmark && !hideSubtitle}
 					<Body class="text-white/50 line-clamp-2">Description</Body>
@@ -102,10 +106,14 @@
 				</InfoChip>
 			{/if}
 		</a>
-		{#if title && !bookmark}
+		{#if title}
 			<div class="self-stretch flex-col flex gap-4">
 				<Link {isHovered} href="{path}" type="body">
-					{collection?.title}
+					{#if bookmark}
+						Bookmark
+					{:else}
+						{collection?.title}
+					{/if}
 				</Link>
 				{#if subtitle && !bookmark && !hideSubtitle}
 					<Body class="text-white/50 line-clamp-2">{collection?.description}</Body>
