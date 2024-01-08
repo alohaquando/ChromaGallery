@@ -4,7 +4,7 @@
 	export let state: 'add' | 'edit' = 'add';
 	export let id: string = 'imageInput';
 
-	export let fileInput: any | undefined;
+	let fileInput: any | undefined;
 
 	let selectedImage: Blob | MediaSource | null = null;
 	export let imageUrl: string | null = null;

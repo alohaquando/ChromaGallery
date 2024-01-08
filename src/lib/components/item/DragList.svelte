@@ -130,7 +130,7 @@
 			{/each}
 		</div>
 
-		{#if (type === 'edit')}
+		{#if (type === 'checkbox')}
 			<div class="opacity-50 cursor-default flex">
 				<span>Add an item with the list below</span>
 			</div>
