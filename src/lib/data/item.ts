@@ -38,6 +38,21 @@ export const getFeaturedItems = async () => {
 		throw error;
 	}
 };
+
+export async function updateItemFeatureStatus(itemId: string, isFeatured: boolean) {
+	const itemDocRef = doc(db, 'items', itemId);
+
+	try {
+		// Update the 'isFeatured' field in the document
+		await updateDoc(itemDocRef, { isFeatured });
+
+		console.log('Item feature status updated successfully');
+	} catch (error) {
+		console.error('Error updating item feature status:', error.message);
+		throw error;
+	}
+}
+
 export const getItem = async (id: string) => {
 	try {
 		const docRef = doc(db, 'items', id);
