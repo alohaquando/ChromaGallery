@@ -37,7 +37,7 @@
 		| 'url'
 		| 'week' = 'text';
 	export let required: boolean = false;
-	let requiredClass = required ? 'after:content-["*"] after:text-3xl after:absolute after:-right-4 after:-top-2' : '';
+	let requiredClass = required ? ' after:text-3xl after:absolute after:-right-4 after:-top-2' : '';
 	export let disabled: boolean = false;
 	export let readonly: boolean = false;
 	export let autocomplete: string | null | undefined = undefined;

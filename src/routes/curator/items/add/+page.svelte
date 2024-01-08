@@ -12,24 +12,32 @@
 	import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 	import { storage } from '$lib/services/firebase/firebase';
 	import { handleCreateItem, uploadFileGetUrl } from '$lib/data/item';
+	import LoadingOverlay from '$lib/components/layouts/LoadingOverlay.svelte';
 
 	let options: string[];
 
+	let isLoading: boolean = false;
 	export let form;
+
 	const handleSubmit: SubmitFunction = async ({ formData }) => {
+		isLoading = true;
 		const image: any = formData.get('image') as File;
 
-
-
-		const imageURL: string = await uploadFileGetUrl(image);
-
-		formData.set("image", imageURL)
+		if (image.size !== 0) {
+			const imageUrl: string = await uploadFileGetUrl(image);
+			formData.set('imageUrl', imageUrl);
+		} else {
+			formData.set('imageUrl', '');
+		}
 
 		return async ({ update }) => {
 			await update();
+			isLoading = false;
 		};
 	};
 </script>
+
+<LoadingOverlay bind:isLoading={isLoading}></LoadingOverlay>
 
 <form
 	action="?/add"
@@ -42,9 +50,10 @@
 
 	<Divider></Divider>
 
-	<TextField id="name" label="Name" name="name" placeholder="Name"></TextField>
+	<TextField required id="name" label="Name" name="name" placeholder="Name"></TextField>
 
 	<Datalist
+		required
 		id="artist"
 		label="Artist"
 		name="artist"
@@ -52,19 +61,19 @@
 		placeholder="Artist"
 	></Datalist>
 
-	<TextField id="time" label="Time" name="time" placeholder="time" type="date"></TextField>
+	<TextField required id="time" label="Time" name="time" placeholder="time" type="date"></TextField>
 
-	<TextField id="location" label="Location" name="location" placeholder="Location"></TextField>
+	<TextField required id="location" label="Location" name="location" placeholder="Location"></TextField>
 
-	<TextArea id="desc" label="Description" name="desc" placeholder="Description"></TextArea>
+	<TextArea required id="desc" label="Description" name="desc" placeholder="Description"></TextArea>
 
 
 	{#if form}
 		<FormError>{form.message}</FormError>
 	{/if}
 
-	<Button sticky type="submit">
-		Add
+	<Button disabled={isLoading} sticky type="submit">
+		{isLoading ? 'Loading...' : 'Add'}
 	</Button>
 </form>
 

@@ -8,13 +8,17 @@ export const actions = {
 
 		const author = formData.get('artist') as string;
 		const description = formData.get('desc') as string;
-		const image: any = formData.get('image') as string;
+		const imageUrl: any = formData.get('imageUrl') as string;
 		const isFeatured = false;
 		const location = formData.get('location') as string;
 		const title = formData.get('name') as string;
 		const year = formData.get('time') as string;
 
-		console.log(image);
+		if (imageUrl === '') {
+			return fail(400, {
+				message: 'Please add an image'
+			});
+		}
 
 		let result;
 
@@ -22,7 +26,7 @@ export const actions = {
 			result = await handleCreateItem(
 				author,
 				description,
-				image,
+				imageUrl,
 				isFeatured,
 				location,
 				title,

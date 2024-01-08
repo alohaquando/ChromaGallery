@@ -100,7 +100,6 @@
 		exit={modal.exit}
 		href={modal.href}
 		title={modal.title}
-		animation={modal.animation}
 	>
 		<slot />
 	</Modal>

@@ -7,7 +7,7 @@
 	export let imageFull: boolean = false;
 	let heightClass = 'h-80';
 	if (imageFull) {
-		heightClass = 'h-auto';
+		heightClass = ' w-auto';
 	}
 	export let hideYear: boolean = false;
 	export let item: Item;
@@ -21,8 +21,8 @@
 
 {#if item}
 	<div class="w-full flex-col gap-6 inline-flex {customClass}">
-		<div class="w-full {heightClass} rounded-lg flex overflow-hidden relative items-center">
-			<Block class="object-cover rounded-lg" {item} stretch={false}></Block>
+		<div class="w-full {heightClass} rounded-lg flex  relative items-center ">
+			<Block  {item} stretch={false}></Block>
 		</div>
 		{#if !hideInfo}
 			<div class="flex-col gap-6 flex">

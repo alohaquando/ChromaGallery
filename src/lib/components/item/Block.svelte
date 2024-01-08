@@ -25,7 +25,7 @@
 	let sizeClass = '';
 	switch (stretch) {
 		case false:
-			sizeClass = 'w-full';
+			sizeClass = 'w-fit';
 			break;
 		case true:
 			sizeClass = 'grow shrink basis-0 self-stretch w-full';
@@ -35,11 +35,11 @@
 	let typeClass = '';
 	$: switch (bookmark) {
 		case false:
-			typeClass = 'bg-gradient-to-b from-neutral-600 to-neutral-800';
+			typeClass = 'bg-white/20';
 			break;
 		case true:
 			typeClass =
-				'bg-gradient-to-b from-indigo-600 to-fuchsia-700 rounded-lg inline-flex justify-center items-center';
+				'bg-gradient-to-b from-indigo-600 to-fuchsia-700 rounded-2xl inline-flex justify-center items-center';
 			break;
 	}
 
@@ -50,7 +50,7 @@
 <svelte:element
 	class="{!icon
 		? sizeClass
-		: 'h-14 w-14'} {typeClass} {customClass} relative overflow-hidden"
+		: 'h-14 w-14'} {typeClass}  {customClass} rounded-2xl relative overflow-hidden mx-auto"
 	href={item || bookmark ? path : null}
 	this={link || bookmark ? 'a' : 'div'}
 >
@@ -71,7 +71,7 @@
 				class="{stretch ? 'w-full h-full' : 'h-auto w-full'} {icon ? 'absolute' : ''}">
 				<img
 					alt='{item.title}'
-					class="w-full h-full object-cover"
+					class="object-contain max-h-[70vh] rounded-2xl"
 					src='{item.image}'
 				/>
 			</div>

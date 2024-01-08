@@ -25,15 +25,15 @@
 </script>
 
 {#if item}
-	<HeroImage class="mb-8" item={item}></HeroImage>
+	<HeroImage class="mb-8 mt-4" item={item} imageFull></HeroImage>
 	<BodyLarge>
 		{item.description}
 	</BodyLarge>
 	<div class="flex flex-col justify-center items-center mt-10">
-		<InfoRow class="w-full" href="" leadingText="Object ID" trailingText={item2.id}></InfoRow>
+<!--		<InfoRow class="w-full" href="" leadingText="Object ID" trailingText={item2.id}></InfoRow>-->
 		<InfoRow class="w-full" href="" leadingText="Place made" trailingText={item2.location}></InfoRow>
-		<InfoRow class="w-full" href="" leadingText="Named collection" trailingText={item2.title}
-		></InfoRow>
+<!--		<InfoRow class="w-full" href="" leadingText="Named collection" trailingText={item2.title}-->
+<!--		></InfoRow>-->
 	</div>
 {/if}
 
