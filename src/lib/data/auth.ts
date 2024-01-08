@@ -1,5 +1,6 @@
 import {
 	createUserWithEmailAndPassword,
+	getAuth,
 	GoogleAuthProvider,
 	onAuthStateChanged,
 	reauthenticateWithCredential,
@@ -274,7 +275,7 @@ export const handleResetPassword = async (email: string) => {
 		await authHandlers.sendResetPassword(email);
 		console.log('Successfully Send Reset Password Email');
 
-		window.location.href = '/'
+		window.location.href = '/';
 	} catch (err) {
 		console.log(err);
 	}

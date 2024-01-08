@@ -73,7 +73,7 @@
 	<!--	Curator site-->
 	<Title>Chroma Curator</Title>
 	<Body>Manage items and collections on Chroma Gallery using a Curator account</Body>
-	<Button href="">Go to Chroma Curator</Button>
+	<Button href="/curator">Go to Chroma Curator</Button>
 
 	<Divider />
 

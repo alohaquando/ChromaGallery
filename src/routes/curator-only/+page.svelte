@@ -3,6 +3,8 @@
 	import Title from '$lib/components/typography/Title.svelte';
 	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
 
+	export let data
+
 	enum CuratorOnlyCases {
 		NOT_CURATOR,
 		NOT_SIGNED_IN

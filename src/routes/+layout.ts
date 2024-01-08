@@ -5,3 +5,5 @@ export const load = async () => {
 		session: await getSessionUser()
 	};
 };
+
+export const ssr = false;
