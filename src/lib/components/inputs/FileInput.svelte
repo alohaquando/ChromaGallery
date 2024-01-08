@@ -2,9 +2,9 @@
 	import Button from '$lib/components/controls/Button.svelte';
 
 	export let state: 'add' | 'edit' = 'add';
-	export let id: string = 'imageInput';
-
-	export let fileInput: any | undefined;
+	export let id: string;
+	export let name: string;
+	let fileInput: any | undefined;
 
 	let selectedImage: Blob | MediaSource | null = null;
 	let imageUrl: string | null = null;
@@ -40,7 +40,8 @@
 	};
 </script>
 
-<input accept="image/*" class="hidden" {id} on:change={handleFileChange} type="file" />
+<input accept="image/*" class="hidden" {id} {name} on:change={handleFileChange} type="file" />
+
 {#if state === 'add'}
 	<label
 		for={id}
