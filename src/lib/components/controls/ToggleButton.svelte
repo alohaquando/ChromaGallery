@@ -15,8 +15,13 @@
 	let customClass = '';
 	export { customClass as class };
 
+	export let toggleOnChange = () => {
+
+	};
+
 	const handleToggle = () => {
 		toggled = !toggled;
+		toggleOnChange();
 	};
 </script>
 
@@ -30,6 +35,7 @@
 	<div
 		class="{buttonClass} h-3 w-3 border-2 rounded-full transition duration-500 ease-out z-10 shrink-0 grow-0"
 	></div>
-	<button class="h-10 w-12 rounded-full z-10 absolute" on:click={handleToggle} type="button"
+	<button class="h-10 w-12 rounded-full z-10 absolute" on:click={handleToggle}
+					type="button"
 	></button>
 </div>

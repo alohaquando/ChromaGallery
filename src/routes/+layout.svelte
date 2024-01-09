@@ -62,10 +62,10 @@
     // 				items: []
     // 			};
     // 			await setDoc(userRef, dataToSetToStore, { merge: true });
-    // 			// Set Default Account as notCurrator
+    // 			// Set Default Account as notCurator
     // 			await setDoc(doc(db, 'users', user.uid),
     // 				{
-    // 					isCurrator:false,
+    // 					isCurator:false,
     // 				}
     // 				, { merge: true });
     // 		} else {

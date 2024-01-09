@@ -27,7 +27,7 @@
 							 active={currentUrl.startsWith('/curator/collection')}>
 				Collections
 			</NavItem>
-			<NavItem icon="faUserCircle" href="/curator" active={currentUrl === '/curator'}>Me</NavItem>
+			<NavItem icon="faUserCircle" href="/curator/account" active="{currentUrl.startsWith('/curator/account')}">Me</NavItem>
 		</div>
 	{/if}
 	<div

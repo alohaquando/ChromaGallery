@@ -115,8 +115,7 @@
 	<Body>Don't want to continue?</Body>
 
 	<Button
-		design="outlined"
-		destructive
+		design="destructive"
 		on:click={handleLogOut}
 		width="full"
 	>Sign out

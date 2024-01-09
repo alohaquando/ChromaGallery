@@ -2,15 +2,11 @@
 	import Fab from '$lib/components/controls/Fab.svelte';
 	import Title from '$lib/components/typography/Title.svelte';
 	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
+	import { CuratorOnlyCases } from '$lib/data/CuratorOnlyCases';
 
-	export let data
+	export let data;
 
-	enum CuratorOnlyCases {
-		NOT_CURATOR,
-		NOT_SIGNED_IN
-	}
-
-	export let blockingCase: CuratorOnlyCases;
+	let blockingCase = data.blockingCase;
 </script>
 
 <!--<Bg randomized/>-->
@@ -27,10 +23,10 @@
 		<div class="flex gap-9">
 			<!--	TODO: Use correct case -->
 			{#if blockingCase === CuratorOnlyCases.NOT_CURATOR}
-				<Fab class="-mt-20" href="" icon="faCog" size="lg">Set Curator<br />Account</Fab>
+				<Fab class="-mt-20" href="/account/setting" icon="faCog" size="lg">Set Curator<br />Account</Fab>
 			{:else if blockingCase === CuratorOnlyCases.NOT_SIGNED_IN}
-				<Fab class="-mt-20" href="" icon="faUserCircle" size="lg">Sign me<br />in</Fab>
-				<Fab href="" icon="faSparkles" size="lg">Become a<br />member</Fab>
+				<Fab class="-mt-20" href="/account/sign-in" icon="faUserCircle" size="lg">Sign me<br />in</Fab>
+				<Fab href="/account/sign-up" icon="faSparkles" size="lg">Become a<br />member</Fab>
 			{:else}
 				<Fab class="-mt-20" href="/" icon="faHome" size="lg">Go home</Fab>
 			{/if}

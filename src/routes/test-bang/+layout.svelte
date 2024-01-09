@@ -5,13 +5,7 @@
 		handleDeleteItemFromCollection,
 		handleUpdateCollection
 	} from '$lib/data/collection';
-	import {
-		handleCreateItem,
-		handleDeleteItem,
-		handleUpdateItem,
-		updateAllItems,
-		updateItemFeatureStatus
-	} from '$lib/data/item';
+	import { handleCreateItem, handleDeleteItem, handleUpdateItem, updateItemFeatureStatus } from '$lib/data/item';
 	import { handleDeleteList } from '$lib/data/list';
 	import { db, storage } from '$lib/services/firebase/firebase';
 	import {
@@ -26,6 +20,18 @@
 	} from 'firebase/firestore';
 	import { ref, uploadBytes } from 'firebase/storage';
 	import { onMount } from 'svelte';
+
+	const storageRef = ref(storage);
+
+	const imagesRef = ref(storage, 'images/');
+	// 'file' comes from the Blob or File API
+	// uploadBytes(storageRef, 'file').then((snapshot) => {
+	// 	console.log('Uploaded a blob or file!');
+	// });
+
+	// console.log(data.session.uid);
+	// const userId = data.session.uid;
+
 	onMount(async () => {
 		// Create Item
 		// handleCreateItem('au', 'des', 'ima', false, 'loca', 'title', 'year');
@@ -57,34 +63,10 @@
 		// 	{title:"Bec",description:"asdasd"})
 
 		// await updateIsCurator("Gh43EiXguNwH0bOmgixnNqwOdG2", true)
-		// updateCurratorState("6Gh43EiXguNwH0bOmgixnNqwOdG2",true)
-		// handleUpdateCuratorState('rBushPkr0sed8hz3uFCh8F1P6UC3',false)
+		// updateCuratorState("6Gh43EiXguNwH0bOmgixnNqwOdG2",true)
 
-		//Add item to collection
-		//handleAddItemToCollection("BZaeqEPbXERW973kzxZS","123124123123")
-
-		// async function updateAllItems() {
-		// 	try {
-		// 		const itemsCollection = collection(db, 'items');
-		// 		const querySnapshot = await getDocs(itemsCollection);
-		//
-		// 		querySnapshot.forEach((d) => {
-		// 			const itemRef = doc(db, 'items', d.id);
-		// 			updateDoc(itemRef, { isFeatured: false });
-		// 		});
-		//
-		// 		console.log('All items updated successfully.');
-		// 	} catch (error) {
-		// 		console.error('Error updating items:', error);
-		// 	}
-		// }
-
-
-// Example usage with an array of item IDs
-// 		const itemIdsToUpdate = ["v7tMd8LqSA0AwJbV9Yn9", "uYIvhUX8ODUTwaJ6xAYA", "qCestVUHF6yQAogjXuDM"];
-// 		updateItemsToFeatured(itemIdsToUpdate);
-
-		// updateAllItems(itemIdsToUpdate)
+//Add item to collection
+// 		handleAddItemToCollection("BZaeqEPbXERW973kzxZS","123124123123")
 	});
 </script>
 

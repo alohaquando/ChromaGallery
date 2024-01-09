@@ -76,11 +76,11 @@ export async function handleSignUpAuthenticate(
 					items: []
 				};
 				await setDoc(userRef, dataToSetToStore, { merge: true });
-				// Set Default Account as notCurrator
+				// Set Default Account as notCurator
 				await setDoc(
 					doc(db, 'users', user.uid),
 					{
-						isCurrator: false
+						isCurator: false
 					},
 					{ merge: true }
 				);
@@ -132,11 +132,11 @@ export async function handleAuthenticateGoogle() {
 					items: []
 				};
 				await setDoc(userRef, dataToSetToStore, { merge: true });
-				// Set Default Account as notCurrator
+				// Set Default Account as notCurator
 				await setDoc(
 					doc(db, 'users', user.uid),
 					{
-						isCurrator: false
+						isCurator: false
 					},
 					{ merge: true }
 				);
@@ -334,9 +334,22 @@ export async function completeAccount(userId: string, isCurator: boolean, displa
 		await authHandlers.updateUserName(displayName);
 
 		await updateDoc(userRef, {
-			isCurrator: isCurator
+			isCurator: isCurator
 		});
 
+		return true;
+	} catch (err) {
+		console.log('There was an auth error', err);
+		throw err;
+	}
+}
+
+export async function updateCuratorState(userId: string, isCurator: boolean) {
+	const userRef = doc(db, 'users', userId);
+	try {
+		await updateDoc(userRef, {
+			isCurator
+		});
 		return true;
 	} catch (err) {
 		console.log('There was an auth error', err);
