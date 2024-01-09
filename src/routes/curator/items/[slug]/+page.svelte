@@ -49,6 +49,7 @@
 			use:enhance={handleDelete}
 bind:this={formElement}>
 </form>
+
 <div class="flex justify-end gap-x-4 mb-6">
 	<Button destructive on:click={toggleDialog}>Delete</Button>
 

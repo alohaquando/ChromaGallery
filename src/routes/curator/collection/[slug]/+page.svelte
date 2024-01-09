@@ -9,8 +9,11 @@
 	import Dialog from '$lib/components/pop-up/Dialog.svelte';
 	import type { PageData } from './$types';
 	import { extractItems } from '$lib/data/item';
-
+	import { enhance } from '$app/forms';
+	import type { SubmitFunction } from '@sveltejs/kit';
 	export let data: PageData;
+
+	let formElement:HTMLFormElement ;
 
 	let itemList = extractItems(data.collection);
 
@@ -21,18 +24,39 @@
 			resetDialog();
 		}
 	};
+
 	let button2 = {
-		option: 'Log out',
+		option: 'Delete',
 		type: 'filled',
-		function: () => {
-			handleDeleteCollection(data.slug);
+		function: function() {
+			formElement.requestSubmit()
 		}
 	};
+
+	let isLoading = false;
+	const handleDelete: SubmitFunction = async ({formData}) => {
+		isLoading = true;
+		formData.set("collectionId",data.collectionId)
+		return async ({ update }) => {
+			await update();
+			isLoading = false;
+		};
+	};
+	console.log(data.collectionId)
 </script>
+
+<form
+	class="hidden"
+	action="?/delete"
+	enctype="multipart/form-data"
+	method="POST"
+	use:enhance={handleDelete}
+	bind:this={formElement}>
+</form>
 
 <div class="flex justify-end gap-x-4 mb-6">
 	<Button destructive on:click={toggleDialog}>Delete</Button>
-	<Button design="filled" href="./{data.slug}/edit-detail">Edit</Button>
+	<Button design="filled" href="./{data.collectionId}/edit-detail">Edit</Button>
 </div>
 <Headline class="text-decoration-line: underline  underline-offset-8 pt-8 pb-6">
 	{data.collection.title}
@@ -42,8 +66,8 @@
 	{data.collection.description}
 </BodyLarge>
 
-<Button class="mt-12 w-full" design="filled" href="./{data.slug}/add">Add items</Button>
-<Button class="mt-4 mb-6 w-full" href="./{data.slug}/edit-items">Edit items</Button>
+<Button class="mt-12 w-full" design="filled" href="./{data.collectionId}/add">Add items</Button>
+<Button class="mt-4 mb-6 w-full" href="./{data.collectionId}/edit-items">Edit items</Button>
 
 {#await itemList}
 	<DragList class="gap-4" placeholder={3}></DragList>
