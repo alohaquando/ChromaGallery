@@ -13,8 +13,6 @@ export async function GET({ url }) {
 			items: undefined
 		};
 		const allItems: Item[] = await getAllItems();
-		// @ts-ignore
-		const allCollections: Collection[] = await getAllCollection();
 
 		if (q) {
 			result.items = allItems.filter((item) => item.title.toLowerCase().includes(q));
