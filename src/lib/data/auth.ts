@@ -15,7 +15,7 @@ import {
 } from 'firebase/auth';
 import { auth, db } from '$lib/services/firebase/firebase';
 import type { User } from '$lib/data/dataModels';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 import { EmailAuthProvider } from 'firebase/auth';
 
 export const authHandlers = {
@@ -310,3 +310,32 @@ export const getIsCurator = async (userId: string) => {
 		return false;
 	}
 };
+export async function updateCurratorState(userId: string, isCurrator: boolean) {
+	const userRef = doc(db, 'users', userId);
+
+	await updateDoc(userRef, {
+		isCurrator
+	});
+}
+export async function completeAccount(userId: string, isCurrator: boolean, displayName: string) {
+	const userRef = doc(db, 'users', userId);
+	try {
+		if (displayName.length < 3) {
+			console.log('Display name is invalid');
+			return;
+		}
+
+		await authHandlers.updateUserName(displayName);
+
+		await updateDoc(userRef, {
+			isCurrator
+		});
+
+		console.log('Successfully sign up account');
+
+		window.location.href = '/';
+	} catch (err) {
+		let error = true;
+		console.log(' There was an auth error', err);
+	}
+}

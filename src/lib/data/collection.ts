@@ -1,5 +1,6 @@
 import {
 	addDoc,
+	arrayUnion,
 	collection,
 	deleteDoc,
 	doc,
@@ -105,3 +106,13 @@ export async function handleUpdateCollection(collectionId: string, fieldsToUpdat
 
 	return await updateDoc(collectionRef, fieldsToUpdate);
 }
+export const handleAddItemToCollection = async (collectionId: string, itemId: string) => {
+	await setDoc(
+		doc(db, 'collections', collectionId),
+		{
+			items: arrayUnion(itemId)
+		},
+		{ merge: true }
+	);
+	console.log('Added successfully to Collection ID :', collectionId);
+};
