@@ -6,7 +6,11 @@ export const load = async ({ params }) => {
 	try {
 		let item = await getItem(params.slug);
 		return {
-			item
+			item,
+			header: {
+				type: 'back',
+				href: '/curator/items'
+			}
 		};
 	} catch (err) {
 		console.log('has error');

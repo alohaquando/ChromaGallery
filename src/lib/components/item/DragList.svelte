@@ -4,10 +4,7 @@
 	import { flip } from 'svelte/animate';
 	import type { DndEvent } from 'svelte-dnd-action';
 	import { dndzone } from 'svelte-dnd-action';
-	import { data } from 'autoprefixer';
 	import { createNewItem } from '$lib/data/dataModels';
-	import { item5 } from '$lib/data/exampleData';
-	import Button from '$lib/components/controls/Button.svelte';
 
 	export let type: 'action' | 'checkbox' | 'edit' | 'delete' | 'view' = 'action';
 	export let button: 'add' | 'destructive' | 'remove' | 'link' | undefined;
@@ -16,6 +13,7 @@
 	export let itemLimit: number | undefined;
 	export let outLimit: number | undefined;
 	export let output: Item[] | undefined;
+	export let curator: boolean = false;
 
 	// custom classes
 	let customClass = '';
@@ -110,6 +108,7 @@
 						{item}
 						{button}
 						{icon}
+						{curator}
 					></RowItem>
 				</div>
 			{/each}
