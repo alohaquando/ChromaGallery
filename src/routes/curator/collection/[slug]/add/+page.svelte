@@ -7,6 +7,7 @@
     import { onMount } from 'svelte';
     import Body from '$lib/components/typography/Body.svelte';
     import { goto } from '$app/navigation';
+    import { handleAddMultipleItemToCollection } from '$lib/data/collection';
 
     export let data: PageData;
 
@@ -61,7 +62,7 @@
         </div>
     {/if}
 
-    <!--    <Button on:click={async() => { await handleAddMultipleToList(data.session.uid, data.slug, selectedItems); await goto(`/list/${data.slug}`)}}-->
-    <!--            sticky>Add to list-->
-    <!--    </Button>-->
+    <Button on:click={async() => { await handleAddMultipleItemToCollection(data.slug, selectedItems); await goto(`/curator/collection/${data.slug}`)}}
+            sticky>Add to list
+    </Button>
 </div>
