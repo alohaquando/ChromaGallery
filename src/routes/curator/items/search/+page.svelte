@@ -11,7 +11,7 @@
 
     async function fetchData() {
         try {
-            const response = await fetch(`/browse/search?q=${searchTerm}`);
+            const response = await fetch(`/curator/items/search?q=${searchTerm}`);
             searchResults = await response.json(); // Store fetched search results
             items = searchResults.items;
             console.log('Search results:', searchResults);

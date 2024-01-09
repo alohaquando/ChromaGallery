@@ -10,6 +10,7 @@ import {
 } from 'firebase/firestore';
 import { db } from '$lib/services/firebase/firebase';
 import { redirect } from '@sveltejs/kit';
+import type { List } from '$lib/data/dataModels';
 
 export const getUsersAllLists = async (userId: string) => {
 	if (userId) {
@@ -59,6 +60,17 @@ export const handleAddToList = async (userId: string, listId: string, itemId: st
 		doc(db, 'users', userId, 'lists', listId),
 		{
 			items: arrayUnion(itemId)
+		},
+		{ merge: true }
+	);
+	console.log('Added successfully');
+};
+
+export const handleAddMultipleToList = async (userId: string, listId: string, itemId: string[]) => {
+	await setDoc(
+		doc(db, 'users', userId, 'lists', listId),
+		{
+			items: arrayUnion(...itemId)
 		},
 		{ merge: true }
 	);
