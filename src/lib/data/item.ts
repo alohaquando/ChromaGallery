@@ -265,3 +265,33 @@ export const filterItem = async (idList: string[] | undefined) => {
 	const allItems = await getAllItems();
 	return allItems.filter((item) => !idList?.includes(item.id));
 };
+
+export async function updateAllItems(itemIds) {
+	try {
+		const itemsCollection = collection(db, 'items');
+		const querySnapshot = await getDocs(itemsCollection);
+
+		querySnapshot.forEach((d) => {
+			const itemRef = doc(db, 'items', d.id);
+			updateDoc(itemRef, { isFeatured: false });
+		});
+
+		console.log('All items updated successfully.');
+
+		try {
+			for (const itemId of itemIds) {
+				const itemRef = doc(db, 'items', itemId);
+				await updateDoc(itemRef, { isFeatured: true });
+			}
+
+			console.log('Items updated to featured successfully.');
+		} catch (error) {
+			console.error('Error updating items to featured:', error);
+		}
+	} catch (error) {
+		console.error('Error updating items:', error);
+	}
+}
+// async function updateItemsToFeatured(itemIds) {
+//
+// }

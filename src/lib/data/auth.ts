@@ -312,6 +312,18 @@ export const getIsCurator = async (userId: string) => {
 	}
 };
 
+export async function handleUpdateCuratorState(userId: string, isCurator: boolean) {
+	const userRef = doc(db, 'users', userId);
+	try {
+		await updateDoc(userRef, {
+			isCurator
+		});
+		return true;
+	} catch (err) {
+		console.log('There was an auth error', err);
+		throw err;
+	}
+}
 export async function completeAccount(userId: string, isCurator: boolean, displayName: string) {
 	const userRef = doc(db, 'users', userId);
 	try {
