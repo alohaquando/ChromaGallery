@@ -2,8 +2,8 @@
 	import Button from '$lib/components/controls/Button.svelte';
 
 	export let state: 'add' | 'edit' = 'add';
-	export let id: string = 'imageInput';
-
+	export let id: string;
+	export let name: string;
 	let fileInput: any | undefined;
 
 	let selectedImage: Blob | MediaSource | null = null;
@@ -40,7 +40,8 @@
 	};
 </script>
 
-<input accept="image/*" class="hidden" {id} on:change={handleFileChange} type="file" />
+<input accept="image/*" class="hidden" {id} {name} on:change={handleFileChange} type="file" />
+
 {#if state === 'add'}
 	<label
 		for={id}
@@ -53,7 +54,7 @@
 		<div
 			class="w-full bg-black bg-opacity-50 rounded-2xl border border-white border-opacity-30 justify-center items-center inline-flex overflow-hidden"
 		>
-			<img class="object-contain" src={imageUrl} alt={selectedImage ? selectedImage.name : ''} />
+			<img class="object-contain max-h-[40vh]" src={imageUrl} alt={selectedImage ? selectedImage.name : ''} />
 		</div>
 		<div class="inline-flex gap-4">
 			<Button icon="faImage" on:click={handleGetImage}>Change</Button>

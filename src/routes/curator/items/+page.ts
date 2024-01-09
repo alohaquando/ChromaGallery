@@ -1,9 +1,11 @@
-import { getAllItems } from '$lib/data/item';
+import { getAllItems, getFeaturedItems } from '$lib/data/item';
 
-// @ts-ignore
-export const load = async ({ params }) => {
+export const load = async () => {
 	return {
-		slug: params.slug,
-		items: await getAllItems()
+		background: {
+			design: 'top'
+		},
+		items: await getAllItems(),
+		featuredItems: await getFeaturedItems()
 	};
 };

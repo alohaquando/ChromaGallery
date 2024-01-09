@@ -12,16 +12,16 @@
 </script>
 
 <form>
-	<TextField id="author" label="author" name="author" placeholder="author" bind:value={author}
+	<TextField bind:value={author} id="author" label="author" name="author" placeholder="author"
 	></TextField>
 	<TextField
+		bind:value={description}
 		id="description"
 		label="description"
 		name="description"
 		placeholder="description"
-		bind:value={description}
 	></TextField>
-	<TextField id="title" label="title" name="title" placeholder="title" bind:value={title}
+	<TextField bind:value={title} id="title" label="title" name="title" placeholder="title"
 	></TextField>
 	<!-- <TextField
 		id="subtitle"
@@ -32,14 +32,16 @@
 		bind:value={subtitle}
 	></TextField> -->
 	<TextField
+		bind:value={location}
 		id="location"
 		label="location"
 		name="location"
 		placeholder="location"
-		bind:value={location}
 	></TextField>
 
-	<TextField id="year" label="year" name="year" placeholder="year" bind:value={year}></TextField>
-	<input type="file" on:change={(e) => (image = e.target.files[0])} />
-	<button type="submit" class="bg-white text-black" on:click={() => handleCreateItem(author,description,image,isFeatured,location,title,year)}>Create</button>
+	<TextField bind:value={year} id="year" label="year" name="year" placeholder="year"></TextField>
+	<input on:change={(e) => (image = e.target.files[0])} type="file" />
+	<button class="bg-white text-black" on:click={() => handleCreateItem(author,description,image,isFeatured,location,title,year)}
+					type="submit">Create
+	</button>
 </form>

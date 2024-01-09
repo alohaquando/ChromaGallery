@@ -1,6 +1,5 @@
 import {
 	addDoc,
-	arrayUnion,
 	collection,
 	deleteDoc,
 	doc,
@@ -58,9 +57,14 @@ export const getItem = async (id: string) => {
 	try {
 		const docRef = doc(db, 'items', id);
 		const docSnap = await getDoc(docRef);
-		return docSnap.data();
+
+		if (docSnap.data() === undefined) {
+			throw new Error('Item not found');
+		} else {
+			return docSnap.data();
+		}
 	} catch (error) {
-		console.error('Error fetching all items: ', error.message);
+		console.error('Error fetching items: ', error.message);
 		throw error;
 	}
 };
@@ -159,6 +163,21 @@ export async function checkIfBookmarked(itemId: string) {
 	return false;
 }
 
+export async function uploadFileGetUrl(image: File) {
+	return new Promise<string>((resolve, reject) => {
+		const imageRef = ref(storage, `images/${image.name}`);
+		(async () => {
+			try {
+				let snapshot = await uploadBytes(imageRef, image);
+				let downloadURL = await getDownloadURL(snapshot.ref);
+				resolve(downloadURL);
+			} catch (err) {
+				reject(err);
+			}
+		})();
+	});
+}
+
 export async function handleCreateItem(
 	author: string,
 	description: string,
@@ -168,33 +187,55 @@ export async function handleCreateItem(
 	title: string,
 	year: string
 ) {
-
-	try {
+	return new Promise((resolve, reject) => {
 		const imageRef = ref(storage, `images/${image.name}`);
 		// 'file' comes from the Blob or File API
-		uploadBytes(imageRef, image)
-			.then((snapshot) => {
-				console.log('Uploaded a blob or file!');
-				console.log(snapshot);
-				return getDownloadURL(snapshot.ref);
-			})
-			.then(async (downloadURL) => {
-				console.log('Download URL is ', downloadURL);
-				const docRef = await addDoc(collection(db, 'items'), {
+		(async () => {
+			try {
+				// let snapshot = await uploadBytes(imageRef, image);
+				// console.log(snapshot);
+				// let downloadURL = await getDownloadURL(snapshot.ref);
+
+				let docRef = await addDoc(collection(db, 'items'), {
 					author,
 					description,
-					image: downloadURL,
+					image,
 					isFeatured,
 					location,
 					title,
 					year
 				});
-				console.log('Document written with ID: ', docRef.id);
-			});
-	} catch (err) {
-		console.log(err);
-	}
-
+				console.log(docRef);
+				resolve(docRef);
+			} catch (err) {
+				console.error(err);
+				reject(err);
+			}
+		})();
+	});
+	// try {
+	// uploadBytes(imageRef, image)
+	// 	.then((snapshot) => {
+	// 		console.log('Uploaded a blob or file!');
+	// 		console.log(snapshot);
+	// 		return getDownloadURL(snapshot.ref);
+	// 	})
+	// 	.then(async (downloadURL) => {
+	// 		console.log('Download URL is ', downloadURL);
+	// 		const docRef = await addDoc(collection(db, 'items'), {
+	// 			author,
+	// 			description,
+	// 			image: downloadURL,
+	// 			isFeatured,
+	// 			location,
+	// 			title,
+	// 			year
+	// 		});
+	// 		console.log('Document written with ID: ', docRef.id);
+	// 	});
+	// } catch (err) {
+	// 	console.log(err);
+	// }
 }
 
 export async function handleDeleteItem(itemId: string) {
@@ -218,6 +259,7 @@ export async function handleUpdateItem(itemId: string, listToUpdate: object) {
 
 	await updateDoc(itemRef, listToUpdate);
 }
+
 export const filterItem = async (idList: string[] | undefined) => {
 	const allItems = await getAllItems();
 	return allItems.filter((item) => !idList?.includes(item.id));

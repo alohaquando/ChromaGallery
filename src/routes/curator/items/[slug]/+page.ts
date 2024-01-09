@@ -1,13 +1,19 @@
 import { getItem } from '$lib/data/item';
+import { error } from '@sveltejs/kit';
 
 // @ts-ignore
 export const load = async ({ params }) => {
-	return {
-		slug: params.slug,
-		header: {
-			type: 'back',
-			href: '/curator/items'
-		},
-		item: await getItem(params.slug)
-	};
+	try {
+		let item = await getItem(params.slug);
+		return {
+			item,
+			header: {
+				type: 'back',
+				href: '/curator/items'
+			}
+		};
+	} catch (err) {
+		console.log('has error');
+		throw error(401, 'Item not found');
+	}
 };
