@@ -36,13 +36,13 @@
 			component = Logo;
 			text = 'Gallery';
 			href = '/';
-			logoClasses = 'w-full px-24 py-4';
+			logoClasses = 'w-full px-16 py-4 max-w-sm';
 			break;
 		case 'curator':
 			component = LogoCurator;
 			text = 'Curator';
 			href = '/curator/items';
-			logoClasses = 'w-full px-8 py-6';
+			logoClasses = 'w-full px-8 py-6 max-w-lg';
 			break;
 	}
 
@@ -56,10 +56,12 @@
 {#if toggled}
 	<div
 		transition:fade={{ duration: 100 }}
-		class="{customClass} w-full px-6 py-10 bg-neutral-700/70 rounded-2xl backdrop-blur-lg flex-col justify-center items-center gap-6 inline-flex duration-0 ease-out origin-top"
+		class="{customClass} w-full px-6 py-10 bg-white/10 ring-1 ring-white/30 rounded-2xl backdrop-blur-lg flex items-center justify-center"
 	>
-		<svelte:component class={logoClasses} this={component} />
-		<Button design="filled" {href} width="full">Go to Chroma&nbsp<b>{text}</b></Button>
+		<div class="flex origin-top flex-col items-center justify-center gap-6 w-full  duration-0">
+			<svelte:component class={logoClasses} this={component} />
+			<Button design="filled" {href} width="full">Go to Chroma&nbsp<b>{text}</b></Button>
+		</div>
 	</div>
 {/if}
 
