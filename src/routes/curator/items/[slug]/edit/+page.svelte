@@ -61,7 +61,7 @@
 	method="POST"
 	use:enhance={handleSubmit}>
 
-	<FileInput state="edit"></FileInput>
+	<FileInput imageUrl="{data.item.image}" state="edit"></FileInput>
 
 	<Divider class="my-8" />
 

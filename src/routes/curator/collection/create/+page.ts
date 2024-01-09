@@ -4,9 +4,7 @@ export async function load() {
 			toggled: true,
 			title: 'Create new collection',
 			href: './',
-			button: 'Save',
-			exit: true,
-			buttonFunction: function () {}
+			exit: true
 		}
 	};
 }

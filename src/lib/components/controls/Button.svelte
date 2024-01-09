@@ -9,10 +9,6 @@
 		hoverEffect =
 			'hover:bg-white/20 hover:text-gray-900 hover:before:opacity-100 hover:after:opacity-100';
 	}
-	export let destructive: boolean = false;
-	if (destructive) {
-		hoverEffect = 'text-red-500';
-	}
 	export let icon: string | undefined = undefined;
 	export let width: 'fit' | 'full' = 'fit';
 	export let sticky: boolean = false;
@@ -21,7 +17,7 @@
 	if (sticky) {
 		design = 'filled';
 		width = 'full';
-		stickyClass = 'sticky mt-6 bottom-6';
+		stickyClass = 'sticky mt-6 bottom-10';
 	}
 	export let type: 'button' | 'submit' | 'reset' | undefined = 'button';
 	export let disabled: boolean = false;
@@ -49,13 +45,18 @@
 			break;
 		}
 		case 'filled': {
-			designClasses = 'bg-gradient-to-b from-white/70 to-white/90 text-gray-900 active:bg-white/80 hover:bg-white/70';
+			designClasses = 'bg-gradient-to-b from-white/70 to-white text-gray-900 active:bg-white/80 hover:bg-white/70';
 		}
+	}
+
+	export let destructive: boolean = false;
+	if (destructive) {
+		hoverEffect = 'text-red-400 bg-white/20 hover:bg-white/40 hover:text-red-600 hover:underline';
 	}
 </script>
 
 <svelte:element
-	class="{stickyClass} px-5 rounded-full inline-flex items-center backdrop-blur-sm justify-center gap-2 overflow-visible ease-out duration-300 h-10 line-clamp-1 relative
+	class="{stickyClass} px-5 rounded-full inline-flex items-center justify-center gap-2 overflow-visible ease-out duration-300 h-10 line-clamp-1 relative
 
 disabled:text-white/50 disabled:hover:before:opacity-0 disabled:hover:after:opacity-0
 disabled:hover:bg-transparent
@@ -63,8 +64,8 @@ active:opacity-70 active:duration-0
 
         {widthClasses} {designClasses} {customClasses} {hoverEffect}
 
-        after:content-[''] after:h-6 after:w-full after:rounded-full after:absolute after:top-auto after:bg-gradient-to-b from-transparent to-white after:blur-md after:opacity-0 after:duration-1000 after:ease-out after:-z-10
-        before:content-[''] before:h-10 before:w-full before:bg-gradient-to-b from-black/10 via-50% via-white to-white before:rounded-full before:blur-sm before:absolute before:opacity-0 before:duration-1000 before:ease-out before:-z-10
+        after:content-[''] after:h-6 after:w-full after:rounded-full after:absolute after:top-auto after:bg-gradient-to-b after:from-transparent after:to-white after:blur-md after:opacity-0 after:duration-1000 after:ease-out after:-z-10
+        before:content-[''] before:h-10 before:w-full before:bg-gradient-to-b before:from-black/10 before:via-50% before:via-white before:to-white before:rounded-full before:blur-sm before:absolute before:opacity-0 before:duration-1000 before:ease-out before:-z-10
 "
 	{disabled}
 	{href}

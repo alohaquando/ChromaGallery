@@ -97,7 +97,7 @@
 
 	<!--<editor-fold desc="Bottom fade to black">-->
 	<div
-		class="absolute bottom-0 left-0 right-0 w-full h-24 bg-gradient-to-t from-black translate-y-0"
+		class="absolute -z-40 bottom-0 left-0 right-0 w-full h-24 bg-gradient-to-t from-black translate-y-0"
 	/>
 	<!--</editor-fold>-->
 </div>

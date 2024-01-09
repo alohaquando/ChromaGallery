@@ -46,7 +46,8 @@
 		{#if rowType}
 			<div class="flex flex-col gap-2">
 				{#each collections as collection}
-					<RowCollection on:select={handleSelectList} id="{collection.id}" {hasLink} {icon} {button} {curator} {type}
+					<RowCollection {isCollection} on:select={handleSelectList} id="{collection.id}" {hasLink} {icon} {button}
+												 {curator} {type}
 												 {collection}></RowCollection>
 				{/each}
 			</div>

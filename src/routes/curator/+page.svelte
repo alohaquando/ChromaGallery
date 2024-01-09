@@ -11,12 +11,11 @@
 <PageTitle>Sheen Hahn</PageTitle>
 
 <div class="flex flex-col items-center justify-center">
-	<Button class="mt-8 mb-12 mx-auto" icon="faCog">Account settings</Button>
+	<Button class="mt-8 mb-12 mx-auto" href="/account/setting" icon="faCog">Account settings</Button>
 </div>
 
 <div class="flex flex-col items-center justify-center gap-4">
-	<Title>View your bookmarks and lists</Title>
-	<Title>on Chroma Gallery</Title>
+	<Title class="text-center">View your bookmarks and lists<br>on Chroma Gallery</Title>
 </div>
 
-<SiteSwitcher class="mt-28"></SiteSwitcher>
+<SiteSwitcher class="mt-20" toggled={true}></SiteSwitcher>
