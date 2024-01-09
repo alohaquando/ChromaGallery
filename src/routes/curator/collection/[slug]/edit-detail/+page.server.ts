@@ -4,7 +4,7 @@ export const actions = {
 	edit: async ({ request }) => {
 		const formData = await request.formData();
 
-		const collectionId: string = formData.get('collectionID') as string;
+		const collectionId: string = formData.get('collectionId') as string;
 		const description = formData.get('desc') as string;
 		const title = formData.get('name') as string;
 

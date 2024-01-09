@@ -113,7 +113,7 @@
 
 <CreateList /> -->
 <script>
-	import { handleDeleteCollection, handleDeleteItemFromCollection } from '$lib/data/collection';
+	import { handleDeleteCollection, handleDeleteItemFromCollection, handleUpdateCollection } from '$lib/data/collection';
 	import { handleCreateItem, handleDeleteItem, handleUpdateItem, updateItemFeatureStatus } from '$lib/data/item';
 	import { handleDeleteList } from '$lib/data/list';
 	import { db, storage } from '$lib/services/firebase/firebase';
@@ -166,6 +166,10 @@
 
 		// Update is Featured
 		updateItemFeatureStatus('IBpq1ZYF4KMgaeSDUAQn',false)
+
+		// Update Collection
+		// handleUpdateCollection('zlspj4IE3S3UQ160xRfW',
+		// 	{title:"Bec",description:"asdasd"})
 	});
 </script>
 

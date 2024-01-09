@@ -101,7 +101,7 @@ export async function handleCreateCollection(title: string, description: string)
 
 export async function handleUpdateCollection(collectionId: string, fieldsToUpdate: object) {
 	console.log(collectionId);
-	const collectionRef = doc(db, 'items', collectionId);
+	const collectionRef = doc(db, 'collections', collectionId);
 
 	return await updateDoc(collectionRef, fieldsToUpdate);
 }
