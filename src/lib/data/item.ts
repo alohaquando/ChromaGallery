@@ -254,10 +254,11 @@ export async function handleDeleteItem(itemId: string) {
 	}
 }
 
-export async function handleUpdateItem(itemId: string, listToUpdate: object) {
+export async function handleUpdateItem(itemId: string, itemToUpdate: object) {
+	console.log(itemId);
 	const itemRef = doc(db, 'items', itemId);
 
-	await updateDoc(itemRef, listToUpdate);
+	return await updateDoc(itemRef, itemToUpdate);
 }
 
 export const filterItem = async (idList: string[] | undefined) => {

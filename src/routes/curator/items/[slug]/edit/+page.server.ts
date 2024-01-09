@@ -1,10 +1,11 @@
-import { fail, redirect } from '@sveltejs/kit';
-import { handleCreateItem } from '$lib/data/item';
+import { error, fail, redirect } from '@sveltejs/kit';
+import { getItem, handleCreateItem, handleUpdateItem } from '$lib/data/item';
 
 export const actions = {
-	add: async ({ request }) => {
+	edit: async ({ request }) => {
 		const formData = await request.formData();
 
+		const itemId: string = formData.get('itemID') as string;
 		const author = formData.get('artist') as string;
 		const description = formData.get('desc') as string;
 		const imageUrl: any = formData.get('imageUrl') as string;
@@ -19,10 +20,8 @@ export const actions = {
 			});
 		}
 
-		let result;
-
 		try {
-			result = await handleCreateItem(
+			await handleUpdateItem(itemId, {
 				author,
 				description,
 				imageUrl,
@@ -30,14 +29,14 @@ export const actions = {
 				location,
 				title,
 				year
-			);
+			});
 		} catch (error) {
 			return fail(400, {
 				message: error
 			});
 		}
 
-		throw redirect(300, `/curator/items/${result.id}`);
+		throw redirect(300, `/curator/items/${itemId}`);
 	}
 };
 
