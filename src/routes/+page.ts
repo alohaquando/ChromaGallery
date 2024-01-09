@@ -1,8 +1,9 @@
-import { getFeaturedItems } from '$lib/data/item';
+import { getAllItems, getFeaturedItems } from '$lib/data/item';
 
-export const load = async () => {
+export const load = () => {
 	return {
-		featuredItems: await getFeaturedItems(),
+		featuredItems: getFeaturedItems(),
+		allItems: getAllItems(),
 		background: {
 			toggled: false
 		}
