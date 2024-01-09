@@ -9,8 +9,13 @@ export const actions = {
 		const itemList = formData.get('itemList');
 
 		try {
+			function splitAndCreateArray(itemList) {
+				return itemList.split(',');
+			}
+
+			const resultArray = splitAndCreateArray(itemList);
 			await handleUpdateCollection(collectionId, {
-				itemList: itemList
+				items: resultArray
 			});
 		} catch (error) {
 			return fail(400, {
