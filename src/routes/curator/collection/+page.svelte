@@ -13,4 +13,4 @@
 <Button class="mt-16 mb-8" href="collection/search" icon="faMagnifyingGlass" width="full">Search</Button>
 <CollectionList button="link" collections={data.collections} curator isCollection rowType></CollectionList>
 
-<FixedButton href="/curator/collection/add" icon="faPlus"></FixedButton>
+<FixedButton href="/curator/collection/create" icon="faPlus"></FixedButton>
