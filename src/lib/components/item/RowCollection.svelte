@@ -43,8 +43,9 @@
 		dispatch('select', { currentTarget: { id } });
 	};
 
-	let str = count(collection.items);
 	let listItems = extractItems(collection);
+
+	export let bookmark: boolean = false;
 </script>
 
 <svelte:element class="{customClass} text-left w-full h-auto flex items-center gap-4 overflow-hidden" href="{path}"
@@ -56,11 +57,11 @@
 	{#await listItems}
 		<Block class="rounded-lg shrink-0 !h-16 !w-16" icon link={false}></Block>
 	{:then items}
-		<Block class="rounded-lg shrink-0 !h-16 !w-16" icon item={items[0]} link={false}></Block>
+		<Block {bookmark} class="rounded-lg shrink-0 !h-16 !w-16" icon item={items[0]} link={false}></Block>
 	{/await}
 	<div class="w-full gap-y-3 flex flex-col">
 		<Body>{collection.title}</Body>
-		<Body class="opacity-50 line-clamp-1">{str}</Body>
+		<Body class="opacity-50 line-clamp-1">{count(collection.items)}</Body>
 	</div>
 	{#if type === 'checkbox'}
 		{#if button}

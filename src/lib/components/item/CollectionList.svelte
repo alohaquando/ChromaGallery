@@ -39,17 +39,30 @@
 
 		console.log(selected);
 	};
+
+	let bookmark: List;
+	$: if (!isCollection) {
+		bookmark = collections.find(list => list.id === 'bookmark');
+		collections = collections.filter(list => list.id !== 'bookmark');
+	}
 </script>
 
-<div class={customClass}>
+<div class="{customClass} w-full">
 	{#if collections}
 		{#if rowType}
 			<div class="flex flex-col gap-2">
+				{#if (!isCollection) && bookmark}
+					<RowCollection on:select={handleSelectList} id="bookmark" {hasLink} {icon} {button}
+												 {curator} {type}
+												 bookmark
+												 collection={bookmark}></RowCollection>
+				{/if}
 				{#each collections as collection}
 					<RowCollection {isCollection} on:select={handleSelectList} id="{collection.id}" {hasLink} {icon} {button}
 												 {curator} {type}
 												 {collection}></RowCollection>
 				{/each}
+
 			</div>
 		{:else}
 			<div

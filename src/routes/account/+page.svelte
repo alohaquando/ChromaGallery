@@ -16,10 +16,13 @@
 	import TitleLarge from '$lib/components/typography/TitleLarge.svelte';
 	import { getSessionUser } from '$lib/data/auth';
 	import { onMount } from 'svelte';
+	import type { List } from '$lib/data/dataModels';
 
 	/** @type {import('../../../../../.svelte-kit/types/src/routes').PageLoad} */
 	export let data: PageData;
-	let lists = data.lists;
+
+	let bookmark = data.lists.find(list => list.id === 'bookmark');
+	let lists = data.lists.filter(list => list.id !== 'bookmark');
 
 	const randomGreeting = (): string => {
 		const greetings = ['Hi!', 'Hi there!', 'Hello!', 'Greetings!', 'Salutations!', 'Hey!', 'What\'s up!'];
@@ -81,7 +84,8 @@
 			<Button class="shrink-0" href="/list/create" icon="faPlus">New lists</Button>
 		</div>
 
-		<GridCollection bookmark class="mt-2" collections={lists}></GridCollection>
+		<CollectionBlock bookmark collection={bookmark} class="mb-8"></CollectionBlock>
+		<GridCollection class="mt-2" collections={lists}></GridCollection>
 	</div>
 {:else}
 	<!-- Not Sign In -->
