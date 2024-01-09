@@ -7,6 +7,7 @@ export const load = async ({ params }) => {
 		let item = await getItem(params.slug);
 		return {
 			item,
+			itemId: params.slug,
 			header: {
 				type: 'back',
 				href: '/curator/items'
