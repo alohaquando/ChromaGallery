@@ -1,15 +1,16 @@
 <script lang="ts">
-	import Button from '$lib/components/controls/Button.svelte';
-	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
-	import Fab from '$lib/components/controls/Fab.svelte';
-	import DragList from '$lib/components/item/DragList.svelte';
-	import { allItem } from '$lib/data/exampleData';
-	import FixedButton from '$lib/components/controls/FixedButton.svelte';
+    import Button from '$lib/components/controls/Button.svelte';
+    import PageTitle from '$lib/components/layouts/PageTitle.svelte';
+    import FixedButton from '$lib/components/controls/FixedButton.svelte';
+    import type { PageData } from './$types';
+    import CollectionList from '$lib/components/item/CollectionList.svelte';
+
+    export let data: PageData;
 </script>
 
 <PageTitle>Collections</PageTitle>
 
-<Button class="mt-16 mb-8" icon="faMagnifyingGlass" width="full">Search</Button>
-<DragList button="link" class="gap-4" items={allItem}></DragList>
+<Button class="mt-16 mb-8" href="collection/search" icon="faMagnifyingGlass" width="full">Search</Button>
+<CollectionList button="link" collections={data.collections} curator isCollection rowType></CollectionList>
 
-<FixedButton icon="faPlus"></FixedButton>
+<FixedButton href="/curator/collection/create" icon="faPlus"></FixedButton>

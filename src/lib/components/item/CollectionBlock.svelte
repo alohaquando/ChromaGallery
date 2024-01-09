@@ -5,9 +5,7 @@
     import InfoChip from '$lib/components/controls/InfoChip.svelte';
     import Block from '$lib/components/item/Block.svelte';
     import type { Collection } from '../../data/dataModels';
-    import { allItem } from '../../data/exampleData';
     import { count } from '$lib/utils/countItem';
-
     import { extractItems } from '$lib/data/item';
 
     export let collection: Collection | undefined;
@@ -15,30 +13,39 @@
     let customClass = '';
     export { customClass as class };
 
-    let blockStyle: 'grid' | 'single' = 'single';
-    export { blockStyle as style };
+    export let design: 'grid' | 'single' = 'single';
 
-    let str = collection ? count(collection.items) : '';
+    let str = collection ? count(collection.items) : 'Loading...';
     export let title: boolean = true;
     export let subtitle: boolean = true;
     export let bookmark: boolean = false;
+    export let curator: boolean = false;
+    export let isCollection: boolean = false;
+    let path: string;
     if (bookmark) {
-        blockStyle = 'single';
+        path = '/list/bookmark';
+        design = 'single';
+    } else {
+        path = (curator ? '/curator' : '') + (isCollection ? '/collection/' : '/list/') + collection?.id;
     }
     export let hideSubtitle: boolean = false;
     export let width: 'fixed' | 'full' = 'fixed';
     let widthClass = '';
     switch (width) {
         case 'fixed':
-            widthClass = 'sm:w-72 w-full';
-        case 'full':
             widthClass = 'w-72';
+            break;
+        case 'full':
+            widthClass = 'w-full';
+            break;
     }
-    export let curator: boolean = false;
-    let path = (curator ? '/curator' : '/user') + '/collection/' + collection?.id;
 
     let itemList = extractItems(collection);
-    console.log(itemList);
+
+    let isHovered: boolean = false;
+    const toggleHover = () => {
+        isHovered = !isHovered;
+    };
 </script>
 
 {#await itemList}
@@ -50,18 +57,18 @@
         <div
                 class="w-full h-52 rounded-lg gap-1 inline-flex overflow-hidden relative"
         >
-            <Block></Block>
+            <Block item={null} {bookmark}></Block>
             <InfoChip class="absolute bottom-2 right-2 !rounded-2xl !bg-opacity-40 py-4">
-                <Body>{str}</Body>
+                <Body>Loading...</Body>
             </InfoChip>
         </div>
         {#if title}
             <div class="self-stretch flex-col flex gap-4">
                 <Body>
-                {#if !bookmark}
-                    Title
-                {:else}
+                {#if bookmark}
                     Bookmark
+                {:else}
+                    Title
                 {/if}
                 </Body>
                 {#if subtitle && !bookmark && !hideSubtitle}
@@ -77,31 +84,35 @@
 			: widthClass} flex-col justify-start items-start gap-6 inline-flex grow-0"
     >
         <a
-                class="w-full h-52 rounded-lg gap-1 inline-flex overflow-hidden relative"
+                class="w-full bg-neutral-900/30 h-52 rounded-xl gap-1 inline-flex overflow-hidden relative"
                 href="{path}"
+                on:mouseleave={toggleHover}
+                on:mouseenter={toggleHover}
+                role="button"
+                tabindex="0"
         >
-            <Block item={itemData[0]} link={false} {bookmark}></Block>
-            {#if !bookmark && blockStyle === 'grid' && itemData[1]}
+            <Block item={itemData? itemData[0] : null} link={false} {bookmark}></Block>
+            {#if !bookmark && design === 'grid' && itemData && itemData[1]}
                 <div class="grow shrink basis-0 self-stretch flex-col gap-1 inline-flex">
-                    {#if itemData[1]}
-                        <Block link={false} item={itemData[1]}></Block>
-                    {/if}
-                    {#if itemData[2]}
+                    <Block link={false} item={itemData[1]}></Block>
+                    {#if itemData && itemData[2]}
                         <Block link={false} item={itemData[2]}></Block>
                     {/if}
                 </div>
             {/if}
-            <InfoChip class="absolute bottom-2 right-2 !rounded-2xl !bg-opacity-40 py-4">
-                <Body>{str}</Body>
-            </InfoChip>
+            {#if (itemData)}
+                <InfoChip class="absolute bottom-2 right-2 !rounded-2xl !bg-opacity-40 py-4">
+                    <Body>{str}</Body>
+                </InfoChip>
+            {/if}
         </a>
         {#if title}
             <div class="self-stretch flex-col flex gap-4">
-                <Link href="{path}" type="body">
-                    {#if !bookmark}
-                        {collection?.title}
-                    {:else}
+                <Link {isHovered} href="{path}" type="body">
+                    {#if bookmark}
                         Bookmark
+                    {:else}
+                        {collection?.title}
                     {/if}
                 </Link>
                 {#if subtitle && !bookmark && !hideSubtitle}

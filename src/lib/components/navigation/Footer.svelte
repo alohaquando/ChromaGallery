@@ -7,6 +7,7 @@
 	import Link from '$lib/components/links/Link.svelte';
 	import Icon from '$lib/components/iconography/Icon.svelte';
 	import { onMount } from 'svelte';
+	import {page} from '$app/stores';
 	// import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 	let root: HTMLElement;
@@ -35,6 +36,8 @@
 	// 	}
 	// 	console.log(userEmail)
 	// });
+
+	export let loggedIn: boolean = false;
 </script>
 
 <div class="pb-16 pt-32 w-full justify-start items-start gap-8 inline-flex flex-col">
@@ -56,20 +59,28 @@
 
 	<Divider />
 
-	<!--	Account-->
-	<Title>Account</Title>
-	<Body
+	{#if loggedIn}
+		<!--	Account-->
+		<Title>Account</Title>
+		<Body
 		>Manage your bookmarks and lists of your favourite piece of art with an that online museum
 		account
-	</Body>
-	<Button href="/user/account/sign-up">Become a member</Button>
+		</Body>
+		<Button href="/account/sign-up">Become a member</Button>
 
-	<Divider />
+		<Divider />
+	{/if}
 
 	<!--	Curator site-->
-	<Title>Chroma Curator</Title>
-	<Body>Manage items and collections on Chroma Gallery using a Curator account</Body>
-	<Button href="">Go to Chroma Curator</Button>
+	{#if $page.url.pathname.startsWith('/curator')}
+		<Title>Chroma Gallery</Title>
+		<Body>View beautiful artworks on Chroma Gallery</Body>
+		<Button href="/">Go to Chroma Gallery</Button>
+		{:else }
+		<Title>Chroma Curator</Title>
+		<Body>Manage items and collections on Chroma Gallery using a Curator account</Body>
+		<Button href="/curator/items">Go to Chroma Curator</Button>
+	{/if}
 
 	<Divider />
 
@@ -80,7 +91,7 @@
 			<Link class="ml-5" href="/terms">Terms</Link>
 		</div>
 		<span class="text-white/50 items-center flex cursor-default"
-			><Icon icon="faCopyright"></Icon><Body class="text-white/50">2023 Chroma Gallery</Body></span
+		><Icon icon="faCopyright"></Icon><Body class="text-white/50">2023 Chroma Gallery</Body></span
 		>
 	</div>
 </div>

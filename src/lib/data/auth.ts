@@ -1,8 +1,10 @@
 import {
 	createUserWithEmailAndPassword,
+	getAuth,
 	GoogleAuthProvider,
 	onAuthStateChanged,
 	reauthenticateWithCredential,
+	sendPasswordResetEmail,
 	signInWithEmailAndPassword,
 	signInWithPopup,
 	signOut,
@@ -13,7 +15,7 @@ import {
 } from 'firebase/auth';
 import { auth, db } from '$lib/services/firebase/firebase';
 import type { User } from '$lib/data/dataModels';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 import { EmailAuthProvider } from 'firebase/auth';
 
 export const authHandlers = {
@@ -37,6 +39,9 @@ export const authHandlers = {
 	},
 	updatePassword: async (newPassword: string) => {
 		await updatePassword(auth.currentUser, newPassword);
+	},
+	sendResetPassword: async (email: string) => {
+		await sendPasswordResetEmail(auth, email);
 	}
 };
 
@@ -48,7 +53,7 @@ export async function handleSignUpAuthenticate(
 	try {
 		if (password !== confirmPassword) {
 			console.log('Password does not match');
-			return;
+			throw new Error('Password does not match');
 		}
 		await authHandlers.signup(email, password);
 
@@ -71,11 +76,11 @@ export async function handleSignUpAuthenticate(
 					items: []
 				};
 				await setDoc(userRef, dataToSetToStore, { merge: true });
-				// Set Default Account as notCurrator
+				// Set Default Account as notCurator
 				await setDoc(
 					doc(db, 'users', user.uid),
 					{
-						isCurrator: false
+						isCurator: false
 					},
 					{ merge: true }
 				);
@@ -87,23 +92,23 @@ export async function handleSignUpAuthenticate(
 
 		await authHandlers.login(email, password);
 
-		window.location.href = '/user/account/register';
+		return true;
 	} catch (err) {
-		let error = true;
 		console.log(' There was an auth error', err);
+		throw err;
 	}
 }
 
 export async function handleAuthenticate(email: string, password: string) {
 	if (!email || !password) {
-		return;
+		throw new Error('Email or password is empty');
 	}
-
 	try {
 		await authHandlers.login(email, password);
-		window.location.href = '/';
+		return true;
 	} catch (err) {
 		console.log(' There was an auth error', err);
+		throw err;
 	}
 }
 
@@ -127,11 +132,11 @@ export async function handleAuthenticateGoogle() {
 					items: []
 				};
 				await setDoc(userRef, dataToSetToStore, { merge: true });
-				// Set Default Account as notCurrator
+				// Set Default Account as notCurator
 				await setDoc(
 					doc(db, 'users', user.uid),
 					{
-						isCurrator: false
+						isCurator: false
 					},
 					{ merge: true }
 				);
@@ -146,11 +151,10 @@ export async function handleAuthenticateGoogle() {
 		console.log('Successfully logged in');
 	} catch (err) {
 		console.log(' There was an auth error', err);
+		throw err;
 	}
 }
 
-
-  
 export async function handleSetDisplayName(displayName: string) {
 	try {
 		if (displayName.length < 3) {
@@ -266,6 +270,18 @@ export async function handleUpdatePassword(
 		console.log(' There was an auth error', err);
 	}
 }
+
+export const handleResetPassword = async (email: string) => {
+	try {
+		await authHandlers.sendResetPassword(email);
+		console.log('Successfully Send Reset Password Email');
+
+		window.location.href = '/';
+	} catch (err) {
+		console.log(err);
+	}
+};
+
 export const getSessionUser: () => Promise<User | null> = async () => {
 	return new Promise((resolve) => {
 		onAuthStateChanged(auth, async (user) => {
@@ -273,7 +289,7 @@ export const getSessionUser: () => Promise<User | null> = async () => {
 				resolve({
 					uid: user.uid,
 					email: user.email ? user.email : 'No email registered',
-					displayName: user.displayName ? user.displayName : 'No full name added',
+					displayName: user.displayName ? user.displayName : '',
 					isCurator: await getIsCurator(user.uid)
 				});
 			} else {
@@ -295,3 +311,48 @@ export const getIsCurator = async (userId: string) => {
 		return false;
 	}
 };
+
+export async function handleUpdateCuratorState(userId: string, isCurator: boolean) {
+	const userRef = doc(db, 'users', userId);
+	try {
+		await updateDoc(userRef, {
+			isCurator
+		});
+		return true;
+	} catch (err) {
+		console.log('There was an auth error', err);
+		throw err;
+	}
+}
+export async function completeAccount(userId: string, isCurator: boolean, displayName: string) {
+	const userRef = doc(db, 'users', userId);
+	try {
+		if (displayName.length === 0) {
+			throw new Error('Display name must be not empty');
+		}
+
+		await authHandlers.updateUserName(displayName);
+
+		await updateDoc(userRef, {
+			isCurator: isCurator
+		});
+
+		return true;
+	} catch (err) {
+		console.log('There was an auth error', err);
+		throw err;
+	}
+}
+
+export async function updateCuratorState(userId: string, isCurator: boolean) {
+	const userRef = doc(db, 'users', userId);
+	try {
+		await updateDoc(userRef, {
+			isCurator
+		});
+		return true;
+	} catch (err) {
+		console.log('There was an auth error', err);
+		throw err;
+	}
+}

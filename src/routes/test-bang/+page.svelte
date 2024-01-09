@@ -1,97 +1,41 @@
-<!-- <script>
-	import { getDoc, doc, setDoc } from 'firebase/firestore';
-	import { authHandlers, authStore } from '../../lib/stores/store';
-	import { db } from '$lib/services/firebase/firebase';
-	import Item from '$lib/wip/backend/Item.svelte';
+<script>
+	import { storage } from '$lib/services/firebase/firebase.js';
+	import { getDownloadURL, getStorage, ref, uploadBytes, uploadString } from 'firebase/storage';
+	import { onMount } from 'svelte';
+	export let data;
+	console.log(data);
 
-	let itemList = [];
-	let currItem = '';
-	let error = false;
+	const storageRef = ref(storage);
+	// 'file' comes from the Blob or File API
+	// uploadBytes(storageRef, file).then((snapshot) => {
+	// 	console.log('Uploaded a blob or file!');
+	// });
 
-	authStore.subscribe((curr) => {
-		itemList = curr.data.items;
-		console.log(curr.data.items[3]);
-	});
-
-	function addItem() {
-		error = false;
-		if (!currItem) {
-			error = true;
+	let imageToUpload;
+	const uploadImage = () => {
+		if (imageToUpload == null) {
+			return;
 		}
-		itemList = [...itemList, currItem];
-		currItem = '';
-	}
 
-	function editItem(index) {
-		let newItemList = itemList.filter((val, i) => {
-			return i !== index;
-		});
-		currItem = itemList[index];
-		itemList = newItemList;
-	}
-	function removeItem(index) {
-		let newItemList = [...itemList].filter((val, i) => {
-			return i !== index;
-		});
-		itemList = newItemList;
-	}
-
-	async function saveItems() {
 		try {
-			const userRef = doc(db, 'users', $authStore.user.uid, 'lists', 'NVdWTuqsEWR0CdJIsJ7R');
-			await setDoc(
-				userRef,
-				{
-					items: itemList
-				},
-				{ merge: true }
-			);
+			const imageRef = ref(storage, `images/${imageToUpload.name}`);
+			// 'file' comes from the Blob or File API
+			uploadBytes(imageRef, imageToUpload)
+				.then((snapshot) => {
+					console.log('Uploaded a blob or file!');
+					console.log(snapshot);
+					return getDownloadURL(snapshot.ref);
+				})
+				.then((downloadURL) => {
+					console.log('Download URL is ', downloadURL);
+				});
 		} catch (err) {
-			console.log('There was an error saving your information', err);
+			console.log(err);
 		}
-	}
+	};
 </script>
 
-{#if !$authStore.loading}
-	<div>
-		<div>
-			<h1>Item list</h1>
-			<button on:click={saveItems}>Save</button>
-		</div>
-		<main>
-			{#if itemList.length === 0}
-				<p>You have no Item</p>
-			{/if}
-			{#each itemList as item, index}
-				<Item {item} {index} {removeItem} {editItem} />
-			{/each}
-		</main>
-		<div
-			class={'flex border rounded  justify-between w-[50%] m-auto ' + (error ? 'errorBorder' : '')}
-		>
-			<input
-				class=" border border-blue-500 text-black"
-				bind:value={currItem}
-				type="text"
-				placeholder="Enter Item Name"
-			/>
-			<button
-				class="flex border rounded justify-between border-red-500 w-[100px]"
-				on:click={addItem}>Add</button
-			>
-		</div>
-	</div>
-{/if}
-
-<style>
-	.enterItem {
-		display: flex;
-		align-items: stretch;
-		/* border: 1px solid blue; */
-		border-radius: 5px;
-		overflow: hidden;
-	}
-	.errorBorder {
-		border-color: coral !important;
-	}
-</style> -->
+<form>
+	<input type="file" on:change={(e) => (imageToUpload = e.target.files[0])} />
+	<button on:click={uploadImage} type="submit">Upload</button>
+</form>

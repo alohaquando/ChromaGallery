@@ -1,11 +1,14 @@
-export async function load() {
+import { getCollection } from '$lib/data/collection';
+
+// @ts-ignore
+export async function load({ params }) {
 	return {
+		collectionId: params.slug,
+		collection: getCollection(params.slug),
 		modal: {
 			toggled: true,
 			title: 'Edit items',
-			button: 'Save',
-			exit: true,
-			buttonFunction: function () {}
+			exit: true
 		}
 	};
 }

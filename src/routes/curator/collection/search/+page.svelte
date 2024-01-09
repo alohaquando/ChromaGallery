@@ -1,12 +1,42 @@
 <script lang="ts">
-	import Bg from '$lib/components/backgrounds/BG.svelte';
-	import TextField from '$lib/components/inputs/TextField.svelte';
-	import DragList from '$lib/components/item/DragList.svelte';
-	import { allItem } from '$lib/data/exampleData';
+    import TextField from '$lib/components/inputs/TextField.svelte';
+    import { onMount } from 'svelte';
+    import type { Collection } from '$lib/data/dataModels';
+    import CollectionList from '$lib/components/item/CollectionList.svelte';
+    import Body from '$lib/components/typography/Body.svelte';
+
+    let searchTerm = '';
+    let searchResults: any; // Store search results
+    let collections: Collection[];
+
+    async function fetchData() {
+        try {
+            const response = await fetch(`/browse/search?q=${searchTerm}`);
+            searchResults = await response.json(); // Store fetched search results
+            collections = searchResults.collections;
+            console.log('Search results:', searchResults);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
+
+    onMount(() => {
+        fetchData();
+    });
 </script>
 
-<div class="mb-6 w-full h-full">
-	<TextField id="" name="" placeholder="Text"></TextField>
-</div>
+<TextField
+        bind:value={searchTerm}
+        id="search"
+        name="search"
+        on:input={fetchData}
+        placeholder="Search..."
+/>
 
-<DragList class="gap-4" items={allItem} type="view"></DragList>
+{#if collections && collections.length > 0}
+    <CollectionList class="gap-4 mt-9" {collections} rowType />
+{:else}
+    <div class="mt-12 flex flex-col items-center w-full">
+        <Body>No result found</Body>
+    </div>
+{/if}

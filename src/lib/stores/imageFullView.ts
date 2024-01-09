@@ -1,23 +1,17 @@
 import { writable } from 'svelte/store';
 
 export let imageFullView = writable({
-	toggled: false,
-	alt: '',
-	src: ''
+	toggled: false
 });
 
 export const resetImageFullView = () => {
 	imageFullView.set({
-		toggled: false,
-		alt: '',
-		src: ''
+		toggled: false
 	});
 };
 
-export const toggleImageFullView = (alt: string, src: string) => {
+export const toggleImageFullView = () => {
 	imageFullView.set({
-		toggled: true,
-		alt: alt,
-		src: src
+		toggled: true
 	});
 };

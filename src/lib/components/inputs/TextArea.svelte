@@ -29,6 +29,8 @@
 	export let maxlength: number | undefined = undefined;
 	export let value: string | Date | undefined | null = null;
 	export let rows: number = 5;
+	let customClass = '';
+	export { customClass as class };
 
 	let stateClasses: string;
 	if (error) {
@@ -46,12 +48,12 @@
 	};
 
 	let focusedClass = '';
-	$: isFocused, focusedClass = isFocused ? 'border-2 border-opacity-100' : 'border border-opacity-30';
+	$: isFocused, focusedClass = isFocused ? 'border-opacity-100' : 'border border-opacity-30';
 </script>
 
-<div class="flex flex-col w-full relative">
+<div class="{customClass} flex flex-col w-full relative">
 	{#if label}
-		<label class="block mb-2 trim-both pb-7" for={id}>
+		<label class="block mb-2 trim-both pb-6" for={id}>
 			<svelte:component this={labelComponent}>{label}</svelte:component>
 		</label>
 	{/if}
@@ -76,9 +78,9 @@
 		{required}
 		{rows}
 	/>
-		{#if value && !disabled}
-			<Fab on:click={clearValue} size="mini" noOutline icon="faXmark" class="" />
-		{/if}
+		<!--{#if value && !disabled}-->
+		<!--	<Fab on:click={clearValue} size="mini" noOutline icon="faXmark" class="" />-->
+		<!--{/if}-->
 	</div>
 	{#if error}
 		<div class="flex space-x-2 items-center text-red-300 pt-4">

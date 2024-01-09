@@ -3,10 +3,7 @@ export async function load() {
 		modal: {
 			toggled: true,
 			title: 'Create new collection',
-			href: './',
-			button: 'Save',
-			exit: true,
-			buttonFunction: function () {}
+			exit: true
 		}
 	};
 }

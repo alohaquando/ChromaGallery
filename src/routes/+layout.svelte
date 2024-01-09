@@ -11,9 +11,10 @@
     import faviconApple from '$lib/assets/favicons/apple-touch-icon.png';
     import { onMount } from 'svelte';
     import { page } from '$app/stores';
-    import type { PageData } from '../../.svelte-kit/types/src/routes/$types';
+    import type { PageData } from './$types';
     import {} from '$lib/stores/header';
     import { generateHeader, generateModal, generateNavbar, generateBackground } from '$lib/stores/pageLayout';
+    import HeaderCurator from '$lib/components/navigation/HeaderCurator.svelte';
 
     /** @type {import('./$types').LayoutData} */
     export let data: PageData;
@@ -25,8 +26,21 @@
     onMount(() => {
         modal = $page.data.modal ? generateModal($page.data.modal) : generateModal();
     });
-    
+
     let scrollY: number;
+
+    let headerComponent: any;
+    $: switch (header.type) {
+        case 'main':
+            headerComponent = HeaderMain;
+            break;
+        case 'back':
+            headerComponent = HeaderBack;
+            break;
+        case 'curator':
+            headerComponent = HeaderCurator;
+            break;
+    }
 
     // ******Set Default Account with Bookmark list ******
 
@@ -48,10 +62,10 @@
     // 				items: []
     // 			};
     // 			await setDoc(userRef, dataToSetToStore, { merge: true });
-    // 			// Set Default Account as notCurrator
+    // 			// Set Default Account as notCurator
     // 			await setDoc(doc(db, 'users', user.uid),
     // 				{
-    // 					isCurrator:false,
+    // 					isCurator:false,
     // 				}
     // 				, { merge: true });
     // 		} else {
@@ -69,6 +83,7 @@
     // 	});
     // });
 </script>
+
 
 <svelte:head>
     <meta title="Chroma Gallery" />
@@ -98,20 +113,16 @@
             exit={modal.exit}
             href={modal.href}
             title={modal.title}
-            animation={modal.animation}
     >
         <slot />
     </Modal>
 {:else}
-    {#if header.type === 'main'}
-        <HeaderMain {scrollY}></HeaderMain>
-    {:else if header.type === 'back'}
-        <HeaderBack {scrollY} href={header.href} button={header.button} destructive={header.destructive}
-        ></HeaderBack>
-    {/if}
-    <div class="container mx-auto px-6 max-w-3xl">
+    <div class="container mx-auto px-6 lg:max-w-5xl">
+        <svelte:component
+                this={headerComponent} {scrollY} href={header.href} button={header.button}
+                destructive={header.destructive}></svelte:component>
         <slot />
-        <Footer></Footer>
+        <Footer loggedIn={!data.session}></Footer>
     </div>
     <div class="h-32" />
     <NavBar class="fixed bottom-0 left-0 z-40" type={navbar.type} />

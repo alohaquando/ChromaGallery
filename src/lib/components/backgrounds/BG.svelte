@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { currentBg } from '$lib/stores/background';
 
-	export let hue: number = 0;
-	export let saturation: number = 0;
-	export let lightness: number = 0;
+	export let hue: number = 30;
+	export let saturation: number = 60;
+	export let lightness: number = 60;
 
 	export let design: 'top' | 'top-large' | 'center' | 'hidden' | string = 'top';
 
@@ -97,7 +97,7 @@
 
 	<!--<editor-fold desc="Bottom fade to black">-->
 	<div
-		class="absolute bottom-0 left-0 right-0 w-full h-24 bg-gradient-to-t from-black translate-y-0"
+		class="absolute -z-40 bottom-0 left-0 right-0 w-full h-24 bg-gradient-to-t from-black translate-y-0"
 	/>
 	<!--</editor-fold>-->
 </div>

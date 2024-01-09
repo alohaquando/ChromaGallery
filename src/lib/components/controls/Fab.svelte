@@ -3,18 +3,21 @@
 	import Icon from '../iconography/Icon.svelte';
 	import Body from '../typography/Body.svelte';
 
-	export let toggled: boolean | undefined;
+	export let id: string;
+	export let destructive: boolean = false;
+	export let toggled: boolean | undefined = false;
 	export let noOutline: boolean = false;
 	export let hover: boolean = true;
 	export let disabled: boolean = false;
 
-	hover = disabled ? false : hover;
+	hover = disabled && destructive ? false : hover;
 
 	let hoverEffect =
-		'hover:bg-white/10' + hover
-			? ' ' + 'hover:before:opacity-100 hover:after:opacity-100 hover:text-gray-900'
-			: '';
-	let toggleClass = toggled ? 'before:opacity-70 after:opacity-20 text-gray-900 bg-white/20' : '';
+		destructive ? 'hover:bg-red-500 hover:text-white duration-500' : 'hover:bg-white/10' + (hover
+			? (' ' + 'hover:before:opacity-100 hover:after:opacity-100 hover:text-gray-900')
+			: ' ');
+	let toggleClass: string = '';
+	$: toggled, toggleClass = toggled ? 'before:opacity-70 after:opacity-20 text-gray-900 bg-white/20' : '';
 
 	export let iconType: 'regular' | 'solid' | 'brands' | undefined = 'regular';
 	export let href: string | undefined = undefined;
@@ -40,14 +43,13 @@
 		}
 		case 'lg': {
 			sizeClasses =
-				'w-28 h-28 after:w-24 after:h-24 before:w-28 before:h-28 after:!blur-lg before:!blur-md hover:bg-white/10';
+				'w-28 h-28 after:w-28 after:h-28 before:w-28 before:h-28 after:!blur-lg before:!blur-md hover:bg-white/10';
 			break;
 		}
 	}
 </script>
 
 <svelte:element
-	this={href ? 'a' : 'button'}
 	class="{customClasses} {sizeClasses} {hoverEffect} {toggleClass} shrink-0 text-center flex-col rounded-full {!noOutline
 		? 'border border-white border-opacity-30'
 		: ''} justify-center items-center gap-2 inline-flex overflow-visible duration-300 relative
@@ -57,16 +59,21 @@
 "
 	{disabled}
 	{href}
+	{id}
 	on:click
 	on:keydown
 	role="button"
 	tabindex="0"
 	{target}
+	this={href ? 'a' : 'button'}
 >
+	{#if size === 'mini' || size === 'sm'}
+		<label for={id} class="w-12 h-12 absolute rounded-full z-10"></label>
+	{/if}
 	<Icon {icon} size={size === 'mini' ? 'sm' : '2xl'} type={iconType}></Icon>
 	{#if $$slots.default}
 		<Body class="pt-1 leading-tight">
-			<slot />
+		<slot />
 		</Body>
 	{/if}
 </svelte:element>
