@@ -53,7 +53,7 @@ export async function handleSignUpAuthenticate(
 	try {
 		if (password !== confirmPassword) {
 			console.log('Password does not match');
-			return;
+			throw new Error('Password does not match');
 		}
 		await authHandlers.signup(email, password);
 
@@ -92,21 +92,20 @@ export async function handleSignUpAuthenticate(
 
 		await authHandlers.login(email, password);
 
-		window.location.href = '/account/complete-account';
+		return true;
 	} catch (err) {
-		let error = true;
 		console.log(' There was an auth error', err);
+		throw err;
 	}
 }
 
 export async function handleAuthenticate(email: string, password: string) {
 	if (!email || !password) {
-		return;
+		throw new Error('Email or password is empty');
 	}
-
 	try {
 		await authHandlers.login(email, password);
-		window.location.href = '/account';
+		return true;
 	} catch (err) {
 		console.log(' There was an auth error', err);
 		throw err;
@@ -290,7 +289,7 @@ export const getSessionUser: () => Promise<User | null> = async () => {
 				resolve({
 					uid: user.uid,
 					email: user.email ? user.email : 'No email registered',
-					displayName: user.displayName ? user.displayName : 'No full name added',
+					displayName: user.displayName ? user.displayName : '',
 					isCurator: await getIsCurator(user.uid)
 				});
 			} else {
@@ -312,32 +311,23 @@ export const getIsCurator = async (userId: string) => {
 		return false;
 	}
 };
-export async function updateCurratorState(userId: string, isCurrator: boolean) {
-	const userRef = doc(db, 'users', userId);
 
-	await updateDoc(userRef, {
-		isCurrator
-	});
-}
-export async function completeAccount(userId: string, isCurrator: boolean, displayName: string) {
+export async function completeAccount(userId: string, isCurator: boolean, displayName: string) {
 	const userRef = doc(db, 'users', userId);
 	try {
-		if (displayName.length < 3) {
-			console.log('Display name is invalid');
-			return;
+		if (displayName.length === 0) {
+			throw new Error('Display name must be not empty');
 		}
 
 		await authHandlers.updateUserName(displayName);
 
 		await updateDoc(userRef, {
-			isCurrator
+			isCurrator: isCurator
 		});
 
-		console.log('Successfully sign up account');
-
-		window.location.href = '/';
+		return true;
 	} catch (err) {
-		let error = true;
-		console.log(' There was an auth error', err);
+		console.log('There was an auth error', err);
+		throw err;
 	}
 }

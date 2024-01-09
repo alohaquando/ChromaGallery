@@ -45,11 +45,11 @@
             break;
         }
         case 'filled': {
-            designClasses = 'bg-gradient-to-b from-white/70 to-white text-gray-900 active:bg-white/80 hover:bg-white/70';
+            designClasses = 'bg-gradient-to-b from-white/70 to-white text-gray-900 active:bg-white/80 hover:bg-white/70 disabled:text-white/60 disabled:from-white/20 disabled:to-white/30';
             break;
         }
         case 'destructive': {
-            designClasses = 'text-red-600 bg-gradient-to-b from-white/30 to-white/50 hover:bg-white/40 hover:text-red-700 hover:underline';
+            designClasses = 'text-red-500 bg-red-500/10 hover:bg-white/40 hover:text-white';
             break;
         }
     }
@@ -60,7 +60,8 @@
 
 disabled:text-white/50 disabled:hover:before:opacity-0 disabled:hover:after:opacity-0
 disabled:hover:bg-transparent
-active:opacity-70 active:duration-0
+
+active:opacity-70 active:duration-0 disabled:active:opacity-100
 
         {widthClasses} {designClasses} {customClasses} {hoverEffect}
 

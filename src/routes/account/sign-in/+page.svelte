@@ -8,6 +8,8 @@
 	import { handleAuthenticate, handleAuthenticateGoogle } from '$lib/data/auth';
 	import FormError from '$lib/components/inputs/FormError.svelte';
 	import LoadingOverlay from '$lib/components/layouts/LoadingOverlay.svelte';
+	import Body from '$lib/components/typography/Body.svelte';
+	import { goto } from '$app/navigation';
 
 	let email = '';
 	let password = '';
@@ -20,7 +22,10 @@
 	const handleEmailSignIn = async () => {
 		try {
 			isLoading = true;
-			await handleAuthenticate(email, password);
+			let res = await handleAuthenticate(email, password);
+			if (res) {
+				await goto('/account');
+			}
 		} catch (err) {
 			failed = true;
 
@@ -90,7 +95,7 @@
 
 	<Divider />
 	<div>
-		<BodySmall>Are you new here?</BodySmall>
+		<Body>Are you new here?</Body>
 	</div>
 	<Button design="outlined" href="sign-up">Become a member</Button>
 </div>

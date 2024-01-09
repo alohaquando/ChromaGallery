@@ -50,8 +50,10 @@
     export let value: string | undefined | null = null;
 
     let stateClasses: string;
-    if (error) {
+    $: if (error) {
         stateClasses = '!border-red-300';
+    } else {
+        stateClasses = ''
     }
 </script>
 
@@ -65,7 +67,7 @@
             {...{ type }}
             {autocomplete}
             bind:value
-            class="{stateClasses} disabled:placeholder-white/30 disabled:text-white/70 read-only:text-white/70 placeholder-white/50 outline-none text-white font-sans focus:right-0 p-2.5 bg-black/30 rounded-xl w-full trim-both border-white transition border border-white/30 block focus:ring-white focus:ring-2 read-only:focus:ring-0"
+            class="{stateClasses} disabled:placeholder-white/30 disabled:text-white/70 read-only:text-white/70 placeholder-white/50 outline-none text-white font-sans focus:right-0 p-2.5 bg-black/30 rounded-xl w-full trim-both border-white transition read-only:bg-black/10 block focus:ring-white focus:ring-2 read-only:focus:ring-0"
             {disabled}
             {form}
             {id}

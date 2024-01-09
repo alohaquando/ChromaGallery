@@ -4,42 +4,122 @@
 	import TextField from '$lib/components/inputs/TextField.svelte';
 	import PageTitle from '$lib/components/layouts/PageTitle.svelte';
 	import SwitchCurator from '$lib/components/inputs/CuratorSwitch.svelte';
-	import { handleSetDisplayName } from '$lib/data/auth';
+	import { authHandlers, completeAccount, handleSetDisplayName } from '$lib/data/auth';
+	import Body from '$lib/components/typography/Body.svelte';
+	import { signOut } from 'firebase/auth';
+	import { redirect } from '@sveltejs/kit';
+	import FormError from '$lib/components/inputs/FormError.svelte';
+	import LoadingOverlay from '$lib/components/layouts/LoadingOverlay.svelte';
+	import { onMount } from 'svelte';
+	import { goto } from '$app/navigation';
 
 	export let data;
-	let displayName = '';
-	let isCurator: boolean;
-	let currentEmail = data.session?.email
+	let isCurator: boolean = false;
+	let currentEmail = data.session?.email;
+
+
+	let fullName: string = '';
+	let fullNameErrorMessage: string = '';
+
+	onMount(async () => {
+		if (data.session === null) {
+			await goto('/account');
+		}
+	});
+	const validateFullName = () => {
+		if (fullName.length === 0) {
+			fullNameErrorMessage = 'Please enter your full name';
+		} else {
+			fullNameErrorMessage = '';
+		}
+	};
+
+	let failed = false;
+	let errorMessage: unknown;
+
+	let isLoading = false;
+
+	const handleCompleteAccount = async () => {
+		isLoading = true;
+
+		if (data.session) {
+			try {
+				let res = await completeAccount(data.session.uid as string, isCurator, fullName);
+				await goto('/account');
+			} catch (err) {
+				failed = true;
+				errorMessage = err;
+			} finally {
+				isLoading = false;
+			}
+		} else {
+			failed = true;
+			errorMessage = 'Cannot get session';
+		}
+	};
+
+	const handleLogOut = async () => {
+		await authHandlers.logout();
+		await goto('/account');
+	};
 </script>
+
+<LoadingOverlay bind:isLoading={isLoading} />
 
 <PageTitle>Let's get you ready</PageTitle>
 
 <form class="mt-16 gap-8 flex flex-col items-center w-full">
-	<!--	Email field-->
-	<TextField disabled id="email" label="Email" name="email" placeholder={currentEmail}
-	></TextField>
+	<Body>Please complete your account before using Chroma</Body>
+	{#if (failed)}
+		<FormError>
+			{errorMessage}
+		</FormError>
+	{/if}
 
-	<Divider></Divider>
+	<!--	Email field-->
+	<TextField disabled id="email" label="Signed in as" name="email" placeholder="" readonly value={currentEmail}
+	/>
+
+	<Divider />
 
 	<!--	FullName field-->
 	<TextField
-		bind:value={displayName}
+		bind:value={fullName}
+		error={fullNameErrorMessage.length>0}
+		errorMessage={fullNameErrorMessage}
 		id="fullName"
 		label="Full name"
 		name="fullName"
+		on:change={validateFullName}
 		placeholder="Full name"
-	></TextField>
+		required
+	/>
 
-	<Divider></Divider>
+	<Divider />
 
 	<SwitchCurator bind:toggled={isCurator} />
 
 	<!--	Submit button-->
 	<Button
 		design="filled"
-		on:click={() => handleSetDisplayName(displayName)}
-		type="button"
+		disabled={fullName.length===0}
+		on:click={
+			handleCompleteAccount
+		}
 		width="full"
-		>Complete sign up
+	>Complete account
 	</Button>
+
+	<Divider />
+
+	<Body>Don't want to continue?</Body>
+
+	<Button
+		design="outlined"
+		destructive
+		on:click={handleLogOut}
+		width="full"
+	>Sign out
+	</Button>
+
 </form>
