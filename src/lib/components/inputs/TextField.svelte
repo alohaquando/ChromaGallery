@@ -50,13 +50,11 @@
 	export let value: string | undefined | null = null;
 
 	let stateClasses: string;
-	if (error) {
+	$: if (error) {
 		stateClasses = '!border-red-300';
+	} else {
+		stateClasses = ''
 	}
-
-	const clearValue = () => {
-		value = '';
-	};
 
 	let isFocused: boolean = false;
 	const handleInputFocus = () => {
@@ -67,46 +65,43 @@
 	$: isFocused, focusedClass = isFocused ? 'border border-opacity-100' : 'border border-opacity-30';
 </script>
 
-<div class="flex flex-col w-full relative">
+<div class="relative flex w-full flex-col">
 	{#if label}
 		<label class="relative w-fit block mb-2 trim-both pb-6 {requiredClass}" for={id}>
 			<svelte:component this={labelComponent}>{label}</svelte:component>
 		</label>
 	{/if}
-	<div
-		class="{stateClasses} {focusedClass} flex bg-black/30 rounded-xl w-full p-2.5 trim-both border-white transition"
-	>
-		<input
-			{...{ type }}
-			{autocomplete}
-			bind:value
-			class="w-full bg-transparent disabled:placeholder-white/30 disabled:text-white/70 read-only:text-white/70 placeholder-white/50 outline-none text-white font-sans focus:right-0"
-			{disabled}
-			{form}
-			{id}
-			{max}
-			{maxlength}
-			{min}
-			{minlength}
-			{name}
-			on:blur={handleInputFocus}
-			on:change
-			on:focus={handleInputFocus}
-			on:input
-			{pattern}
-			{placeholder}
-			{readonly}
-			{required}
-			{size}
-		/>
-		<!--{#if value && !disabled}-->
-		<!--	<Fab on:click={clearValue} size="mini" noOutline icon="faXmark" class="" />-->
-		<!--{/if}-->
-	</div>
+
+	<input
+		{...{ type }}
+		{autocomplete}
+		bind:value
+		class="w-full disabled:placeholder-white/30 disabled:text-white/70 placeholder-white/50 outline-none text-white font-sans focus:right-0 bg-black/30 {stateClasses} {focusedClass} flex rounded-xl w-full p-2.5 trim-both border-white transition read-only:bg-black/10"
+		{disabled}
+		{form}
+		{id}
+		{max}
+		{maxlength}
+		{min}
+		{minlength}
+		{name}
+		on:blur={handleInputFocus}
+		on:change
+		on:focus={handleInputFocus}
+		on:input
+		{pattern}
+		{placeholder}
+		{readonly}
+		{required}
+		{size}
+	/>
+	<!--{#if value && !disabled}-->
+	<!--	<Fab on:click={clearValue} size="mini" noOutline icon="faXmark" class="" />-->
+	<!--{/if}-->
 	{#if error}
-		<div class="flex space-x-2 items-center text-red-300 pt-4">
+		<div class="flex items-center pt-4 text-red-300 space-x-2">
 			<Icon icon="faExclamationCircle" />
-			<label class="block mb-2 text-sm font-sans trim-both" for={id}>{errorMessage}</label>
+			<label class="mb-2 block font-sans text-sm trim-both" for={id}>{errorMessage}</label>
 		</div>
 	{/if}
 </div>

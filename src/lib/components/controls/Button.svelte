@@ -39,19 +39,19 @@
 	}
 
 	let designClasses: string;
-	switch (design) {
+	$: switch (design) {
 		case 'outlined': {
 			designClasses = 'border border-white border-opacity-30';
 			break;
 		}
 		case 'filled': {
-			designClasses = 'bg-gradient-to-b from-white/70 to-white text-gray-900 active:bg-white/80 hover:bg-white/70';
+			designClasses = 'bg-gradient-to-b from-white/70 to-white text-gray-900 active:bg-white/80 hover:bg-white/70 disabled:text-white/60 disabled:from-white/20 disabled:to-white/30';
 		}
 	}
 
 	export let destructive: boolean = false;
 	if (destructive) {
-		hoverEffect = 'text-red-400 bg-white/20 hover:bg-white/40 hover:text-red-600 hover:underline';
+		hoverEffect = 'text-red-500 bg-red-500/10 hover:bg-red-500/40 hover:text-white';
 	}
 </script>
 
@@ -60,7 +60,8 @@
 
 disabled:text-white/50 disabled:hover:before:opacity-0 disabled:hover:after:opacity-0
 disabled:hover:bg-transparent
-active:opacity-70 active:duration-0
+
+active:opacity-70 active:duration-0 disabled:active:opacity-100
 
         {widthClasses} {designClasses} {customClasses} {hoverEffect}
 
