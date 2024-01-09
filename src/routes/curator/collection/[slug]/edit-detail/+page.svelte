@@ -5,10 +5,11 @@
 	import { resetDialog, toggleDialog } from '$lib/stores/dialog';
 	import TextField from '$lib/components/inputs/TextField.svelte';
 	import type { PageData } from './$types';
-	import { handleDeleteCollection } from '$lib/data/collection';
+	import { handleDeleteCollection, handleUpdateCollection } from '$lib/data/collection';
 	import Button from '$lib/components/controls/Button.svelte';
 	import { enhance } from '$app/forms';
 	import type { SubmitFunction } from '@sveltejs/kit';
+	import { onMount } from 'svelte';
 
 	export let data: PageData;
 
@@ -38,7 +39,6 @@ let isLoading = false;
 		};
 
 	};
-
 </script>
 
 <form

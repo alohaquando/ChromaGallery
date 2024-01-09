@@ -1,10 +1,11 @@
 <script lang="ts">
-    import RowItem from '$lib/components/item/RowItem.svelte';
-    import type { Item } from '$lib/data/dataModels';
-    import { flip } from 'svelte/animate';
-    import type { DndEvent } from 'svelte-dnd-action';
-    import { dndzone } from 'svelte-dnd-action';
-    import { createNewItem } from '$lib/data/dataModels';
+	import RowItem from '$lib/components/item/RowItem.svelte';
+	import type { Item } from '$lib/data/dataModels';
+	import { flip } from 'svelte/animate';
+	import type { DndEvent } from 'svelte-dnd-action';
+	import { dndzone } from 'svelte-dnd-action';
+	import { createNewItem } from '$lib/data/dataModels';
+	import { createEventDispatcher } from 'svelte';
 
     export let type: 'action' | 'checkbox' | 'edit' | 'delete' | 'view' = 'action';
     export let button: 'add' | 'destructive' | 'remove' | 'link' | undefined;
@@ -39,14 +40,17 @@
     let cursorClass = '';
     $: type, cursorClass = type === 'edit' ? 'cursor-grab' : '';
 
-    // drag and drop function
-    const handleConsider = (e: CustomEvent<DndEvent<Item>>) => {
-        items = e.detail.items;
-    };
+	const dispatch = createEventDispatcher();
+	let updatedList;
+	// drag and drop function
+	const handleConsider = (e: CustomEvent<DndEvent<Item>>) => {
+		items = e.detail.items;
+	};
 
-    const handleFinalize = (e: CustomEvent<DndEvent<Item>>) => {
-        items = e.detail.items;
-    };
+	const handleFinalize = (e: CustomEvent<DndEvent<Item>>) => {
+		items = e.detail.items;
+		dispatch('finalize', { items });
+	};
 
     // delete function
     const onDelete = (item: Item) => {

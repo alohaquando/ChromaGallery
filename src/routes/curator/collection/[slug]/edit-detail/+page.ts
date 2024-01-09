@@ -3,12 +3,12 @@ import { getCollection } from '$lib/data/collection';
 // @ts-ignore
 export async function load({ params }) {
 	return {
+		collectionId: params.slug,
+		collection: getCollection(params.slug),
 		modal: {
 			toggled: true,
 			title: 'Edit collection',
 			exit: true
-		},
-		collectionId: params.slug,
-		collection: getCollection(params.slug)
+		}
 	};
 }

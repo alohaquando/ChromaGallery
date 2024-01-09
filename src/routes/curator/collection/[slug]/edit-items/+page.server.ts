@@ -3,15 +3,14 @@ import { handleUpdateCollection } from '$lib/data/collection';
 export const actions = {
 	edit: async ({ request }) => {
 		const formData = await request.formData();
+		console.log(formData);
 
 		const collectionId: string = formData.get('collectionId') as string;
-		const description = formData.get('desc') as string;
-		const title = formData.get('name') as string;
+		const itemList = formData.get('itemList');
 
 		try {
 			await handleUpdateCollection(collectionId, {
-				description,
-				title
+				itemList: itemList
 			});
 		} catch (error) {
 			return fail(400, {
