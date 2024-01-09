@@ -97,7 +97,7 @@
 			<Fab class="relative -left-[10%]" icon="faCircleUser" size="lg" href="account/sign-in"
 			>Sign me<br />in
 			</Fab>
-			<Fab class="mt-20 relative -right-[5%]" icon="faSparkles" size="lg" href="account/register"
+			<Fab class="mt-20 relative -right-[5%]" icon="faSparkles" size="lg" href="account/sign-up"
 			>Become a<br />member
 			</Fab>
 		</div>

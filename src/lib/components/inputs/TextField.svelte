@@ -1,7 +1,6 @@
 <!--suppress ALL -->
 <script lang="ts">
 	import Icon from '$lib/components/iconography/Icon.svelte';
-	import Fab from '$lib/components/controls/Fab.svelte';
 	import Body from '$lib/components/typography/Body.svelte';
 	import BodyLarge from '$lib/components/typography/BodyLarge.svelte';
 
@@ -62,7 +61,6 @@
 	let isFocused: boolean = false;
 	const handleInputFocus = () => {
 		isFocused = !isFocused;
-		console.log(isFocused);
 	};
 
 	let focusedClass = '';

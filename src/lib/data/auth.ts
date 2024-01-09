@@ -92,7 +92,7 @@ export async function handleSignUpAuthenticate(
 
 		await authHandlers.login(email, password);
 
-		window.location.href = '/account/register';
+		window.location.href = '/account/complete-account';
 	} catch (err) {
 		let error = true;
 		console.log(' There was an auth error', err);
@@ -106,9 +106,10 @@ export async function handleAuthenticate(email: string, password: string) {
 
 	try {
 		await authHandlers.login(email, password);
-		window.location.href = '/';
+		window.location.href = '/account';
 	} catch (err) {
 		console.log(' There was an auth error', err);
+		throw err;
 	}
 }
 
@@ -151,6 +152,7 @@ export async function handleAuthenticateGoogle() {
 		console.log('Successfully logged in');
 	} catch (err) {
 		console.log(' There was an auth error', err);
+		throw err;
 	}
 }
 
