@@ -1,8 +1,11 @@
 <script lang="ts">
-	// noinspection ES6UnusedImports
 	import NavItem from '$lib/components/navigation/NavItem.svelte';
+	import { page } from '$app/stores';
 
 	export let type: 'user' | 'curator' = 'user';
+
+	let currentUrl: string;
+	$: currentUrl = $page.url.pathname;
 
 	let customClasses = '';
 	export { customClasses as class };
@@ -13,15 +16,18 @@
 >
 	{#if type === 'user'}
 		<div class="container mx-auto px-6 space-x-6 flex justify-center">
-			<NavItem icon="faHome" href="/">Home</NavItem>
-			<NavItem icon="faSearch" href="/browse">Browse</NavItem>
-			<NavItem icon="faUserCircle" href="/account">Me</NavItem>
+			<NavItem icon="faHome" href="/" active={currentUrl === '/'}>Home</NavItem>
+			<NavItem icon="faSearch" href="/browse" active={currentUrl.startsWith('/browse')}>Browse</NavItem>
+			<NavItem icon="faUserCircle" href="/account" active={currentUrl.startsWith('/account')}>Me</NavItem>
 		</div>
 	{:else if type === 'curator'}
 		<div class="container mx-auto px-6 space-x-6 flex justify-center">
-			<NavItem icon="faImage" href="/curator/items">Items</NavItem>
-			<NavItem icon="faRectangleHistory" href="/curator/collection">Collections</NavItem>
-			<NavItem icon="faUserCircle" href="/curator">Me</NavItem>
+			<NavItem icon="faImage" href="/curator/items" active={currentUrl.startsWith('/curator/items')}>Items</NavItem>
+			<NavItem icon="faRectangleHistory" href="/curator/collection"
+							 active={currentUrl.startsWith('/curator/collection')}>
+				Collections
+			</NavItem>
+			<NavItem icon="faUserCircle" href="/curator" active={currentUrl === '/curator'}>Me</NavItem>
 		</div>
 	{/if}
 	<div
