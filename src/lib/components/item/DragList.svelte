@@ -112,8 +112,7 @@
 						{item}
 						{button}
 						{icon}
-						{curator}
-					></RowItem>
+					/>
 				</div>
 			{/each}
 		</div>

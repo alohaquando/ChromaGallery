@@ -63,7 +63,7 @@
 
 	<FileInput imageUrl="{data.item.image}" state="edit"></FileInput>
 
-	<Divider class="my-8" />
+<!--	<Divider class="my-8" />-->
 
 	<!--ID field-->
 	<!--<div class="w-full flex-col flex justify-center">-->

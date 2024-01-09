@@ -16,8 +16,8 @@
 
 <FixedButton href="/curator/items/add" icon="faPlus" />
 
-{#if data.allItems}
-	{#if data.allItems.length === 0}
+{#if data.items}
+	{#if data.items.length === 0}
 		<Body class="opacity-80 text-center pt-24">
 		No item added yet
 		</Body>
@@ -30,13 +30,13 @@
 			<BodyLarge>Featured</BodyLarge>
 			<Button icon="faPen">Manage</Button>
 		</div>
-		<DragList class="mt-6 gap-4" curator items={data.allFeaturedItems}></DragList>
+		<DragList class="mt-6 gap-4" curator items={data.featuredItems}></DragList>
 
 		<div class="mt-16 flex justify-between items-center">
 			<BodyLarge>All items</BodyLarge>
 			<Body>{count(data.items)}</Body>
 		</div>
-		<DragList class="gap-4 mt-8" curator items={data.allItems}></DragList>
+		<DragList class="gap-4 mt-8" curator items={data.items}></DragList>
 	{/if}
 
 {:else }
