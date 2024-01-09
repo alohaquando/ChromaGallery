@@ -5,7 +5,7 @@ export async function load({ params }) {
 	return {
 		modal: {
 			toggled: true,
-			title: 'Edit items',
+			title: 'Edit collection',
 			exit: true
 		},
 		collectionId: params.slug,

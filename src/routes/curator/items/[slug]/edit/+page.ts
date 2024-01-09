@@ -10,9 +10,7 @@ export async function load({ params }) {
 			modal: {
 				toggled: true,
 				title: 'Edit item',
-				button: 'Save',
-				exit: true,
-				buttonFunction: function () {}
+				exit: true
 			}
 		};
 	} catch (err) {
