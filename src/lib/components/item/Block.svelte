@@ -9,6 +9,7 @@
 	if (!item) {
 		link = false;
 	}
+	export let bgTransparent: boolean = false;
 	export let curator: boolean = false;
 	let path: string;
 	if (bookmark) {
@@ -25,7 +26,7 @@
 	let sizeClass = '';
 	switch (stretch) {
 		case false:
-			sizeClass = 'w-fit';
+			sizeClass = 'w-full h-full';
 			break;
 		case true:
 			sizeClass = 'grow shrink basis-0 self-stretch w-full';
@@ -35,7 +36,7 @@
 	let typeClass = '';
 	$: switch (bookmark) {
 		case false:
-			typeClass = 'bg-white/20';
+			typeClass = bgTransparent ? 'bg-transparent' : 'bg-white/20';
 			break;
 		case true:
 			typeClass =
@@ -58,9 +59,9 @@
 	{#if bookmark}
 		<div class="absolute h-auto w-full bg-black/10 rounded-full blur-2xl"></div>
 		<div
-			class="absolute opacity-40 h-60 w-60 bg-gradient-to-b from-zinc-400 to-fuchsia-600 rounded-full blur-xl"></div>
+			class="absolute opacity-30 h-60 w-60 bg-gradient-to-b from-zinc-400 to-fuchsia-600 rounded-full blur-xl"></div>
 		<div
-			class="absolute h-60 w-60 bg-gradient-to-b from-white/20 via-white/60 to-white/30 rounded-full blur-2xl"></div>
+			class="absolute opacity-60 h-60 w-60 bg-gradient-to-b from-white/20 via-white/60 to-white/30 rounded-full blur-2xl"></div>
 		<Icon icon="faStar" type="solid" class="absolute z-20" size={iconSize}></Icon>
 		{#if !icon}
 			<div class="absolute h-16 w-16 blur-xl bg-white rounded-full"></div>
@@ -68,10 +69,10 @@
 	{:else }
 		{#if (item?.image)}
 			<div
-				class="{stretch ? 'w-full h-full' : 'h-auto w-full'} {icon ? 'absolute' : ''}">
+				class="flex max-h-[70vh] {stretch ? 'w-full h-full' : 'h-auto w-full'} {icon ? 'absolute' : ''}">
 				<img
 					alt='{item.title}'
-					class="object-contain max-h-[70vh] rounded-2xl"
+					class="object-contain w-auto h-full"
 					src='{item.image}'
 				/>
 			</div>

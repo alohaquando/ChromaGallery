@@ -5,7 +5,7 @@
 	import type { Item } from '$lib/data/dataModels';
 
 	export let imageFull: boolean = false;
-	let heightClass = 'h-80';
+	let heightClass = '';
 	if (imageFull) {
 		heightClass = ' w-auto';
 	}
@@ -22,7 +22,7 @@
 {#if item}
 	<div class="w-full flex-col gap-6 inline-flex {customClass}">
 		<div class="w-full {heightClass} rounded-lg flex  relative items-center ">
-			<Block  {item} stretch={false}></Block>
+			<Block bgTransparent {item} stretch={false}></Block>
 		</div>
 		{#if !hideInfo}
 			<div class="flex-col gap-6 flex">
@@ -39,3 +39,4 @@
 		{/if}
 	</div>
 {/if}
+
