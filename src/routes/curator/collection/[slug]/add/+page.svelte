@@ -23,7 +23,7 @@
 
 	async function fetchData() {
 		try {
-			const response = await fetch(`/list/${data.slug}/add-items?q=${searchTerm}`);
+			const response = await fetch(`/curator/collection/${data.slug}/add?q=${searchTerm}`);
 			searchResults = await response.json(); // Store fetched search results
 			items = searchResults.items.filter(item => !data.collection.items.includes(item.id));
 		} catch (error) {
