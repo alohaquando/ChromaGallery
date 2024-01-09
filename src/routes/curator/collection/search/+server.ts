@@ -10,23 +10,18 @@ export async function GET({ url }) {
 
 	try {
 		let result: {
-			items: Item[] | undefined;
 			collections: Collection[] | undefined;
 		} = {
-			items: undefined,
 			collections: undefined
 		};
-		const allItems: Item[] = await getAllItems();
 		// @ts-ignore
 		const allCollections: Collection[] = await getAllCollection();
 
 		if (q) {
-			result.items = allItems.filter((item) => item.title.toLowerCase().includes(q));
 			result.collections = allCollections.filter((collection) =>
 				collection.title.toLowerCase().includes(q)
 			);
 		} else {
-			result.items = allItems;
 			result.collections = allCollections;
 		}
 		return json(result);

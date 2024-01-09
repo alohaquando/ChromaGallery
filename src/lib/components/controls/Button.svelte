@@ -51,7 +51,7 @@
 
 	export let destructive: boolean = false;
 	if (destructive) {
-		hoverEffect = 'text-red-400 bg-white/20 hover:bg-white/40 hover:text-red-600 hover:underline';
+		hoverEffect = 'text-red-600 bg-gradient-to-b from-white/70 to-white hover:bg-white/40 hover:text-red-700 hover:underline';
 	}
 </script>
 

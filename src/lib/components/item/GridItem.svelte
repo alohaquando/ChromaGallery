@@ -12,7 +12,7 @@
 
 	let halfItems;
 
-	let contentClass = 'flex flex-col gap-4 sm:w-1/2';
+	let containerClass = 'flex flex-col gap-4 sm:w-1/2';
 
 	// //lazy loading
 	// const totalItems = items?.length; // Total number of items
@@ -63,14 +63,14 @@
 
 <div class="flex flex-col sm:flex-row gap-4">
 	{#if items}
-		<div class={contentClass}>
+		<div class={containerClass}>
 			{#each items as item, index}
 				{#if index % 2 === 0}
 					<Block {item} class="rounded-lg animate-fadeIn" stretch={false} />
 				{/if}
 			{/each}
 		</div>
-		<div class={contentClass}>
+		<div class={containerClass}>
 			{#each items as item, index}
 				{#if index % 2 === 1}
 					<Block {item} class="rounded-lg animate-fadeIn" stretch={false} />

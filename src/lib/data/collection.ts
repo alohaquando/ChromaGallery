@@ -1,6 +1,5 @@
 import { collection, deleteDoc, doc, getDoc, getDocs, setDoc, updateDoc } from 'firebase/firestore';
 import { db } from '$lib/services/firebase/firebase';
-import { getAuth } from 'firebase/auth';
 
 export const getCollection = async (collectionId: string) => {
 	try {

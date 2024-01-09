@@ -28,7 +28,7 @@
 
 		<div class="flex justify-between items-center">
 			<BodyLarge>Featured</BodyLarge>
-			<Button icon="faPen">Manage</Button>
+			<Button icon="faPen" href="items/featured">Manage</Button>
 		</div>
 		<DragList class="mt-6 gap-4" curator items={data.featuredItems}></DragList>
 

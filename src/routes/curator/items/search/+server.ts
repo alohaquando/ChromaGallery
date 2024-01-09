@@ -1,7 +1,5 @@
 import { json } from '@sveltejs/kit';
 import { getAllItems } from '$lib/data/item';
-import type { Collection } from '$lib/data/dataModels';
-import { getAllCollection } from '$lib/data/collection';
 
 // @ts-ignore
 export async function GET({ url }) {
@@ -11,10 +9,8 @@ export async function GET({ url }) {
 	try {
 		let result: {
 			items: Item[] | undefined;
-			collections: Collection[] | undefined;
 		} = {
-			items: undefined,
-			collections: undefined
+			items: undefined
 		};
 		const allItems: Item[] = await getAllItems();
 		// @ts-ignore
@@ -22,12 +18,8 @@ export async function GET({ url }) {
 
 		if (q) {
 			result.items = allItems.filter((item) => item.title.toLowerCase().includes(q));
-			result.collections = allCollections.filter((collection) =>
-				collection.title.toLowerCase().includes(q)
-			);
 		} else {
 			result.items = allItems;
-			result.collections = allCollections;
 		}
 		return json(result);
 	} catch (error) {

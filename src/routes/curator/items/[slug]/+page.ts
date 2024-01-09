@@ -6,6 +6,7 @@ export const load = async ({ params }) => {
 	try {
 		let item = await getItem(params.slug);
 		return {
+			slug: params.slug,
 			item,
 			header: {
 				type: 'back',
