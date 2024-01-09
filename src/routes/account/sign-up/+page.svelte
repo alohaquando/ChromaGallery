@@ -9,7 +9,7 @@
 	import { handleAuthenticateGoogle, handleSignUpAuthenticate } from '$lib/data/auth';
 	import FormError from '$lib/components/inputs/FormError.svelte';
 	import LoadingOverlay from '$lib/components/layouts/LoadingOverlay.svelte';
-	import { goto } from '$app/navigation';
+	import { goto, invalidateAll } from '$app/navigation';
 
 	let email = '';
 	let password = '';
@@ -67,7 +67,8 @@
 			isLoading = true;
 			let res = await handleSignUpAuthenticate(email, password, confirmPassword);
 			if (res) {
-				window.location.href = '/account/complete-account'
+				await invalidateAll();
+				await goto('/account/complete-account');
 			}
 		} catch (err) {
 			console.log(err.message);

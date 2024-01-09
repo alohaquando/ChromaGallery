@@ -20,7 +20,6 @@
 	} from 'firebase/firestore';
 	import { ref, uploadBytes } from 'firebase/storage';
 	import { onMount } from 'svelte';
-	import { updateCurratorState } from '$lib/data/auth';
 
 	const storageRef = ref(storage);
 
@@ -64,7 +63,7 @@
 		// 	{title:"Bec",description:"asdasd"})
 
 		// await updateIsCurator("Gh43EiXguNwH0bOmgixnNqwOdG2", true)
-		// updateCurratorState("6Gh43EiXguNwH0bOmgixnNqwOdG2",true)
+		// updateCuratorState("6Gh43EiXguNwH0bOmgixnNqwOdG2",true)
 
 //Add item to collection
 // 		handleAddItemToCollection("BZaeqEPbXERW973kzxZS","123124123123")

@@ -71,7 +71,7 @@
 
 		{#if data.session.isCurator}
 			<!--Curator Site-->
-			<SiteSwitcher toggled={data.session.isCurator} class=""></SiteSwitcher>
+			<SiteSwitcher toggled={data.session.isCurator} type="curator"></SiteSwitcher>
 			<Divider class="my-10"></Divider>
 		{/if}
 

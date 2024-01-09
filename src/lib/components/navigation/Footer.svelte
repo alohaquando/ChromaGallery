@@ -7,6 +7,7 @@
 	import Link from '$lib/components/links/Link.svelte';
 	import Icon from '$lib/components/iconography/Icon.svelte';
 	import { onMount } from 'svelte';
+	import {page} from '$app/stores';
 	// import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 	let root: HTMLElement;
@@ -71,9 +72,15 @@
 	{/if}
 
 	<!--	Curator site-->
-	<Title>Chroma Curator</Title>
-	<Body>Manage items and collections on Chroma Gallery using a Curator account</Body>
-	<Button href="/curator">Go to Chroma Curator</Button>
+	{#if $page.url.pathname.startsWith('/curator')}
+		<Title>Chroma Gallery</Title>
+		<Body>View beautiful artworks on Chroma Gallery</Body>
+		<Button href="/">Go to Chroma Gallery</Button>
+		{:else }
+		<Title>Chroma Curator</Title>
+		<Body>Manage items and collections on Chroma Gallery using a Curator account</Body>
+		<Button href="/curator/items">Go to Chroma Curator</Button>
+	{/if}
 
 	<Divider />
 
