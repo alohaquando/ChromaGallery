@@ -1,5 +1,16 @@
-import { collection, deleteDoc, doc, getDoc, getDocs, setDoc, updateDoc } from 'firebase/firestore';
-import { db } from '$lib/services/firebase/firebase';
+import {
+	addDoc,
+	collection,
+	deleteDoc,
+	doc,
+	getDoc,
+	getDocs,
+	setDoc,
+	updateDoc
+} from 'firebase/firestore';
+import { db, storage } from '$lib/services/firebase/firebase';
+import { getAuth } from 'firebase/auth';
+import { ref } from 'firebase/storage';
 
 export const getCollection = async (collectionId: string) => {
 	try {
@@ -32,19 +43,19 @@ export const getAllCollection = async () => {
 	}
 };
 
-export async function handleDeleteCollection(itemId: string) {
-	const itemRef = doc(db, 'collections', itemId);
-	const itemDoc = await getDoc(itemRef);
-	if (itemDoc.exists()) {
+export async function handleDeleteCollection(collectionId: string) {
+	const collectionRef = doc(db, 'collections', collectionId);
+	const collectionDoc = await getDoc(collectionRef);
+	if (collectionDoc.exists()) {
 		try {
-			await deleteDoc(itemRef);
-			console.log('Item successfully deleted!');
+			await deleteDoc(collectionRef);
+			console.log('Collection successfully deleted!');
 		} catch (error) {
-			console.error('Error deleting item: ', error);
+			console.error('Error deleting collection: ', error);
 		}
 	} else {
 		// Document does not exist, handle accordingly
-		console.log('Item does not exist.');
+		console.log('Collection does not exist.');
 	}
 }
 
@@ -71,4 +82,26 @@ export async function handleDeleteItemFromCollection(collectionId: string, itemI
 	} else {
 		console.error('Collection not found');
 	}
+}
+
+export async function handleCreateCollection(title: string, description: string) {
+	try {
+		let docRef = await addDoc(collection(db, 'collections'), {
+			title,
+			description,
+			items: []
+		});
+		console.log(docRef);
+		return docRef;
+	} catch (err) {
+		console.error(err);
+		throw err;
+	}
+}
+
+export async function handleUpdateCollection(collectionId: string, fieldsToUpdate: object) {
+	console.log(collectionId);
+	const collectionRef = doc(db, 'items', collectionId);
+
+	return await updateDoc(collectionRef, fieldsToUpdate);
 }

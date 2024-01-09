@@ -8,7 +8,7 @@ export async function load({ params }) {
 			title: 'Edit items',
 			exit: true
 		},
-		slug: params.slug,
+		collectionId: params.slug,
 		collection: getCollection(params.slug)
 	};
 }

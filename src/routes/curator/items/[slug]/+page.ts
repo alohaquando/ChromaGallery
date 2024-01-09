@@ -8,6 +8,7 @@ export const load = async ({ params }) => {
 		return {
 			slug: params.slug,
 			item,
+			itemId: params.slug,
 			header: {
 				type: 'back',
 				href: '/curator/items'

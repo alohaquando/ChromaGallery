@@ -3,11 +3,11 @@ import { getCollection } from '$lib/data/collection';
 // @ts-ignore
 export const load = async ({ params }) => {
 	return {
-		slug: params.slug,
+		collection: await getCollection(params.slug),
+		collectionId: params.slug,
 		header: {
 			type: 'back',
-			href: '/curator/items'
-		},
-		collection: await getCollection(params.slug)
+			href: '/curator/collection'
+		}
 	};
 };
