@@ -1,10 +1,11 @@
-import { getFeaturedItems } from '$lib/data/item';
+import { getAllItems, getFeaturedItems } from '$lib/data/item';
 
 export const load = async () => {
 	return {
-		featuredItems: await getFeaturedItems(),
 		background: {
 			toggled: false
-		}
+		},
+		featuredItems: await getFeaturedItems(),
+		allItems: await getAllItems()
 	};
 };
