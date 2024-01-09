@@ -55,6 +55,7 @@
     // delete function
     const onDelete = (item: Item) => {
         items = items.filter((i: Item) => i.id != item.id);
+        dispatch('finalize', { items });
     };
 
     // add function
