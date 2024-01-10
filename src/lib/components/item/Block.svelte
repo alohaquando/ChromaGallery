@@ -6,13 +6,16 @@
 	export let bookmark: boolean = false;
 	export let icon: boolean = false;
 	export let link: boolean = true;
-	export let display: 'full' | 'contain' = 'contain';
+	export let display: 'full' | 'contain' | 'fill' = 'contain';
 	let displayClass = '';
 	switch (display) {
 		case 'full':
 			displayClass = 'object-contain';
 			break;
 		case 'contain':
+			displayClass = 'object-cover w-auto h-auto';
+			break;
+		case 'fill':
 			displayClass = 'object-cover w-full h-full';
 			break;
 	}
