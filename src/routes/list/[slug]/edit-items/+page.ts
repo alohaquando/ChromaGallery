@@ -1,4 +1,5 @@
 import { getUserOneList } from '$lib/data/list';
+import { getAllItems } from '$lib/data/item';
 
 // @ts-ignore
 export const load = async ({ parent, params }) => {
@@ -9,10 +10,11 @@ export const load = async ({ parent, params }) => {
 		modal: {
 			toggled: true,
 			title: 'Edit items',
-			button: 'Save',
-			exit: true,
-			buttonFunction: function () {}
+			exit: true
 		},
-		list: await list
+		list: await list,
+		userId: session?.uid,
+		listId: params.slug,
+		items: await getAllItems()
 	};
 };

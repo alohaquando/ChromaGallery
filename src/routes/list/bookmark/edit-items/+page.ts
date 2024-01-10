@@ -1,16 +1,20 @@
-import { getUsersAllLists } from '$lib/data/list';
+import { getUserOneList, getUsersAllLists } from '$lib/data/list';
+import { getAllItems } from '$lib/data/item';
 
 // @ts-ignore
-export async function load({ parent }) {
+export async function load({ parent, params }) {
 	const { session } = await parent();
-	const lists = await getUsersAllLists(session?.uid);
-	const bookmark = lists ? lists.find((list) => list.id === 'bookmark') : undefined;
+	const bookmark = getUserOneList(session?.uid, 'bookmark');
 	return {
+		param: params.slug,
 		modal: {
 			toggled: true,
 			title: 'Edit items',
 			exit: true
 		},
-		bookmark: bookmark
+		bookmark: await bookmark,
+		userId: session?.uid,
+		listId: params.slug,
+		items: await getAllItems()
 	};
 }

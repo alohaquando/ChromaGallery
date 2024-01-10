@@ -65,7 +65,7 @@ export const getItem = async (id: string) => {
 		}
 	} catch (error) {
 		console.error('Error fetching items: ', error.message);
-		throw error;
+		return null;
 	}
 };
 export const getAllItems = async () => {
@@ -292,6 +292,7 @@ export async function updateAllItems(itemIds) {
 		console.error('Error updating items:', error);
 	}
 }
+
 // async function updateItemsToFeatured(itemIds) {
 //
 // }
