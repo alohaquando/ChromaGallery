@@ -19,13 +19,16 @@
 		No item added yet
 		</Body>
 	{:else}
-		<Button class="mb-10 mt-20" icon="faMagnifyingGlass" width="full" href="items/search">
+		<Button class="mb-8 mt-16" icon="faMagnifyingGlass" width="full" href="items/search">
 			Search
 		</Button>
 
 		<div class="flex justify-between items-center">
 			<BodyLarge>Featured</BodyLarge>
-			<Button icon="faPen" href="items/featured">Manage</Button>
+			<div class="flex gap-4">
+				<Button icon="faPlus" href="/curator/items/add">Add item</Button>
+				<Button icon="faPen" href="/curator/items/featured">Manage</Button>
+			</div>
 		</div>
 		<DragList class="mt-6 gap-4" curator items={data.featuredItems}></DragList>
 
