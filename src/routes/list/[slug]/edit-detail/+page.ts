@@ -10,7 +10,8 @@ export async function load({ parent, params }) {
 			title: 'Edit list',
 			exit: true
 		},
-		param: params.slug,
+		userId: session?.uid,
+		listId: params.slug,
 		list: list
 	};
 }

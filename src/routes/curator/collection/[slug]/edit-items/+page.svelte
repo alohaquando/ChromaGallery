@@ -5,6 +5,7 @@
 	import { extractItems } from '$lib/data/item';
 	import { enhance } from '$app/forms';
 	import type { SubmitFunction } from '@sveltejs/kit';
+	import LoadingOverlay from '$lib/components/layouts/LoadingOverlay.svelte';
 
 	export let data: PageData;
 
@@ -42,7 +43,7 @@
 </Button>
 
 <!--<Button class="mb-6" icon="faMagifyingGlass" width="full">Find item</Button>-->
-
+<LoadingOverlay bind:isLoading={isLoading}></LoadingOverlay>
 {#await extractItems(data.collection)}
 	<DragList class="gap-4" type="edit" placeholder={3} />
 {:then items}

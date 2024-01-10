@@ -13,6 +13,8 @@ export const load = async ({ parent, params }) => {
 			exit: true,
 			buttonFunction: function () {}
 		},
-		list: await list
+		list: await list,
+		userId: session?.uid,
+		listId: params.slug
 	};
 };
