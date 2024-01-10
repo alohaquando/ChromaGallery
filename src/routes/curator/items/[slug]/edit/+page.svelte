@@ -11,20 +11,6 @@
 	import { enhance } from '$app/forms';
 	import Button from '$lib/components/controls/Button.svelte';
 
-	let options: string[];
-	let button1 = {
-		option: 'Cancel',
-		type: '',
-		function: () => {
-			resetDialog();
-		}
-	};
-	let button2 = {
-		option: 'Log out',
-		type: 'filled',
-		function: function() {
-		}
-	};
 	let isLoading = false;
 	export let data;
 	const handleSubmit: SubmitFunction = async ({ formData }) => {
@@ -38,9 +24,10 @@
 		// } else {
 		// 	formData.set('imageUrl', '');
 		// }
-		formData.set("imageUrl","https://firebasestorage.googleapis.com/v0/b/thatonlinemuseum.appspot.com/o/images%2Fdog1.webp?alt=media&token=69847608-f488-4d60-a54a-6721cbc8f691" )
 
-		formData.set("itemID",data.id)
+		// formData.set('imageUrl', 'https://firebasestorage.googleapis.com/v0/b/thatonlinemuseum.appspot.com/o/images%2Fdog1.webp?alt=media&token=69847608-f488-4d60-a54a-6721cbc8f691');
+
+		formData.set('itemID', data.id);
 
 		return async ({ update }) => {
 			await update();
@@ -61,9 +48,9 @@
 	method="POST"
 	use:enhance={handleSubmit}>
 
-	<FileInput imageUrl="{data.item.image}" state="edit"></FileInput>
+	<FileInput id="image" imageUrl="{data.item.image}" name="image" state="edit"></FileInput>
 
-<!--	<Divider class="my-8" />-->
+	<!--	<Divider class="my-8" />-->
 
 	<!--ID field-->
 	<!--<div class="w-full flex-col flex justify-center">-->
@@ -78,13 +65,13 @@
 
 		<TextField id="Location" label="Location" name="location" value={data.item.location}></TextField>
 
-		<TextField id="time" label="Time" name="time" value={data.item.year} type="date"></TextField>
+		<TextField id="time" label="Time" name="time" type="date" value={data.item.year}></TextField>
 
 		<TextField id="Title" label="Title" name="name" value={data.item.title}></TextField>
 
 		<TextArea id="desc" label="Description" name="desc" value={data.item.description}></TextArea>
 
-<!--		-		<Datalist&ndash;&gt;-->
+		<!--		-		<Datalist&ndash;&gt;-->
 		<!--			id=""-->
 		<!--			label="Label"-->
 		<!--			name=""-->
@@ -96,18 +83,11 @@
 	<Divider class="my-8" />
 
 	<!--Extra fields-->
-<!--	<div class="w-full flex-col flex justify-center gap-6 mt-8">-->
-<!--		<TextField id="" label="Extra field 1" name="" placeholder=""></TextField>-->
-<!--		<TextField id="" label="Extra field 2" name="" placeholder=""></TextField>-->
-<!--	</div>-->
+	<!--	<div class="w-full flex-col flex justify-center gap-6 mt-8">-->
+	<!--		<TextField id="" label="Extra field 1" name="" placeholder=""></TextField>-->
+	<!--		<TextField id="" label="Extra field 2" name="" placeholder=""></TextField>-->
+	<!--	</div>-->
 
-	<!--Dialog-->
-	<Dialog
-		{button1}
-		{button2}
-		text="Any changes you've made won't be saved"
-		title="Leave without saving"
-	></Dialog>
 	<Button disabled={isLoading} sticky type="submit">
 		{isLoading ? 'Loading...' : 'Edit'}
 	</Button>
