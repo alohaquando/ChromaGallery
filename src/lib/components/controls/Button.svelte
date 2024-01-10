@@ -34,7 +34,7 @@
 	}
 
 	let hoverEffect = '';
-	if (hover) {
+	if (hover && design !== 'destructive') {
 		hoverEffect =
 			'hover:bg-white/20 hover:text-gray-900 hover:before:opacity-100 hover:after:opacity-100';
 	}

@@ -91,7 +91,7 @@
 			class="{animationClass} shrink-0 text-red-500 !border-red-500"
 		></Fab>
 	{/if}
-	<Block class="{animationClass} rounded-lg shrink-0 !h-16 !w-16" icon {item} link={false}></Block>
+	<Block class="{animationClass} rounded-lg shrink-0 !h-16 !w-16" display="fill" icon {item} link={false}></Block>
 	<div class="{animationClass} w-full gap-y-3 flex flex-col">
 		<Body>{item.title}</Body>
 		<Body class="opacity-50 line-clamp-1">{item.author}</Body>

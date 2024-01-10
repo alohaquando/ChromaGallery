@@ -47,39 +47,37 @@
 	}
 </script>
 
-<div class="{customClass} w-full">
-	{#if collections}
-		{#if rowType}
-			<div class="flex flex-col gap-2">
-				{#if (!isCollection) && bookmark}
-					<RowCollection on:select={handleSelectList} id="bookmark" {hasLink} {icon} {button}
-												 {curator} {type}
-												 bookmark
-												 collection={bookmark}></RowCollection>
-				{/if}
-				{#each collections as collection}
-					<RowCollection {isCollection} on:select={handleSelectList} id="{collection.id}" {hasLink} {icon} {button}
-												 {curator} {type}
-												 {collection}></RowCollection>
-				{/each}
+{#if collections}
+	{#if rowType}
+		<div class="{customClass} w-full flex flex-col gap-2">
+			{#if (!isCollection) && bookmark}
+				<RowCollection on:select={handleSelectList} id="bookmark" {hasLink} {icon} {button}
+											 {curator} {type}
+											 bookmark
+											 collection={bookmark}></RowCollection>
+			{/if}
+			{#each collections as collection}
+				<RowCollection {isCollection} on:select={handleSelectList} id="{collection.id}" {hasLink} {icon} {button}
+											 {curator} {type}
+											 {collection}></RowCollection>
+			{/each}
 
-			</div>
-		{:else}
-			<div
-				class="{customClass} flex items-center overflow-y-clip overflow-x-auto gap-x-4 gap-y-10 {wrapClass} pb-8"
-			>
-				{#each collections as collection}
-					<CollectionBlock {isCollection} {curator} {width} {hideSubtitle} class="shrink-0" {collection}
-													 {design}
-					></CollectionBlock>
-				{/each}
-				{#if width === 'fixed'}
-					<Fab class="mr-10 shrink-0 relative -mt-10" icon="" size="lg" href="/collection"
-					>View all
-					</Fab
-					>
-				{/if}
-			</div>
-		{/if}
+		</div>
+	{:else}
+		<div
+			class="{customClass} w-full flex items-center overflow-y-clip overflow-x-auto gap-x-4 gap-y-10 {wrapClass} pb-8"
+		>
+			{#each collections as collection}
+				<CollectionBlock {isCollection} {curator} {width} {hideSubtitle} class="shrink-0" {collection}
+												 {design}
+				></CollectionBlock>
+			{/each}
+			{#if width === 'fixed'}
+				<Fab class="mr-10 shrink-0 relative -mt-10" icon="" size="lg" href="/collection"
+				>View all
+				</Fab
+				>
+			{/if}
+		</div>
 	{/if}
-</div>
+{/if}

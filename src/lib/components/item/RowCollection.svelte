@@ -57,7 +57,7 @@
 	{#await listItems}
 		<Block class="rounded-lg shrink-0 !h-16 !w-16" icon link={false}></Block>
 	{:then items}
-		<Block {bookmark} class="rounded-lg shrink-0 !h-16 !w-16" icon item={items[0]} link={false}></Block>
+		<Block display="fill" {bookmark} class="rounded-lg shrink-0 !h-16 !w-16" icon item={items[0]} link={false}></Block>
 	{/await}
 	<div class="w-full gap-y-3 flex flex-col">
 		<Body>{collection.title}</Body>
