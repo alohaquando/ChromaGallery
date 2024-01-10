@@ -21,8 +21,8 @@
 	/** @type {import('../../../../../.svelte-kit/types/src/routes').PageLoad} */
 	export let data: PageData;
 
-	let bookmark = data.lists.find(list => list.id === 'bookmark');
-	let lists = data.lists.filter(list => list.id !== 'bookmark');
+	let bookmark = data.lists?.find(list => list.id === 'bookmark');
+	let lists = data.lists?.filter(list => list.id !== 'bookmark');
 
 	const randomGreeting = (): string => {
 		const greetings = ['Hi!', 'Hi there!', 'Hello!', 'Greetings!', 'Salutations!', 'Hey!', 'What\'s up!'];

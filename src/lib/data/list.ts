@@ -6,7 +6,8 @@ import {
 	doc,
 	getDoc,
 	getDocs,
-	setDoc
+	setDoc,
+	updateDoc
 } from 'firebase/firestore';
 import { db } from '$lib/services/firebase/firebase';
 import { redirect } from '@sveltejs/kit';
@@ -136,4 +137,10 @@ export async function handleDeleteList(userId: string, listId: string) {
 		// Document does not exist, handle accordingly
 		console.log('Item does not exist.');
 	}
+}
+
+export async function handleUpdateList(userId: string, listId: string, fieldsToUpdate: object) {
+	const listRef = doc(db, 'users', userId, 'lists', listId);
+
+	return await updateDoc(listRef, fieldsToUpdate);
 }
