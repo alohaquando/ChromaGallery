@@ -54,8 +54,8 @@
 		? 'border border-white border-opacity-30'
 		: ''} justify-center items-center gap-2 inline-flex overflow-visible duration-300 relative
 	disabled:opacity-50 active:duration-0 active:opacity-70
-   after:content-[''] after:rounded-full after:absolute after:top-auto after:bg-gradient-to-b from-black/20 to-white after:blur-md after:opacity-0 after:duration-1000 after:ease-out after:-z-10
-   before:content-[''] before:bg-gradient-to-b from-black/20 to-white before:rounded-full before:blur-sm before:absolute before:opacity-0 before:duration-1000 before:ease-out before:-z-10
+   after:content-[''] after:rounded-full after:absolute after:top-auto after:bg-gradient-to-b after:from-black/20 after:to-white after:blur-md after:opacity-0 after:duration-1000 after:ease-out after:-z-10
+   before:content-[''] before:bg-gradient-to-b before:from-black/20 before:to-white before:rounded-full before:blur-sm before:absolute before:opacity-0 before:duration-1000 before:ease-out before:-z-10
 "
 	{disabled}
 	{href}
