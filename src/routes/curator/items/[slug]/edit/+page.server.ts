@@ -14,6 +14,9 @@ export const actions = {
 		const title = formData.get('name') as string;
 		const year = formData.get('time') as string;
 
+		
+		console.log(formData);
+
 		if (imageUrl === '') {
 			return fail(400, {
 				message: 'Please add an image'
@@ -24,7 +27,7 @@ export const actions = {
 			await handleUpdateItem(itemId, {
 				author,
 				description,
-				imageUrl,
+				image:imageUrl,
 				isFeatured,
 				location,
 				title,

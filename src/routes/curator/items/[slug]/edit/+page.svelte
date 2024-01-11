@@ -15,40 +15,38 @@
 	export let data;
 	const handleSubmit: SubmitFunction = async ({ formData }) => {
 		isLoading = true;
-		const image: any = formData.get('image') as File;
+	
+        const image: any = formData.get('image') as File;
 
-		// if (image.size !== 0 || !image) {
-		// 	const imageUrl: string = await uploadFileGetUrl(image);
-		// 	formData.set('imageUrl', imageUrl);
-		//
-		// } else {
-		// 	formData.set('imageUrl', '');
-		// }
-
-		// formData.set('imageUrl', 'https://firebasestorage.googleapis.com/v0/b/thatonlinemuseum.appspot.com/o/images%2Fdog1.webp?alt=media&token=69847608-f488-4d60-a54a-6721cbc8f691');
+        if (image != null) {
+            const imageUrl: string = await uploadFileGetUrl(image);
+            formData.set('imageUrl', imageUrl);
+        } else {
+            formData.set('imageUrl', '');
+        }
 
 		formData.set('itemID', data.id);
+
+		console.log('hello');
 
 		return async ({ update }) => {
 			await update();
 			isLoading = false;
 		};
-
 	};
-
+	console.log(data)
 </script>
 
 <!--Image input-->
-
 
 <form
 	action="?/edit"
 	class="w-full flex-col flex justify-center gap-10 mt-6"
 	enctype="multipart/form-data"
 	method="POST"
-	use:enhance={handleSubmit}>
-
-	<FileInput id="image" imageUrl="{data.item.image}" name="image" state="edit"></FileInput>
+	use:enhance={handleSubmit}
+>
+	<FileInput id="image" imageUrl={data.item.image} name="image" state="edit"></FileInput>
 
 	<!--	<Divider class="my-8" />-->
 
@@ -63,7 +61,8 @@
 	<div class="w-full flex-col flex justify-center gap-6 mt-6">
 		<TextField id="artist" label="Artist" name="artist" value={data.item.author}></TextField>
 
-		<TextField id="Location" label="Location" name="location" value={data.item.location}></TextField>
+		<TextField id="Location" label="Location" name="location" value={data.item.location}
+		></TextField>
 
 		<TextField id="time" label="Time" name="time" type="date" value={data.item.year}></TextField>
 
