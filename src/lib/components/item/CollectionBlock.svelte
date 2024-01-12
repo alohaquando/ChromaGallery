@@ -46,6 +46,10 @@
 	const toggleHover = () => {
 		isHovered = !isHovered;
 	};
+
+	if (bookmark) {
+		console.log(collection);
+	}
 </script>
 
 {#await itemList}
