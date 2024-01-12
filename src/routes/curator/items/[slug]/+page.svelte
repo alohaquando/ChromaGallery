@@ -2,45 +2,69 @@
 	import HeroImage from '$lib/components/item/HeroImage.svelte';
 	import BodyLarge from '$lib/components/typography/BodyLarge.svelte';
 	import InfoRow from '$lib/components/item/InfoRow.svelte';
-	import { item2 } from '../../../../data';
-	import { modalData } from '$lib/stores/modal';
+	import Button from '$lib/components/controls/Button.svelte';
 	import { resetDialog } from '$lib/stores/dialog';
 	import Dialog from '$lib/components/pop-up/Dialog.svelte';
+	import type { PageData } from './$types';
+	import { toggleDialog } from '$lib/stores/dialog';
+	import { enhance } from '$app/forms';
+	import type { SubmitFunction } from '@sveltejs/kit';
+	import { uploadFileGetUrl } from '$lib/data/item';
 
-	modalData.set({
-		modalPage: true,
-		href: '/account/me',
-		title: 'Account setting',
-		exit: true,
-		button: undefined,
-		buttonFunction: function() {
-		},
-		animation: ''
-	});
+	export let data: PageData;
+	let formElement: HTMLFormElement;
 
 	let button1 = {
-		option: 'Stay and continue editing',
-		type: '',
+		option: 'Cancel',
+		type: 'outlined',
 		function: () => {
 			resetDialog();
 		}
 	};
+
 	let button2 = {
-		option: 'Leave nd discard changes',
+		option: 'Delete item',
 		type: 'filled',
 		function: function() {
+			formElement.requestSubmit();
 		}
+	};
+
+	let isLoading = false;
+	const handleDelete: SubmitFunction = async ({ formData }) => {
+		isLoading = true;
+		formData.set('itemId', data.itemId);
+		return async ({ update }) => {
+			await update();
+			isLoading = false;
+		};
 	};
 </script>
 
-<HeroImage class="mb-8" data={item2}></HeroImage>
+<form
+	action="?/delete"
+	bind:this={formElement}
+	class="hidden"
+	enctype="multipart/form-data"
+	method="POST"
+	use:enhance={handleDelete}>
+</form>
+
+<div class="flex justify-end gap-x-4 mb-6">
+	<Button design="destructive" on:click={toggleDialog}>Delete</Button>
+
+	<Button design="filled" href="./{data.itemId}/edit">Edit</Button>
+</div>
+<HeroImage class="mb-8" enableFSV item={data.item}></HeroImage>
 <BodyLarge>
-	{item2.description}
+	{data.item.description}
 </BodyLarge>
 <div class="flex flex-col justify-center items-center mt-10">
-	<InfoRow class="w-full" href="" leadingText="Object ID" trailingText={item2.id}></InfoRow>
-	<InfoRow class="w-full" href="" leadingText="Place made" trailingText={item2.location}></InfoRow>
-	<InfoRow class="w-full" href="" leadingText="Named collection" trailingText={item2.title}></InfoRow>
+	<InfoRow class="w-full" href="" leadingText="Place made" trailingText={data.item.location}></InfoRow>
 </div>
-<Dialog button1={button1} button2={button2} text="Any changes you've made won't be saved"
-				title="Leave without saving?"></Dialog>
+<Dialog
+	{button1}
+	{button2}
+	text="The item will be deleted pernamently"
+	title="Delete {data.item.title}?"
+></Dialog>

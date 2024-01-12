@@ -1,48 +1,90 @@
-import { resetHeader } from '$lib/stores/header';
-import { resetNavbar } from '$lib/stores/navbar';
-import { modalData, previousState, resetModal } from '$lib/stores/modal';
-import type { modal } from '$lib/stores/modal';
-import { resetBackground } from '$lib/stores/background';
-import { resetDialog } from '$lib/stores/dialog';
+import { getNewModal, previousState } from './modal';
+import { getNewHeader } from './header';
+import { getNewNavbar } from '$lib/stores/navbar';
+import { currentBg, getNewBackground } from '$lib/stores/background';
 
-export const defaultLayout = () => {
-	resetHeader();
-	resetNavbar();
-	resetModal();
-	resetBackground();
-	resetDialog();
-};
+export function generateModal(pageData: any = {}) {
+	let modal = getNewModal();
 
-let Modal: modal;
-let PrevState: boolean;
-modalData.subscribe((value) => (Modal = value));
-previousState.subscribe((value) => (PrevState = value));
+	modal.update((data: any) => ({
+		...data,
+		...pageData
+	}));
 
-export const stateCheck = () => {
-	if (!PrevState && Modal) {
-		previousState.set(true);
-		modalData.update((modalData) => ({
-			...modalData,
+	let prevState;
+	previousState.subscribe((previousState: any) => (prevState = previousState));
+
+	let modalData: any;
+	modal.subscribe((data: any) => (modalData = data));
+
+	let isToggled = modalData.toggled;
+
+	if (!prevState && !isToggled) {
+		modal.update((data: any) => ({
+			...data,
 			animation: 'animate-flyUp'
 		}));
-	} else if (PrevState && Modal) {
-		modalData.update((modalData) => ({
-			...modalData,
+	} else if (!prevState && isToggled) {
+		modal.update((data: any) => ({
+			...data,
+			animation: 'animate-flyUp'
+		}));
+		previousState.set(true);
+	} else if (prevState && isToggled) {
+		modal.update((data: any) => ({
+			...data,
 			animation: ''
 		}));
-	} else if (PrevState && !Modal) {
-		previousState.set(false);
-		modalData.update((modalData) => ({
-			...modalData,
+	} else if (prevState && !isToggled) {
+		modal.update((data: any) => ({
+			...data,
 			animation: 'animate-flyUpOut'
 		}));
+		previousState.set(false);
 	}
+
+	modal.subscribe((data: any) => (modalData = data));
+	return modalData;
+}
+
+export const generateHeader = (pageData: any = {}) => {
+	let header = getNewHeader();
+
+	header.update((data: any) => ({
+		...data,
+		...pageData
+	}));
+
+	let headerData;
+
+	header.subscribe((data: any) => (headerData = data));
+	return headerData;
 };
 
-export const generateModal = (): modal => {
-	stateCheck();
-	let modal: modal;
-	modalData.subscribe((value) => (modal = value));
-	// @ts-ignore
-	return modal;
+export const generateNavbar = (pageData: any = {}) => {
+	let navbar = getNewNavbar();
+
+	navbar.update((data: any) => ({
+		...data,
+		...pageData
+	}));
+
+	let headerData;
+
+	navbar.subscribe((data: any) => (headerData = data));
+	return headerData;
+};
+
+export const generateBackground = (pageData: any = {}) => {
+	let bg = getNewBackground();
+
+	bg.update((data: any) => ({
+		...data,
+		...pageData
+	}));
+
+	let backgroundData;
+
+	bg.subscribe((data: any) => (backgroundData = data));
+	return backgroundData;
 };

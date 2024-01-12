@@ -1,7 +1,14 @@
 /** @type {import('tailwindcss').Config} */
+
+import plugin from 'tailwindcss/plugin';
+
 export default {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 	theme: {
+		backgroundSize: {
+			'sm': ''
+
+		},
 		fontFamily: {
 			sans: ['Atkinson Hyperlegible', 'system-ui'],
 			display: ['Outfit', 'system-ui']
@@ -70,7 +77,7 @@ export default {
 						transform: 'translateX(0)'
 					}
 				},
-				pacman1: {
+				pacmanBottom: {
 					'0%': {},
 					'10%': {
 						transform: 'scale(1.7) translateX(-5px)'
@@ -100,7 +107,7 @@ export default {
 						transform: ''
 					}
 				},
-				pacman2: {
+				pacmanTop: {
 					'0%': {},
 					'10%': {
 						transform: 'scale(1.7) translateX(-5px)'
@@ -188,17 +195,26 @@ export default {
 					'100%': {
 						transform: 'rotate(-360deg) translate(0px) rotate(-360deg)'
 					}
+				},
+				fadeIn: {
+					'0%': {
+						opacity: '0%'
+					},
+					'100%': {
+						opacity: '100%'
+					}
 				}
 			},
 			animation: {
+				fadeIn: 'fadeIn 0.5s ease-out',
 				flyUp: 'flyUp 0.4s ease-out',
 				flyUpOut: 'flyUpOut 0.4s ease-out',
 				flyDown: 'flyDown 0.4s ease-out',
 				flyLeft: 'flyLeft 0.4s ease-out',
 				flyRight: 'flyRight 0.4s ease-out',
 				flyRight40: 'flyRight40 0.8s ease-out',
-				pacman1: 'pacman1 3s linear',
-				pacman2: 'pacman2 3s linear',
+				pacmanBottom: 'pacmanBottom 3s linear',
+				pacmanTop: 'pacmanTop 3s linear',
 				disappearRight: 'disappearRight 3s linear',
 				spinLeftCW: 'spinLeftCW 1s linear',
 				spinLeftACW: 'spinLeftACW 1s linear',
@@ -207,5 +223,18 @@ export default {
 			}
 		}
 	},
-	plugins: [require('tailwindcss-leading-trim')]
+	plugins: [
+		require('tailwindcss-leading-trim'),
+		plugin(function({ matchUtilities, theme }) {
+			matchUtilities(
+				{
+					'translate-z': (value) => ({
+						'--tw-translate-z': value,
+						transform: ` translate3d(var(--tw-translate-x), var(--tw-translate-y), var(--tw-translate-z)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))`
+					}) // this is actual CSS
+				},
+				{ values: theme('translate'), supportsNegativeValues: true }
+			);
+		})
+	]
 };

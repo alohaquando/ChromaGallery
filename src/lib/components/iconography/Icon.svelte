@@ -12,7 +12,7 @@
 	let customClasses = '';
 	export { customClasses as class };
 
-	$:switch (type) {
+	$: switch (type) {
 		case 'solid':
 			icon = solidModule[icon as keyof unknown];
 			break;

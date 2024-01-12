@@ -9,57 +9,81 @@
 	import faviconIco from '$lib/assets/favicons/favicon.ico';
 	import faviconSvg from '$lib/assets/favicons/icon.svg';
 	import faviconApple from '$lib/assets/favicons/apple-touch-icon.png';
-	import { defaultLayout, stateCheck } from '$lib/stores/pageLayout';
 	import { onMount } from 'svelte';
-	import { auth, db } from '$lib/services/firebase/firebase';
-	import { doc, getDoc, setDoc } from 'firebase/firestore';
-	import { authStore } from '$lib/stores/store';
-	import { itemStore } from '$lib/stores/itemStore';
-	import { header } from '$lib/stores/header';
-	import { navbar } from '$lib/stores/navbar';
-	import { modalData } from '$lib/stores/modal';
-	import { background } from '$lib/stores/background';
-	import { afterNavigate, beforeNavigate, onNavigate } from '$app/navigation';
+	import { page } from '$app/stores';
+	import type { PageData } from './$types';
+	import {} from '$lib/stores/header';
+	import { generateHeader, generateModal, generateNavbar, generateBackground } from '$lib/stores/pageLayout';
+	import HeaderCurator from '$lib/components/navigation/HeaderCurator.svelte';
+
+	/** @type {import('./$types').LayoutData} */
+	export let data: PageData;
+
+	$: modal = $page.data.modal ? generateModal($page.data.modal) : generateModal();
+	$: header = $page.data.header ? generateHeader($page.data.header) : generateHeader();
+	$: navbar = $page.data.navbar ? generateNavbar($page.data.navbar) : generateNavbar();
+	$: background = $page.data.background ? generateBackground($page.data.background) : generateBackground();
+	onMount(() => {
+		modal = $page.data.modal ? generateModal($page.data.modal) : generateModal();
+	});
 
 	let scrollY: number;
 
-	// ******Set Default Bookmark******
-	onMount(() => {
-		const bookmarkItem = auth.onAuthStateChanged(async (user) => {
-			if (!user) {
-				return;
-			}
-			let dataToSetToStore: any;
-			const docRef = doc(db, 'users', user.uid, 'lists', 'bookmark');
-			const docSnap = await getDoc(docRef);
-			if (!docSnap.exists()) {
-				const userRef = doc(db, 'users', user.uid, 'lists', 'bookmark');
-				dataToSetToStore = {
-					email: user?.email,
-					items: []
-				};
-				await setDoc(userRef, dataToSetToStore, { merge: true });
-			} else {
-				const userData = docSnap.data();
-				dataToSetToStore = userData;
-			}
-			authStore.update((curr: any) => {
-				return {
-					...curr,
-					user,
-					data: dataToSetToStore,
-					loading: false
-				};
-			});
-		});
-	});
+	let headerComponent: any;
+	$: switch (header.type) {
+		case 'main':
+			headerComponent = HeaderMain;
+			break;
+		case 'back':
+			headerComponent = HeaderBack;
+			break;
+		case 'curator':
+			headerComponent = HeaderCurator;
+			break;
+	}
 
-	afterNavigate(() => {
-			defaultLayout();
-			stateCheck();
-		}
-	);
+	// ******Set Default Account with Bookmark list ******
+
+	// onMount(() => {
+	// 	const bookmarkItem = auth.onAuthStateChanged(async (user) => {
+	// 		if (!user) {
+	// 			return;
+	// 		}
+	//
+	// 		let dataToSetToStore: any;
+	// 		const docRef = doc(db, 'users', user.uid, 'lists', 'bookmark');
+	// 		const docSnap = await getDoc(docRef);
+	//
+	// 		if (!docSnap.exists()) {
+	// 			const userRef = doc(db, 'users', user.uid, 'lists', 'bookmark');
+	// 			dataToSetToStore = {
+	// 				email: user?.email,
+	// 				title: 'Bookmarks',
+	// 				items: []
+	// 			};
+	// 			await setDoc(userRef, dataToSetToStore, { merge: true });
+	// 			// Set Default Account as notCurator
+	// 			await setDoc(doc(db, 'users', user.uid),
+	// 				{
+	// 					isCurator:false,
+	// 				}
+	// 				, { merge: true });
+	// 		} else {
+	// 			const userData = docSnap.data();
+	// 			dataToSetToStore = userData;
+	// 		}
+	// 		authStore.update((curr: any) => {
+	// 			return {
+	// 				...curr,
+	// 				user,
+	// 				data: dataToSetToStore,
+	// 				loading: false
+	// 			};
+	// 		});
+	// 	});
+	// });
 </script>
+
 
 <svelte:head>
 	<meta title="Chroma Gallery" />
@@ -71,26 +95,36 @@
 </svelte:head>
 <svelte:window bind:scrollY />
 
-<BG class="{$modalData.modalPage === true? 'h-[90vh]' : ''}" color={$background.color} design={$background.design}
-		randomized={$background.randomized} />
+{#if background.toggled}
+	<BG
+		class={modal.toggled === true ? 'h-[90vh]' : ''}
+		design={background.design}
+		hue={background.hue}
+		lightness={background.lightness}
+		randomized={background.randomized}
+		saturation={background.saturation}
+	/>
+{/if}
 
-{#if $modalData.modalPage === true}
-	<Modal title={$modalData.title} href={$modalData.href} exit={$modalData.exit}
-				 button={$modalData.button}
-				 buttonFunction={$modalData.buttonFunction}
+{#if modal.toggled}
+	<Modal
+		button={modal.button}
+		buttonFunction={modal.buttonFunction}
+		exit={modal.exit}
+		href={modal.href}
+		title={modal.title}
 	>
 		<slot />
 	</Modal>
 {:else}
-	{#if $header.type === 'main'}
-		<HeaderMain {scrollY}></HeaderMain>
-	{:else if $header.type === 'back'}
-		<HeaderBack button={$header.button} destructive={$header.destructive}></HeaderBack>
-	{/if}
-	<div class="container mx-auto px-6">
+	<svelte:component
+		this={headerComponent} {scrollY} href={header.href} button={header.button}
+		destructive={header.destructive}></svelte:component>
+
+	<div class="container mx-auto px-6 lg:max-w-5xl">
 		<slot />
-		<Footer></Footer>
+		<Footer loggedIn={!data.session}></Footer>
 	</div>
 	<div class="h-32" />
-	<NavBar class="fixed bottom-0 left-0 z-40" type={$navbar.type} />
+	<NavBar class="fixed bottom-0 left-0 z-40" type={navbar.type} />
 {/if}

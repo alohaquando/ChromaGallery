@@ -1,107 +1,163 @@
 <script lang="ts">
-	import { itemStore } from '$lib/stores/itemStore';
 	import DisplayLarge from '$lib/components/typography/DisplayLarge.svelte';
-	import Fab from '$lib/components/controls/Fab.svelte';
-	import InfoChip from '$lib/components/controls/InfoChip.svelte';
 	import HeroImage from '$lib/components/item/HeroImage.svelte';
-	import { onDestroy, onMount } from 'svelte';
-	import { faCarTilt } from '@fortawesome/pro-solid-svg-icons';
-	import { item1, item2, item3 } from '$lib/../data.js';
-	import { setContext } from 'svelte';
-	import { getAuth, onAuthStateChanged } from 'firebase/auth';
+	import { onMount } from 'svelte';
+	import Body from '$lib/components/typography/Body.svelte';
 
-	let itemList = [];
-	let isDataLoaded = false;
+	export let data;
 
-	onMount(async () => {
-		itemStore
-			.getAllItems()
-			.then((itemsData) => {
-				itemList = itemsData;
-				console.log(itemList);
+	// Switch images and text
+	let visibleSlideshowClass = 'opacity-100 blur-none';
+	let hiddenSlideshowClass = 'opacity-0 blur-xl';
 
-				// Do something with the items data
-			})
-			.catch((error) => {
-				// Handle errors
-				console.error('Error:', error);
-			});
-	});
+	let beforeTextSlideshowClass = `${hiddenSlideshowClass} -translate-y-[40%]`;
+	let currentTextSlideshowClass = visibleSlideshowClass;
+	let afterTextSlideshowClass = `${hiddenSlideshowClass} -translate-y-[60%]`;
 
-	// let itemList = [];
+	let flavorText: string[] = [
+		'creative',
+		'captivating',
+		'inspiring',
+		'mesmerizing',
+		'breathtaking',
+		'exquisite',
+		'phenomenal',
+		'majestic',
+		'enchanting',
+		'splendid',
+		'harmonious',
+		'evocative',
+		'masterful',
+		'stunning',
+		'dazzling',
+		'transcendent',
+		'awe-inspiring',
+		'radiant',
+		'spellbinding',
+		'sensational',
+		'magnificent',
+		'riveting',
+		'astounding',
+		'marvelous',
+		'elegant',
+		'mind-blowing',
+		'impressive',
+		'exceptional',
+		'riveting',
+		'sublime',
+		'mysterious',
+		'glorious',
+		'dynamic',
+		'poignant',
+		'serene',
+		'awe-striking',
+		'brilliant',
+		'enrapturing',
+		'lush',
+		'innovative',
+		'evocative',
+		'rich',
+		'vibrant',
+		'surreal',
+		'graceful',
+		'whimsical',
+		'ethereal',
+		'delightful',
+		'awe-inducing',
+		'inventive'
+	];
+	let firstFlavorTextShown = Math.floor(Math.random() * flavorText.length);
+	let secondFlavorTextShown = Math.floor(Math.random() * flavorText.length);
+	let firstFlavorTextClass = visibleSlideshowClass;
+	let secondFlavorTextClass = beforeTextSlideshowClass;
 
-	// onMount(async () => {
-	// 	try {
-	// 		const itemsData = await itemStore.getAllItems();
-	// 		itemList = itemsData;
-	// 	} catch (error) {
-	// 		console.error('Error:', error);
-	// 	}
-	// });
+	let allItems = data.allItems;
+	let images = allItems.map(item => item.image);
 
-	// Check if Logged-in
-	let userEmail ;
-	let userName;
-	const authen = getAuth();
-	onAuthStateChanged(authen, (user) => {
-		if (user) {
-			console.log(user);
-			userName = user.displayName;
-			userEmail = user.email;
+	let firstImageClass = visibleSlideshowClass;
+	let secondImageClass = hiddenSlideshowClass;
+	let firstImageShown = 0;
+	let secondImageShown = 1;
+
+	const nextImage = () => {
+		if (firstImageClass === visibleSlideshowClass) {
+			firstImageClass = hiddenSlideshowClass;
+			secondImageClass = visibleSlideshowClass;
+			firstFlavorTextClass = afterTextSlideshowClass;
+			secondFlavorTextClass = currentTextSlideshowClass;
+			setTimeout(() => {
+				firstImageShown = (firstImageShown + 2) % images.length;
+				firstFlavorTextShown = Math.floor(Math.random() * flavorText.length);
+				firstFlavorTextClass = beforeTextSlideshowClass;
+			}, 1000);
 		} else {
-			console.log('Not signed in');
+			firstImageClass = visibleSlideshowClass;
+			secondImageClass = hiddenSlideshowClass;
+			firstFlavorTextClass = currentTextSlideshowClass;
+			secondFlavorTextClass = afterTextSlideshowClass;
+
+			setTimeout(() => {
+				secondImageShown = (secondImageShown + 2) % images.length;
+				secondFlavorTextShown = Math.floor(Math.random() * flavorText.length);
+				secondFlavorTextClass = beforeTextSlideshowClass;
+			}, 1000);
 		}
-	});
+	};
+
+	setInterval(function() {
+		nextImage();
+	}, 3000);
 </script>
 
-<div class="w-full h-[80vh] pt-[5vh] flex flex-col items-center justify-between">
-	<div class="flex flex-col items-center gap-10 w-full grow justify-center">
-		<DisplayLarge class="relative -left-[10%]">The place</DisplayLarge>
-		<DisplayLarge class="relative -left-[2%]">for</DisplayLarge>
-		<DisplayLarge class="relative left-[10%]">all things</DisplayLarge>
-		<DisplayLarge class="relative">artistic</DisplayLarge>
-	</div>
-	<div class="flex w-full justify-between max-w-3xl mt-32">
-		{#if userEmail}
-		<Fab class="" href="/account" icon="faUser" size="lg">My account</Fab>
-		{:else}
-		<Fab class="" href="/sign-in" icon="faUser" size="lg">Sign me<br />in</Fab>
-		{/if}
-		<Fab class="-mt-20" href="/browse" icon="faSearch" size="lg">Show me<br />more</Fab>
-		<Fab class="mt-8" href="/" icon="faPlay" size="lg">Relax me</Fab>
-	</div>
-	<InfoChip class="opacity-50" design="text" icon="faAngleDown">Scroll for more</InfoChip>
+<!-- Background image -->
+<div class="h-[110vh] w-screen absolute top-0 left-0">
+	<img
+		alt="set"
+		class="h-full w-screen object-cover absolute [mask-image:linear-gradient(to_bottom,black,black,black,black,black,black,black,black,black,transparent)] transition duration-700 blur-fix {firstImageClass}"
+		src={images[firstImageShown]}
+	/>
+	<img
+		alt="set"
+		class="h-full w-screen object-cover absolute [mask-image:linear-gradient(to_bottom,black,black,black,black,black,black,black,black,black,transparent)] transition duration-700 blur-fix {secondImageClass}"
+		src={images[secondImageShown]}
+	/>
 </div>
 
-<div class="w-full h-20 mt-7"></div>
-<DisplayLarge class="mt-20"></DisplayLarge>
 
-<!-- {#if itemList.length > 0}
-	{#each itemList as item (item.id)}
-		<HeroImage
-			alt="#"
-			author={item.artist}
-			class="mt-12"
-			year={item.year}
-			name={item.title}
-			src={item.src}
-		></HeroImage>
-	{/each}
-{:else}
+<div class="w-screen mx-auto h-screen overflow-clip">
+	<!--	Circle -->
+	<div
+		class=" w-[125vw] sm:w-[80vw] md:w-[70vw] max-w-lg rounded-full aspect-square top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ring-white/30 ring-1 bg-gradient-to-t from-black/30 absolute backdrop-blur-lg will-change-transform shadow-inner blur-fix"
+	>
+		<!--		Text -->
+		<DisplayLarge
+			class="text-center leading-normal bg-gradient-to-b from-white/80 via-white/70 to-white/60 inline-block text-transparent bg-clip-text pt-10 absolute w-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 "
+		>
+			The place <br />for all things<br /> <br />
+		</DisplayLarge>
+		<DisplayLarge
+			class="text-center leading-normal inline-block bg-clip-text pt-10 absolute w-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 {firstFlavorTextClass} text-white transition duration-700 blur-fix"
+		>
+			<br /><br />
+			{flavorText[firstFlavorTextShown]}
+		</DisplayLarge>
 
-	<p>Loading...</p>
-{/if} -->
-{#if isDataLoaded}
-	{#if itemList.length > 0}
-		{#each itemList as item}
+		<DisplayLarge
+			class="text-center leading-normal inline-block bg-clip-text pt-10 absolute w-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 {secondFlavorTextClass} text-white transition duration-700 blur-fix"
+		>
+			<br /><br />
+			{flavorText[secondFlavorTextShown]}
+		</DisplayLarge>
+	</div>
+</div>
+
+<div class="flex flex-col mt-32 gap-32">
+	<DisplayLarge class="text-center">Featured artworks</DisplayLarge>
+	<div class="contents">
+		{#each data.featuredItems as item}
 			{#if item.id}
-				<HeroImage data={item} hideYear></HeroImage>
+				<HeroImage {item} hideYear imageFull></HeroImage>
 			{/if}
 		{/each}
-	{:else}
-
-	{/if}
-{:else}
-	<!-- Loading state or placeholder -->
-	<p>Loading...</p>
-{/if}
+	</div>
+</div>

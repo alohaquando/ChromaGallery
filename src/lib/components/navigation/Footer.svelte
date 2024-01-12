@@ -7,6 +7,7 @@
 	import Link from '$lib/components/links/Link.svelte';
 	import Icon from '$lib/components/iconography/Icon.svelte';
 	import { onMount } from 'svelte';
+	import {page} from '$app/stores';
 	// import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 	let root: HTMLElement;
@@ -35,38 +36,61 @@
 	// 	}
 	// 	console.log(userEmail)
 	// });
+
+	export let loggedIn: boolean = false;
 </script>
 
 <div class="pb-16 pt-32 w-full justify-start items-start gap-8 inline-flex flex-col">
 	<Divider full />
-	<Fab href="" icon="faArrowUp" on:click={scrollTop} size="lg">Back to <br>top</Fab>
+
+	<!--	Back to top button-->
+	<Fab href="" icon="faArrowUp" on:click={scrollTop} size="lg">Back to <br />top</Fab>
 	<Divider></Divider>
 
-	{#if userEmail != null }
+	<!--	Social media-->
 	<Title>Get in contact</Title>
 	<div class="inline-flex justify-between w-full">
-		<Fab href="" icon="faFacebook" iconType="brands"></Fab>
-		<Fab href="https://www.instagram.com/jenaissante/" target="_blank" icon="faInstagram" iconType="brands"></Fab>
-		<Fab href="" icon="faXTwitter" iconType="brands"></Fab>
-		<Fab href="https://www.youtube.com/channel/UCs-QBT4qkj_YiQw1ZntDO3g" target="_blank" icon="faYoutube" iconType="brands"></Fab>
+		<Fab href="https://facebook.com" icon="faFacebook" iconType="brands" target="_blank"></Fab>
+		<Fab href="https://www.instagram.com/" icon="faInstagram" iconType="brands" target="_blank"
+		></Fab>
+		<Fab href="https://twitter.com" icon="faXTwitter" iconType="brands" target="_blank"></Fab>
+		<Fab href="https://www.youtube.com" icon="faYoutube" iconType="brands" target="_blank"></Fab>
 	</div>
-	<Divider></Divider>
+
+	<Divider />
+
+	{#if loggedIn}
+		<!--	Account-->
+		<Title>Account</Title>
+		<Body
+		>Manage your bookmarks and lists of your favourite piece of art with an that online museum
+		account
+		</Body>
+		<Button href="/account/sign-up">Become a member</Button>
+
+		<Divider />
 	{/if}
-	<Title>Account</Title>
-	<Body
-	>Manage your bookmarks and lists of your favourite piece of art with an that online museum
-	account
-	</Body>
-	<Button href="/register">Become a member</Button>
-	<Divider></Divider>
 
+	<!--	Curator site-->
+	{#if $page.url.pathname.startsWith('/curator')}
+		<Title>Chroma Gallery</Title>
+		<Body>View beautiful artworks on Chroma Gallery</Body>
+		<Button href="/">Go to Chroma Gallery</Button>
+		{:else }
+		<Title>Chroma Curator</Title>
+		<Body>Manage items and collections on Chroma Gallery using a Curator account</Body>
+		<Button href="/curator/items">Go to Chroma Curator</Button>
+	{/if}
 
+	<Divider />
+
+	<!--	Privacy and Terms-->
 	<div class="w-full flex justify-between items-center">
 		<div class="flex">
-			<Link href="">Privacy</Link>
+			<Link href="/privacy-policy">Privacy</Link>
 			<Link class="ml-5" href="/terms">Terms</Link>
 		</div>
-		<span class="text-white/50 items-center flex"
+		<span class="text-white/50 items-center flex cursor-default"
 		><Icon icon="faCopyright"></Icon><Body class="text-white/50">2023 Chroma Gallery</Body></span
 		>
 	</div>

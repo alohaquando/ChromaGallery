@@ -1,9 +1,8 @@
-<script>
+<!-- <script>
 	import { getDoc, doc, setDoc } from 'firebase/firestore';
 	import { authHandlers, authStore } from '$lib/stores/store.js';
 	import { db } from '$lib/services/firebase/firebase.js';
 	import Item from '$lib/wip/backend/Item.svelte';
-	import { defaultLayout } from '$lib/stores/pageLayout.ts';
 
 	let itemList = [];
 	let currItem = '';
@@ -78,23 +77,23 @@
 			/>
 			<button
 				class="flex border rounded justify-between border-red-500 w-[100px]"
-				on:click={addItem}>Add
-			</button
-			>
+				on:click={addItem}
+				>Add
+			</button>
 		</div>
 	</div>
 {/if}
 
 <style>
-    .enterItem {
-        display: flex;
-        align-items: stretch;
-        /* border: 1px solid blue; */
-        border-radius: 5px;
-        overflow: hidden;
-    }
+	.enterItem {
+		display: flex;
+		align-items: stretch;
+		/* border: 1px solid blue; */
+		border-radius: 5px;
+		overflow: hidden;
+	}
 
-    .errorBorder {
-        border-color: coral !important;
-    }
-</style>
+	.errorBorder {
+		border-color: coral !important;
+	}
+</style> -->

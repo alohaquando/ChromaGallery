@@ -4,44 +4,74 @@
 	import Title from '$lib/components/typography/Title.svelte';
 	import Headline from '$lib/components/typography/Headline.svelte';
 	import Display from '$lib/components/typography/Display.svelte';
+	import TitleLarge from '$lib/components/typography/TitleLarge.svelte';
 
 	let customClasses = '';
 	export { customClasses as class };
 	export let href: string | undefined = undefined;
-	export let type: 'body' | 'title' | 'headline' | 'display' = 'body';
+	export let disabled: boolean = !href;
+	let disableClass = disabled ? 'cursor-pointer' : 'cursor-default';
+	export let type: 'body' | 'title' | 'headline' | 'title-lg' | 'display' = 'body';
 	export let linkColor = 'from-white to-white';
+	export let design: 'default' | 'destructive' = 'default';
+	$: switch (design) {
+		case 'default':
+			break;
+		case 'destructive':
+			linkColor = 'from-red-500 to-red-300';
+			break;
+	}
+
 	let componentOptions = [
 		{
 			type: 'body',
 			component: Body,
-			class: 'bg-link-sm'
+			class: 'bg-[length:0_1.5px]',
+			static: 'bg-[length:100%_1.5px]',
+			hover: 'hover:bg-[length:100%_1.5px]'
 		},
 		{
 			type: 'title',
 			component: Title,
-			class: 'bg-link-sm'
+			class: 'bg-[length:0_1.5px]',
+			static: 'bg-[length:100%_1.5px]',
+			hover: 'hover:bg-[length:100%_1.5px]'
+		},
+		{
+			type: 'title-lg',
+			component: TitleLarge,
+			class: 'bg-[length:0_2px]',
+			static: 'bg-[length:100%_2px]',
+			hover: 'hover:bg-[length:100%_2px]'
 		},
 		{
 			type: 'headline',
 			component: Headline,
-			class: 'bg-link-md'
+			class: 'bg-[length:0_3px]',
+			static: 'bg-[length:100%_3px]',
+			hover: 'hover:bg-[length:100%_3px]'
 		},
 		{
 			type: 'display',
 			component: Display,
-			class: 'bg-link-lg'
+			class: 'bg-[length:0_4px]',
+			static: 'bg-[length:100%_4px]',
+			hover: 'hover:bg-[length:100%_4px]'
 		}
 	];
 
 	let component = componentOptions.find((option) => option.type == type)?.component;
-	let typeClass = componentOptions.find((option) => option.type == type)?.class;
+	let underlineClass = componentOptions.find((option) => option.type == type)?.class;
+	let staticClass = componentOptions.find((option) => option.type == type)?.static;
+	let hoverClass = componentOptions.find((option) => option.type == type)?.hover;
+
+	export let isHovered: boolean | undefined;
 </script>
 
-<a class="{customClasses} relative max-w-fit cursor-pointer trim-both" {href}>
+<a class="{customClasses} {disableClass} relative max-w-fit cursor-pointer trim-both" {href}>
 	<svelte:component
-		class="{typeClass} inline bg-gradient-to-r {linkColor}"
-		this={component}
-	>
+		class="{underlineClass} {!href? '' : (isHovered? staticClass : hoverClass)} bg-no-repeat bg-left-bottom duration-500 inline bg-gradient-to-r {linkColor}"
+		this={component}>
 		<slot />
 	</svelte:component>
 </a>

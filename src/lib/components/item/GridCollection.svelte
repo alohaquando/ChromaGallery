@@ -1,16 +1,15 @@
 <script lang="ts">
-	import type { Collection } from '$lib/../model';
-	import { collection2, allCollection } from '../../../data';
+	import type { Collection } from '$lib/data/dataModels';
 	import CollectionBlock from '$lib/components/item/CollectionBlock.svelte';
 
-	export let data: Collection[] | undefined = allCollection;
+	export let collections: Collection[] | undefined;
 	let customClass = '';
 	export { customClass as class };
 </script>
 
-
-<div class="{customClass} w-full flex gap-8 flex-wrap justify-start">
-	{#each data as collection}
-		<CollectionBlock data={collection}></CollectionBlock>
+<div
+	class="{customClass} w-full sm:grid sm:grid-cols-2 sm:gap-x-4 gap-y-10 flex flex-col">
+	{#each collections as collection}
+		<CollectionBlock width="full" {collection} class=""></CollectionBlock>
 	{/each}
 </div>

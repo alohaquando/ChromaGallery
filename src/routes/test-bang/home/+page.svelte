@@ -1,32 +1,47 @@
 <script>
-	import { db } from '$lib/services/firebase/firebase.js';
-	import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
-	import { onMount } from 'svelte';
+	import TextField from '$lib/components/inputs/TextField.svelte';
+	import { handleCreateItem } from '$lib/data/item';
 
-	let imageURL = '';
-	let artist = '';
-	let description = '';
-	let foundedYear = '';
-	let location = '';
-	let title = '';
-
-	// const getOneItem = async () => {
-	// 	const docRef = doc(db, 'Item',"IKDg9uCvRd0yTYmKImMM");
-	// 	const docSnap = await getDoc(docRef);
-	// 	if (docSnap.exists()) {
-	// 		console.log('Document data:', docSnap.data());
-	// 	} else {
-	// 		// docSnap.data() will be undefined in this case
-	// 		console.log('No such document!');
-	// 	}
-	// };
-
-	const getAllItems = async () => {
-		const querySnapshot = await getDocs(collection(db, 'Item'));
-		querySnapshot.forEach((doc) => {
-			// doc.data() is never undefined for query doc snapshots
-			console.log(doc.id, ' => ', doc.data());
-		});
-	};
-	getAllItems();
+	let author;
+	let title;
+	let isFeatured = true;
+	let location;
+	let year;
+	let description;
+	let image;
 </script>
+
+<form>
+	<TextField bind:value={author} id="author" label="author" name="author" placeholder="author"
+	></TextField>
+	<TextField
+		bind:value={description}
+		id="description"
+		label="description"
+		name="description"
+		placeholder="description"
+	></TextField>
+	<TextField bind:value={title} id="title" label="title" name="title" placeholder="title"
+	></TextField>
+	<!-- <TextField
+		id="subtitle"
+
+		label="subtitle"
+		name="subtitle"
+		placeholder="subtitle"
+		bind:value={subtitle}
+	></TextField> -->
+	<TextField
+		bind:value={location}
+		id="location"
+		label="location"
+		name="location"
+		placeholder="location"
+	></TextField>
+
+	<TextField bind:value={year} id="year" label="year" name="year" placeholder="year"></TextField>
+	<input on:change={(e) => (image = e.target.files[0])} type="file" />
+	<button class="bg-white text-black" on:click={() => handleCreateItem(author,description,image,isFeatured,location,title,year)}
+					type="submit">Create
+	</button>
+</form>

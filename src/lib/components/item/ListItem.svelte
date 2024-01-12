@@ -21,19 +21,32 @@
 	}
 	let customClass = '';
 	export { customClass as class };
+
+	let isHovered = false;
+	const handleHover = () => {
+		isHovered = !isHovered;
+	};
 </script>
 
-<button
+<svelte:element
 	class="{customClass} flex flex-row min-h-[3rem] py-4 justify-between space-x-4 relative items-center"
+	{href}
 	on:click
+	on:keydown
+	on:mouseenter={handleHover}
+	on:mouseleave={handleHover}
+	role="button"
 	tabindex="0"
+	this={href ? 'a' : 'button'}
 >
-	<div
-		class="grow flex-1 flex items-center hyphens-auto {textClasses}">
-		<svelte:component {href} linkColor="{design === 'destructive' ? 'from-red-500 to-red-300' : undefined}"
-											this={href || design === 'destructive' ? Link : Body}>
+	<div class="grow flex-1 flex items-center hyphens-auto {textClasses}">
+		<Link
+			bind:isHovered
+			{design}
+			{href}
+		>
 			{text}
-		</svelte:component>
+		</Link>
 	</div>
 	<Icon {icon} size="sm" />
 	{#if topDivider}
@@ -42,7 +55,7 @@
 	{#if bottomDivider}
 		<div class=" h-px bg-[#222222] w-full absolute -bottom-px -left-4" />
 	{/if}
-</button>
+</svelte:element>
 
 <!--Example-->
 <!--<ListItem leadingText="This" trailingText="That"/>-->
