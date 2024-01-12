@@ -28,10 +28,10 @@
 		}
 	};
 
-let isLoading = false;
+	let isLoading = false;
 	const handleSubmit: SubmitFunction = async ({ formData }) => {
 		isLoading = true;
-		formData.set("collectionId",data.collectionId)
+		formData.set('collectionId', data.collectionId);
 
 		return async ({ update }) => {
 			await update();
@@ -50,35 +50,35 @@ let isLoading = false;
 >
 
 
-<div class="gap-4 flex flex-col">
-	<TextField id="name" label="Name" labelSize="lg" name="name" value={data.collection.title}
-	></TextField>
+	<div class="gap-4 flex flex-col">
+		<TextField id="name" label="Name" labelSize="lg" name="name" value={data.collection.title}
+		></TextField>
 
-	<TextArea
-		class="mt-4"
-		id="description"
-		label="Description"
-		labelSize="lg"
-		name="desc"
-		placeholder="Collection name"
-		rows={2}
-		value={data.collection.description}
-	></TextArea>
+		<TextArea
+			class="mt-4"
+			id="description"
+			label="Description"
+			labelSize="lg"
+			name="desc"
+			placeholder="Collection name"
+			rows={2}
+			value={data.collection.description}
+		></TextArea>
 
-	<Button disabled={isLoading} sticky type="submit">
-		{isLoading ? 'Loading...' : 'Save'}
-	</Button>
-
-	<ListItem
-		bottomDivider={false}
-		class="mt-2"
-		design="destructive"
-		on:click={toggleDialog}
-		placeholder="Collection description"
-		text="Delete collection"
-		topDivider={false}
-	/>
-</div>
+		<Button disabled={isLoading} sticky type="submit">
+			{isLoading ? 'Loading...' : 'Save'}
+		</Button>
+	</div>
+</form>
 
 <Dialog {button1} {button2} text="This cannot be undone" title="Delete “{data.collection.title}”?"></Dialog>
-</form>
+
+<ListItem
+	bottomDivider={false}
+	class="mt-5"
+	design="destructive"
+	on:click={toggleDialog}
+	placeholder="Collection description"
+	text="Delete collection"
+	topDivider={false}
+/>

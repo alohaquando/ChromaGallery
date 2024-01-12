@@ -3,9 +3,6 @@
 	import TextField from '$lib/components/inputs/TextField.svelte';
 	import Divider from '$lib/components/layouts/Divider.svelte';
 	import TextArea from '$lib/components/inputs/TextArea.svelte';
-	import Datalist from '$lib/components/inputs/Datalist.svelte';
-	import { resetDialog } from '$lib/stores/dialog';
-	import Dialog from '$lib/components/pop-up/Dialog.svelte';
 	import type { SubmitFunction } from '@sveltejs/kit';
 	import { uploadFileGetUrl } from '$lib/data/item';
 	import { enhance } from '$app/forms';
@@ -15,15 +12,15 @@
 	export let data;
 	const handleSubmit: SubmitFunction = async ({ formData }) => {
 		isLoading = true;
-	
-        const image: any = formData.get('image') as File;
 
-        if (image != null) {
-            const imageUrl: string = await uploadFileGetUrl(image);
-            formData.set('imageUrl', imageUrl);
-        } else {
-            formData.set('imageUrl', '');
-        }
+		const image: any = formData.get('image') as File;
+
+		if (image != null) {
+			const imageUrl: string = await uploadFileGetUrl(image);
+			formData.set('imageUrl', imageUrl);
+		} else {
+			formData.set('imageUrl', '');
+		}
 
 		formData.set('itemID', data.id);
 
@@ -34,7 +31,7 @@
 			isLoading = false;
 		};
 	};
-	console.log(data)
+	console.log(data);
 </script>
 
 <!--Image input-->

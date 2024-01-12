@@ -21,7 +21,7 @@
 	};
 </script>
 
-{#if $dialog.toggled}
+{#if $dialog.toggled || toggled}
 	<div
 		class="fixed top-0 left-0 z-50 w-screen h-screen backdrop-blur-sm bg-black/50 flex justify-center items-center px-10"
 	>
