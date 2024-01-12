@@ -57,13 +57,14 @@
 			<svelte:component this={labelComponent}>{label}</svelte:component>
 		</label>
 	{/if}
-	<div
-		class="{stateClasses} {focusedClass} flex bg-black/30 rounded-xl w-full p-2.5 transition trim-both border-white"
-	>
+
 	<textarea
 		{autocomplete}
 		bind:value
-		class="bg-transparent placeholder-white/50 w-full text-white font-sans disabled:placeholder-white/30 disabled:text-white/70 read-only:text-white/70 min-h-[8.875rem] resize-y outline-none"
+		class="{stateClasses} {focusedClass}
+		bg-black/30 border border-white/30 rounded-xl placeholder-white/50 block w-full p-2.5 transition outline-none text-white font-sans trim-both focus:ring-white focus:ring-2 disabled:placeholder-white/30 disabled:text-white/70 read-only:focus:ring-0 read-only:text-white/70
+
+		  min-h-[8.875rem] resize-y "
 		{disabled}
 		{form}
 		{id}
@@ -78,17 +79,17 @@
 		{required}
 		{rows}
 	/>
-		<!--{#if value && !disabled}-->
-		<!--	<Fab on:click={clearValue} size="mini" noOutline icon="faXmark" class="" />-->
-		<!--{/if}-->
-	</div>
-	{#if error}
-		<div class="flex space-x-2 items-center text-red-300 pt-4">
-			<Icon icon="faExclamationCircle" />
-			<label class="block mb-2 text-sm font-sans trim-both" for={id}>{errorMessage}</label>
-		</div>
-	{/if}
+	<!--{#if value && !disabled}-->
+	<!--	<Fab on:click={clearValue} size="mini" noOutline icon="faXmark" class="" />-->
+	<!--{/if}-->
 </div>
+{#if error}
+	<div class="flex space-x-2 items-center text-red-300 pt-4">
+		<Icon icon="faExclamationCircle" />
+		<label class="block mb-2 text-sm font-sans trim-both" for={id}>{errorMessage}</label>
+	</div>
+{/if}
+
 
 <style>
     ::-webkit-calendar-picker-indicator {
