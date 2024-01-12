@@ -5,7 +5,7 @@
 
 	let widthClasses: string;
 	if (full) {
-		widthClasses = 'w-screen -translate-x-6 max-w-3xl';
+		widthClasses = 'w-screen -translate-x-6 max-w-5xl';
 	} else {
 		widthClasses = 'w-full';
 	}
