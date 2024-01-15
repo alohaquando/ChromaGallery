@@ -83,6 +83,9 @@ export const handleAddToMultipleList = async (
 	listIds: string[],
 	itemId: string
 ) => {
+	if (!listIds){
+		return;
+	}
 	listIds.forEach((listId) => {
 		setDoc(
 			doc(db, 'users', userId, 'lists', listId),

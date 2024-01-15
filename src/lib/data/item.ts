@@ -151,9 +151,6 @@ export async function handleBookmark(itemId: string) {
 export async function checkIfBookmarked(itemId: string) {
 	const authen = getAuth();
 	const userId = authen.currentUser.uid;
-
-	// const q = query(collection(db,'users', userId, 'lists'), where("bookmark", "==", itemId));
-
 	const docRef = doc(db, 'users', userId, 'lists', 'bookmark');
 	const docSnap = await getDoc(docRef);
 

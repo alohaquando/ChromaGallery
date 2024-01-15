@@ -40,8 +40,12 @@
 	{#if errorMessage}
 		<Body class="text-red-400"><i>{errorMessage}</i></Body>
 	{/if}
-	<Button class="mt-6" design="filled" on:click={() => handleCreateList(userId, listName, listDescription)}
-					type="submit"
-					width="full">Create list
+	<Button
+		class="mt-6"
+		design="filled"
+		on:click={() => handleCreateList(userId, listName, listDescription)}
+		type="submit"
+		width="full"
+		>Create list
 	</Button>
 </form>
