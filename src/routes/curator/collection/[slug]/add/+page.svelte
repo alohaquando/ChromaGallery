@@ -63,7 +63,7 @@
 	{/if}
 
 	<Button
-		on:click={async() => { await handleAddMultipleItemToCollection(data.slug, selectedItems); await goto(`/items/${data.slug}`)}}
+		on:click={async() => { await handleAddMultipleItemToCollection(data.slug, selectedItems); await goto(`/curator/items/${data.slug}`)}}
 		sticky>Add to list
 	</Button>
 </div>

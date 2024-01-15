@@ -86,6 +86,10 @@ export async function handleDeleteItemFromCollection(collectionId: string, itemI
 }
 
 export async function handleCreateCollection(title: string, description: string) {
+	if (!title || !description) {
+		console.log('Please add title');
+		return;
+	}
 	try {
 		let docRef = await addDoc(collection(db, 'collections'), {
 			title,
@@ -108,6 +112,9 @@ export async function handleUpdateCollection(collectionId: string, fieldsToUpdat
 }
 
 export const handleAddItemToCollection = async (collectionId: string, itemId: string) => {
+	if (!itemId) {
+		return;
+	}
 	await setDoc(
 		doc(db, 'collections', collectionId),
 		{
@@ -119,6 +126,9 @@ export const handleAddItemToCollection = async (collectionId: string, itemId: st
 };
 
 export const handleAddMultipleItemToCollection = async (collectionId: string, itemId: string[]) => {
+	if (!itemId) {
+		return;
+	}
 	await setDoc(
 		doc(db, 'collections', collectionId),
 		{

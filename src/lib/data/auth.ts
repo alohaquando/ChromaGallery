@@ -59,7 +59,7 @@ export async function handleSignUpAuthenticate(
 
 		console.log('Successfully signed up');
 
-		const defaultAccountSetUp = auth.onAuthStateChanged(async (user) => {
+		auth.onAuthStateChanged(async (user) => {
 			if (!user) {
 				return;
 			}
@@ -115,7 +115,7 @@ export async function handleAuthenticate(email: string, password: string) {
 export async function handleAuthenticateGoogle() {
 	try {
 		await authHandlers.loginWithGoogle();
-		const defaultAccountSetUp = auth.onAuthStateChanged(async (user) => {
+		auth.onAuthStateChanged(async (user) => {
 			if (!user) {
 				return;
 			}
@@ -124,7 +124,7 @@ export async function handleAuthenticateGoogle() {
 			const docRef = doc(db, 'users', user.uid, 'lists', 'bookmark');
 			const docSnap = await getDoc(docRef);
 
-			if (docSnap.exists()) {
+			if (!docSnap.exists()) {
 				const userRef = doc(db, 'users', user.uid, 'lists', 'bookmark');
 				dataToSetToStore = {
 					email: user?.email,
