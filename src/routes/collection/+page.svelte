@@ -16,6 +16,7 @@
 	collections={collections}
 	design="single"
 	hideSubtitle
+	isCollection
 	width="full"
 	wrap
 ></CollectionList>
