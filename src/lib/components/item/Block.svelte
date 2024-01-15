@@ -1,3 +1,4 @@
+<!--suppress ALL -->
 <script lang="ts">
 	import Icon from '../iconography/Icon.svelte';
 	import type { Item } from '$lib/data/dataModels';
@@ -83,15 +84,17 @@
 			<div class="absolute h-16 w-16 blur-xl bg-white rounded-full"></div>
 		{/if}
 	{:else }
-		{#if (item?.image)}
-			<div
-				class="flex justify-center max-h-[70vh] w-full h-full {icon ? 'absolute' : ''}">
+		<div
+			class="flex justify-center max-h-[70vh] w-full h-full {icon ? 'absolute' : ''}">
+			{#if (item?.image)}
 				<img
 					alt='{item.title}'
 					class="{displayClass}"
 					src='{item.image}'
+					loading="lazy"
 				/>
-			</div>
-		{/if}
+			{/if}
+		</div>
+
 	{/if}
 </svelte:element>

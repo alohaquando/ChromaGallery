@@ -67,8 +67,7 @@
 	<Button
 		design="filled"
 		on:click={async () => {
-			await handleAddToMultipleList(data.session.uid, selected, data.slug);
-			await goto(`/items/${data.slug}`);
+			await handleAddToMultipleList(data.session.uid, selected, data.slug)
 		}}
 		width="full"
 	>

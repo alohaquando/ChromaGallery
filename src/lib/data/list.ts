@@ -83,7 +83,7 @@ export const handleAddToMultipleList = async (
 	listIds: string[],
 	itemId: string
 ) => {
-	if (!listIds){
+	if (!listIds) {
 		return;
 	}
 	listIds.forEach((listId) => {
@@ -96,6 +96,8 @@ export const handleAddToMultipleList = async (
 		);
 	});
 	console.log('Added successfully');
+
+	window.location.href = '/items/' + itemId;
 };
 
 export const handleCreateList = async (
@@ -103,8 +105,8 @@ export const handleCreateList = async (
 	title: string = 'My Title',
 	description: string = 'My Subtitle'
 ) => {
-	if (!userId || !title || title === ''|| description === ''|| !description) {
-		console.log("Please fill the form")
+	if (!userId || !title || title === '' || description === '' || !description) {
+		console.log('Please fill the form');
 		return;
 	}
 	let dataToSetToStore: any;

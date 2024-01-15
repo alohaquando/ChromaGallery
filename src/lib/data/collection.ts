@@ -12,6 +12,7 @@ import {
 import { db, storage } from '$lib/services/firebase/firebase';
 import { getAuth } from 'firebase/auth';
 import { ref } from 'firebase/storage';
+import { redirect } from '@sveltejs/kit';
 
 export const getCollection = async (collectionId: string) => {
 	try {
@@ -137,4 +138,6 @@ export const handleAddMultipleItemToCollection = async (collectionId: string, it
 		{ merge: true }
 	);
 	console.log('Added successfully to Collection ID :', collectionId);
+
+	window.location.href = '/curator/collection/' + collectionId;
 };

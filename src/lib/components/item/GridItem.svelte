@@ -10,13 +10,11 @@
 		items = items?.slice(0, itemLimit);
 	}
 
-	let halfItems;
-
 	let containerClass = 'flex flex-col gap-4 sm:w-1/2';
 
 	// //lazy loading
 	// const totalItems = items?.length; // Total number of items
-	// const itemsPerPage = 3; // Number of items to display per page
+	// const itemsPerPage = 4; // Number of items to display per page
 	//
 	// // Replace this with your actual array of items
 	// const loadedItems = writable([]);
@@ -80,4 +78,4 @@
 	{/if}
 </div>
 
-<!--<div class="relative -bottom-50 bg-black h-2" id="loadMoreTrigger"></div>-->
+<!--<div class="" id="loadMoreTrigger"></div>-->

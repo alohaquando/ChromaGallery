@@ -99,7 +99,7 @@
 			{#if !bookmark && design === 'grid' && itemData && itemData[1]}
 				<div class="grow shrink basis-0 self-stretch flex-col gap-1 inline-flex">
 					<Block display="fill" link={false} item={itemData[1]}></Block>
-					{#if itemData && itemData[2]}
+					{#if itemData[2]}
 						<Block display="fill" link={false} item={itemData[2]}></Block>
 					{/if}
 				</div>
