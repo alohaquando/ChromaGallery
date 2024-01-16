@@ -36,7 +36,7 @@
 	{#if !hideInfo}
 		<div class="flex-col gap-6 flex">
 			<Link href={enableFSV ? undefined : path} type="headline">
-				{item.title}
+				{item?.title}
 			</Link>
 			<Headline>{item.author}</Headline>
 			{#if !hideYear}

@@ -50,7 +50,6 @@
 </script>
 
 <svelte:element
-	this={type === 'action' && hasLink ? 'a' : 'button'}
 	class="{customClass} text-left w-full h-auto flex items-center gap-4 overflow-hidden"
 	href={path}
 	{id}
@@ -60,6 +59,7 @@
 	}}
 	role="button"
 	tabindex="0"
+	this={type === 'action' && hasLink ? 'a' : 'button'}
 >
 	{#await listItems}
 		<Block class="rounded-lg shrink-0 !h-16 !w-16" icon link={false}></Block>
@@ -74,7 +74,7 @@
 		></Block>
 	{/await}
 	<div class="w-full gap-y-3 flex flex-col">
-		<Body>{collection.title}</Body>
+		<Body>{bookmark ? 'Bookmark' : collection.title}</Body>
 		<Body class="opacity-50 line-clamp-1">{count(collection.items)}</Body>
 	</div>
 	{#if type === 'checkbox'}

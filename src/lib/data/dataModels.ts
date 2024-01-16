@@ -6,6 +6,7 @@ export interface Item {
 	author: string;
 	description: string;
 	year: string;
+	isFeatured: boolean;
 }
 
 export const createNewItem = () => ({
@@ -15,7 +16,8 @@ export const createNewItem = () => ({
 	location: '',
 	author: '',
 	description: '',
-	year: ''
+	year: '',
+	isFeatured: false
 });
 
 export interface Collection {

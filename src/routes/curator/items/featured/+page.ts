@@ -5,7 +5,6 @@ export async function load() {
 		modal: {
 			toggled: true,
 			title: 'Featured items',
-			href: './',
 			exit: true
 		},
 		items: await getAllItems()

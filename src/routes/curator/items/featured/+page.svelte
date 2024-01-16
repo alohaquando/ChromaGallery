@@ -7,18 +7,49 @@
 	import { enhance } from '$app/forms';
 	import type { SubmitFunction } from '@sveltejs/kit';
 	import LoadingOverlay from '$lib/components/layouts/LoadingOverlay.svelte';
+	import type { Item } from '$lib/data/dataModels';
+	import { onMount } from 'svelte';
+	import TextField from '$lib/components/inputs/TextField.svelte';
+	import Body from '$lib/components/typography/Body.svelte';
 
 	let list1 = itemList1;
 	let list2 = itemList2;
 
 	export let data: PageData;
 
-	let featured = data.items.filter((item) => item.isFeatured === true);
-	let nonFeatured = data.items.filter((item) => item.isFeatured === false);
-	$: featured, console.log(featured);
-	let isLoading = false;
+	let items: Item[] = data.items;
+	let searchTerm = '';
+	let searchResults: any; // Store search results
 
-	let updatedList: string[] = [];
+	let searchToggled: boolean = false;
+	$:searchToggled;
+
+	let featured = items.filter((item) => item.isFeatured === true);
+	let nonFeatured = items.filter((item) => item.isFeatured === false);
+	let isLoading = false;
+	$: nonFeatured, fetchData();
+
+	async function fetchData() {
+		try {
+			const response = await fetch(`/curator/items/featured?q=${searchTerm}`);
+			searchResults = await response.json(); // Store fetched search results
+			nonFeatured = searchResults.items.filter((item: Item) => featured.includes(item));
+		} catch (error) {
+			console.error('Error fetching data:', error);
+		}
+	}
+
+	onMount(() => {
+		fetchData();
+	});
+
+	const handleToggleSearch = () => {
+		searchToggled = true;
+	};
+
+	const handleBlur = () => {
+		searchToggled = Boolean((searchTerm));
+	};
 
 	const handleEdit = ({ formData }) => {
 		isLoading = true;
@@ -48,15 +79,28 @@
 
 		<Divider></Divider>
 
-		<Button class="w-full px-6" icon="faMagnifyingGlass">Find item</Button>
+		{#if !searchToggled}
+			<Button type="button" class="w-full" icon="faSearch" on:click={handleToggleSearch}>Find list</Button>
+		{:else}
+			<TextField bind:value={searchTerm} id="search" name="search" placeholder="Search for list"
+								 on:blur={handleBlur}
+								 on:input={fetchData}
+			></TextField>
+		{/if}
 
-		<DragList
-			bind:items={nonFeatured}
-			bind:output={featured}
-			button="add"
-			outLimit={3}
-			type="checkbox"
-		></DragList>
+		{#if nonFeatured.length !== 0}
+			<DragList
+				bind:items={nonFeatured}
+				bind:output={featured}
+				button="add"
+				outLimit={3}
+				type="checkbox"
+			></DragList>
+		{:else}
+			<div class="mt-12 flex flex-col items-center w-full">
+				<Body>No result found</Body>
+			</div>
+		{/if}
 
 		<Button disabled={isLoading} sticky type="submit">
 			{isLoading ? 'Loading...' : 'Save'}

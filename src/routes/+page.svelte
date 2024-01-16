@@ -3,6 +3,7 @@
 	import HeroImage from '$lib/components/item/HeroImage.svelte';
 	import { onMount } from 'svelte';
 	import Body from '$lib/components/typography/Body.svelte';
+	import type { Item } from '$lib/data/dataModels';
 
 	export let data;
 
@@ -72,7 +73,8 @@
 	let secondFlavorTextClass = beforeTextSlideshowClass;
 
 	let allItems = data.allItems;
-	let images = allItems.map((item) => item.image);
+	// @ts-ignore
+	let images = allItems.map((item: Item) => item.image);
 
 	let firstImageClass = visibleSlideshowClass;
 	let secondImageClass = hiddenSlideshowClass;
@@ -104,7 +106,7 @@
 		}
 	};
 
-	setInterval(function () {
+	setInterval(function() {
 		nextImage();
 	}, 3000);
 </script>
