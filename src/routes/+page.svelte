@@ -72,7 +72,7 @@
 	let secondFlavorTextClass = beforeTextSlideshowClass;
 
 	let allItems = data.allItems;
-	let images = allItems.map(item => item.image);
+	let images = allItems.map((item) => item.image);
 
 	let firstImageClass = visibleSlideshowClass;
 	let secondImageClass = hiddenSlideshowClass;
@@ -104,7 +104,7 @@
 		}
 	};
 
-	setInterval(function() {
+	setInterval(function () {
 		nextImage();
 	}, 3000);
 </script>
@@ -122,7 +122,6 @@
 		src={images[secondImageShown]}
 	/>
 </div>
-
 
 <div class="w-screen mx-auto h-screen overflow-clip">
 	<!--	Circle -->

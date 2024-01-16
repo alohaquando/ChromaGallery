@@ -13,45 +13,53 @@
 
 	export let data: PageData;
 
-	let featured = (data.items).filter(item => item.isFeatured === true);
-	let nonFeatured = (data.items).filter(item => item.isFeatured === false);
-	$:featured, console.log(featured)
+	let featured = data.items.filter((item) => item.isFeatured === true);
+	let nonFeatured = data.items.filter((item) => item.isFeatured === false);
+	$: featured, console.log(featured);
 	let isLoading = false;
 
 	let updatedList: string[] = [];
 
-	const handleEdit= ({ formData })  => {
-			isLoading = true
-			formData.set("isFeaturedItemList",featured.map(item => item.id))
+	const handleEdit = ({ formData }) => {
+		isLoading = true;
+		formData.set(
+			'isFeaturedItemList',
+			featured.map((item) => item.id)
+		);
 
-			return async ({ update }) => {
-				await update();
-				isLoading = false;
-			};
-
-	}
+		return async ({ update }) => {
+			await update();
+			isLoading = false;
+		};
+	};
 </script>
-<form
-	action="?/edit"
-	enctype="multipart/form-data"
-	method="POST"
-	use:enhance={handleEdit}
->
-<LoadingOverlay bind:isLoading={isLoading}></LoadingOverlay>
-<div class="gap-6 flex flex-col">
-	<DragList bind:items={featured} bind:output={nonFeatured} button="remove" itemLimit={3} placeholder={3}
-						type="checkbox"
-	></DragList>
 
-	<Divider></Divider>
+<form action="?/edit" enctype="multipart/form-data" method="POST" use:enhance={handleEdit}>
+	<LoadingOverlay bind:isLoading></LoadingOverlay>
+	<div class="gap-6 flex flex-col">
+		<DragList
+			bind:items={featured}
+			bind:output={nonFeatured}
+			button="remove"
+			itemLimit={3}
+			placeholder={3}
+			type="checkbox"
+		></DragList>
 
-	<Button class="w-full px-6" icon="faMagnifyingGlass">Find item</Button>
+		<Divider></Divider>
 
-	<DragList bind:items={nonFeatured} bind:output={featured} button="add" outLimit={3} type="checkbox"></DragList>
+		<Button class="w-full px-6" icon="faMagnifyingGlass">Find item</Button>
 
+		<DragList
+			bind:items={nonFeatured}
+			bind:output={featured}
+			button="add"
+			outLimit={3}
+			type="checkbox"
+		></DragList>
 
-	<Button disabled={isLoading} sticky type="submit">
-		{isLoading ? 'Loading...' : 'Save'}
-	</Button>
-</div>
+		<Button disabled={isLoading} sticky type="submit">
+			{isLoading ? 'Loading...' : 'Save'}
+		</Button>
+	</div>
 </form>

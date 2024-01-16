@@ -30,9 +30,12 @@
 >
 	<Icon {icon} size="xl" />
 	<Body class="{active ? 'font-semibold' : ''} transition">
-	<slot />
+		<slot />
 	</Body>
 
 	<div
-		class="rounded-full h-[2px] w-8 bg-white absolute bottom-1.5 transition {active ? 'opacity-100' : 'opacity-0'}"></div>
+		class="rounded-full h-[2px] w-8 bg-white absolute bottom-1.5 transition {active
+			? 'opacity-100'
+			: 'opacity-0'}"
+	></div>
 </a>

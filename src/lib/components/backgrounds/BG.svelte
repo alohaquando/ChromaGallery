@@ -14,7 +14,7 @@
 			hue = Math.floor(Math.random() * 360);
 			saturation = Math.floor(Math.random() * (101 - 60) + 60);
 			lightness = Math.floor(Math.random() * (91 - 60) + 60);
-			currentBg.update(data => ({
+			currentBg.update((data) => ({
 				...data,
 				hue,
 				saturation,

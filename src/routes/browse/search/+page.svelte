@@ -53,7 +53,6 @@
 			{:else}
 				<Body><i>No collections found</i></Body>
 			{/if}
-
 		</div>
 
 		<div class="flex flex-col gap-5">

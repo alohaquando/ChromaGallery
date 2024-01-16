@@ -15,7 +15,12 @@
 	import { page } from '$app/stores';
 	import type { PageData } from './$types';
 	import {} from '$lib/stores/header';
-	import { generateHeader, generateModal, generateNavbar, generateBackground } from '$lib/stores/pageLayout';
+	import {
+		generateHeader,
+		generateModal,
+		generateNavbar,
+		generateBackground
+	} from '$lib/stores/pageLayout';
 	import HeaderCurator from '$lib/components/navigation/HeaderCurator.svelte';
 
 	/** @type {import('./$types').LayoutData} */
@@ -24,7 +29,9 @@
 	$: modal = $page.data.modal ? generateModal($page.data.modal) : generateModal();
 	$: header = $page.data.header ? generateHeader($page.data.header) : generateHeader();
 	$: navbar = $page.data.navbar ? generateNavbar($page.data.navbar) : generateNavbar();
-	$: background = $page.data.background ? generateBackground($page.data.background) : generateBackground();
+	$: background = $page.data.background
+		? generateBackground($page.data.background)
+		: generateBackground();
 	onMount(() => {
 		modal = $page.data.modal ? generateModal($page.data.modal) : generateModal();
 	});
@@ -78,7 +85,6 @@
 	});
 </script>
 
-
 <svelte:head>
 	<meta title="Chroma Gallery" />
 	<meta content="#000000" name="theme-color" />
@@ -112,8 +118,12 @@
 	</Modal>
 {:else}
 	<svelte:component
-		this={headerComponent} {scrollY} href={header.href} button={header.button}
-		destructive={header.destructive}></svelte:component>
+		this={headerComponent}
+		{scrollY}
+		href={header.href}
+		button={header.button}
+		destructive={header.destructive}
+	></svelte:component>
 
 	<div class="container mx-auto px-6 lg:max-w-5xl">
 		<slot />

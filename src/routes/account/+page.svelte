@@ -21,11 +21,19 @@
 	/** @type {import('../../../../../.svelte-kit/types/src/routes').PageLoad} */
 	export let data: PageData;
 
-	let bookmark = data.lists?.find(list => list.id === 'bookmark');
-	let lists = data.lists?.filter(list => list.id !== 'bookmark');
+	let bookmark = data.lists?.find((list) => list.id === 'bookmark');
+	let lists = data.lists?.filter((list) => list.id !== 'bookmark');
 
 	const randomGreeting = (): string => {
-		const greetings = ['Hi!', 'Hi there!', 'Hello!', 'Greetings!', 'Salutations!', 'Hey!', 'What\'s up!'];
+		const greetings = [
+			'Hi!',
+			'Hi there!',
+			'Hello!',
+			'Greetings!',
+			'Salutations!',
+			'Hey!',
+			"What's up!"
+		];
 
 		const randomIndex = Math.floor(Math.random() * greetings.length);
 
@@ -99,10 +107,10 @@
 		</div>
 		<div class="pt-14 flex justify-center w-screen">
 			<Fab class="relative -left-[10%]" icon="faCircleUser" size="lg" href="account/sign-in"
-			>Sign me<br />in
+				>Sign me<br />in
 			</Fab>
 			<Fab class="mt-20 relative -right-[5%]" icon="faSparkles" size="lg" href="account/sign-up"
-			>Become a<br />member
+				>Become a<br />member
 			</Fab>
 		</div>
 	</div>

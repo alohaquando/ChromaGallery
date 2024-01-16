@@ -51,7 +51,7 @@
 		label="Current name"
 		labelSize="lg"
 		name="currentName"
-		placeholder="{displayName}"
+		placeholder={displayName}
 	></TextField>
 	<TextField
 		bind:value={newDisplayName}
@@ -71,8 +71,7 @@
 	{/if}
 
 	<!--	Submit button -->
-	<Button on:click={() => handleUpdateDisplayName(newDisplayName, currEmail, currPassword)}
-					sticky>
+	<Button on:click={() => handleUpdateDisplayName(newDisplayName, currEmail, currPassword)} sticky>
 		Save
 	</Button>
 </div>

@@ -21,7 +21,7 @@
 	let button2 = {
 		option: 'Log out',
 		type: 'filled',
-		function: function() {
+		function: function () {
 			authHandlers.logout();
 			window.location.href = '/';
 		}
@@ -48,14 +48,13 @@
 				errorMessage = err;
 			} finally {
 				isLoading = false;
-				await invalidateAll()
+				await invalidateAll();
 			}
 		}
 	};
 </script>
 
-<LoadingOverlay bind:isLoading={isLoading} />
-
+<LoadingOverlay bind:isLoading />
 
 <div class=" flex flex-col justify-center items-center">
 	<ListItem
@@ -85,7 +84,7 @@
 
 	<Divider />
 
-	{#if (failed)}
+	{#if failed}
 		<FormError>
 			{errorMessage}
 		</FormError>
@@ -98,12 +97,6 @@
 
 	<Divider />
 
-	<Button
-		class="w-full mt-4"
-		design="destructive"
-		on:click={toggleDialog}
-	>
-		Sign out
-	</Button>
+	<Button class="w-full mt-4" design="destructive" on:click={toggleDialog}>Sign out</Button>
 </div>
 <Dialog {button1} {button2} text="Are you sure you want to log out?" title="Log out"></Dialog>

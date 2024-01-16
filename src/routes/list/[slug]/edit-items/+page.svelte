@@ -18,7 +18,7 @@
 
 	let updatedList: string[] = [];
 	const handleUpdatedList = (event) => {
-		updatedList = event.detail.items.map(item => item.id);
+		updatedList = event.detail.items.map((item) => item.id);
 		console.log(updatedList);
 	};
 	const handleSubmit: SubmitFunction = async ({ formData }) => {
@@ -32,11 +32,10 @@
 			await update();
 			isLoading = false;
 		};
-
 	};
 
 	let searchToggled: boolean = false;
-	$:searchToggled;
+	$: searchToggled;
 
 	let searchTerm = '';
 	let searchResults: any; // Store search results
@@ -45,7 +44,7 @@
 		try {
 			const response = await fetch(`/list/${data.listId}/edit-items?q=${searchTerm}`);
 			searchResults = await response.json(); // Store fetched search results
-			itemList = searchResults.items.filter(item => data.list.items.includes(item.id));
+			itemList = searchResults.items.filter((item) => data.list.items.includes(item.id));
 		} catch (error) {
 			console.error('Error fetching data:', error);
 		}
@@ -60,9 +59,10 @@
 	};
 
 	const handleBlur = () => {
-		searchToggled = Boolean((searchTerm));
+		searchToggled = Boolean(searchTerm);
 	};
 </script>
+
 <form
 	action="?/edit"
 	class="w-full flex-col flex justify-center gap-10 mt-6"
@@ -74,24 +74,28 @@
 		{#if !searchToggled}
 			<Button class="w-full" icon="faSearch" on:click={handleToggleSearch}>Find list</Button>
 		{:else}
-			<TextField bind:value={searchTerm} id="search" name="search" placeholder="Search for list"
-								 on:blur={handleBlur}
-								 on:input={fetchData}
+			<TextField
+				bind:value={searchTerm}
+				id="search"
+				name="search"
+				placeholder="Search for list"
+				on:blur={handleBlur}
+				on:input={fetchData}
 			></TextField>
 		{/if}
 		{#await itemList}
 			<DragList placeholder={3} class="w-full" type="edit"></DragList>
 		{:then items}
 			{#if items.length !== 0}
-				<DragList on:finalize={handleUpdatedList} class="w-full gap-4" {items} type="edit"></DragList>
+				<DragList on:finalize={handleUpdatedList} class="w-full gap-4" {items} type="edit"
+				></DragList>
 			{:else}
 				<div class="mt-12 flex flex-col items-center w-full">
 					<Body>No result found</Body>
 				</div>
 			{/if}
 		{/await}
-		<LoadingOverlay bind:isLoading={isLoading}></LoadingOverlay>
-
+		<LoadingOverlay bind:isLoading></LoadingOverlay>
 
 		<Button class="mb-10" disabled={isLoading} sticky type="submit">
 			{isLoading ? 'Loading...' : 'Save'}

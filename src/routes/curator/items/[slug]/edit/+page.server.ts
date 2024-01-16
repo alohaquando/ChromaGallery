@@ -14,7 +14,6 @@ export const actions = {
 		const title = formData.get('name') as string;
 		const year = formData.get('time') as string;
 
-		
 		console.log(formData);
 
 		if (imageUrl === '') {
@@ -27,7 +26,7 @@ export const actions = {
 			await handleUpdateItem(itemId, {
 				author,
 				description,
-				image:imageUrl,
+				image: imageUrl,
 				isFeatured,
 				location,
 				title,

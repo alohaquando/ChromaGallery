@@ -23,12 +23,19 @@
 </script>
 
 <div class="w-full flex-col gap-6 inline-flex {customClass}">
-	<div class="w-full {heightClass} rounded-lg flex relative justify-center items-center ">
-		<Block bgTransparent display="full" {item} link={!enableFSV} on:click={toggleImageFullView} stretch={false} />
+	<div class="w-full {heightClass} rounded-lg flex relative justify-center items-center">
+		<Block
+			bgTransparent
+			display="full"
+			{item}
+			link={!enableFSV}
+			on:click={toggleImageFullView}
+			stretch={false}
+		/>
 	</div>
 	{#if !hideInfo}
 		<div class="flex-col gap-6 flex">
-			<Link href={enableFSV? undefined : path} type="headline">
+			<Link href={enableFSV ? undefined : path} type="headline">
 				{item.title}
 			</Link>
 			<Headline>{item.author}</Headline>
@@ -41,6 +48,6 @@
 	{/if}
 </div>
 
-{#if (enableFSV)}
-	<ImageView src="{item.image}" alt="{item.title}" />
+{#if enableFSV}
+	<ImageView src={item.image} alt={item.title} />
 {/if}

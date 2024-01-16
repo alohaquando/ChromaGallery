@@ -32,8 +32,8 @@
 			design="filled"
 			on:click={() => handleResetPassword(emailToResetPassword)}
 			type="submit"
-			width="full">Reset password
-		</Button
-		>
+			width="full"
+			>Reset password
+		</Button>
 	</form>
 </div>

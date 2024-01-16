@@ -7,7 +7,7 @@
 	import Link from '$lib/components/links/Link.svelte';
 	import Icon from '$lib/components/iconography/Icon.svelte';
 	import { onMount } from 'svelte';
-	import {page} from '$app/stores';
+	import { page } from '$app/stores';
 	// import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 	let root: HTMLElement;
@@ -63,8 +63,8 @@
 		<!--	Account-->
 		<Title>Account</Title>
 		<Body
-		>Manage your bookmarks and lists of your favourite piece of art with an that online museum
-		account
+			>Manage your bookmarks and lists of your favourite piece of art with an that online museum
+			account
 		</Body>
 		<Button href="/account/sign-up">Become a member</Button>
 
@@ -76,7 +76,7 @@
 		<Title>Chroma Gallery</Title>
 		<Body>View beautiful artworks on Chroma Gallery</Body>
 		<Button href="/">Go to Chroma Gallery</Button>
-		{:else }
+	{:else}
 		<Title>Chroma Curator</Title>
 		<Body>Manage items and collections on Chroma Gallery using a Curator account</Body>
 		<Button href="/curator/items">Go to Chroma Curator</Button>
@@ -91,7 +91,7 @@
 			<Link class="ml-5" href="/terms">Terms</Link>
 		</div>
 		<span class="text-white/50 items-center flex cursor-default"
-		><Icon icon="faCopyright"></Icon><Body class="text-white/50">2023 Chroma Gallery</Body></span
+			><Icon icon="faCopyright"></Icon><Body class="text-white/50">2023 Chroma Gallery</Body></span
 		>
 	</div>
 </div>

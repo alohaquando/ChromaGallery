@@ -10,14 +10,12 @@
 	export let button1 = {
 		option: '',
 		type: '',
-		function: function() {
-		}
+		function: function () {}
 	};
 	export let button2 = {
 		option: '',
 		type: 'filled',
-		function: function() {
-		}
+		function: function () {}
 	};
 </script>
 

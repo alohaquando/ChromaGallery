@@ -8,7 +8,6 @@
 </script>
 
 <div class="w-full flex flex-col h-screen items-center space-y-8">
-
 	<!--		<div class=" h-16  ring w-16  my-12 ">-->
 	<!--			<LetterC animation="spin" class="h-16 " />-->
 	<!--		</div>-->
@@ -16,22 +15,21 @@
 	<PageTitle>{$page?.status}</PageTitle>
 	<Headline>{$page?.error?.message}</Headline>
 
-	<Body class="text-center ">We sincerely apologize for this inconvenience
-	</Body>
+	<Body class="text-center ">We sincerely apologize for this inconvenience</Body>
 
 	<div class="flex flex-col space-y-4 items-center pt-4 w-full">
-		<Button design="filled" href="/" width="full">
-			Go to Chroma Gallery
-		</Button>
+		<Button design="filled" href="/" width="full">Go to Chroma Gallery</Button>
 
-		<Button design="filled" href="/curator/items" width="full">
-			Go to Chroma Curator
-		</Button>
+		<Button design="filled" href="/curator/items" width="full">Go to Chroma Curator</Button>
 
-		<Button design="outlined" on:click={() => {history.back()}} width="full">
+		<Button
+			design="outlined"
+			on:click={() => {
+				history.back();
+			}}
+			width="full"
+		>
 			Go back
 		</Button>
 	</div>
-
-
 </div>

@@ -44,17 +44,16 @@
 </script>
 
 <PageTitle>Browse</PageTitle>
-<Button class="mb-12 mt-20" href="browse/search" icon="faMagnifyingGlass" width="full">Search</Button>
+<Button class="mb-12 mt-20" href="browse/search" icon="faMagnifyingGlass" width="full"
+	>Search</Button
+>
 
 <div class="h-full flex flex-col justify-center gap-16">
 	<!-- Collections -->
 	<div class="h-full flex flex-col justify-center gap-12">
 		<div class="w-full flex items-center gap-2">
-
 			<TitleLarge class="shrink-0">Collections</TitleLarge>
-
 		</div>
-
 
 		<!-- scrolling  -->
 		<CollectionList collections={collectionList} isCollection></CollectionList>
@@ -63,11 +62,8 @@
 	<!-- All items -->
 	<div class="w-full flex flex-col justify-center gap-12">
 		<div class="w-full flex items-center gap-2">
-
 			<TitleLarge class="shrink-0">All Artworks</TitleLarge>
-
 		</div>
-
 
 		<!-- items display  -->
 		<GridItem items={itemList}></GridItem>

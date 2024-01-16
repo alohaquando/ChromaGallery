@@ -97,7 +97,7 @@
 </div>
 
 <style>
-    ::-webkit-calendar-picker-indicator {
-        filter: invert(1);
-    }
+	::-webkit-calendar-picker-indicator {
+		filter: invert(1);
+	}
 </style>

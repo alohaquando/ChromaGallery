@@ -70,8 +70,13 @@
 
 <a class="{customClasses} {disableClass} relative max-w-fit cursor-pointer trim-both" {href}>
 	<svelte:component
-		class="{underlineClass} {!href? '' : (isHovered? staticClass : hoverClass)} bg-no-repeat bg-left-bottom duration-500 inline bg-gradient-to-r {linkColor}"
-		this={component}>
+		this={component}
+		class="{underlineClass} {!href
+			? ''
+			: isHovered
+			  ? staticClass
+			  : hoverClass} bg-no-repeat bg-left-bottom duration-500 inline bg-gradient-to-r {linkColor}"
+	>
 		<slot />
 	</svelte:component>
 </a>
