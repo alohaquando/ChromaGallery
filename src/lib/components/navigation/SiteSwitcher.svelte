@@ -58,10 +58,9 @@
 		transition:fade={{ duration: 100 }}
 		class="{customClass} w-full px-6 py-10 bg-white/10 ring-1 ring-white/30 rounded-2xl backdrop-blur-lg flex items-center justify-center"
 	>
-		<div class="flex origin-top flex-col items-center justify-center gap-6 w-full  duration-0">
-			<svelte:component class={logoClasses} this={component} />
+		<div class="flex origin-top flex-col items-center justify-center gap-6 w-full duration-0">
+			<svelte:component this={component} class={logoClasses} />
 			<Button design="filled" {href} width="full">Go to Chroma&nbsp<b>{text}</b></Button>
 		</div>
 	</div>
 {/if}
-

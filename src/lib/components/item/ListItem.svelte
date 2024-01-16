@@ -29,6 +29,7 @@
 </script>
 
 <svelte:element
+	this={href ? 'a' : 'button'}
 	class="{customClass} flex flex-row min-h-[3rem] py-4 justify-between space-x-4 relative items-center"
 	{href}
 	on:click
@@ -37,14 +38,9 @@
 	on:mouseleave={handleHover}
 	role="button"
 	tabindex="0"
-	this={href ? 'a' : 'button'}
 >
 	<div class="grow flex-1 flex items-center hyphens-auto {textClasses}">
-		<Link
-			bind:isHovered
-			{design}
-			{href}
-		>
+		<Link bind:isHovered {design} {href}>
 			{text}
 		</Link>
 	</div>

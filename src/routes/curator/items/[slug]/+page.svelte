@@ -25,7 +25,7 @@
 	let button2 = {
 		option: 'Delete item',
 		type: 'filled',
-		function: function() {
+		function: function () {
 			formElement.requestSubmit();
 		}
 	};
@@ -47,8 +47,8 @@
 	class="hidden"
 	enctype="multipart/form-data"
 	method="POST"
-	use:enhance={handleDelete}>
-</form>
+	use:enhance={handleDelete}
+></form>
 
 <div class="flex justify-end gap-x-4 mb-6">
 	<Button design="destructive" on:click={toggleDialog}>Delete</Button>
@@ -60,7 +60,8 @@
 	{data.item.description}
 </BodyLarge>
 <div class="flex flex-col justify-center items-center mt-10">
-	<InfoRow class="w-full" href="" leadingText="Place made" trailingText={data.item.location}></InfoRow>
+	<InfoRow class="w-full" href="" leadingText="Place made" trailingText={data.item.location}
+	></InfoRow>
 </div>
 <Dialog
 	{button1}

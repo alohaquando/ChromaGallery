@@ -13,12 +13,20 @@
 
 <PageTitle>Collections</PageTitle>
 
-<Button class="mt-16 mb-8" href="collection/search" icon="faMagnifyingGlass" width="full">Search</Button>
+<Button class="mt-16 mb-8" href="collection/search" icon="faMagnifyingGlass" width="full"
+	>Search</Button
+>
 <div class="flex justify-between items-center">
 	<BodyLarge>All collections</BodyLarge>
 	<Button href="/curator/items/add" icon="faPlus">Add collection</Button>
 </div>
-<CollectionList button="link" class="gap-4 mt-6" collections={data.collections} curator isCollection
-								rowType></CollectionList>
+<CollectionList
+	button="link"
+	class="gap-4 mt-6"
+	collections={data.collections}
+	curator
+	isCollection
+	rowType
+></CollectionList>
 
 <FixedButton href="/curator/collection/create" icon="faPlus"></FixedButton>

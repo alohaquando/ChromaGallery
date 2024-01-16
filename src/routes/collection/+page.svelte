@@ -11,11 +11,5 @@
 
 <Button class="mt-16" href="collection/search" icon="faMagnifyingGlass" width="full">Search</Button>
 
-<CollectionList
-	class="mt-12 gap-10"
-	collections={collections}
-	design="single"
-	hideSubtitle
-	width="full"
-	wrap
+<CollectionList class="mt-12 gap-10" {collections} design="single" hideSubtitle width="full" wrap
 ></CollectionList>

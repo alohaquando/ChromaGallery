@@ -16,7 +16,7 @@
 	let selectedItems: string[] = [];
 
 	let searchToggled: boolean = false;
-	$:searchToggled;
+	$: searchToggled;
 
 	let searchTerm = '';
 	let searchResults: any; // Store search results
@@ -25,7 +25,7 @@
 		try {
 			const response = await fetch(`/curator/collection/${data.slug}/add?q=${searchTerm}`);
 			searchResults = await response.json(); // Store fetched search results
-			items = searchResults.items.filter(item => !data.collection.items.includes(item.id));
+			items = searchResults.items.filter((item) => !data.collection.items.includes(item.id));
 		} catch (error) {
 			console.error('Error fetching data:', error);
 		}
@@ -40,7 +40,7 @@
 	};
 
 	const handleBlur = () => {
-		searchToggled = Boolean((searchTerm));
+		searchToggled = Boolean(searchTerm);
 	};
 </script>
 
@@ -48,9 +48,13 @@
 	{#if !searchToggled}
 		<Button class="w-full" icon="faSearch" on:click={handleToggleSearch}>Find list</Button>
 	{:else}
-		<TextField bind:value={searchTerm} id="search" name="search" placeholder="Search for list"
-							 on:blur={handleBlur}
-							 on:input={fetchData}
+		<TextField
+			bind:value={searchTerm}
+			id="search"
+			name="search"
+			placeholder="Search for list"
+			on:blur={handleBlur}
+			on:input={fetchData}
 		></TextField>
 	{/if}
 
@@ -63,7 +67,11 @@
 	{/if}
 
 	<Button
-		on:click={async() => { await handleAddMultipleItemToCollection(data.slug, selectedItems); await goto(`/items/${data.slug}`)}}
-		sticky>Add to list
+		on:click={async () => {
+			await handleAddMultipleItemToCollection(data.slug, selectedItems);
+			await goto(`/items/${data.slug}`);
+		}}
+		sticky
+		>Add to list
 	</Button>
 </div>

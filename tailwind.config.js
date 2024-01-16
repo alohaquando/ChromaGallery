@@ -6,8 +6,7 @@ export default {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 	theme: {
 		backgroundSize: {
-			'sm': ''
-
+			sm: ''
 		},
 		fontFamily: {
 			sans: ['Atkinson Hyperlegible', 'system-ui'],
@@ -225,7 +224,7 @@ export default {
 	},
 	plugins: [
 		require('tailwindcss-leading-trim'),
-		plugin(function({ matchUtilities, theme }) {
+		plugin(function ({ matchUtilities, theme }) {
 			matchUtilities(
 				{
 					'translate-z': (value) => ({

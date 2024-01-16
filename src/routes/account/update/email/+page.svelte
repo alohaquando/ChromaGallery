@@ -22,7 +22,7 @@
 		label="Current Email"
 		labelSize="lg"
 		name="currentEmail"
-		placeholder="{currEmail}"
+		placeholder={currEmail}
 	></TextField>
 	<TextField
 		bind:value={currPassword}
@@ -60,8 +60,10 @@
 	{/if}
 
 	<!--Submit button-->
-	<Button on:click={() => handleUpdateEmail(newEmail, confirmNewEmail, currEmail, currPassword)}
-					sticky>
+	<Button
+		on:click={() => handleUpdateEmail(newEmail, confirmNewEmail, currEmail, currPassword)}
+		sticky
+	>
 		Save
 	</Button>
 </div>

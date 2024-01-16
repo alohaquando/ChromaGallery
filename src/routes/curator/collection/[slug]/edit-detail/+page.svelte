@@ -37,7 +37,6 @@
 			await update();
 			isLoading = false;
 		};
-
 	};
 </script>
 
@@ -48,8 +47,6 @@
 	method="POST"
 	use:enhance={handleSubmit}
 >
-
-
 	<div class="gap-4 flex flex-col">
 		<TextField id="name" label="Name" labelSize="lg" name="name" value={data.collection.title}
 		></TextField>
@@ -71,7 +68,8 @@
 	</div>
 </form>
 
-<Dialog {button1} {button2} text="This cannot be undone" title="Delete “{data.collection.title}”?"></Dialog>
+<Dialog {button1} {button2} text="This cannot be undone" title="Delete “{data.collection.title}”?"
+></Dialog>
 
 <ListItem
 	bottomDivider={false}

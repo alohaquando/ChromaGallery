@@ -12,9 +12,9 @@
 		class="!absolute top-0 left-0 z-50 !blur-0"
 		exit
 		responsive={false}
-		exitButton={resetImageFullView}></HeaderBack>
+		exitButton={resetImageFullView}
+	></HeaderBack>
 	<div class="w-full h-full top-0 left-0 fixed bg-black z-40 flex justify-center items-center">
-
 		<img {alt} class="w-full max-h-full object-contain" {src} />
 	</div>
 {/if}

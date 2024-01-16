@@ -13,21 +13,20 @@
 
 	let updatedList: string[] = [];
 	const handleUpdatedList = (event) => {
-		updatedList = event.detail.items.map(item => item.id);
+		updatedList = event.detail.items.map((item) => item.id);
 		console.log(updatedList);
 	};
 	const handleSubmit: SubmitFunction = async ({ formData }) => {
 		isLoading = true;
 
-		formData.set("collectionId",data.collectionId)
+		formData.set('collectionId', data.collectionId);
 
-		formData.set('itemList', updatedList)
+		formData.set('itemList', updatedList);
 
 		return async ({ update }) => {
 			await update();
 			isLoading = false;
 		};
-
 	};
 </script>
 
@@ -38,17 +37,15 @@
 	method="POST"
 	use:enhance={handleSubmit}
 >
-<Button disabled={isLoading} sticky type="submit" class="mb-10">
-	{isLoading ? 'Loading...' : 'Save'}
-</Button>
+	<Button disabled={isLoading} sticky type="submit" class="mb-10">
+		{isLoading ? 'Loading...' : 'Save'}
+	</Button>
 
-<!--<Button class="mb-6" icon="faMagifyingGlass" width="full">Find item</Button>-->
-<LoadingOverlay bind:isLoading={isLoading}></LoadingOverlay>
-{#await extractItems(data.collection)}
-	<DragList class="gap-4" type="edit" placeholder={3} />
-{:then items}
-	<DragList on:finalize={handleUpdatedList} class="gap-4" {items} type="edit"></DragList>
-{/await}
-
-
+	<!--<Button class="mb-6" icon="faMagifyingGlass" width="full">Find item</Button>-->
+	<LoadingOverlay bind:isLoading></LoadingOverlay>
+	{#await extractItems(data.collection)}
+		<DragList class="gap-4" type="edit" placeholder={3} />
+	{:then items}
+		<DragList on:finalize={handleUpdatedList} class="gap-4" {items} type="edit"></DragList>
+	{/await}
 </form>

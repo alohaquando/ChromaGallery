@@ -12,12 +12,13 @@
 
 	hover = disabled && destructive ? false : hover;
 
-	let hoverEffect =
-		destructive ? 'hover:bg-red-500 hover:text-white duration-500' : 'hover:bg-white/10' + (hover
-			? (' ' + 'hover:before:opacity-100 hover:after:opacity-100 hover:text-gray-900')
-			: ' ');
+	let hoverEffect = destructive
+		? 'hover:bg-red-500 hover:text-white duration-500'
+		: 'hover:bg-white/10' +
+		  (hover ? ' ' + 'hover:before:opacity-100 hover:after:opacity-100 hover:text-gray-900' : ' ');
 	let toggleClass: string = '';
-	$: toggled, toggleClass = toggled ? 'before:opacity-70 after:opacity-20 text-gray-900 bg-white/20' : '';
+	$: toggled,
+		(toggleClass = toggled ? 'before:opacity-70 after:opacity-20 text-gray-900 bg-white/20' : '');
 
 	export let iconType: 'regular' | 'solid' | 'brands' | undefined = 'regular';
 	export let href: string | undefined = undefined;
@@ -50,6 +51,7 @@
 </script>
 
 <svelte:element
+	this={href ? 'a' : 'button'}
 	class="{customClasses} {sizeClasses} {hoverEffect} {toggleClass} shrink-0 text-center flex-col rounded-full {!noOutline
 		? 'border border-white border-opacity-30'
 		: ''} justify-center items-center gap-2 inline-flex overflow-visible duration-300 relative
@@ -65,7 +67,6 @@
 	role="button"
 	tabindex="0"
 	{target}
-	this={href ? 'a' : 'button'}
 >
 	{#if size === 'mini' || size === 'sm'}
 		<label for={id} class="w-12 h-12 absolute rounded-full z-10"></label>
@@ -73,7 +74,7 @@
 	<Icon {icon} size={size === 'mini' ? 'sm' : '2xl'} type={iconType}></Icon>
 	{#if $$slots.default}
 		<Body class="pt-1 leading-tight">
-		<slot />
+			<slot />
 		</Body>
 	{/if}
 </svelte:element>

@@ -40,7 +40,6 @@
 			await update();
 			isLoading = false;
 		};
-
 	};
 
 	// onMount(()=> {
@@ -49,6 +48,7 @@
 
 	let toggled: boolean = false;
 </script>
+
 <form
 	action="?/edit"
 	class="w-full flex-col flex justify-center gap-10 mt-6"
@@ -56,10 +56,14 @@
 	method="POST"
 	use:enhance={handleSubmit}
 >
-
-
 	<div class="gap-8 flex flex-col">
-		<TextField id="listName" label="Title" labelSize="lg" name="name" placeholder="List title" value={data.list.title}
+		<TextField
+			id="listName"
+			label="Title"
+			labelSize="lg"
+			name="name"
+			placeholder="List title"
+			value={data.list.title}
 		></TextField>
 		<TextField
 			id="listDesc"
@@ -71,13 +75,19 @@
 		></TextField>
 
 		<Divider />
-		<LoadingOverlay bind:isLoading={isLoading}></LoadingOverlay>
+		<LoadingOverlay bind:isLoading></LoadingOverlay>
 
 		<Button design="filled" type="submit" width="full">Save</Button>
 	</div>
 </form>
 
-<Dialog {button1} {button2} text="This cannot be undone" title="Delete “{data.list.title}”?" {toggled}></Dialog>
+<Dialog
+	{button1}
+	{button2}
+	text="This cannot be undone"
+	title="Delete “{data.list.title}”?"
+	{toggled}
+></Dialog>
 
 <ListItem
 	bottomDivider={false}

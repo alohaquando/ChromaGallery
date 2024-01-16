@@ -48,7 +48,7 @@
 	};
 
 	let focusedClass = '';
-	$: isFocused, focusedClass = isFocused ? 'border-opacity-100' : 'border border-opacity-30';
+	$: isFocused, (focusedClass = isFocused ? 'border-opacity-100' : 'border border-opacity-30');
 </script>
 
 <div class="{customClass} flex flex-col w-full relative">
@@ -64,7 +64,7 @@
 		class="{stateClasses} {focusedClass}
 		bg-black/30 border border-white/30 rounded-xl placeholder-white/50 block w-full p-2.5 transition outline-none text-white font-sans trim-both focus:ring-white focus:ring-2 disabled:placeholder-white/30 disabled:text-white/70 read-only:focus:ring-0 read-only:text-white/70
 
-		  min-h-[8.875rem] resize-y "
+		  min-h-[8.875rem] resize-y"
 		{disabled}
 		{form}
 		{id}
@@ -90,9 +90,8 @@
 	</div>
 {/if}
 
-
 <style>
-    ::-webkit-calendar-picker-indicator {
-        filter: invert(1);
-    }
+	::-webkit-calendar-picker-indicator {
+		filter: invert(1);
+	}
 </style>

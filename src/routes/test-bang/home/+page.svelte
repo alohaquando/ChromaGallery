@@ -41,7 +41,10 @@
 
 	<TextField bind:value={year} id="year" label="year" name="year" placeholder="year"></TextField>
 	<input on:change={(e) => (image = e.target.files[0])} type="file" />
-	<button class="bg-white text-black" on:click={() => handleCreateItem(author,description,image,isFeatured,location,title,year)}
-					type="submit">Create
+	<button
+		class="bg-white text-black"
+		on:click={() => handleCreateItem(author, description, image, isFeatured, location, title, year)}
+		type="submit"
+		>Create
 	</button>
 </form>

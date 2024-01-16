@@ -56,8 +56,10 @@
 	{/if}
 
 	<!--Submit button-->
-	<Button on:click={() => handleUpdatePassword(newPassword, confirmNewPassword, currEmail, currPassword)}
-					sticky>
+	<Button
+		on:click={() => handleUpdatePassword(newPassword, confirmNewPassword, currEmail, currPassword)}
+		sticky
+	>
 		Save
 	</Button>
 </div>

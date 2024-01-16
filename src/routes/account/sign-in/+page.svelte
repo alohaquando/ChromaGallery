@@ -41,7 +41,7 @@
 	};
 </script>
 
-<LoadingOverlay bind:isLoading={isLoading} />
+<LoadingOverlay bind:isLoading />
 
 <PageTitle>Welcome back</PageTitle>
 <div class="mt-16 gap-8 flex flex-col items-center w-full">
@@ -54,7 +54,7 @@
 	<Divider />
 
 	<form class="contents">
-		{#if (failed)}
+		{#if failed}
 			<FormError>
 				{errorMessage}
 			</FormError>
@@ -85,9 +85,9 @@
 			disabled={isLoading}
 			on:click={handleEmailSignIn}
 			type="submit"
-			width="full">Sign in
-		</Button
-		>
+			width="full"
+			>Sign in
+		</Button>
 
 		<!--        reset password button-->
 		<Button design="outlined" href="reset">Reset my password</Button>

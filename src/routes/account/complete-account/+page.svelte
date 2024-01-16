@@ -17,7 +17,6 @@
 	let isCurator: boolean = false;
 	let currentEmail = data.session?.email;
 
-
 	let fullName: string = '';
 	let fullNameErrorMessage: string = '';
 
@@ -64,20 +63,27 @@
 	};
 </script>
 
-<LoadingOverlay bind:isLoading={isLoading} />
+<LoadingOverlay bind:isLoading />
 
 <PageTitle>Let's get you ready</PageTitle>
 
 <form class="mt-16 gap-8 flex flex-col items-center w-full">
 	<Body>Please complete your account before using Chroma</Body>
-	{#if (failed)}
+	{#if failed}
 		<FormError>
 			{errorMessage}
 		</FormError>
 	{/if}
 
 	<!--	Email field-->
-	<TextField disabled id="email" label="Signed in as" name="email" placeholder="" readonly value={currentEmail}
+	<TextField
+		disabled
+		id="email"
+		label="Signed in as"
+		name="email"
+		placeholder=""
+		readonly
+		value={currentEmail}
 	/>
 
 	<Divider />
@@ -85,7 +91,7 @@
 	<!--	FullName field-->
 	<TextField
 		bind:value={fullName}
-		error={fullNameErrorMessage.length>0}
+		error={fullNameErrorMessage.length > 0}
 		errorMessage={fullNameErrorMessage}
 		id="fullName"
 		label="Full name"
@@ -102,23 +108,15 @@
 	<!--	Submit button-->
 	<Button
 		design="filled"
-		disabled={fullName.length===0}
-		on:click={
-			handleCompleteAccount
-		}
+		disabled={fullName.length === 0}
+		on:click={handleCompleteAccount}
 		width="full"
-	>Complete account
+		>Complete account
 	</Button>
 
 	<Divider />
 
 	<Body>Don't want to continue?</Body>
 
-	<Button
-		design="destructive"
-		on:click={handleLogOut}
-		width="full"
-	>Sign out
-	</Button>
-
+	<Button design="destructive" on:click={handleLogOut} width="full">Sign out</Button>
 </form>

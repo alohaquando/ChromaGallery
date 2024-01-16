@@ -100,8 +100,8 @@ export const handleCreateList = async (
 	title: string = 'My Title',
 	description: string = 'My Subtitle'
 ) => {
-	if (!userId || !title || title === ''|| description === ''|| !description) {
-		console.log("Please fill the form")
+	if (!userId || !title || title === '' || description === '' || !description) {
+		console.log('Please fill the form');
 		return;
 	}
 	let dataToSetToStore: any;

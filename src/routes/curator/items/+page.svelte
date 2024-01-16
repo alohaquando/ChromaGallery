@@ -15,9 +15,7 @@
 
 {#if data.items}
 	{#if data.items.length === 0}
-		<Body class="opacity-80 text-center pt-24">
-		No item added yet
-		</Body>
+		<Body class="opacity-80 text-center pt-24">No item added yet</Body>
 	{:else}
 		<Button class="mb-8 mt-16" icon="faMagnifyingGlass" width="full" href="items/search">
 			Search
@@ -38,10 +36,7 @@
 		</div>
 		<DragList class="gap-4 mt-8" curator items={data.items}></DragList>
 	{/if}
-
-{:else }
-	<Body class="opacity-80 text-center pt-24">
-	Cannot get items
-	</Body>
+{:else}
+	<Body class="opacity-80 text-center pt-24">Cannot get items</Body>
 {/if}
 <FixedButton href="/curator/items/add" icon="faPlus" />

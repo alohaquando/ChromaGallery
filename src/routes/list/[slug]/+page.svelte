@@ -17,12 +17,11 @@
 
 {#if list}
 	<Headline class="text-decoration-line: underline  underline-offset-8 pt-8 pb-6"
-	>{list.title}
+		>{list.title}
 	</Headline>
 
 	<Headline class="text-white text-opacity-50">{count(list.items)}</Headline>
 	<BodyLarge class="pt-6">{list.description}</BodyLarge>
-
 
 	<div class="mt-10">
 		<Button icon="faPen" href="{listId}/edit-detail">Edit detail</Button>

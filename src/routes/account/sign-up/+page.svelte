@@ -84,7 +84,7 @@
 	};
 </script>
 
-<LoadingOverlay bind:isLoading={isLoading} />
+<LoadingOverlay bind:isLoading />
 
 <PageTitle>Hi new friend</PageTitle>
 
@@ -98,7 +98,7 @@
 	<Divider />
 
 	<form class="contents">
-		{#if (failed)}
+		{#if failed}
 			<FormError>
 				{formErrorMessage}
 			</FormError>
@@ -107,7 +107,7 @@
 		<!--	Email field-->
 		<TextField
 			bind:value={email}
-			error={errorMessage.email.length>0}
+			error={errorMessage.email.length > 0}
 			errorMessage={errorMessage.email}
 			id="email"
 			label="Email"
@@ -117,11 +117,10 @@
 			required
 		></TextField>
 
-
 		<!--	Password field-->
 		<TextField
 			bind:value={password}
-			error={errorMessage.password.length>0}
+			error={errorMessage.password.length > 0}
 			errorMessage={errorMessage.password}
 			id="password"
 			label="Password"
@@ -135,7 +134,7 @@
 		<!--	Confirm password field-->
 		<TextField
 			bind:value={confirmPassword}
-			error={errorMessage.confirmPassword.length>0}
+			error={errorMessage.confirmPassword.length > 0}
 			errorMessage={errorMessage.confirmPassword}
 			id="confirmPassword"
 			label="Confirm Password"
@@ -153,7 +152,7 @@
 			on:click={handleSignUp}
 			type="submit"
 			width="full"
-		>Sign up
+			>Sign up
 		</Button>
 	</form>
 

@@ -15,7 +15,8 @@
 	export let type: 'checkbox' | 'action' | 'view' = 'action';
 	export let curator: boolean = false;
 	export let isCollection: boolean = false;
-	let path = (curator ? '/curator' : '') + (isCollection ? '/collection/' : '/list/') + collection?.id;
+	let path =
+		(curator ? '/curator' : '') + (isCollection ? '/collection/' : '/list/') + collection?.id;
 	export let button: 'add' | 'destructive' | 'link' | undefined;
 	export let icon: string | undefined;
 	export let hasLink: boolean = true;
@@ -48,16 +49,29 @@
 	export let bookmark: boolean = false;
 </script>
 
-<svelte:element class="{customClass} text-left w-full h-auto flex items-center gap-4 overflow-hidden" href="{path}"
-								{id}
-								on:click={()=>{checked = !checked; onSelect()}}
-								role="button"
-								tabindex="0"
-								this={(type === 'action' && hasLink) ? 'a' : 'button'}>
+<svelte:element
+	this={type === 'action' && hasLink ? 'a' : 'button'}
+	class="{customClass} text-left w-full h-auto flex items-center gap-4 overflow-hidden"
+	href={path}
+	{id}
+	on:click={() => {
+		checked = !checked;
+		onSelect();
+	}}
+	role="button"
+	tabindex="0"
+>
 	{#await listItems}
 		<Block class="rounded-lg shrink-0 !h-16 !w-16" icon link={false}></Block>
 	{:then items}
-		<Block display="fill" {bookmark} class="rounded-lg shrink-0 !h-16 !w-16" icon item={items[0]} link={false}></Block>
+		<Block
+			display="fill"
+			{bookmark}
+			class="rounded-lg shrink-0 !h-16 !w-16"
+			icon
+			item={items[0]}
+			link={false}
+		></Block>
 	{/await}
 	<div class="w-full gap-y-3 flex flex-col">
 		<Body>{collection.title}</Body>

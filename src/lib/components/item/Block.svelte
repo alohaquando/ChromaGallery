@@ -62,36 +62,30 @@
 </script>
 
 <svelte:element
+	this={link || bookmark ? 'a' : 'div'}
 	class="{!icon
 		? sizeClass
 		: 'h-14 w-14'} {typeClass} {customClass} relative overflow-hidden mx-auto"
-	href={item || bookmark && link ? path : null}
+	href={item || (bookmark && link) ? path : null}
 	on:click
 	role="button"
-	tabindex=0
-	this={link || bookmark ? 'a' : 'div'}
+	tabindex="0"
 >
-
 	{#if bookmark}
 		<Icon icon="faStar" type="solid" class="absolute z-20" size={iconSize}></Icon>
 		{#if !icon}
 			<div class="absolute h-auto w-full bg-black/10 rounded-full blur-2xl"></div>
 			<div
-				class="absolute opacity-30 h-60 w-60 bg-gradient-to-b from-zinc-400 to-fuchsia-600 rounded-full blur-xl"></div>
+				class="absolute opacity-30 h-60 w-60 bg-gradient-to-b from-zinc-400 to-fuchsia-600 rounded-full blur-xl"
+			></div>
 			<div
-				class="absolute opacity-60 h-60 w-60 bg-gradient-to-b from-white/20 via-white/60 to-white/30 rounded-full blur-2xl"></div>
+				class="absolute opacity-60 h-60 w-60 bg-gradient-to-b from-white/20 via-white/60 to-white/30 rounded-full blur-2xl"
+			></div>
 			<div class="absolute h-16 w-16 blur-xl bg-white rounded-full"></div>
 		{/if}
-	{:else }
-		{#if (item?.image)}
-			<div
-				class="flex justify-center max-h-[70vh] w-full h-full {icon ? 'absolute' : ''}">
-				<img
-					alt='{item.title}'
-					class="{displayClass}"
-					src='{item.image}'
-				/>
-			</div>
-		{/if}
+	{:else if item?.image}
+		<div class="flex justify-center max-h-[70vh] w-full h-full {icon ? 'absolute' : ''}">
+			<img alt={item.title} class={displayClass} src={item.image} />
+		</div>
 	{/if}
 </svelte:element>

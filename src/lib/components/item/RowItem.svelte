@@ -74,13 +74,18 @@
 	};
 </script>
 
-<svelte:element class="{customClass} w-full h-auto flex items-center gap-4 overflow-hidden"
-								href="{path}"
-								{id}
-								on:click={()=>{checked = !checked; onSelect()}}
-								role="button"
-								tabindex="0"
-								this={type === 'action' ? 'a' : 'div'}>
+<svelte:element
+	this={type === 'action' ? 'a' : 'div'}
+	class="{customClass} w-full h-auto flex items-center gap-4 overflow-hidden"
+	href={path}
+	{id}
+	on:click={() => {
+		checked = !checked;
+		onSelect();
+	}}
+	role="button"
+	tabindex="0"
+>
 	{#if type === 'edit' || type === 'delete'}
 		<Fab
 			{id}
@@ -91,7 +96,13 @@
 			class="{animationClass} shrink-0 text-red-500 !border-red-500"
 		></Fab>
 	{/if}
-	<Block class="{animationClass} rounded-lg shrink-0 !h-16 !w-16" display="fill" icon {item} link={false}></Block>
+	<Block
+		class="{animationClass} rounded-lg shrink-0 !h-16 !w-16"
+		display="fill"
+		icon
+		{item}
+		link={false}
+	></Block>
 	<div class="{animationClass} w-full gap-y-3 flex flex-col">
 		<Body>{item.title}</Body>
 		<Body class="opacity-50 line-clamp-1">{item.author}</Body>
@@ -109,7 +120,7 @@
 		{:else}
 			<Checkbox id={item.id} class="shrink-0" {item} name="" {checked}></Checkbox>
 		{/if}
-	{:else if (type === 'edit' || type === 'action')}
-		<Icon icon="{type === 'edit' ? 'faEquals' : 'faChevronRight'}" class="shrink-0 w-6 h-6" />
+	{:else if type === 'edit' || type === 'action'}
+		<Icon icon={type === 'edit' ? 'faEquals' : 'faChevronRight'} class="shrink-0 w-6 h-6" />
 	{/if}
 </svelte:element>

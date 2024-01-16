@@ -56,17 +56,18 @@
 	let selected: string[] = [];
 
 	let searchToggled: boolean = false;
-	$:searchToggled;
+	$: searchToggled;
 
 	let searchTerm = '';
 	let searchResults: any; // Store search results
 
 	async function fetchData() {
 		try {
-			const response = await fetch(`/items/${data.slug}/add-to-list?q=${searchTerm}&s=${data.session.uid}`);
+			const response = await fetch(
+				`/items/${data.slug}/add-to-list?q=${searchTerm}&s=${data.session.uid}`
+			);
 			searchResults = await response.json(); // Store fetched search results
-			lists = searchResults.lists.filter(list => !list.items.includes(data.slug));
-
+			lists = searchResults.lists.filter((list) => !list.items.includes(data.slug));
 		} catch (error) {
 			console.error('Error fetching data:', error);
 		}
@@ -81,7 +82,7 @@
 	};
 
 	const handleBlur = () => {
-		searchToggled = Boolean((searchTerm));
+		searchToggled = Boolean(searchTerm);
 	};
 </script>
 
@@ -90,20 +91,28 @@
 	{#if !searchToggled}
 		<Button class="w-full" icon="faSearch" on:click={handleToggleSearch}>Find list</Button>
 	{:else}
-		<TextField bind:value={searchTerm} id="search" name="search" placeholder="Search for list"
-							 on:blur={handleBlur}
-							 on:input={fetchData}
+		<TextField
+			bind:value={searchTerm}
+			id="search"
+			name="search"
+			placeholder="Search for list"
+			on:blur={handleBlur}
+			on:input={fetchData}
 		></TextField>
 	{/if}
 
-	<CollectionList bind:selected={selected} class="gap-4" collections={lists} rowType type="checkbox"></CollectionList>
-
+	<CollectionList bind:selected class="gap-4" collections={lists} rowType type="checkbox"
+	></CollectionList>
 </div>
 <div class="sticky bottom-6 py-4">
-	<Button design="filled"
-					on:click={async()=>{await handleAddToMultipleList(data.session.uid, selected, data.slug); await goto(`/items/${data.slug}`)}}
-					width="full">
-		Add
-		To List
+	<Button
+		design="filled"
+		on:click={async () => {
+			await handleAddToMultipleList(data.session.uid, selected, data.slug);
+			await goto(`/items/${data.slug}`);
+		}}
+		width="full"
+	>
+		Add To List
 	</Button>
 </div>
