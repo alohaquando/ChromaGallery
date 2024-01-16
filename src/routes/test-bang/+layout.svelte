@@ -1,4 +1,5 @@
 <script>
+	import { query, limit } from 'firebase/firestore';
 	import {
 		handleAddItemToCollection,
 		handleDeleteCollection,
@@ -39,6 +40,22 @@
 	// const userId = data.session.uid;
 
 	onMount(async () => {
+		// 		async function getRandomItemIds() {
+		//   try {
+		//     const itemsCollection = collection(db, 'items');
+		//     const randomItemsQuery = query(itemsCollection, limit(2));
+		//     const querySnapshot = await getDocs(randomItemsQuery);
+		//     const randomItemIds = querySnapshot.docs.map(doc => doc.id);
+		//     console.log('Random item IDs:', randomItemIds);
+		//     return randomItemIds;
+		//   } catch (error) {
+		//     console.error('Error getting random item IDs:', error);
+		//     throw error;
+		//   }
+		// }
+
+
+		
 		// Create Item
 		// handleCreateItem('au', 'des', 'ima', false, 'loca', 'title', 'year');
 		// Delete Item
