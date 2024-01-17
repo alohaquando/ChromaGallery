@@ -293,3 +293,21 @@ export async function updateAllItems(itemIds) {
 // async function updateItemsToFeatured(itemIds) {
 //
 // }
+export async function getRandomItemIds() {
+	const itemsCollection = collection(db, 'items');
+	const querySnapshot = await getDocs(itemsCollection);
+	const allItemIds = querySnapshot.docs.map((doc) => doc.id);
+
+	if (allItemIds.length <= 2) {
+		return allItemIds;
+	}
+
+	const randomItemIds = [];
+	while (randomItemIds.length < 2) {
+		const randomIndex = Math.floor(Math.random() * allItemIds.length);
+		const randomItemId = allItemIds.splice(randomIndex, 1)[0];
+		randomItemIds.push(randomItemId);
+	}
+
+	return randomItemIds;
+}

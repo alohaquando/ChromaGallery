@@ -60,7 +60,7 @@
 <div class="mt-12 gap-y-8 flex flex-col">
 	<BodyLarge class="mt-12">Related</BodyLarge>
 
-	<HeroImage {item}></HeroImage>
-
-	<HeroImage {item}></HeroImage>
+	{#each data.relatedItems as relatedItem}
+		<HeroImage item={relatedItem}></HeroImage>
+		{/each}
 </div>

@@ -1,14 +1,23 @@
-import { getItem } from '$lib/data/item';
+import { getItem, getRandomItemIds } from '$lib/data/item';
 
 // @ts-ignore
 export const load = async ({ params }) => {
+	let relatedIds: string[] = await getRandomItemIds();
+	let relatedItems: unknown[] = [];
+
+	for (const id of relatedIds) {
+		let relatedItem = await getItem(id);
+		relatedItems.push(relatedItem);
+	}
+
 	return {
 		slug: params.slug,
 		header: {
 			type: 'back',
 			href: '/browse'
 		},
-		item: await getItem(params.slug)
+		item: await getItem(params.slug),
+		relatedItems
 	};
 };
 //

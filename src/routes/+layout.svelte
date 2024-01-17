@@ -22,6 +22,7 @@
 		generateBackground
 	} from '$lib/stores/pageLayout';
 	import HeaderCurator from '$lib/components/navigation/HeaderCurator.svelte';
+	import { goto, invalidateAll } from '$app/navigation';
 
 	/** @type {import('./$types').LayoutData} */
 	export let data: PageData;
@@ -58,7 +59,7 @@
 			if (!user) {
 				return;
 			}
-	
+
 			let dataToSetToStore: any;
 			const docRef = doc(db, 'users', user.uid, 'lists', 'bookmark');
 			const docSnap = await getDoc(docRef);
