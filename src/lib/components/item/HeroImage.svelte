@@ -4,7 +4,8 @@
 	import Block from '$lib/components/item/Block.svelte';
 	import type { Item } from '$lib/data/dataModels';
 	import ImageView from '$lib/components/item/ImageView.svelte';
-	import { toggleImageFullView } from '$lib/stores/imageFullView';
+	import { resetImageFullView, toggleImageFullView } from '$lib/stores/imageFullView';
+	import { onMount } from 'svelte';
 
 	export let enableFSV: boolean = false;
 	export let imageFull: boolean = false;
@@ -20,6 +21,10 @@
 
 	export let curator: boolean = false;
 	let path = (curator ? '/curator' : '') + '/items/' + item?.id;
+
+	onMount(() => {
+		resetImageFullView();
+	});
 </script>
 
 <div class="w-full flex-col gap-6 inline-flex {customClass}">
