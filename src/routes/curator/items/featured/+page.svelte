@@ -27,13 +27,12 @@
 	let featured = items.filter((item) => item.isFeatured === true);
 	let nonFeatured = items.filter((item) => item.isFeatured === false);
 	let isLoading = false;
-	$: nonFeatured, fetchData();
 
 	async function fetchData() {
 		try {
 			const response = await fetch(`/curator/items/featured?q=${searchTerm}`);
 			searchResults = await response.json(); // Store fetched search results
-			nonFeatured = searchResults.items.filter((item: Item) => featured.includes(item));
+			nonFeatured = searchResults.items.filter((item: Item) => !featured.some((featuredItem) => featuredItem.id === item.id));
 		} catch (error) {
 			console.error('Error fetching data:', error);
 		}
