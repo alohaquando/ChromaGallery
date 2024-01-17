@@ -49,51 +49,51 @@
 		collections = collections.filter(list => list.id !== 'bookmark');
 	}
 
-	//lazy loading
-	const totalItems = collections?.length; // Total number of items
-	const itemsPerPage = 4; // Number of items to display per page
-
-	// Replace this with your actual array of items
-	const loadedItems = writable([]);
-
-	let currentPage = 0;
-
-	onMount(() => {
-		const observer = new IntersectionObserver(
-			(entries) => {
-				entries.forEach((entry) => {
-					if (entry.isIntersecting) {
-						// Load more items when user scrolls to the bottom
-						loadMoreItems();
-					}
-				});
-			},
-			{ threshold: 0 } // Trigger when the entire target is in view
-		);
-
-		const target = document.querySelector('#loadMoreTrigger');
-		// @ts-ignore
-		observer.observe(target);
-
-		return () => observer.disconnect(); // Cleanup when component is unmounted
-	});
-
-	function loadMoreItems() {
-		const startIndex = currentPage * itemsPerPage;
-		const endIndex = startIndex + itemsPerPage;
-
-		if (totalItems && startIndex < totalItems) {
-			const nextItems = getNextItems(startIndex, endIndex);
-			loadedItems.update((prevItems) => [...prevItems, ...nextItems]);
-			currentPage++;
-			console.log(nextItems);
-		}
-	}
-
-	function getNextItems(startIndex: number, endIndex: number) {
-		// Replace this with your logic to get the next chunk of items
-		return collections?.slice(startIndex, endIndex);
-	}
+	// //lazy loading
+	// const totalItems = collections?.length; // Total number of items
+	// const itemsPerPage = 4; // Number of items to display per page
+	//
+	// // Replace this with your actual array of items
+	// const loadedItems = writable([]);
+	//
+	// let currentPage = 0;
+	//
+	// onMount(() => {
+	// 	const observer = new IntersectionObserver(
+	// 		(entries) => {
+	// 			entries.forEach((entry) => {
+	// 				if (entry.isIntersecting) {
+	// 					// Load more items when user scrolls to the bottom
+	// 					loadMoreItems();
+	// 				}
+	// 			});
+	// 		},
+	// 		{ threshold: 0 } // Trigger when the entire target is in view
+	// 	);
+	//
+	// 	const target = document.querySelector('#loadMoreTrigger');
+	// 	// @ts-ignore
+	// 	observer.observe(target);
+	//
+	// 	return () => observer.disconnect(); // Cleanup when component is unmounted
+	// });
+	//
+	// function loadMoreItems() {
+	// 	const startIndex = currentPage * itemsPerPage;
+	// 	const endIndex = startIndex + itemsPerPage;
+	//
+	// 	if (totalItems && startIndex < totalItems) {
+	// 		const nextItems = getNextItems(startIndex, endIndex);
+	// 		loadedItems.update((prevItems) => [...prevItems, ...nextItems]);
+	// 		currentPage++;
+	// 		console.log(nextItems);
+	// 	}
+	// }
+	//
+	// function getNextItems(startIndex: number, endIndex: number) {
+	// 	// Replace this with your logic to get the next chunk of items
+	// 	return collections?.slice(startIndex, endIndex);
+	// }
 </script>
 
 {#if collections}
@@ -105,7 +105,7 @@
 											 bookmark
 											 collection={bookmark}></RowCollection>
 			{/if}
-			{#each $loadedItems as collection}
+			{#each collections as collection}
 				<RowCollection {isCollection} on:select={handleSelectList} id="{collection.id}" {hasLink} {icon} {button}
 											 {curator} {type}
 											 {collection}></RowCollection>
