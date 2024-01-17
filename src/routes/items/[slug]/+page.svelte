@@ -10,6 +10,7 @@
 	import type { PageData } from './$types';
 	import { onMount } from 'svelte';
 	import { resetImageFullView } from '$lib/stores/imageFullView';
+	import { goto } from '$app/navigation';
 
 	/** @type {import('../../../../../.svelte-kit/types/src/routes').PageLoad} */
 	export let data: PageData;
@@ -28,20 +29,27 @@
 		isBookmarked = await checkIfBookmarked(data.slug);
 		resetImageFullView();
 	});
+
+
+
+
 </script>
 
 <HeroImage enableFSV imageFull {item}></HeroImage>
 
 <div class="flex justify-between items-end my-6 mb-12">
 	<div class="flex space-x-2">
-		<Button href="/items/{data.slug}/add-to-list" icon="faPlus" type="submit">Add to list</Button>
+		<Button href="{data.session == null ? '/account' : `/items/${data.slug}/add-to-list`}" icon="faPlus" type="submit">Add to list</Button>
 		<!--		<Button icon="faVolume" type="submit">Audio guide</Button>-->
 	</div>
 
 	<Fab
 		icon="faStar"
-		on:click={() => {
-			checkBookmark(data.slug);
+		on:click={async () => {
+			if (data.session == null) {
+			await goto('/account')
+		}
+			await checkBookmark(data.slug);
 		}}
 		toggled={isBookmarked}
 	></Fab>
@@ -62,5 +70,5 @@
 
 	{#each data.relatedItems as relatedItem}
 		<HeroImage item={relatedItem}></HeroImage>
-		{/each}
+	{/each}
 </div>
