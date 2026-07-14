@@ -40,7 +40,7 @@
 <div class="flex justify-between items-end my-6 mb-12">
 	<div class="flex space-x-2">
 		<Button href="{data.session == null ? '/account' : `/items/${data.slug}/add-to-list`}" icon="faPlus" type="submit">Add to list</Button>
-		<!--		<Button icon="faVolume" type="submit">Audio guide</Button>-->
+		<!--		<Button icon="faVolumeHigh" type="submit">Audio guide</Button>-->
 	</div>
 
 	<Fab

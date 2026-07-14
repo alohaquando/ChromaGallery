@@ -20,7 +20,7 @@
 				saturation,
 				lightness
 			}));
-		}, 5000);
+		}, 10000);
 	}
 
 	let designClassesCirclePrimary: string;
@@ -90,7 +90,7 @@
 
 	<!--<editor-fold desc="Color overlay">-->
 	<div
-		class="absolute top-0 bottom-0 left-0 right-0 w-full h-full mix-blend-color-burn -z-20 transition duration-[3000ms]"
+		class="absolute top-0 bottom-0 left-0 right-0 w-full h-full mix-blend-color-burn -z-20 transition-colors duration-[10000ms] ease-in-out"
 		style="background-color: hsl({hue},{saturation}%,{lightness}%); "
 	/>
 	<!--</editor-fold>-->

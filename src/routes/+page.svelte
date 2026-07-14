@@ -72,9 +72,14 @@
 	let firstFlavorTextClass = visibleSlideshowClass;
 	let secondFlavorTextClass = beforeTextSlideshowClass;
 
-	let allItems = data.allItems;
+	let allItems = data.featuredItems;
 	// @ts-ignore
 	let images = allItems.map((item: Item) => item.image);
+	// Shuffle so the landing slideshow isn't dominated by whichever collection happens to be seeded first.
+	for (let i = images.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		[images[i], images[j]] = [images[j], images[i]];
+	}
 
 	let firstImageClass = visibleSlideshowClass;
 	let secondImageClass = hiddenSlideshowClass;
@@ -106,7 +111,7 @@
 		}
 	};
 
-	setInterval(function() {
+	setInterval(function () {
 		nextImage();
 	}, 3000);
 </script>
@@ -125,11 +130,17 @@
 	/>
 </div>
 
-<div class="w-screen mx-auto h-screen overflow-clip">
+<div
+	class="w-screen h-screen -mt-24 sm:-mt-16 overflow-hidden relative left-1/2 right-1/2 -mx-[50vw]"
+>
 	<!--	Circle -->
 	<div
-		class=" w-[125vw] sm:w-[80vw] md:w-[70vw] max-w-lg rounded-full aspect-square top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ring-white/30 ring-1 bg-gradient-to-t from-black/30 absolute backdrop-blur-lg will-change-transform shadow-inner blur-fix"
+		class=" w-[125vw] sm:w-[80vw] md:w-[70vw] max-w-lg rounded-full aspect-square top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 absolute"
 	>
+		<!--		Blurred backdrop layer, kept separate from the text below so Firefox's background-clip: text still paints (it fails to render when a backdrop-filter ancestor is in the way) -->
+		<div
+			class="w-full h-full rounded-full ring-white/30 ring-1 bg-gradient-to-t from-black/30 absolute backdrop-blur-lg will-change-transform shadow-inner blur-fix"
+		></div>
 		<!--		Text -->
 		<DisplayLarge
 			class="text-center leading-normal bg-gradient-to-b from-white/80 via-white/70 to-white/60 inline-block text-transparent bg-clip-text pt-10 absolute w-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 "

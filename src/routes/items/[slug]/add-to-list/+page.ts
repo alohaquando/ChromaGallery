@@ -1,5 +1,3 @@
-import { onMount } from 'svelte';
-import { getAuth } from 'firebase/auth';
 import { getUsersAllLists } from '$lib/data/list';
 
 // @ts-ignore

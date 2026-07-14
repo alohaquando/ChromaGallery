@@ -41,7 +41,7 @@
 		{isLoading ? 'Loading...' : 'Save'}
 	</Button>
 
-	<!--<Button class="mb-6" icon="faMagifyingGlass" width="full">Find item</Button>-->
+	<!--<Button class="mb-6" icon="faMagnifyingGlass" width="full">Find item</Button>-->
 	<LoadingOverlay bind:isLoading></LoadingOverlay>
 	{#await extractItems(data.collection)}
 		<DragList class="gap-4" type="edit" placeholder={3} />

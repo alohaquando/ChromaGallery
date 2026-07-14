@@ -1,93 +1,37 @@
-import {
-	addDoc,
-	collection,
-	deleteDoc,
-	doc,
-	getDoc,
-	getDocs,
-	query,
-	setDoc,
-	updateDoc,
-	where
-} from 'firebase/firestore';
-import { db, storage } from '$lib/services/firebase/firebase';
-import { getAuth } from 'firebase/auth';
-import type { Collection, List } from '$lib/data/dataModels';
-import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import type { Collection, Item, List } from '$lib/data/dataModels';
+import { mockItems } from '$lib/data/mockData';
+
+// In-memory mock store. Nothing persists — a reload resets to the seed data.
+let items: Item[] = mockItems.map((i) => ({ ...i }));
 
 export const getFeaturedItems = async () => {
-	try {
-		// Reference to the "items" collection
-		const itemsCollection = collection(db, 'items');
-
-		// Create a query against the collection.
-		const q = query(itemsCollection, where('isFeatured', '==', true));
-
-		// Fetch all documents in the "items" collection
-		const querySnapshot = await getDocs(q);
-
-		// Extract data from query snapshot
-		const itemsData = querySnapshot.docs.map((doc) => ({
-			id: doc.id,
-			...doc.data()
-		}));
-
-		return itemsData;
-	} catch (error) {
-		console.error('Error fetching all items: ', error.message);
-		throw error;
-	}
+	return items.filter((item) => item.isFeatured);
 };
 
 export async function updateItemFeatureStatus(itemId: string, isFeatured: boolean) {
-	const itemDocRef = doc(db, 'items', itemId);
-
-	try {
-		// Update the 'isFeatured' field in the document
-		await updateDoc(itemDocRef, { isFeatured });
-
-		console.log('Item feature status updated successfully');
-	} catch (error) {
-		console.error('Error updating item feature status:', error.message);
-		throw error;
+	const item = items.find((i) => i.id === itemId);
+	if (item) {
+		item.isFeatured = isFeatured;
 	}
 }
 
 export const getItem = async (id: string) => {
-	try {
-		const docRef = doc(db, 'items', id);
-		const docSnap = await getDoc(docRef);
-
-		if (docSnap.data() === undefined) {
-			throw new Error('Item not found');
-		} else {
-			return docSnap.data();
-		}
-	} catch (error) {
-		console.error('Error fetching items: ', error.message);
+	const item = items.find((i) => i.id === id);
+	if (!item) {
+		console.error('Item not found');
 		return null;
 	}
+	return item;
 };
+
 export const getAllItems = async () => {
-	// Reference to the "items" collection
-	const itemsCollection = collection(db, 'items');
-
-	// Fetch all documents in the "items" collection
-	const querySnapshot = await getDocs(itemsCollection);
-
-	// Extract data from query snapshot
-	const itemsData = querySnapshot.docs.map((doc) => ({
-		id: doc.id,
-		...doc.data()
-	}));
-
-	return itemsData;
+	return items;
 };
 
 export const getItemFromIdList = async (idList: string[]) => {
 	const itemPromises = idList.map(async (itemId) => {
 		const item = await getItem(itemId);
-		return { id: itemId, ...item }; // Include the id in the returned item
+		return { id: itemId, ...item };
 	});
 
 	return await Promise.all(itemPromises);
@@ -101,78 +45,18 @@ export const extractItems = async (collection: Collection | List | undefined) =>
 	return await getItemFromIdList(idList);
 };
 
-// export async function handleBookmark(itemId: string) {
-// 	const authen = getAuth();
-// 	const userId = authen.currentUser.uid;
-
-// 	await setDoc(
-// 		doc(db, 'users', userId, 'lists', 'bookmark'),
-// 		{
-// 			items: arrayUnion(itemId)
-// 		},
-// 		{ merge: true }
-// 	);
-// 	console.log('Bookmarked successfully');
-
-// 	return true;
-// }
-
 export async function handleBookmark(itemId: string) {
-	const authen = getAuth();
-	const userId = authen.currentUser.uid;
-	if (userId == null) {
-		window.alert('Please Logged In First');
-	}
-	const userDocRef = doc(db, 'users', userId, 'lists', 'bookmark');
-	const userDocSnap = await getDoc(userDocRef);
-
-	if (userDocSnap.exists()) {
-		const currentItems = userDocSnap.data().items || [];
-
-		// Check if the item already exists in the list
-		const itemIndex = currentItems.indexOf(itemId);
-
-		if (itemIndex !== -1) {
-			// If the item exists, remove it from the list
-			currentItems.splice(itemIndex, 1);
-		} else {
-			// If the item doesn't exist, add it to the list
-			currentItems.push(itemId);
-		}
-
-		// Update the 'items' field in the document
-		await setDoc(userDocRef, { items: currentItems });
-		console.log('Bookmarked successfully');
-	} else {
-		console.error('Bookmarked failed');
-	}
+	// Bookmark toggling is handled per-user via list.ts (`handleAddToList`).
+	console.log('(demo) Bookmarked', itemId);
 }
 
 export async function checkIfBookmarked(itemId: string) {
-	const authen = getAuth();
-	const userId = authen.currentUser.uid;
-	const docRef = doc(db, 'users', userId, 'lists', 'bookmark');
-	const docSnap = await getDoc(docRef);
-
-	if (docSnap.data().items.includes(itemId)) {
-		return true;
-	}
 	return false;
 }
 
 export async function uploadFileGetUrl(image: File) {
-	return new Promise<string>((resolve, reject) => {
-		const imageRef = ref(storage, `images/${image.name}`);
-		(async () => {
-			try {
-				let snapshot = await uploadBytes(imageRef, image);
-				let downloadURL = await getDownloadURL(snapshot.ref);
-				resolve(downloadURL);
-			} catch (err) {
-				reject(err);
-			}
-		})();
-	});
+	// No real storage backend — just reuse a local object URL for the demo session.
+	return URL.createObjectURL(image);
 }
 
 export async function handleCreateItem(
@@ -184,78 +68,36 @@ export async function handleCreateItem(
 	title: string,
 	year: string
 ) {
-	return new Promise((resolve, reject) => {
-		const imageRef = ref(storage, `images/${image.name}`);
-		// 'file' comes from the Blob or File API
-		(async () => {
-			try {
-				// let snapshot = await uploadBytes(imageRef, image);
-				// console.log(snapshot);
-				// let downloadURL = await getDownloadURL(snapshot.ref);
-
-				let docRef = await addDoc(collection(db, 'items'), {
-					author,
-					description,
-					image,
-					isFeatured,
-					location,
-					title,
-					year
-				});
-				console.log(docRef);
-				resolve(docRef);
-			} catch (err) {
-				console.error(err);
-				reject(err);
-			}
-		})();
-	});
-	// try {
-	// uploadBytes(imageRef, image)
-	// 	.then((snapshot) => {
-	// 		console.log('Uploaded a blob or file!');
-	// 		console.log(snapshot);
-	// 		return getDownloadURL(snapshot.ref);
-	// 	})
-	// 	.then(async (downloadURL) => {
-	// 		console.log('Download URL is ', downloadURL);
-	// 		const docRef = await addDoc(collection(db, 'items'), {
-	// 			author,
-	// 			description,
-	// 			image: downloadURL,
-	// 			isFeatured,
-	// 			location,
-	// 			title,
-	// 			year
-	// 		});
-	// 		console.log('Document written with ID: ', docRef.id);
-	// 	});
-	// } catch (err) {
-	// 	console.log(err);
-	// }
+	const newItem: Item = {
+		id: `i${Date.now()}`,
+		author,
+		description,
+		image,
+		isFeatured,
+		location,
+		title,
+		year
+	};
+	items.push(newItem);
+	return newItem;
 }
 
 export async function handleDeleteItem(itemId: string) {
-	const itemRef = doc(db, 'items', itemId);
-	const itemDoc = await getDoc(itemRef);
-	if (itemDoc.exists()) {
-		try {
-			await deleteDoc(itemRef);
-			console.log('Item successfully deleted!');
-		} catch (error) {
-			console.error('Error deleting item: ', error);
-		}
+	const index = items.findIndex((i) => i.id === itemId);
+	if (index !== -1) {
+		items.splice(index, 1);
+		console.log('Item successfully deleted!');
 	} else {
-		// Document does not exist, handle accordingly
 		console.log('Item does not exist.');
 	}
 }
 
 export async function handleUpdateItem(itemId: string, itemToUpdate: object) {
-	console.log(itemId);
-	const itemRef = doc(db, 'items', itemId);
-
-	return await updateDoc(itemRef, itemToUpdate);
+	const item = items.find((i) => i.id === itemId);
+	if (item) {
+		Object.assign(item, itemToUpdate);
+	}
+	return item;
 }
 
 export const filterItem = async (idList: string[] | undefined) => {
@@ -263,46 +105,25 @@ export const filterItem = async (idList: string[] | undefined) => {
 	return allItems.filter((item) => !idList?.includes(item.id));
 };
 
-export async function updateAllItems(itemIds) {
-	try {
-		const itemsCollection = collection(db, 'items');
-		const querySnapshot = await getDocs(itemsCollection);
-
-		querySnapshot.forEach((d) => {
-			const itemRef = doc(db, 'items', d.id);
-			updateDoc(itemRef, { isFeatured: false });
-		});
-
-		console.log('All items updated successfully.');
-
-		try {
-			for (const itemId of itemIds) {
-				const itemRef = doc(db, 'items', itemId);
-				await updateDoc(itemRef, { isFeatured: true });
-			}
-
-			console.log('Items updated to featured successfully.');
-		} catch (error) {
-			console.error('Error updating items to featured:', error);
+export async function updateAllItems(itemIds: string[]) {
+	items.forEach((item) => (item.isFeatured = false));
+	itemIds.forEach((itemId) => {
+		const item = items.find((i) => i.id === itemId);
+		if (item) {
+			item.isFeatured = true;
 		}
-	} catch (error) {
-		console.error('Error updating items:', error);
-	}
+	});
+	console.log('Items updated to featured successfully.');
 }
 
-// async function updateItemsToFeatured(itemIds) {
-//
-// }
 export async function getRandomItemIds() {
-	const itemsCollection = collection(db, 'items');
-	const querySnapshot = await getDocs(itemsCollection);
-	const allItemIds = querySnapshot.docs.map((doc) => doc.id);
+	const allItemIds = items.map((i) => i.id);
 
 	if (allItemIds.length <= 2) {
 		return allItemIds;
 	}
 
-	const randomItemIds = [];
+	const randomItemIds: string[] = [];
 	while (randomItemIds.length < 2) {
 		const randomIndex = Math.floor(Math.random() * allItemIds.length);
 		const randomItemId = allItemIds.splice(randomIndex, 1)[0];

@@ -39,9 +39,9 @@
 />
 
 <!--<div class="mt-6">-->
-<!--	<ListItem bottomDivider={false} icon="faArrowUpLeft" text="Suggestion 1" topDivider={false} />-->
-<!--	<ListItem bottomDivider={false} icon="faArrowUpLeft" text="Suggestion 2" topDivider={false} />-->
-<!--	<ListItem bottomDivider={false} icon="faArrowUpLeft" text="Suggestion 3" topDivider={false} />-->
+<!--	<ListItem bottomDivider={false} icon="faArrowTurnUp" text="Suggestion 1" topDivider={false} />-->
+<!--	<ListItem bottomDivider={false} icon="faArrowTurnUp" text="Suggestion 2" topDivider={false} />-->
+<!--	<ListItem bottomDivider={false} icon="faArrowTurnUp" text="Suggestion 3" topDivider={false} />-->
 <!--</div>-->
 
 {#if items && collections}

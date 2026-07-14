@@ -6,8 +6,6 @@
 	import SwitchCurator from '$lib/components/inputs/CuratorSwitch.svelte';
 	import { authHandlers, completeAccount, handleSetDisplayName } from '$lib/data/auth';
 	import Body from '$lib/components/typography/Body.svelte';
-	import { signOut } from 'firebase/auth';
-	import { redirect } from '@sveltejs/kit';
 	import FormError from '$lib/components/inputs/FormError.svelte';
 	import LoadingOverlay from '$lib/components/layouts/LoadingOverlay.svelte';
 	import { onMount } from 'svelte';

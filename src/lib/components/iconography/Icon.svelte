@@ -2,8 +2,8 @@
 <script lang="ts">
 	// noinspection ES6UnusedImports
 	import Fa from 'svelte-fa';
-	import * as solidModule from '@fortawesome/pro-solid-svg-icons';
-	import * as regularModule from '@fortawesome/pro-regular-svg-icons';
+	import * as solidModule from '@fortawesome/free-solid-svg-icons';
+	import * as regularModule from '@fortawesome/free-regular-svg-icons';
 	import * as brandModule from '@fortawesome/free-brands-svg-icons';
 
 	export let icon: string | undefined | null = undefined;

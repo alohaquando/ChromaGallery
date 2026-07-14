@@ -1,12 +1,11 @@
 <script lang="ts">
-	import { doc, getDoc, setDoc } from 'firebase/firestore';
-	import { auth, db } from './../lib/services/firebase/firebase.js';
 	import '../app.postcss';
 	import HeaderMain from '$lib/components/navigation/HeaderMain.svelte';
 	import HeaderBack from '$lib/components/navigation/HeaderBack.svelte';
 	import NavBar from '$lib/components/navigation/NavBar.svelte';
 	import Footer from '$lib/components/navigation/Footer.svelte';
 	import Modal from '$lib/components/pop-up/Modal.svelte';
+	import DemoNotice from '$lib/components/pop-up/DemoNotice.svelte';
 	import BG from '$lib/components/backgrounds/BG.svelte';
 	import faviconIco from '$lib/assets/favicons/favicon.ico';
 	import faviconSvg from '$lib/assets/favicons/icon.svg';
@@ -51,39 +50,6 @@
 			headerComponent = HeaderCurator;
 			break;
 	}
-
-	// ******Set Default Account with Bookmark list ******
-
-	onMount(() => {
-		auth.onAuthStateChanged(async (user) => {
-			if (!user) {
-				return;
-			}
-
-			let dataToSetToStore: any;
-			const docRef = doc(db, 'users', user.uid, 'lists', 'bookmark');
-			const docSnap = await getDoc(docRef);
-	
-			if (!docSnap.exists()) {
-				const userRef = doc(db, 'users', user.uid, 'lists', 'bookmark');
-				dataToSetToStore = {
-					email: user?.email,
-					title: 'Bookmarks',
-					items: []
-				};
-				await setDoc(userRef, dataToSetToStore, { merge: true });
-				// Set Default Account as notCurator
-				await setDoc(doc(db, 'users', user.uid),
-					{
-						isCurator:false,
-					}
-					, { merge: true });
-			} else {
-				const userData = docSnap.data();
-				dataToSetToStore = userData;
-			}
-		});
-	});
 </script>
 
 <svelte:head>
@@ -126,10 +92,12 @@
 		destructive={header.destructive}
 	></svelte:component>
 
-	<div class="container mx-auto px-6 lg:max-w-5xl">
+	<div class="container mx-auto px-6 lg:max-w-5xl overflow-x-hidden">
 		<slot />
 		<Footer loggedIn={!data.session}></Footer>
 	</div>
 	<div class="h-32" />
-	<NavBar class="fixed bottom-0 left-0 z-40" type={navbar.type} />
+	<NavBar class="fixed bottom-4 sm:bottom-0  left-0 z-40" type={navbar.type} />
 {/if}
+
+<DemoNotice />

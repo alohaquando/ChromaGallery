@@ -1,82 +1,33 @@
-import {
-	addDoc,
-	arrayUnion,
-	collection,
-	deleteDoc,
-	doc,
-	getDoc,
-	getDocs,
-	setDoc,
-	updateDoc
-} from 'firebase/firestore';
-import { db, storage } from '$lib/services/firebase/firebase';
-import { getAuth } from 'firebase/auth';
-import { ref } from 'firebase/storage';
-import { redirect } from '@sveltejs/kit';
+import type { Collection } from '$lib/data/dataModels';
+import { mockCollections } from '$lib/data/mockData';
+
+// In-memory mock store. Nothing persists — a reload resets to the seed data.
+let collections: Collection[] = mockCollections.map((c) => ({ ...c, items: [...c.items] }));
 
 export const getCollection = async (collectionId: string) => {
-	try {
-		const docRef = doc(db, 'collections', collectionId);
-		const docSnap = await getDoc(docRef);
-		return docSnap.data();
-	} catch (error) {
-		console.error('Error fetching all items: ', error.message);
-		throw error;
-	}
+	return collections.find((c) => c.id === collectionId);
 };
+
 export const getAllCollection = async () => {
-	try {
-		// Reference to the "items" collection
-		const collectionItems = collection(db, 'collections');
-
-		// Fetch all documents in the "items" collection
-		const querySnapshot = await getDocs(collectionItems);
-
-		// Extract data from query snapshot
-		const itemsData = querySnapshot.docs.map((doc) => ({
-			id: doc.id,
-			...doc.data()
-		}));
-
-		return itemsData;
-	} catch (error) {
-		console.error('Error fetching all items: ', error.message);
-		throw error;
-	}
+	return collections;
 };
 
 export async function handleDeleteCollection(collectionId: string) {
-	const collectionRef = doc(db, 'collections', collectionId);
-	const collectionDoc = await getDoc(collectionRef);
-	if (collectionDoc.exists()) {
-		try {
-			await deleteDoc(collectionRef);
-			console.log('Collection successfully deleted!');
-		} catch (error) {
-			console.error('Error deleting collection: ', error);
-		}
+	const index = collections.findIndex((c) => c.id === collectionId);
+	if (index !== -1) {
+		collections.splice(index, 1);
+		console.log('Collection successfully deleted!');
 	} else {
-		// Document does not exist, handle accordingly
 		console.log('Collection does not exist.');
 	}
 }
 
 export async function handleDeleteItemFromCollection(collectionId: string, itemId: string) {
-	const collectionDocRef = doc(db, 'collections', collectionId);
-	const collectionDocSnap = await getDoc(collectionDocRef);
-
-	if (collectionDocSnap.exists()) {
-		const currentItems = collectionDocSnap.data().items || [];
-
-		// Check if the item already exists in the list
-		const itemIndex = currentItems.indexOf(itemId);
-
+	const collection = collections.find((c) => c.id === collectionId);
+	if (collection) {
+		const itemIndex = collection.items.indexOf(itemId);
 		if (itemIndex !== -1) {
-			// If the item exists, remove it from the list
-			currentItems.splice(itemIndex, 1);
-
-			// Update only the 'items' field in the document
-			await updateDoc(collectionDocRef, { items: currentItems });
+			collection.items.splice(itemIndex, 1);
 			console.log('Item removed successfully');
 		} else {
 			console.log('Item not found in the collection');
@@ -91,52 +42,47 @@ export async function handleCreateCollection(title: string, description: string)
 		console.log('Please add title');
 		return;
 	}
-	try {
-		let docRef = await addDoc(collection(db, 'collections'), {
-			title,
-			description,
-			items: []
-		});
-		console.log(docRef);
-		return docRef;
-	} catch (err) {
-		console.error(err);
-		throw err;
-	}
+	const newCollection: Collection = {
+		id: `c${Date.now()}`,
+		title,
+		description,
+		items: []
+	};
+	collections.push(newCollection);
+	return { id: newCollection.id };
 }
 
 export async function handleUpdateCollection(collectionId: string, fieldsToUpdate: object) {
-	console.log(collectionId);
-	const collectionRef = doc(db, 'collections', collectionId);
-
-	return await updateDoc(collectionRef, fieldsToUpdate);
+	const collection = collections.find((c) => c.id === collectionId);
+	if (collection) {
+		Object.assign(collection, fieldsToUpdate);
+	}
+	return collection;
 }
 
 export const handleAddItemToCollection = async (collectionId: string, itemId: string) => {
 	if (!itemId) {
 		return;
 	}
-	await setDoc(
-		doc(db, 'collections', collectionId),
-		{
-			items: arrayUnion(itemId)
-		},
-		{ merge: true }
-	);
+	const collection = collections.find((c) => c.id === collectionId);
+	if (collection && !collection.items.includes(itemId)) {
+		collection.items.push(itemId);
+	}
 	console.log('Added successfully to Collection ID :', collectionId);
 };
 
-export const handleAddMultipleItemToCollection = async (collectionId: string, itemId: string[]) => {
-	if (!itemId) {
+export const handleAddMultipleItemToCollection = async (collectionId: string, itemIds: string[]) => {
+	if (!itemIds) {
 		return;
 	}
-	await setDoc(
-		doc(db, 'collections', collectionId),
-		{
-			items: arrayUnion(...itemId)
-		},
-		{ merge: true }
-	);
+	const collection = collections.find((c) => c.id === collectionId);
+	if (collection) {
+		itemIds.forEach((itemId) => {
+			if (!collection.items.includes(itemId)) {
+				collection.items.push(itemId);
+			}
+		});
+	}
 	console.log('Added successfully to Collection ID :', collectionId);
 
 	window.location.href = '/curator/collection/' + collectionId;

@@ -72,6 +72,7 @@
 			class="{buttonClass} {responsive ? '' : '!border-transparent'}"
 			href={link}
 			{icon}
+			iconType="solid"
 			on:click={handleExit}
 			size="sm"
 		></Fab>

@@ -55,5 +55,5 @@
 
 <!--Example-->
 <!--<ListItem leadingText="This" trailingText="That"/>-->
-<!--<ListItem leadingText="This" icon="faArrowUpLeft" clickable on:click={() => window.alert("hi")}/>-->
+<!--<ListItem leadingText="This" icon="faArrowTurnUp" clickable on:click={() => window.alert("hi")}/>-->
 <!--<ListItem leadingText="This" trailingText="This is a link" href="/"/>-->

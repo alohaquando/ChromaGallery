@@ -1,47 +1,70 @@
-import {
-	createUserWithEmailAndPassword,
-	getAuth,
-	GoogleAuthProvider,
-	onAuthStateChanged,
-	reauthenticateWithCredential,
-	sendPasswordResetEmail,
-	signInWithEmailAndPassword,
-	signInWithPopup,
-	signOut,
-	updateEmail,
-	updatePassword,
-	updateProfile,
-	verifyBeforeUpdateEmail
-} from 'firebase/auth';
-import { auth, db } from '$lib/services/firebase/firebase';
 import type { User } from '$lib/data/dataModels';
-import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
-import { EmailAuthProvider } from 'firebase/auth';
+import { mockUsers, type MockAccount } from '$lib/data/mockData';
+
+// In-memory mock session. Resets on page reload — this app has no real backend anymore.
+let accounts: MockAccount[] = mockUsers.map((u) => ({ ...u }));
+let currentUser: MockAccount | null = null;
+
+const sessionListeners: Array<(user: MockAccount | null) => void> = [];
+
+function notifySession() {
+	sessionListeners.forEach((cb) => cb(currentUser));
+}
+
+function findAccount(email: string) {
+	return accounts.find((u) => u.email?.toLowerCase() === email.toLowerCase());
+}
 
 export const authHandlers = {
 	signup: async (email: string, pass: string) => {
-		await createUserWithEmailAndPassword(auth, email, pass);
+		if (findAccount(email)) {
+			throw new Error('auth/email-already-in-use');
+		}
+		const newAccount: MockAccount = {
+			uid: `u${accounts.length + 1}`,
+			email,
+			password: pass,
+			displayName: '',
+			isCurator: false
+		};
+		accounts.push(newAccount);
+		currentUser = newAccount;
+		notifySession();
 	},
 	login: async (email: string, pass: string) => {
-		await signInWithEmailAndPassword(auth, email, pass);
+		const account = findAccount(email);
+		if (!account || account.password !== pass) {
+			throw new Error('auth/invalid-login-credentials');
+		}
+		currentUser = account;
+		notifySession();
 	},
 	loginWithGoogle: async () => {
-		await signInWithPopup(auth, new GoogleAuthProvider());
+		// No real OAuth backend anymore — sign in as the demo curator account.
+		currentUser = accounts.find((u) => u.isCurator) ?? accounts[0];
+		notifySession();
 	},
 	logout: async () => {
-		await signOut(auth);
+		currentUser = null;
+		notifySession();
 	},
 	updateUserName: async (name: string) => {
-		await updateProfile(auth.currentUser, { displayName: name });
+		if (currentUser) {
+			currentUser.displayName = name;
+		}
 	},
 	updateEmail: async (email: string) => {
-		await verifyBeforeUpdateEmail(auth.currentUser, email);
+		if (currentUser) {
+			currentUser.email = email;
+		}
 	},
 	updatePassword: async (newPassword: string) => {
-		await updatePassword(auth.currentUser, newPassword);
+		if (currentUser) {
+			currentUser.password = newPassword;
+		}
 	},
 	sendResetPassword: async (email: string) => {
-		await sendPasswordResetEmail(auth, email);
+		console.log(`(demo) Password reset email would be sent to ${email}`);
 	}
 };
 
@@ -56,42 +79,7 @@ export async function handleSignUpAuthenticate(
 			throw new Error('Password does not match');
 		}
 		await authHandlers.signup(email, password);
-
 		console.log('Successfully signed up');
-
-		auth.onAuthStateChanged(async (user) => {
-			if (!user) {
-				return;
-			}
-
-			let dataToSetToStore: any;
-			const docRef = doc(db, 'users', user.uid, 'lists', 'bookmark');
-			const docSnap = await getDoc(docRef);
-
-			if (!docSnap.exists()) {
-				const userRef = doc(db, 'users', user.uid, 'lists', 'bookmark');
-				dataToSetToStore = {
-					email: user?.email,
-					title: 'Bookmarks',
-					items: []
-				};
-				await setDoc(userRef, dataToSetToStore, { merge: true });
-				// Set Default Account as notCurator
-				await setDoc(
-					doc(db, 'users', user.uid),
-					{
-						isCurator: false
-					},
-					{ merge: true }
-				);
-			} else {
-				const userData = docSnap.data();
-				dataToSetToStore = userData;
-			}
-		});
-
-		await authHandlers.login(email, password);
-
 		return true;
 	} catch (err) {
 		console.log(' There was an auth error', err);
@@ -115,39 +103,7 @@ export async function handleAuthenticate(email: string, password: string) {
 export async function handleAuthenticateGoogle() {
 	try {
 		await authHandlers.loginWithGoogle();
-		auth.onAuthStateChanged(async (user) => {
-			if (!user) {
-				return;
-			}
-
-			let dataToSetToStore: any;
-			const docRef = doc(db, 'users', user.uid, 'lists', 'bookmark');
-			const docSnap = await getDoc(docRef);
-
-			if (!docSnap.exists()) {
-				const userRef = doc(db, 'users', user.uid, 'lists', 'bookmark');
-				dataToSetToStore = {
-					email: user?.email,
-					title: 'Bookmarks',
-					items: []
-				};
-				await setDoc(userRef, dataToSetToStore, { merge: true });
-				// Set Default Account as notCurator
-				await setDoc(
-					doc(db, 'users', user.uid),
-					{
-						isCurator: false
-					},
-					{ merge: true }
-				);
-			} else {
-				const userData = docSnap.data();
-				dataToSetToStore = userData;
-			}
-		});
-
 		window.location.href = '/';
-
 		console.log('Successfully logged in');
 	} catch (err) {
 		console.log(' There was an auth error', err);
@@ -161,14 +117,10 @@ export async function handleSetDisplayName(displayName: string) {
 			console.log('Display name is invalid');
 			return;
 		}
-
 		await authHandlers.updateUserName(displayName);
-
 		console.log('Successfully Update display name');
-
 		window.location.href = '/';
 	} catch (err) {
-		let error = true;
 		console.log(' There was an auth error', err);
 	}
 }
@@ -178,13 +130,10 @@ export async function handleUpdateDisplayName(
 	currEmail: string,
 	currPassword: string
 ) {
-	const user = auth.currentUser;
 	try {
-		try {
-			const credential = EmailAuthProvider.credential(currEmail, currPassword);
-			await reauthenticateWithCredential(user, credential);
-		} catch (error) {
-			console.log('error', 'The email or password is incorret', error);
+		const account = currentUser;
+		if (!account || account.password !== currPassword || account.email !== currEmail) {
+			console.log('error', 'The email or password is incorrect');
 			return;
 		}
 
@@ -194,12 +143,9 @@ export async function handleUpdateDisplayName(
 		}
 
 		await authHandlers.updateUserName(displayName);
-
 		console.log('Successfully Update display name');
-
 		window.location.href = '/';
 	} catch (err) {
-		let error = true;
 		console.log(' There was an auth error', err);
 	}
 }
@@ -210,13 +156,10 @@ export async function handleUpdateEmail(
 	currEmail: string,
 	currPassword: string
 ) {
-	const user = auth.currentUser;
 	try {
-		try {
-			const credential = EmailAuthProvider.credential(currEmail, currPassword);
-			await reauthenticateWithCredential(user, credential);
-		} catch (error) {
-			console.log('error', 'The email or password is incorret', error);
+		const account = currentUser;
+		if (!account || account.password !== currPassword || account.email !== currEmail) {
+			console.log('error', 'The email or password is incorrect');
 			return;
 		}
 
@@ -225,12 +168,9 @@ export async function handleUpdateEmail(
 			return;
 		}
 		await authHandlers.updateEmail(newEmail);
-
 		console.log('Successfully Update email');
-
 		window.location.href = '/';
 	} catch (err) {
-		let error = true;
 		console.log(' There was an auth error', err);
 	}
 }
@@ -241,13 +181,10 @@ export async function handleUpdatePassword(
 	currEmail: string,
 	currPassword: string
 ) {
-	const user = auth.currentUser;
 	try {
-		try {
-			const credential = EmailAuthProvider.credential(currEmail, currPassword);
-			await reauthenticateWithCredential(user, credential);
-		} catch (error) {
-			console.log('error', 'The email or password is incorret', error);
+		const account = currentUser;
+		if (!account || account.password !== currPassword || account.email !== currEmail) {
+			console.log('error', 'The email or password is incorrect');
 			return;
 		}
 
@@ -261,12 +198,9 @@ export async function handleUpdatePassword(
 			return;
 		}
 		await authHandlers.updatePassword(newPassword);
-
 		console.log('Successfully Update password');
-
 		window.location.href = '/';
 	} catch (err) {
-		let error = true;
 		console.log(' There was an auth error', err);
 	}
 }
@@ -275,7 +209,6 @@ export const handleResetPassword = async (email: string) => {
 	try {
 		await authHandlers.sendResetPassword(email);
 		console.log('Successfully Send Reset Password Email');
-
 		window.location.href = '/';
 	} catch (err) {
 		console.log(err);
@@ -283,76 +216,46 @@ export const handleResetPassword = async (email: string) => {
 };
 
 export const getSessionUser: () => Promise<User | null> = async () => {
-	return new Promise((resolve) => {
-		onAuthStateChanged(auth, async (user) => {
-			if (user) {
-				resolve({
-					uid: user.uid,
-					email: user.email ? user.email : 'No email registered',
-					displayName: user.displayName ? user.displayName : '',
-					isCurator: await getIsCurator(user.uid)
-				});
-			} else {
-				resolve(null);
-			}
-		});
-	});
+	if (!currentUser) {
+		return null;
+	}
+	return {
+		uid: currentUser.uid,
+		email: currentUser.email,
+		displayName: currentUser.displayName,
+		isCurator: currentUser.isCurator
+	};
 };
 
 export const getIsCurator = async (userId: string) => {
-	const docRef = doc(db, 'users', userId);
-	const docSnap = await getDoc(docRef);
-
-	if (docSnap.exists()) {
-		return docSnap.data().isCurator;
-	} else {
-		// docSnap.data() will be undefined in this case
-		console.log('No such document!');
-		return false;
-	}
+	const account = accounts.find((u) => u.uid === userId);
+	return account?.isCurator ?? false;
 };
 
 export async function handleUpdateCuratorState(userId: string, isCurator: boolean) {
-	const userRef = doc(db, 'users', userId);
-	try {
-		await updateDoc(userRef, {
-			isCurator
-		});
-		return true;
-	} catch (err) {
-		console.log('There was an auth error', err);
-		throw err;
+	const account = accounts.find((u) => u.uid === userId);
+	if (account) {
+		account.isCurator = isCurator;
 	}
+	return true;
 }
+
 export async function completeAccount(userId: string, isCurator: boolean, displayName: string) {
-	const userRef = doc(db, 'users', userId);
-	try {
-		if (displayName.length === 0) {
-			throw new Error('Display name must be not empty');
-		}
-
-		await authHandlers.updateUserName(displayName);
-
-		await updateDoc(userRef, {
-			isCurator: isCurator
-		});
-
-		return true;
-	} catch (err) {
-		console.log('There was an auth error', err);
-		throw err;
+	if (displayName.length === 0) {
+		throw new Error('Display name must be not empty');
 	}
+	await authHandlers.updateUserName(displayName);
+	const account = accounts.find((u) => u.uid === userId);
+	if (account) {
+		account.isCurator = isCurator;
+	}
+	return true;
 }
 
 export async function updateCuratorState(userId: string, isCurator: boolean) {
-	const userRef = doc(db, 'users', userId);
-	try {
-		await updateDoc(userRef, {
-			isCurator
-		});
-		return true;
-	} catch (err) {
-		console.log('There was an auth error', err);
-		throw err;
+	const account = accounts.find((u) => u.uid === userId);
+	if (account) {
+		account.isCurator = isCurator;
 	}
+	return true;
 }

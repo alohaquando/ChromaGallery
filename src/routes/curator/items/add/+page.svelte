@@ -8,7 +8,6 @@
 	import { enhance } from '$app/forms';
 	import FormError from '$lib/components/inputs/FormError.svelte';
 	import type { SubmitFunction } from '@sveltejs/kit';
-	import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 	import { uploadFileGetUrl } from '$lib/data/item';
 	import LoadingOverlay from '$lib/components/layouts/LoadingOverlay.svelte';
 

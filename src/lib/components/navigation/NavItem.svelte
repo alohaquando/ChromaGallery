@@ -1,10 +1,12 @@
 <script lang="ts">
+	import type { ComponentType } from 'svelte';
 	import Body from '$lib/components/typography/Body.svelte';
 	import Icon from '$lib/components/iconography/Icon.svelte';
 
 	let customClasses = '';
 	export { customClasses as class };
 	export let icon: string | undefined = undefined;
+	export let iconComponent: ComponentType | undefined = undefined;
 	export let active: boolean = false;
 	export let href: string | undefined = undefined;
 
@@ -28,7 +30,11 @@
  "
 	{href}
 >
-	<Icon {icon} size="xl" />
+	{#if iconComponent}
+		<svelte:component this={iconComponent} class="h-6 w-6" />
+	{:else}
+		<Icon {icon} size="xl" />
+	{/if}
 	<Body class="{active ? 'font-semibold' : ''} transition">
 		<slot />
 	</Body>

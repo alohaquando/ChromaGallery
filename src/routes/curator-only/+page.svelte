@@ -30,7 +30,7 @@
 				<Fab class="-mt-20" href="/account/sign-in" icon="faUserCircle" size="lg"
 					>Sign me<br />in</Fab
 				>
-				<Fab href="/account/sign-up" icon="faSparkles" size="lg">Become a<br />member</Fab>
+				<Fab href="/account/sign-up" icon="faWandMagicSparkles" size="lg">Become a<br />member</Fab>
 			{:else}
 				<Fab class="-mt-20" href="/" icon="faHome" size="lg">Go home</Fab>
 			{/if}

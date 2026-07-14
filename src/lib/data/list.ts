@@ -1,99 +1,70 @@
-import {
-	addDoc,
-	arrayUnion,
-	collection,
-	deleteDoc,
-	doc,
-	getDoc,
-	getDocs,
-	setDoc,
-	updateDoc
-} from 'firebase/firestore';
-import { db } from '$lib/services/firebase/firebase';
-import { redirect } from '@sveltejs/kit';
 import type { List } from '$lib/data/dataModels';
+import { mockLists } from '$lib/data/mockData';
+
+// In-memory mock store, keyed by userId. Nothing persists — a reload resets to the seed data.
+let userLists: Record<string, List[]> = Object.fromEntries(
+	Object.entries(mockLists).map(([userId, lists]) => [
+		userId,
+		lists.map((l) => ({ ...l, items: [...l.items] }))
+	])
+);
+
+function getOrCreateUserLists(userId: string) {
+	if (!userLists[userId]) {
+		userLists[userId] = [{ id: 'bookmark', title: 'Bookmarks', description: 'Saved favorites', items: [] }];
+	}
+	return userLists[userId];
+}
 
 export const getUsersAllLists = async (userId: string) => {
-	if (userId) {
-		try {
-			// Reference to the "items" collection
-			const listsCollection = collection(db, 'users', userId, 'lists');
-
-			// Fetch all documents in the "items" collection
-			const querySnapshot = await getDocs(listsCollection);
-
-			// Extract data from query snapshot
-			const listsData = querySnapshot.docs.map((doc) => ({
-				id: doc.id,
-				...doc.data()
-			}));
-			return listsData;
-		} catch (error: any) {
-			console.error('Error fetching all lists: ', error.message);
-			throw error;
-		}
+	if (!userId) {
+		return;
 	}
+	return getOrCreateUserLists(userId);
 };
 
 export const getUserOneList = async (userId: string, listId: string) => {
-	if (userId) {
-		try {
-			// Reference to the "items" collection
-			const listCollection = doc(db, 'users', userId, 'lists', listId);
-			const docSnap = await getDoc(listCollection);
-			// Fetch all documents in the "items" collection
-			// const querySnapshot = await getDocs(listCollection);
+	if (!userId) {
+		return;
+	}
+	return getOrCreateUserLists(userId).find((l) => l.id === listId);
+};
 
-			// Extract data from query snapshot
-			// const listData = querySnapshot.docs.map((doc) => ({
-			// 	id: doc.id,
-			// 	...doc.data()
-			// }));
-			return docSnap.data();
-		} catch (error: any) {
-			console.error('Error fetching all items: ', error.message);
-			throw error;
+export const handleAddToList = async (userId: string, listId: string, itemId: string) => {
+	const list = getOrCreateUserLists(userId).find((l) => l.id === listId);
+	if (list) {
+		const index = list.items.indexOf(itemId);
+		if (index !== -1) {
+			list.items.splice(index, 1);
+		} else {
+			list.items.push(itemId);
 		}
 	}
-};
-export const handleAddToList = async (userId: string, listId: string, itemId: string) => {
-	await setDoc(
-		doc(db, 'users', userId, 'lists', listId),
-		{
-			items: arrayUnion(itemId)
-		},
-		{ merge: true }
-	);
 	console.log('Added successfully');
 };
 
-export const handleAddMultipleToList = async (userId: string, listId: string, itemId: string[]) => {
-	await setDoc(
-		doc(db, 'users', userId, 'lists', listId),
-		{
-			items: arrayUnion(...itemId)
-		},
-		{ merge: true }
-	);
+export const handleAddMultipleToList = async (userId: string, listId: string, itemIds: string[]) => {
+	const list = getOrCreateUserLists(userId).find((l) => l.id === listId);
+	if (list) {
+		itemIds.forEach((itemId) => {
+			if (!list.items.includes(itemId)) {
+				list.items.push(itemId);
+			}
+		});
+	}
 	console.log('Added successfully');
 };
 
-export const handleAddToMultipleList = async (
-	userId: string,
-	listIds: string[],
-	itemId: string
-) => {
+export const handleAddToMultipleList = async (userId: string, listIds: string[], itemId: string) => {
 	if (!listIds) {
 		return;
 	}
+	const lists = getOrCreateUserLists(userId);
 	listIds.forEach((listId) => {
-		setDoc(
-			doc(db, 'users', userId, 'lists', listId),
-			{
-				items: arrayUnion(itemId)
-			},
-			{ merge: true }
-		);
+		const list = lists.find((l) => l.id === listId);
+		if (list && !list.items.includes(itemId)) {
+			list.items.push(itemId);
+		}
 	});
 	console.log('Added successfully');
 
@@ -109,44 +80,33 @@ export const handleCreateList = async (
 		console.log('Please fill the form');
 		return;
 	}
-	let dataToSetToStore: any;
-	const docRef = doc(collection(db, 'users', userId, 'lists'));
-	const docSnap = await getDoc(docRef);
-	if (!docSnap.exists()) {
-		dataToSetToStore = {
-			title: title,
-			description: description,
-			items: []
-		};
-		const docRef = await addDoc(collection(db, 'users', userId, 'lists'), dataToSetToStore);
-		console.log(docRef.id);
-		window.location.href = '/account';
-	} else {
-		const userData = docSnap.data();
-		dataToSetToStore = userData;
-	}
+	const lists = getOrCreateUserLists(userId);
+	const newList: List = {
+		id: `l${Date.now()}`,
+		title,
+		description,
+		items: []
+	};
+	lists.push(newList);
+	window.location.href = '/account';
 };
 
 export async function handleDeleteList(userId: string, listId: string) {
-	const itemRef = doc(db, 'users', userId, 'lists', listId);
-	const itemDoc = await getDoc(itemRef);
-	if (itemDoc.exists()) {
-		try {
-			await deleteDoc(itemRef);
-			console.log('Item successfully deleted!');
-		} catch (error) {
-			console.error('Error deleting item: ', error);
-		}
-
+	const lists = getOrCreateUserLists(userId);
+	const index = lists.findIndex((l) => l.id === listId);
+	if (index !== -1) {
+		lists.splice(index, 1);
+		console.log('Item successfully deleted!');
 		window.location.href = '/account';
 	} else {
-		// Document does not exist, handle accordingly
 		console.log('Item does not exist.');
 	}
 }
 
 export async function handleUpdateList(userId: string, listId: string, fieldsToUpdate: object) {
-	const listRef = doc(db, 'users', userId, 'lists', listId);
-
-	return await updateDoc(listRef, fieldsToUpdate);
+	const list = getOrCreateUserLists(userId).find((l) => l.id === listId);
+	if (list) {
+		Object.assign(list, fieldsToUpdate);
+	}
+	return list;
 }

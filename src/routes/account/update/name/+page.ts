@@ -1,12 +1,15 @@
-import { getAuth } from 'firebase/auth';
-
-export async function load() {
+export async function load({ parent }) {
+	const { session } = await parent();
 	return {
 		modal: {
 			toggled: true,
 			href: '/account/setting',
 			title: 'Account'
 		},
-		auth: getAuth()
+		auth: {
+			currentUser: session
+				? { displayName: session.displayName }
+				: null
+		}
 	};
 }

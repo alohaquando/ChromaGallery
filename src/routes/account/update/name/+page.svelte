@@ -4,7 +4,6 @@
 	import Divider from '$lib/components/layouts/Divider.svelte';
 	import BodyLarge from '$lib/components/typography/BodyLarge.svelte';
 	import { handleUpdateDisplayName } from '$lib/data/auth.js';
-	import { getAuth, onAuthStateChanged } from 'firebase/auth';
 	import Body from '$lib/components/typography/Body.svelte';
 
 	export let data;

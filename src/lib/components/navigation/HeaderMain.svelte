@@ -14,22 +14,26 @@
 		if (showNav === true) {
 			designClass = '';
 		} else if (showNav === false) {
-			designClass = 'translate-y-[-150%] bg-black/50';
+			designClass = 'sm:translate-y-[-150%] ';
 		}
 	};
 
-	$: scrollY, handleShowNav();
+	$: (scrollY, handleShowNav());
 </script>
 
 <div
-	class="{designClass} sticky top-0 left-0 z-30 h-16 mb-2 w-full justify-center items-center inline-flex duration-500 ease-in-out"
+	class="{designClass} sticky top-2 sm:top-0 left-0 z-30 h-16 mb-2 w-full justify-center items-center inline-flex duration-500 ease-in-out"
 >
 	<a class="px-4 py-4" href="/">
 		<LogoSimple animation="pacman" class="h-6 !fill-white" />
 	</a>
 
 	<div
-		class="pointer-events-none absolute top-0 -bottom-2 left-0 right-0 -z-20 touch-none transition-all"
+		class="block sm:hidden bg-black/20 backdrop-blur-md pointer-events-none absolute top-0 bottom-0 rounded-full w-40 mx-auto left-0 right-0 -z-20 touch-none transition-all border border-white/20"
+	></div>
+
+	<div
+		class="hidden sm:block pointer-events-none absolute top-0 -bottom-2 left-0 right-0 -z-20 touch-none transition-all"
 	>
 		<div
 			class="opacity-100 blur-fix absolute h-full w-full backdrop-blur-lg [mask-image:linear-gradient(to_bottom,black,black,black,transparent)]"
