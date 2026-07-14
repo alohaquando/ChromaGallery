@@ -1,38 +1,39 @@
-# create-svelte
+# ChromaGallery
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+An online museum/gallery for browsing curated art collections. Visitors can explore items, collections, and curated lists; curators can add, edit, and organize items and collections.
 
-## Creating a project
+Built with SvelteKit and TypeScript, styled with Tailwind CSS. Data is currently backed by an in-memory mock layer (see `src/lib/data/mockData.ts`) rather than a live backend.
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Features
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+- **Animated homepage** with a rotating slideshow hero and cycling flavor-text headline
+- **Browse & search** items and collections, with grid/row layouts for items and collections
+- **Featured items** curated by staff and highlighted separately
+- **Collections & lists** — group items into collections, build personal/curated lists, and bookmark items
+- **Drag-and-drop reordering** for lists and featured items (`svelte-dnd-action`)
+- **Curator dashboard** — add/edit items and collections, manage featured items, curator-only routes
+- **Accounts** — sign up, sign in, password reset, profile settings, account completion flow
+- **Responsive, dark-friendly UI** with a shared design system (typography, icons, modals/dialogs, custom backgrounds)
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Install dependencies and start the dev server:
 
 ```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+pnpm install
+pnpm dev
 ```
 
 ## Building
 
-To create a production version of your app:
-
 ```bash
-npm run build
+pnpm build
 ```
 
-You can preview the production build with `npm run preview`.
+Preview the production build with `pnpm preview`.
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+## Other scripts
+
+- `pnpm check` — type-check with svelte-check
+- `pnpm lint` — check formatting and lint
+- `pnpm format` — auto-format with Prettier
