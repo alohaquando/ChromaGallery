@@ -25,7 +25,7 @@ export const actions = {
 			});
 		}
 
-		throw redirect(300, `/list/bookmark`);
+		redirect(300, `/list/bookmark`);
 	}
 };
 

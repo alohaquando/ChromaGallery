@@ -8,15 +8,13 @@
 	// import { arrayUnion, collection, doc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
 	import { checkIfBookmarked, handleBookmark } from '$lib/data/item';
 	import type { PageData } from './$types';
-	import { onMount } from 'svelte';
 	import { resetImageFullView } from '$lib/stores/imageFullView';
 	import { goto } from '$app/navigation';
 
 	/** @type {import('../../../../../.svelte-kit/types/src/routes').PageLoad} */
 	export let data: PageData;
 
-	let item = data.item;
-	console.log(data);
+	$: item = data.item;
 
 	let isBookmarked: boolean = false;
 
@@ -25,10 +23,10 @@
 		isBookmarked = await checkIfBookmarked(id);
 	};
 
-	onMount(async () => {
-		isBookmarked = await checkIfBookmarked(data.slug);
+	$: if (data.slug) {
+		checkIfBookmarked(data.slug).then((value) => (isBookmarked = value));
 		resetImageFullView();
-	});
+	}
 
 
 

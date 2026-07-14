@@ -17,7 +17,7 @@
 	export let type: 'button' | 'submit' | 'reset' | undefined = 'button';
 	export let disabled: boolean = false;
 	export let href: string | undefined = undefined;
-	export let iconType: string | undefined = 'regular';
+	export let iconType: string | undefined = 'solid';
 	export let iconSize = '';
 	let customClasses = '';
 	export { customClasses as class };

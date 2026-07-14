@@ -22,7 +22,7 @@ export const actions = {
 			});
 		}
 
-		throw redirect(300, `/list/${listId}`);
+		redirect(300, `/list/${listId}`);
 	}
 };
 

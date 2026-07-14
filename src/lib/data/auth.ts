@@ -1,14 +1,41 @@
 import type { User } from '$lib/data/dataModels';
 import { mockUsers, type MockAccount } from '$lib/data/mockData';
 
-// In-memory mock session. Resets on page reload — this app has no real backend anymore.
+// In-memory mock accounts, but the active session persists in localStorage
+// (per-browser) so sign-in/sign-out survive reloads instead of always
+// reverting to the default admin/curator account.
+const SESSION_STORAGE_KEY = 'chromagallery.session.uid';
+
 let accounts: MockAccount[] = mockUsers.map((u) => ({ ...u }));
-let currentUser: MockAccount | null = null;
+
+function readStoredUid(): string | null {
+	if (typeof localStorage === 'undefined') return null;
+	return localStorage.getItem(SESSION_STORAGE_KEY);
+}
+
+function writeStoredUid(uid: string | null) {
+	if (typeof localStorage === 'undefined') return;
+	if (uid) {
+		localStorage.setItem(SESSION_STORAGE_KEY, uid);
+	} else {
+		localStorage.removeItem(SESSION_STORAGE_KEY);
+	}
+}
+
+const storedUid = readStoredUid();
+let currentUser: MockAccount | null = storedUid
+	? (accounts.find((u) => u.uid === storedUid) ?? null)
+	: null;
 
 const sessionListeners: Array<(user: MockAccount | null) => void> = [];
 
 function notifySession() {
 	sessionListeners.forEach((cb) => cb(currentUser));
+}
+
+function setCurrentUser(user: MockAccount | null) {
+	currentUser = user;
+	writeStoredUid(user?.uid ?? null);
 }
 
 function findAccount(email: string) {
@@ -28,7 +55,7 @@ export const authHandlers = {
 			isCurator: false
 		};
 		accounts.push(newAccount);
-		currentUser = newAccount;
+		setCurrentUser(newAccount);
 		notifySession();
 	},
 	login: async (email: string, pass: string) => {
@@ -36,16 +63,16 @@ export const authHandlers = {
 		if (!account || account.password !== pass) {
 			throw new Error('auth/invalid-login-credentials');
 		}
-		currentUser = account;
+		setCurrentUser(account);
 		notifySession();
 	},
 	loginWithGoogle: async () => {
 		// No real OAuth backend anymore — sign in as the demo curator account.
-		currentUser = accounts.find((u) => u.isCurator) ?? accounts[0];
+		setCurrentUser(accounts.find((u) => u.isCurator) ?? accounts[0]);
 		notifySession();
 	},
 	logout: async () => {
-		currentUser = null;
+		setCurrentUser(null);
 		notifySession();
 	},
 	updateUserName: async (name: string) => {

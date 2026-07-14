@@ -7,7 +7,7 @@
 	import * as brandModule from '@fortawesome/free-brands-svg-icons';
 
 	export let icon: string | undefined | null = undefined;
-	export let type: 'regular' | 'solid' | 'brands' = 'regular';
+	export let type: 'regular' | 'solid' | 'brands' = 'solid';
 	export let size = 'base';
 	let customClasses = '';
 	export { customClasses as class };

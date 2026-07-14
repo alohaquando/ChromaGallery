@@ -1,7 +1,5 @@
 <script lang="ts">
 	import NavItem from '$lib/components/navigation/NavItem.svelte';
-	import HomeIcon from '$lib/assets/svgs/HomeIcon.svelte';
-	import BrowseIcon from '$lib/assets/svgs/BrowseIcon.svelte';
 	import { page } from '$app/stores';
 
 	export let type: 'user' | 'curator' = 'user';
@@ -18,8 +16,8 @@
 >
 	{#if type === 'user'}
 		<div class="container mx-auto px-6 space-x-6 flex justify-center">
-			<NavItem iconComponent={HomeIcon} href="/" active={currentUrl === '/'}>Home</NavItem>
-			<NavItem iconComponent={BrowseIcon} href="/browse" active={currentUrl.startsWith('/browse')}
+			<NavItem icon="faHome" href="/" active={currentUrl === '/'}>Home</NavItem>
+			<NavItem icon="faMagnifyingGlass" href="/browse" active={currentUrl.startsWith('/browse')}
 				>Browse</NavItem
 			>
 			<NavItem icon="faUserCircle" href="/account" active={currentUrl.startsWith('/account')}

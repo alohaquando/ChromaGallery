@@ -18,7 +18,7 @@ export const actions = {
 				message: error
 			});
 		}
-		throw redirect(300, `/curator/collection/${result.id}`);
+		redirect(300, `/curator/collection/${result.id}`);
 	}
 };
 export let ssr = false;

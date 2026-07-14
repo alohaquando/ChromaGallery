@@ -20,7 +20,7 @@
 	$: toggled,
 		(toggleClass = toggled ? 'before:opacity-70 after:opacity-20 text-gray-900 bg-white/20' : '');
 
-	export let iconType: 'regular' | 'solid' | 'brands' | undefined = 'regular';
+	export let iconType: 'regular' | 'solid' | 'brands' | undefined = 'solid';
 	export let href: string | undefined = undefined;
 	export let target: string | undefined = undefined;
 	let customClasses = '';

@@ -23,7 +23,7 @@ export const actions = {
 			});
 		}
 
-		throw redirect(300, `/curator/collection/${collectionId}`);
+		redirect(300, `/curator/collection/${collectionId}`);
 	}
 };
 

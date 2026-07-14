@@ -15,6 +15,6 @@ export async function load({ params }) {
 		};
 	} catch (err) {
 		console.log('has error');
-		throw error(401, 'Item not found');
+		error(401, 'Item not found');
 	}
 }

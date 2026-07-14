@@ -38,7 +38,7 @@ export const actions = {
 			});
 		}
 
-		throw redirect(300, `/curator/items/${itemId}`);
+		redirect(300, `/curator/items/${itemId}`);
 	}
 };
 

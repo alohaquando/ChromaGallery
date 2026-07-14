@@ -22,7 +22,7 @@ export const actions = {
 			});
 		}
 
-		throw redirect(300, `/curator/items/`);
+		redirect(300, `/curator/items/`);
 	}
 };
 

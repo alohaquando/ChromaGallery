@@ -9,7 +9,7 @@ export const load = async ({ parent }) => {
 	if (session?.isCurator === false) blockingCase = CuratorOnlyCases.NOT_CURATOR;
 
 	if (blockingCase === null) {
-		throw redirect(300, '/curator/items');
+		redirect(300, '/curator/items');
 	} else
 		return {
 			blockingCase
